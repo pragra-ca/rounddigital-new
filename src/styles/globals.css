@@ -2,3 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
+:root {
+  --black: rgba(0, 0, 0, 1);
+  --dark: rgba(25, 26, 35, 1);
+  --green: rgba(185, 255, 102, 1);
+  --grey: rgba(243, 243, 243, 1);
+  --h-1-font-family: "Space Grotesk", Helvetica;
+  --h-1-font-size: 60px;
+  --h-1-font-style: normal;
+  --h-1-font-weight: 500;
+  --h-1-letter-spacing: 0px;
+  --h-1-line-height: normal;
+  --h-2-font-family: "Space Grotesk", Helvetica;
+  --h-2-font-size: 40px;
+  --h-2-font-style: normal;
+  --h-2-font-weight: 500;
+  --h-2-letter-spacing: 0px;
+  --h-2-line-height: normal;
+  --h-3-font-family: "Space Grotesk", Helvetica;
+  --h-3-font-size: 30px;
+  --h-3-font-style: normal;
+  --h-3-font-weight: 500;
+  --h-3-letter-spacing: 0px;
+  --h-3-line-height: normal;
+  --h-4-font-family: "Space Grotesk", Helvetica;
+  --h-4-font-size: 20px;
+  --h-4-font-style: normal;
+  --h-4-font-weight: 500;
+  --h-4-letter-spacing: 0px;
+  --h-4-line-height: normal;
+  --p-font-family: "Space Grotesk", Helvetica;
+  --p-font-size: 18px;
+  --p-font-style: normal;
+  --p-font-weight: 400;
+  --p-letter-spacing: 0px;
+  --p-line-height: normal;
+  --shadow: 0px 5px 0px 0px rgba(25, 26, 35, 1);
+  --x-19-1a-23: rgba(25, 26, 35, 1);
+}
