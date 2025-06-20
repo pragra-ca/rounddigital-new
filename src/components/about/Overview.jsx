@@ -1,83 +1,108 @@
-import React from "react";
-import Image from "next/image";
-import men from "@/assets/about/men.png";
-import mobile from "@/assets/about/mobile.png";
+"use client";
 
-export default function Overview() {
+import * as React from "react";
+
+function Overview() {
   return (
-    <div className="bg-[#F6F6F7] py-24">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="flex flex-col md:flex-row md:items-start gap-8">
-          <div className="flex-1 bg-[#2C2C2C] text-white rounded-tl-[60px] rounded-br-[30px] p-10 md:p-14 relative overflow-hidden shadow-xl">
-            <span className="bg-red-500 text-white text-[10px] font-semibold px-3 py-1 rounded-full inline-block mb-3 tracking-wider">
-              OVERVIEW
-            </span>
-            <h2 className="text-[26px] md:text-[32px] font-semibold mb-1">
-              Welcome to
-            </h2>
-            <h2 className="text-[26px] md:text-[32px] text-[#E5474B] font-semibold mb-3">
-              Rounddigital
-            </h2>
-            <p className="text-[14px] text-gray-300 mb-8">
-              An overview of Our Works
-            </p>
-
-            <div className="flex items-center gap-6">
-              <div className="text-left">
-                <p className="text-[32px] font-bold leading-snug">97%</p>
-                <p className="text-[14px] text-white">
-                  Focus on what is more <br /> important to you and be <br /> more productive
-                </p>
-              </div>
-              <Image
-                src={men}
-                alt="woman holding tablet"
-                className="w-[150px] h-auto object-contain"
-              />
-            </div>
+    <div className="w-full mx-auto 2xl:container">
+    <div className="py-24 px-5 md:px-10 lg:px-36">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Section 1: Welcome + 97% */}
+        <div className="flex flex-col">
+          <div className="text-sm font-bold text-white w-max bg-red-500 px-4 py-1 rounded-full mb-4">
+            OVERVIEW
           </div>
 
-          <div className="flex-1 grid grid-cols-1 gap-6">
-            <div className="bg-[#E5474B] text-white p-6 rounded-2xl shadow-lg flex flex-col justify-between">
-              <div>
-                <p className="text-[10px] font-semibold mb-2 uppercase">Benefits</p>
-                <p className="text-[14px] leading-relaxed">
-                  With Pulsar you save <br /> time, money and stress
-                </p>
-              </div>
-              <button className="mt-4 border border-white text-white text-[12px] font-semibold px-4 py-2 rounded-full w-fit hover:bg-white hover:text-[#E5474B] transition">
-                Read More
-              </button>
-            </div>
+          <h2 className="text-4xl font-semibold tracking-tighter text-zinc-800">
+            Welcome to <br />
+            <span className="text-red-600">Rounddigital</span>
+          </h2>
 
-            <div className="bg-[#E5474B] text-white p-6 rounded-2xl shadow-lg flex items-center gap-4">
-              <div>
-                <p className="text-[10px] font-semibold mb-2 uppercase">Feature</p>
-                <p className="text-[14px] leading-relaxed">
-                  Maximize the return over your <br /> investments with Pulsar Template
-                </p>
-              </div>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </div>
+          <p className="mt-4 text-xl font-medium tracking-tight text-neutral-400">
+            An overview of Our Works
+          </p>
 
-            <div className="bg-[#2C2C2C] text-white p-6 rounded-2xl shadow-lg flex items-center gap-6">
-              <div className="flex-1">
-                <p className="text-[10px] font-semibold mb-2 uppercase">Mobile</p>
-                <p className="text-[14px] leading-relaxed">
-                  Fast and supreme <br /> support 24/7 all year <br /> around for your company
-                </p>
+          <div className="relative bottom-36 mt-8 w-full">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/4c19f43f544e4bffad9cd4bcf6a32e77/9373042a7bbbd2fccc80263d8a89e93f2b4a0159?placeholderIfAbsent=true"
+              alt="Overview"
+              className="w-full object-cover rounded-lg"
+            />
+            <div className="absolute bottom-4 left-4 md:left-10 bg-black bg-opacity-60 p-6 rounded-xl text-white max-w-md">
+              <div className="text-5xl font-bold tracking-tighter">97%</div>
+              <div className="mt-2 text-lg">
+                Focus on what is more important to you and be more productive
               </div>
-              <Image
-                src={mobile}
-                alt="mobile phone"
-                className="w-[70px] h-auto object-contain"
-              />
             </div>
           </div>
         </div>
+
+        {/* Section 2: Benefits Card */}
+        <div className="relative">
+          <div className="bg-red-500 rounded-3xl shadow-lg border border-black min-h-[400px]"></div>
+          <div className="absolute top-6 left-6 right-6 text-white">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/4c19f43f544e4bffad9cd4bcf6a32e77/d58d0f8863008d4ad3407ac0ee5be0c60f37ad11?placeholderIfAbsent=true"
+              alt="Benefits"
+              className="w-full rounded-lg"
+            />
+            <div className="mt-6">
+              <p className="text-sm">BENEFITS</p>
+              <h3 className="text-2xl font-semibold mt-2">
+                With Pulsar you save <br /> time, money and stress
+              </h3>
+              <button className="mt-6 px-6 py-3 bg-white text-red-600 rounded-full font-medium hover:bg-red-100 transition">
+                Read More
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 3: Feature Card */}
+        <div className="relative">
+          <div className="bg-red-500 rounded-3xl shadow-lg border border-black min-h-[270px]"></div>
+          <div className="absolute top-8 left-6 right-6 text-white">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/4c19f43f544e4bffad9cd4bcf6a32e77/7c8a6c65cad82e5aeb93891c8011fd423f4e8e85?placeholderIfAbsent=true"
+              alt="Feature"
+              className="w-[220px] mb-6"
+            />
+            <p className="text-base">FEATURE</p>
+            <h3 className="text-2xl mt-2">
+              Maximize the return over your investments with Pulsar Template
+            </h3>
+          </div>
+        </div>
+
+        {/* Section 4: Mobile Support */}
+        <div className="bg-zinc-900 flex rounded-3xl shadow-lg p-6 text-white">
+          <div>
+            <p className="text-base">MOBILE</p>
+            <h3 className="text-3xl font-semibold mt-3 tracking-tight">
+              Fast and supreme support 24/7 all year around for your company
+            </h3>
+          </div>
+          <div className="flex gap-2 items-center mt-6"></div>
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/4c19f43f544e4bffad9cd4bcf6a32e77/bf8db8b35348f5e39ada95d261164bc2ee4b41c9?placeholderIfAbsent=true"
+            className="w-8"
+            alt="icon1"
+          />
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/4c19f43f544e4bffad9cd4bcf6a32e77/b6570e87441227f89ce11e794cbc6d8d3f81e6f2?placeholderIfAbsent=true"
+            className="w-24"
+            alt="icon2"
+          />
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/4c19f43f544e4bffad9cd4bcf6a32e77/ae6fba675fea41a85d58e4543438bd936120bab5?placeholderIfAbsent=true"
+            className="w-8"
+            alt="icon3"
+          />
+        </div>
       </div>
+    </div>
     </div>
   );
 }
+
+export default Overview;

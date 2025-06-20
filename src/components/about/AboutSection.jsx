@@ -5,7 +5,7 @@ import mobile from "@/assets/about/mobile.png";
 
 export default function AboutSection() {
   return (
-    <div className="w-full bg-[#f6f6f6] py-16">
+    <div className="w-full bg-[#f6f6f6] py-16 pt-24 ">
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-8">
         {/* Left */}
         <div className="w-full md:w-1/2 flex flex-col gap-6">

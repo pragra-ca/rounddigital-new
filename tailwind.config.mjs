@@ -6,9 +6,8 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
-   
     extend: {
       colors: {
         black: "var(--black)",
@@ -23,14 +22,12 @@ export default {
         "h-3": "var(--h-3-font-family)",
         "h-4": "var(--h-4-font-family)",
         p: "var(--p-font-family)",
+        inter: ["Inter", "sans-serif"],
       },
       boxShadow: {
         shadow: "var(--shadow)",
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-  ],
+  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
 };
