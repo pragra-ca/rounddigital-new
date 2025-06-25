@@ -3,7 +3,6 @@ import React from "react";
 import { CategorySection } from "./CategorySection";
 import { TeamCarousel    } from "./TeamCarousel";
 import { MissionSection  } from "./MissionSection";
-import { Footer          } from "./Footer";
 
 /* ── article data ── */
 const marketing = [
@@ -61,6 +60,5 @@ export const MarketingSection = () => (
       <MissionSection />
     </main>
 
-    <Footer />
   </>
 );

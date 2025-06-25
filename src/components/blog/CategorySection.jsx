@@ -1,7 +1,7 @@
 import React from "react";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { ACards } from "./ACards";
-import { categoryColors } from "../utils/categoryColors";
+import { categoryColors } from "@/utlis/categoryColors";
 
 export const CategorySection = ({ title, articles }) => {
   const color = categoryColors[title] || categoryColors.default;

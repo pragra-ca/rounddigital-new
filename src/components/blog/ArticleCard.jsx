@@ -1,5 +1,5 @@
 import React from "react";
-import { categoryColors } from "../utils/categoryColors";
+import { categoryColors } from "@/utlis/categoryColors";
 
 export const ArticleCard = ({
   img,
