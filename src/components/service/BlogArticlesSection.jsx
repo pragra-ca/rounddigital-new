@@ -2,43 +2,49 @@
 
 import React from "react";
 import Image from "next/image";
+import blog1 from '@/assets/service/images/blog1.png';
+import blog2 from '@/assets/service/images/blog2.png';
+import blog3 from '@/assets/service/images/blog3.png';
+import blog4 from '@/assets/service/images/blog4.png';
+import blog5 from '@/assets/service/images/blog5.png';
+import blog6 from '@/assets/service/images/blog6.png';
 
 const articles = [
   {
     tag: "BRANDING",
     title: "What is the branding, and what we need it?",
     desc: "On the other hand, we denounce with righteous indignation and...",
-    image: "/blog-1.jpg",
+    image: blog1,
   },
   {
     tag: "TIKTOK",
     title: "What is the branding, and what we need it?",
     desc: "On the other hand, we denounce with righteous indignation and...",
-    image: "/blog-2.jpg",
+    image: blog2,
   },
   {
     tag: "LOGO DESIGN",
     title: "What is the branding, and what we need it?",
     desc: "On the other hand, we denounce with righteous indignation and...",
-    image: "/blog-3.jpg",
+    image: blog3,
   },
   {
     tag: "FB",
     title: "What is the branding, and what we need it?",
     desc: "On the other hand, we denounce with righteous indignation and...",
-    image: "/blog-4.jpg",
+    image: blog4,
   },
   {
     tag: "AI",
     title: "What is the branding, and what we need it?",
     desc: "On the other hand, we denounce with righteous indignation and...",
-    image: "/blog-5.jpg",
+    image: blog5,
   },
   {
     tag: "NFT",
     title: "What is the branding, and what we need it?",
     desc: "On the other hand, we denounce with righteous indignation and...",
-    image: "/blog-6.jpg",
+    image: blog6,
   },
 ];
 

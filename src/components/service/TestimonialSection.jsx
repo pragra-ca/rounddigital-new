@@ -3,18 +3,19 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image"; // If using Next.js
+import testimonial from '@/assets/service/images/testimonial.png'; // Adjust the path as necessary
 
 const testimonials = [
   {
     company: "Gymstory",
     logo: "G",
     headline:
-      "Kornix Is The Best Digital Agency I Have Ever Seen! Highly Recommended!",
+      "Kornix Is The Best Digital Agency I Have Ever Seen!",
     content:
       "I recently hired Ideapeel for a custom web development project and couldn't be happier with the results. The team was able to bring my unique ideas to life and create a website that truly stands out.",
     name: "Diana Loreza",
     position: "Director of GYMSTORY",
-    image: "/testimonial-user.jpg",
+    image: testimonial,
   },
   {
     company: "Fitcore",
@@ -25,7 +26,7 @@ const testimonials = [
       "Working with Ideapeel was a delight. They understood our brand and delivered an exceptional site that increased our leads dramatically.",
     name: "John Carter",
     position: "CEO of FITCORE",
-    image: "/testimonial-user.jpg",
+    image: testimonial,
   },
 ];
 
