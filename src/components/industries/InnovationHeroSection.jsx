@@ -1,95 +1,77 @@
+"use client";
 import React from "react";
+import Image from "next/image";
 
-// In a real Next.js app, these would be local imports.
-// For standalone Canvas environment, we use placeholder URLs.
-import avatar1 from "@/assets/industries/avatar1.png";
+import avatar3 from "@/assets/industries/avatar1.png";
 import avatar2 from "@/assets/industries/avatar2.png";
-import avatar3 from "@/assets/industries/avatar3.png";
+import avatar1 from "@/assets/industries/avatar3.png";
 import indus1 from "@/assets/industries/indus1.png";
 import indus2 from "@/assets/industries/indus2.png";
 import indus3 from "@/assets/industries/indus3.png";
 import indus4 from "@/assets/industries/indus4.png";
-import Image from "next/image";
 
-export default function App() {
-  return <InnovationHeroSection />;
-}
-
-function InnovationHeroSection() {
+export default function InnovationHeroSection() {
   return (
-    <section className="bg-[#f7f7f7] px-6 md:px-20 mt-10 py-16 font-sans min-h-screen flex items-center">
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-start px-6">
-        {/* Left Text */}
+    <section className="bg-[#f7f7f7] py-16 px-4 sm:px-8 lg:px-20 mt-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 items-center px-6">
+        {/* LEFT SIDE */}
         <div className="md:col-span-7 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-black">
-            Bridging Innovation <br /> with{" "}
-            <span className="text-black">Production.</span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-snug">
+            Bridging Innovation <br />
+            with <span className="text-red-600">Production.</span>
           </h1>
 
-          <div className="flex flex-wrap md:flex-nowrap items-center gap-6">
-            <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md text-sm font-semibold shadow-md transition-colors duration-200">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-sm font-semibold shadow-md transition">
               Explore Now
             </button>
 
-            <div className="flex items-center gap-4">
-              <p className="text-3xl font-bold text-red-500">
-                240<span className="text-black"> +</span>
-              </p>
-              <p className="text-sm text-gray-600 max-w-[250px]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+            <div className="flex items-start gap-4">
+              <div className="text-red-600 text-3xl font-bold">240+</div>
+              <p className="text-sm text-gray-600 max-w-xs leading-relaxed">
+                Empowering industries to innovate, scale, and lead the market.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Right Rating */}
-        <div className="md:col-span-5 flex flex-col md:items-end items-start space-y-2">
+        {/* RIGHT SIDE */}
+        <div className="md:col-span-5 flex flex-col items-start md:items- space-y-3">
           <p className="text-sm text-gray-800 font-medium">
-            Over 2500 Users Have Trusted
+            Trusted by <span className="font-semibold">2,500+ users</span>
           </p>
-          <div className="flex items-center space-x-2">
-            {/* Using standard <Image> tags with placeholder URLs */}
-            <Image
-              src={avatar1}
-              alt="User 1"
-              width={36}
-              height={36}
-              className="rounded-full border border-white object-cover"
-            />
-            <Image
-              src={avatar2}
-              alt="User 2"
-              width={36}
-              height={36}
-              className="rounded-full border border-white object-cover"
-            />
-            <Image
-              src={avatar3}
-              alt="User 3"
-              width={36}
-              height={36}
-              className="rounded-full border border-white object-cover"
-            />
-            <span className="text-green-500 text-xl font-bold">4.9</span>
+
+          <div className="flex items-center">
+            <div className="flex -space-x-6">
+              {[avatar1, avatar2, avatar3].map((avatar, idx) => (
+                <Image
+                  key={idx}
+                  src={avatar}
+                  alt={`User ${idx + 1}`}
+                  width={42}
+                  height={42}
+                  className="rounded-full border-2 border-white object-cover shadow-sm w-12 h-12"
+                />
+              ))}
+            </div>
+            <div className="ml-4 text-[#c8fe62] font-bold text-lg">★ 4.9</div>
           </div>
         </div>
 
-        {/* Bottom Image Row */}
-        {/* Bottom Image Row */}
-        <div className="md:col-span-12 mt-12">
-          <div className="flex flex-wrap justify-center md:justify-between items-start gap-6">
-            {[indus1, indus2, indus3, indus4].map((imgSrc, i) => (
+        {/* BOTTOM INDUSTRY CARDS */}
+        <div className="md:col-span-12 mt-10">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {[indus1, indus2, indus3, indus4].map((img, idx) => (
               <div
-                key={i}
-                className="w-[220px] h-[280px] overflow-hidden rounded-xl shadow-lg"
+                key={idx}
+                className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 w-full h-[260px]"
               >
                 <Image
-                  src={imgSrc}
-                  alt={`Worker ${i + 1}`}
-                  width={220}
-                  height={280}
-                  className="w-full h-full object-cover rounded-xl"
+                  src={img}
+                  alt={`Industry ${idx + 1}`}
+                  width={300}
+                  height={260}
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}
