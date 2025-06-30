@@ -79,16 +79,16 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-20 w-full bg-white px-4">
+      <div className="container max-w-6xl mx-auto  bg-black rounded-2xl shadow-lg py-16">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block bg-red-100 text-red-600 text-sm font-medium px-4 py-1 rounded-full mb-4">
+          <span className="inline-block bg-red-100 text-red-600 text-sm font-medium px-4 py-1 rounded-full mb-4 shadow-md text-lg">
             Testimonials
           </span>
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl font-bold text-white mb-4">
             What Our <span className="text-red-500">Clients Say</span>
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-white">
             Don't just take our word for it. Here's what our clients have to say about working with us.
           </p>
         </div>
@@ -159,14 +159,14 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div className="mt-16 text-center">
+        {/* <div className="mt-16 text-center">
           <p className="text-gray-600 mb-8">
             Ready to start your project? We're here to help you bring your ideas to life.
           </p>
           <button className="px-8 py-3 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition-colors duration-300">
             Get a Free Quote
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
