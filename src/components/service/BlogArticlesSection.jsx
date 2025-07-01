@@ -51,29 +51,14 @@ const articles = [
 export default function BlogArticlesSection() {
   return (
     <section className="relative bg-[#181818] py-20 px-4 md:px-20 text-white font-sans overflow-hidden">
-      {/* Animated BG: Floating Dots */}
+      {/* Animated BG: Fewer Floating Dots */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        {/* 20+ floating balls for a richer effect */}
-        <div className="absolute top-[10%] left-[8%] w-3 h-3 bg-[#e14242] rounded-full opacity-30 animate-float1" />
-        <div className="absolute top-[20%] left-[18%] w-4 h-4 bg-[#ff6a6a] rounded-full opacity-20 animate-float2" />
-        <div className="absolute top-[30%] left-[80%] w-2 h-2 bg-[#e14242] rounded-full opacity-40 animate-float3" />
-        <div className="absolute top-[8%] left-[60%] w-5 h-5 bg-[#ff6a6a] rounded-full opacity-15 animate-float4" />
-        <div className="absolute top-[75%] left-[85%] w-3 h-3 bg-[#e14242] rounded-full opacity-25 animate-float5" />
-        <div className="absolute top-[33%] left-[66%] w-2 h-2 bg-[#ff6a6a] rounded-full opacity-25 animate-float6" />
-        <div className="absolute top-[50%] left-[25%] w-4 h-4 bg-[#e14242] rounded-full opacity-20 animate-float7" />
-        <div className="absolute top-[42%] left-[55%] w-3 h-3 bg-[#ff6a6a] rounded-full opacity-30 animate-float8" />
-        <div className="absolute top-[60%] left-[10%] w-2 h-2 bg-[#e14242] rounded-full opacity-20 animate-float9" />
-        <div className="absolute top-[80%] left-[40%] w-3 h-3 bg-[#ff6a6a] rounded-full opacity-15 animate-float10" />
-        <div className="absolute top-[15%] left-[70%] w-4 h-4 bg-[#e14242] rounded-full opacity-18 animate-float11" />
-        <div className="absolute top-[60%] left-[60%] w-2 h-2 bg-[#ff6a6a] rounded-full opacity-22 animate-float12" />
-        <div className="absolute top-[85%] left-[20%] w-3 h-3 bg-[#e14242] rounded-full opacity-18 animate-float13" />
-        <div className="absolute top-[70%] left-[70%] w-5 h-5 bg-[#ff6a6a] rounded-full opacity-13 animate-float14" />
-        <div className="absolute top-[40%] left-[10%] w-2 h-2 bg-[#e14242] rounded-full opacity-22 animate-float15" />
-        <div className="absolute top-[90%] left-[90%] w-3 h-3 bg-[#ff6a6a] rounded-full opacity-18 animate-float16" />
-        <div className="absolute top-[5%] left-[50%] w-4 h-4 bg-[#e14242] rounded-full opacity-18 animate-float17" />
-        <div className="absolute top-[55%] left-[80%] w-2 h-2 bg-[#ff6a6a] rounded-full opacity-22 animate-float18" />
-        <div className="absolute top-[25%] left-[45%] w-3 h-3 bg-[#e14242] rounded-full opacity-18 animate-float19" />
-        <div className="absolute top-[85%] left-[60%] w-5 h-5 bg-[#ff6a6a] rounded-full opacity-13 animate-float20" />
+        {/* 5 floating balls for a subtle effect */}
+        <div className="absolute top-[12%] left-[10%] w-4 h-4 bg-[#e14242] rounded-full opacity-25 animate-float1" />
+        <div className="absolute top-[35%] left-[80%] w-6 h-6 bg-[#ff6a6a] rounded-full opacity-18 animate-float2" />
+        <div className="absolute top-[70%] left-[60%] w-5 h-5 bg-[#e14242] rounded-full opacity-20 animate-float3" />
+        <div className="absolute top-[55%] left-[20%] w-3 h-3 bg-[#ff6a6a] rounded-full opacity-22 animate-float4" />
+        <div className="absolute top-[80%] left-[35%] w-4 h-4 bg-[#e14242] rounded-full opacity-15 animate-float5" />
       </div>
 
       <div className="text-center mb-14 relative z-10">
@@ -141,44 +126,14 @@ export default function BlogArticlesSection() {
         }
         .animate-float1 { animation: float1 7s ease-in-out infinite alternate; }
         .animate-float2 { animation: float2 9s ease-in-out infinite alternate; }
-        .animate-float3 { animation: float3 6s ease-in-out infinite alternate; }
+        .animate-float3 { animation: float3 8s ease-in-out infinite alternate; }
         .animate-float4 { animation: float4 10s ease-in-out infinite alternate; }
-        .animate-float5 { animation: float5 8s ease-in-out infinite alternate; }
-        .animate-float6 { animation: float6 11s ease-in-out infinite alternate; }
-        .animate-float7 { animation: float7 13s ease-in-out infinite alternate; }
-        .animate-float8 { animation: float8 8s ease-in-out infinite alternate; }
-        .animate-float9 { animation: float9 12s ease-in-out infinite alternate; }
-        .animate-float10 { animation: float10 9s ease-in-out infinite alternate; }
-        .animate-float11 { animation: float11 10s ease-in-out infinite alternate; }
-        .animate-float12 { animation: float12 12s ease-in-out infinite alternate; }
-        .animate-float13 { animation: float13 8s ease-in-out infinite alternate; }
-        .animate-float14 { animation: float14 14s ease-in-out infinite alternate; }
-        .animate-float15 { animation: float15 9s ease-in-out infinite alternate; }
-        .animate-float16 { animation: float16 11s ease-in-out infinite alternate; }
-        .animate-float17 { animation: float17 13s ease-in-out infinite alternate; }
-        .animate-float18 { animation: float18 7s ease-in-out infinite alternate; }
-        .animate-float19 { animation: float19 10s ease-in-out infinite alternate; }
-        .animate-float20 { animation: float20 15s ease-in-out infinite alternate; }
-        @keyframes float1 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-40px) scale(1.2);} }
-        @keyframes float2 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(30px) scale(0.9);} }
-        @keyframes float3 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-25px) scale(1.1);} }
-        @keyframes float4 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(35px) scale(1.15);} }
-        @keyframes float5 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-30px) scale(1);} }
-        @keyframes float6 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(25px) scale(1.1);} }
-        @keyframes float7 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-35px) scale(1.15);} }
-        @keyframes float8 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(20px) scale(1.05);} }
-        @keyframes float9 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-20px) scale(1.1);} }
-        @keyframes float10 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(15px) scale(1.08);} }
-        @keyframes float11 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-32px) scale(1.1);} }
-        @keyframes float12 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(28px) scale(1.13);} }
-        @keyframes float13 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-18px) scale(1.09);} }
-        @keyframes float14 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(38px) scale(1.17);} }
-        @keyframes float15 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-22px) scale(1.07);} }
-        @keyframes float16 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(24px) scale(1.11);} }
-        @keyframes float17 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-28px) scale(1.12);} }
-        @keyframes float18 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(19px) scale(1.06);} }
-        @keyframes float19 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-26px) scale(1.13);} }
-        @keyframes float20 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(40px) scale(1.18);} }
+        .animate-float5 { animation: float5 12s ease-in-out infinite alternate; }
+        @keyframes float1 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-30px) scale(1.15);} }
+        @keyframes float2 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(24px) scale(1.1);} }
+        @keyframes float3 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-22px) scale(1.12);} }
+        @keyframes float4 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(18px) scale(1.08);} }
+        @keyframes float5 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-26px) scale(1.13);} }
       `}</style>
     </section>
   );
