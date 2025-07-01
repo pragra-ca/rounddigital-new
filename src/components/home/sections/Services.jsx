@@ -6,8 +6,8 @@ import {
   LightBulbIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import ctabg from "@/assets/home/ctabg.png";
 import Image from "next/image";
+import ctabg from "@/assets/home/ctabg.png";
 
 // Assets
 const arrow1 = "/images/home/arrow-1.svg";
@@ -17,6 +17,7 @@ const tokyoMagnifier =
   "/images/home/tokyo-magnifier-web-search-with-elements-2.png";
 const tokyoMessenger =
   "/images/home/tokyo-sending-messages-from-one-place-to-another-1.png";
+
 
 const services = [
   {
@@ -29,7 +30,6 @@ const services = [
     badgeBg: "bg-[#e14242]",
     badgeText: "text-white",
     image: tokyoBrowserWindow,
-    icon: <CodeBracketIcon className="h-8 w-8 text-red-500" />,
   },
   {
     id: 2,
@@ -41,7 +41,6 @@ const services = [
     badgeBg: "bg-[#e14242]",
     badgeText: "text-white",
     image: tokyoMagnifier,
-    icon: <MagnifyingGlassIcon className="h-8 w-8 text-red-500" />,
   },
   {
     id: 3,
@@ -53,7 +52,6 @@ const services = [
     badgeBg: "bg-white",
     badgeText: "text-black",
     image: tokyoMessenger,
-    icon: <ChatBubbleLeftRightIcon className="h-8 w-8 text-white" />,
   },
   {
     id: 4,
@@ -65,7 +63,6 @@ const services = [
     badgeBg: "bg-white",
     badgeText: "text-black",
     image: tokyoBrowserWindow,
-    icon: <ChatBubbleLeftRightIcon className="h-8 w-8 text-white" />,
   },
   {
     id: 5,
@@ -77,7 +74,6 @@ const services = [
     badgeBg: "bg-white",
     badgeText: "text-black",
     image: tokyoMessenger,
-    icon: <LightBulbIcon className="h-8 w-8 text-white" />,
   },
   {
     id: 6,
@@ -89,18 +85,17 @@ const services = [
     badgeBg: "bg-[#e14242]",
     badgeText: "text-white",
     image: tokyoMagnifier,
-    icon: <LightBulbIcon className="h-8 w-8 text-red-500" />,
   },
 ];
 
 const Services = () => {
   return (
-    <section className="w-full py-16 md:py-24 bg-white">
+    <section className="w-full py-20 md:py-28 bg-white">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px]">
         {/* Header */}
-        <div className="flex flex-col md:flex-row items-start gap-6 md:gap-10 mb-12">
+        <div className="flex flex-col md:flex-row items-start gap-6 md:gap-10 mb-14">
           <div className="inline-flex flex-col items-start">
-            <div className="inline-flex items-center gap-2.5 px-2 py-1 bg-[#e14242] rounded-[7px]">
+            <div className="inline-flex items-center gap-2.5 px-3 py-1 bg-[#e14242] rounded-[10px]">
               <h2 className="text-white text-2xl font-bold">Services</h2>
             </div>
           </div>
@@ -111,58 +106,84 @@ const Services = () => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className={`p-6 rounded-[30px] border-2 border-black shadow-[0_5px_0_#191a23] ${service.bgColor} ${service.textColor}`}
-            >
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 h-full">
-                {/* Left - Text */}
-                <div className="w-full sm:w-1/2 flex flex-col justify-start gap-2">
-                  <div className="flex gap-2">
-                    <span
-                      className={`px-3 py-1 rounded-[7px] text-xs font-semibold ${service.badgeBg} ${service.badgeText}`}
-                    >
-                      {service.title}
-                    </span>
-                    <span
-                      className={`px-3 py-1 rounded-[7px] text-xs font-semibold ${service.badgeBg} ${service.badgeText}`}
-                    >
-                      {service.subtitle}
-                    </span>
-                  </div>
-                  <p className="text-sm">{service.description}</p>
-                  <Link
-                    href={`/services#${service.title
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")}`}
-                    className="group inline-flex items-center mt-2 text-sm font-medium"
-                  >
-                    <span className="mr-2 group-hover:underline">
-                      Learn more
-                    </span>
-                    <div className="w-8 h-8 bg-dark rounded-full flex items-center justify-center group-hover:bg-[#e14242] transition-colors">
-                      <img src={arrow1} alt="Arrow" className="w-4 h-4" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {services.map((service, idx) => {
+            // Use white border for dark cards, black border for others
+            const borderClass =
+              service.bgColor === "bg-dark" || service.bgColor === "bg-[#e14242]"
+                ? "border-b-4 border-white"
+                : "border-b-4 border-black";
+            return (
+              <div
+                key={service.id}
+                className={`group p-8 rounded-[36px] ${borderClass} border-solid shadow-2xl hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.18)] transition-all duration-300 ${service.bgColor} ${service.textColor} relative overflow-hidden`}
+              >
+                {/* Animated Accent Blob */}
+                <div className={`absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl z-0 transition-all duration-300 ${service.bgColor === "bg-white" ? "bg-[#e14242]/10 group-hover:bg-[#e14242]/30" : "bg-black/10 group-hover:bg-black/20"}`}></div>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 h-full relative z-10">
+                  {/* Left - Text */}
+                  <div className="w-full sm:w-1/2 flex flex-col justify-start gap-3">
+                    <div className="flex gap-2 mb-2">
+                      <span
+                        className={`px-3 py-1 rounded-[7px] text-xs font-semibold ${service.badgeBg} ${service.badgeText} shadow`}
+                      >
+                        {service.title}
+                      </span>
+                      <span
+                        className={`px-3 py-1 rounded-[7px] text-xs font-semibold ${service.badgeBg} ${service.badgeText} shadow`}
+                      >
+                        {service.subtitle}
+                      </span>
                     </div>
-                  </Link>
+                    <p className="text-base mb-2">{service.description}</p>
+                    <Link
+                      href={`/services#${service.title
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`}
+                      className="group inline-flex items-center mt-2 text-base font-semibold"
+                    >
+                      <span className="text-gray-600 bg-clip-text bg-gradient-to-r from-[#e14242] to-[#f97316] inline-block">
+                        Learn More
+                      </span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 text-gray-600 group-hover:translate-x-1 transition-all duration-300"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13 7l5 5-5 5M6 12h12"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                  {/* Right - Image */}
+                  <div className="w-full sm:w-1/2 flex justify-center items-center">
+                    <div className="w-full h-auto max-w-[180px] md:max-w-[220px] lg:max-w-[260px] xl:max-w-[300px] relative aspect-[5/4]">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-300"
+                        priority={idx === 0}
+                        sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, (max-width: 1280px) 260px, 300px"
+                      />
+                    </div>
+                  </div>
                 </div>
-
-                {/* Right - Image */}
-                <div className="w-full sm:w-1/2 flex justify-center sm:justify-end">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="max-w-[140px] h-auto object-contain"
-                  />
-                </div>
+                {/* Glow effect on hover */}
+                <div className="pointer-events-none absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition duration-300" style={{ boxShadow: "0 0 0 8px #00000022, 0 8px 32px 0 #00000022" }} />
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* CTA Section */}
-        <div className="relative mt-24 bg-grey rounded-[45px] px-6 py-20 md:px-16 overflow-visible">
+       {/* CTA Section */}
+        <div className="relative mt-24 bg-grey rounded-[45px] px-6 py-20 md:px-16 overflow-visible border-b-4 border-black">
           <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-8 relative z-10">
             {/* Left - Text */}
             <div className="w-full md:w-1/2 text-center md:text-left">
@@ -188,6 +209,8 @@ const Services = () => {
               src={ctabg}
               alt="CTA Graphic"
               className="w-full max-w-sm md:max-w-md lg:max-w-lg object-contain"
+              width={500}
+              height={500}
               priority
             />
           </div>

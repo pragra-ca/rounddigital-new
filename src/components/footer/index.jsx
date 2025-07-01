@@ -20,19 +20,24 @@ const Footer = () => {
   const isActive = (path) => pathname === path;
 
   return (
-    <footer className="bg-[#0E0E14] text-white px-6 md:px-12 pt-12 pb-8 rounded-t-3xl">
-      <div className="max-w-7xl mx-auto space-y-14 px-6">
+    <footer className="bg-[#0E0E14] text-white px-6 md:px-12 pt-12 pb-8 rounded-t-3xl relative overflow-hidden">
+      {/* 3D Decorative Blobs */}
+      <div className="absolute -top-24 -left-24 w-80 h-80 bg-[#e14242]/20 rounded-full blur-3xl z-0" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[#e14242]/10 via-transparent to-transparent rounded-full blur-[120px] z-0 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto space-y-14 px-6 relative z-10">
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           {/* Logo */}
-          <Link href="/" className="shrink-0" aria-label="Home">
+          <Link href="/" className="shrink-0 group" aria-label="Home">
             <Image
               src="/images/home/page-1.svg"
               alt="Rounddigital Logo"
               width={200}
               height={38}
               priority
-              className="drop-shadow-xl"
+              className="drop-shadow-xl group-hover:scale-110 group-hover:drop-shadow-[0_12px_48px_#e14242] transition-all duration-300"
             />
           </Link>
 
@@ -42,9 +47,9 @@ const Footer = () => {
               <Link
                 key={name}
                 href={path}
-                className={`transition px-2 py-1 rounded-lg ${
+                className={`transition px-3 py-1 rounded-xl shadow-none hover:shadow-[0_2px_12px_#e14242] hover:bg-white/10 hover:scale-105 ${
                   isActive(path)
-                    ? "text-red-500 bg-white/10"
+                    ? "text-red-500 bg-white/10 shadow-[0_2px_12px_#e14242] scale-110"
                     : "hover:text-red-500"
                 }`}
               >
@@ -55,9 +60,27 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex gap-4 text-white text-2xl">
-            <a href="#" aria-label="LinkedIn" className="hover:text-blue-400 transition"><FaLinkedinIn /></a>
-            <a href="#" aria-label="Facebook" className="hover:text-blue-500 transition"><FaFacebookF /></a>
-            <a href="#" aria-label="Twitter" className="hover:text-sky-400 transition"><FaTwitter /></a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              className="hover:text-blue-400 transition transform hover:scale-125 hover:drop-shadow-[0_4px_24px_#e14242] bg-[#181824] p-2 rounded-full border border-[#23232c] hover:border-[#e14242]"
+            >
+              <FaLinkedinIn />
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              className="hover:text-blue-500 transition transform hover:scale-125 hover:drop-shadow-[0_4px_24px_#e14242] bg-[#181824] p-2 rounded-full border border-[#23232c] hover:border-[#e14242]"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              href="#"
+              aria-label="Twitter"
+              className="hover:text-sky-400 transition transform hover:scale-125 hover:drop-shadow-[0_4px_24px_#e14242] bg-[#181824] p-2 rounded-full border border-[#23232c] hover:border-[#e14242]"
+            >
+              <FaTwitter />
+            </a>
           </div>
         </div>
 
@@ -65,7 +88,7 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row justify-between gap-10">
           {/* Contact Info */}
           <div className="space-y-4 text-sm text-white/90 min-w-[220px]">
-            <div className="bg-red-600 px-4 py-1 rounded-full text-xs font-bold w-fit tracking-widest shadow uppercase">
+            <div className="bg-gradient-to-r from-[#e14242] to-[#ff6a6a] px-4 py-1 rounded-full text-xs font-bold w-fit tracking-widest shadow uppercase shadow-[0_2px_12px_#e14242] animate-pulse">
               Contact us
             </div>
             <p>
@@ -84,24 +107,28 @@ const Footer = () => {
           </div>
 
           {/* Newsletter Form */}
-          <div className="bg-[#181824] p-8 rounded-2xl w-full max-w-md ml-auto mt-4 lg:mt-0 shadow-xl border border-zinc-800">
-            <form className="flex flex-col sm:flex-row items-center gap-4" autoComplete="off">
+          <div className="bg-[#181824] p-8 rounded-2xl w-full max-w-md ml-auto mt-4 lg:mt-0 shadow-2xl border border-zinc-800 relative overflow-hidden group">
+            {/* 3D Glass Shine */}
+            <div className="pointer-events-none absolute left-4 top-4 w-2/3 h-1/4 bg-white/20 rounded-t-2xl blur-[2px] opacity-60 z-10" />
+            <form className="flex flex-col sm:flex-row items-center gap-4 relative z-20" autoComplete="off">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full px-4 py-2 border border-gray-700 rounded bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+                className="w-full px-4 py-2 border border-gray-700 rounded bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 transition shadow-sm"
                 required
               />
               <button
                 type="submit"
-                className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold shadow transition text-sm tracking-wide"
+                className="w-full sm:w-auto bg-gradient-to-r from-[#e14242] to-[#ff6a6a] hover:from-[#ff6a6a] hover:to-[#e14242] text-white px-6 py-2 rounded-full font-bold shadow transition text-sm tracking-wide border-b-4 border-[#e14242] hover:scale-105 hover:shadow-lg duration-300"
               >
                 Subscribe
               </button>
             </form>
-            <p className="text-xs text-gray-400 mt-3 text-center">
+            <p className="text-xs text-gray-400 mt-3 text-center z-20 relative">
               Get the latest updates and offers.
             </p>
+            {/* 3D Glow on hover */}
+            <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 z-10" style={{ boxShadow: "0 0 0 24px #e1424244, 0 12px 48px 0 #e1424244" }} />
           </div>
         </div>
 

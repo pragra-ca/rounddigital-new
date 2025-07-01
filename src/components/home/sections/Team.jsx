@@ -115,7 +115,7 @@ const Team = () => {
         {teamMembers.map((member) => (
           <div
             key={member.id}
-            className="flex flex-col max-w-full w-full items-start gap-4 p-6 bg-white rounded-[45px] border border-[#191a23] shadow-[5px_5px_0px_#191a23]"
+            className="flex flex-col max-w-full w-full items-start gap-4 p-6 bg-white rounded-[45px] border border-[#191a23] shadow-[5px_5px_0px_#191a23] transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
           >
             <div className="flex items-center gap-5 w-full">
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden flex-shrink-0">
@@ -154,9 +154,11 @@ const Team = () => {
         ))}
       </div>
 
-      {/* Button */}
-      <div className="flex justify-center mt-16">
-        <button className="w-60 bg-black text-white py-4 rounded-xl hover:bg-gray-800 text-lg font-medium transition">
+      {/* Buttons */}
+      <div className="flex flex-wrap justify-center gap-4 mt-16">
+        <button
+          className="w-60 bg-black text-white py-4 rounded-xl text-lg font-medium transition-all duration-300 border-b-4 border-[#e14242] shadow-[0_4px_24px_0_rgba(225,66,66,0.10)] hover:bg-[#e14242] hover:text-white hover:shadow-[0_8px_32px_0_rgba(225,66,66,0.18)] hover:-translate-y-1 hover:scale-105"
+        >
           See all team
         </button>
       </div>

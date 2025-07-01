@@ -22,7 +22,7 @@ const ContactUs = () => {
         </div>
 
         {/* Form Container */}
-        <div className="bg-[#f6f6f6] rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col md:flex-row gap-10 md:items-center">
+        <div className="bg-[#f6f6f6] rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col md:flex-row gap-10 md:items-center border-b-4 border-[#e14242] shadow-[0_8px_32px_0_rgba(225,66,66,0.10),0_2px_8px_0_rgba(25,26,35,0.10)] transition-all duration-300">
           {/* Left: Form */}
           <div className="flex-1 w-full">
             {/* Radio Buttons */}
@@ -56,7 +56,7 @@ const ContactUs = () => {
                 <input
                   type="text"
                   placeholder="Name"
-                  className="w-full px-4 py-3 border border-gray-400 rounded-md text-black"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black shadow focus:border-[#e14242] focus:ring-2 focus:ring-[#e14242]/20 transition"
                 />
               </div>
               <div>
@@ -64,7 +64,7 @@ const ContactUs = () => {
                 <input
                   type="email"
                   placeholder="Email"
-                  className="w-full px-4 py-3 border border-gray-400 rounded-md text-black"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black shadow focus:border-[#e14242] focus:ring-2 focus:ring-[#e14242]/20 transition"
                 />
               </div>
               <div>
@@ -72,13 +72,13 @@ const ContactUs = () => {
                 <textarea
                   placeholder="Message"
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-400 rounded-md text-black resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black resize-none shadow focus:border-[#e14242] focus:ring-2 focus:ring-[#e14242]/20 transition"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-black text-white py-3 rounded-md hover:bg-gray-800 transition"
+                className="w-full bg-black text-white py-3 rounded-lg border-b-4 border-[#e14242] shadow-[0_4px_24px_0_rgba(225,66,66,0.10)] hover:bg-[#e14242] hover:shadow-[0_8px_32px_0_rgba(225,66,66,0.18)] hover:-translate-y-1 hover:scale-105 transition-all duration-300 font-semibold text-lg"
               >
                 Send Message
               </button>
