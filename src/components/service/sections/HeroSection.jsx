@@ -20,86 +20,213 @@ const HeroSection = () => {
         defaults: { ease: "power3.out", duration: 1 },
       });
 
-      tl.from(headingRef.current, { opacity: 0, y: -50 })
-        .from(textRef.current, { opacity: 0, y: 20 }, "-=0.5")
+      tl.from(headingRef.current, { opacity: 0, y: -60, scale: 0.95 })
+        .from(textRef.current, { opacity: 0, y: 30 }, "-=0.5")
         .from(buttonRef.current, { opacity: 0, scale: 0.8 }, "-=0.5")
         .from(trustedRef.current, { opacity: 0, y: 20 }, "-=0.5");
     },
     { scope: containerRef }
   );
 
-  return (
-    <div className="bg-[#312f2f] mt-16">
-      <div className="max-w-[1200px] mx-auto">
-        {/* <Header /> */}
-        {/* <HeroSection /> */}
+  // Generate random small stars for the background
+  const randomStars = Array.from({ length: 36 }).map((_, i) => {
+    const size = Math.random() * 2 + 1.5;
+    const top = Math.random() * 100;
+    const left = Math.random() * 100;
+    const opacity = 0.18 + Math.random() * 0.25;
+    const blur = Math.random() > 0.7 ? "blur(1.5px)" : "none";
+    const twinkle = Math.random() > 0.5 ? "twinkle-bg-star" : "";
+    return (
+      <span
+        key={i}
+        className={`absolute pointer-events-none z-0 bg-white rounded-full ${twinkle}`}
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+          top: `${top}%`,
+          left: `${left}%`,
+          opacity,
+          filter: blur,
+        }}
+      />
+    );
+  });
 
+  return (
+    <div className="relative bg-gradient-to-br from-[#232323] mt-16 via-[#312f2f] to-[#181818] min-h-[80vh] flex flex-col justify-center overflow-hidden">
+      {/* Stars BG */}
+      {/* Decorative Stars (shine/twinkle, big/small, and floating/rotating) */}
+      <Image
+        src={star}
+        alt="star-twinkle-1"
+        className="hidden md:block absolute top-[18%] left-[10%] w-16 h-16 object-contain twinkle-star twinkle-delay-1 floating-star"
+      />
+      <Image
+        src={star}
+        alt="star-twinkle-2"
+        className="hidden md:block absolute top-[30%] left-[12%] w-8 h-8 object-contain twinkle-star floating-star"
+      />
+      <Image
+        src={star}
+        alt="star-twinkle-3"
+        className="hidden md:block absolute top-[35%] right-[18%] w-12 h-12 object-contain twinkle-star twinkle-delay-2 floating-star"
+      />
+      <Image
+        src={star}
+        alt="star-twinkle-4"
+        className="hidden md:block absolute top-[10%] right-[12%] w-[80px] h-[80px] object-contain twinkle-star twinkle-delay-3 floating-star"
+      />
+      <Image
+        src={star}
+        alt="star-twinkle-5"
+        className="hidden md:block absolute bottom-[15%] left-[20%] w-10 h-10 object-contain twinkle-star twinkle-delay-4 floating-star"
+      />
+      <Image
+        src={star}
+        alt="star-twinkle-6"
+        className="hidden md:block absolute bottom-[10%] right-[15%] w-14 h-14 object-contain twinkle-star twinkle-delay-5 floating-star"
+      />
+
+      {/* Random small stars */}
+      <div className="absolute inset-0 z-0">{randomStars}</div>
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10 flex flex-col items-center">
         <section
           ref={containerRef}
-          className="bg-[#312f2f] text-header pt-10 md:pt-20 px-6 text-center flex flex-col items-center justify-center relative overflow-hidden"
+          className="w-full flex flex-col items-center justify-center text-center pt-20 pb-10"
         >
-          {/* Ellips Background */}
-          <Image
-            src={ellips}
-            alt="ellips"
-            className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none opacity-20"
-          />
-
-          {/* Decorative Stars (Hidden on mobile) */}
-          <Image
-            src={star}
-            alt="star-small-left"
-            className="hidden sm:block absolute top-[340px] left-[363px] w-4 h-4 object-contain"
-          />
-          <Image
-            src={star}
-            alt="star-medium-right"
-            className="hidden sm:block absolute top-[340px] right-[450px] w-6 h-6 object-contain"
-          />
-          <Image
-            src={star}
-            alt="star-large-right"
-            className="hidden sm:block absolute top-[75px] right-[300px] w-[79px] h-[79px] object-contain"
-          />
-
           {/* Main Heading */}
           <h1
             ref={headingRef}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight max-w-[802px] text-white"
+            className="relative text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight max-w-3xl text-white bg-gradient-to-br from-white/10 via-[#e14242]/10 to-transparent rounded-3xl px-4 py-3 shadow-md backdrop-blur-md"
+            style={{
+              boxShadow: "0 4px 16px 0 #e1424222, 0 1.5px 0 #e14242",
+            }}
           >
-            Bringing Your <br />
-            Dream Into <span className="text-primary italic text-[#e14242]">Reality</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#e14242] via-white to-[#e14242] animate-gradient-x">
+              Transform Your Vision
+            </span>
+            <span className="block mt-2">
+              Into{" "}
+              <span className="text-[#e14242] italic drop-shadow-[0_1px_4px_#e14242]">
+                Reality
+              </span>
+            </span>
           </h1>
 
           {/* Subtext */}
           <p
             ref={textRef}
-            className="text-white mt-6 max-w-[983px] text-sm sm:text-base leading-relaxed"
+            className="text-white/90 mt-7 max-w-2xl text-base sm:text-lg md:text-xl leading-relaxed drop-shadow-[0_1px_4px_#e14242] mx-auto"
           >
-            We increase revenue and ensure sustainable long-term growth <br />
-            for your business through powerful IT Solutions
+            We boost your revenue and ensure sustainable long-term growth <br className="hidden sm:block" />
+            for your business through powerful, creative IT Solutions.
           </p>
 
           {/* CTA Button */}
           <div ref={buttonRef}>
-            <Button className="mt-10 w-[149px] h-[56px] bg-[#e14242]">Book A Meeting</Button>
+            <Button className="mt-10 w-[180px] h-[56px] bg-gradient-to-r from-[#e14242] to-[#ff6a6a] text-white font-bold text-lg rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 border-b-4 border-[#e14242]">
+              Book A Meeting
+            </Button>
           </div>
 
           {/* Trusted By */}
           <div
             ref={trustedRef}
-            className="mt-14 flex items-center gap-4 text-text text-xs tracking-wider uppercase"
+            className="mt-14 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-xs tracking-wider uppercase"
           >
             <div className="h-px w-10 bg-primary border border-[#e14242]" />
-            <span className="text-white">Trusted by amazing brands</span>
+            <span className="text-white tracking-widest font-semibold drop-shadow-[0_1px_4px_#e14242]">
+              Trusted by amazing brands
+            </span>
             <div className="h-px w-10 bg-primary border border-[#e14242]" />
           </div>
 
           {/* Company Logos */}
-          <CompanyLogo />
+          <div className="mt-8">
+            <CompanyLogo />
+          </div>
         </section>
         <HowToWorkSection />
       </div>
+      {/* Animations */}
+      <style jsx>{`
+        @keyframes gradient-x {
+          0%,
+          100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 5s ease-in-out infinite;
+        }
+        @keyframes twinkle {
+          0%,
+          100% {
+            opacity: 1;
+            filter: brightness(1) drop-shadow(0 0 8px #fff8);
+            transform: scale(1);
+          }
+          20% {
+            opacity: 0.7;
+            filter: brightness(1.5) drop-shadow(0 0 16px #fff);
+            transform: scale(1.18);
+          }
+          40% {
+            opacity: 0.5;
+            filter: brightness(2) drop-shadow(0 0 24px #fff);
+            transform: scale(1.32);
+          }
+          60% {
+            opacity: 0.7;
+            filter: brightness(1.5) drop-shadow(0 0 16px #fff);
+            transform: scale(1.18);
+          }
+          80% {
+            opacity: 1;
+            filter: brightness(1) drop-shadow(0 0 8px #fff8);
+            transform: scale(1);
+          }
+        }
+        .twinkle-star {
+          animation: twinkle 2.2s infinite;
+        }
+        .twinkle-delay-1 {
+          animation-delay: 0.3s;
+        }
+        .twinkle-delay-2 {
+          animation-delay: 0.7s;
+        }
+        .twinkle-delay-3 {
+          animation-delay: 1.1s;
+        }
+        .twinkle-delay-4 {
+          animation-delay: 1.5s;
+        }
+        .twinkle-delay-5 {
+          animation-delay: 1.9s;
+        }
+
+        @keyframes floating {
+          0%,
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-18px) rotate(8deg);
+          }
+        }
+        .floating-star {
+          animation: floating 7s ease-in-out infinite alternate;
+        }
+        .twinkle-bg-star {
+          animation: twinkle 3.5s infinite;
+        }
+      `}</style>
     </div>
   );
 };
