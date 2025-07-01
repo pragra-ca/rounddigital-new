@@ -5,37 +5,67 @@ import mobile from "@/assets/about/mobile.png";
 
 export default function Intro() {
   return (
-    <div className="bg-[#F6F6F7] py-20">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="relative bg-zinc-900 rounded-[2.5rem] text-white p-8 sm:p-12 md:p-16 overflow-hidden shadow-2xl flex flex-col items-center">
+    <div className="bg-[#F6F6F7] py-20 relative overflow-hidden">
+      {/* 3D Decorative Blobs */}
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#e14242]/10 rounded-full blur-3xl z-0" />
+      <div className="absolute -bottom-32 -right-32 w-[32rem] h-[32rem] bg-black/10 rounded-full blur-3xl z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[#e14242]/10 via-transparent to-transparent rounded-full blur-[120px] z-0 pointer-events-none" />
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-transparent to-red-600/20 rounded-[2.5rem] pointer-events-none" />
+      <div className="container mx-auto max-w-7xl px-4 relative z-10">
+        <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-800 to-[#1a1a1a] rounded-[2.5rem] text-white p-8 sm:p-12 md:p-16 overflow-hidden shadow-lg flex flex-col items-center border-2 border-[#e14242]/20">
+          {/* Overlay Shine */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-[#e14242]/10 rounded-[2.5rem] pointer-events-none" />
+
+          {/* Floating Images for 3D effect */}
+          <div className="hidden md:block absolute -top-16 left-16 z-20 animate-float-slow">
+            <div className="bg-gradient-to-tr from-[#e14242]/80 via-white/80 to-zinc-200/80 rounded-full p-2 shadow-lg ring-4 ring-[#e14242]/10">
+              <Image
+                src={mobile}
+                alt="Mobile"
+                width={80}
+                height={80}
+                className="w-20 h-20 object-contain rounded-full border-4 border-white shadow"
+              />
+            </div>
+          </div>
+          <div className="hidden md:block absolute -bottom-16 right-16 z-20 animate-float-slow-reverse">
+            <div className="bg-gradient-to-tr from-black/80 via-white/80 to-zinc-200/80 rounded-full p-2 shadow-lg ring-4 ring-black/10">
+              <Image
+                src={men}
+                alt="Men"
+                width={80}
+                height={80}
+                className="w-20 h-20 object-contain rounded-full border-4 border-white shadow"
+              />
+            </div>
+          </div>
 
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center w-full">
-            <span className="bg-red-600 text-white text-xs font-bold px-6 py-1 rounded-full inline-block mb-7 tracking-widest shadow uppercase border-2 border-white/10">
+            <span className="bg-gradient-to-r from-[#e14242] to-[#ff6a6a] text-white text-xs font-bold px-7 py-2 rounded-full inline-block mb-7 tracking-widest shadow uppercase border border-white/10 shadow-[0_2px_8px_#e14242] animate-pulse">
               INTRO
             </span>
-            <h2 className="text-3xl md:text-5xl font-black mb-4 leading-tight text-center drop-shadow-lg">
-              Let’s build your next <span className="text-red-500">big idea</span> with us
+            <h2 className="text-4xl md:text-6xl font-black mb-4 leading-tight text-center drop-shadow-[0_4px_16px_#e1424244]">
+              Let’s build your next{" "}
+              <span className="text-[#e14242]">big idea</span> with us
             </h2>
-            <p className="text-base md:text-lg text-gray-300 mb-12 text-center max-w-2xl">
-              Effortless editing, powerful results. Double click and type to make it yours.
+            <p className="text-lg md:text-xl text-gray-200 mb-12 text-center max-w-2xl drop-shadow">
+              Effortless editing, powerful results. Double click and type to make
+              it yours.
             </p>
 
             {/* Features Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
               {/* About Us */}
-              <div className="flex flex-col items-center bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-red-600/40 hover:scale-105 hover:shadow-red-300 transition-all duration-300">
-                <div className="bg-red-600 w-14 h-14 flex items-center justify-center rounded-full shadow-lg mb-4 border-4 border-white/10">
+              <div className="flex flex-col items-center bg-gradient-to-br from-[#e14242]/10 via-white/10 to-black/10 backdrop-blur-md rounded-3xl p-10 shadow-lg border border-[#e14242]/20 hover:scale-105 hover:shadow-xl hover:border-[#e14242] transition-all duration-300 group">
+                <div className="bg-gradient-to-tr from-[#e14242] to-[#ff6a6a] w-16 h-16 flex items-center justify-center rounded-full shadow mb-5 border-4 border-white/10 animate-pulse group-hover:scale-110 transition">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-7 h-7 text-white"
+                    className="w-8 h-8 text-white"
                   >
                     <path
                       strokeLinecap="round"
@@ -44,25 +74,31 @@ export default function Intro() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-white">About Us</h3>
-                <p className="text-sm text-gray-200 mb-4 text-center">
-                  We help businesses grow and succeed online with creative digital solutions and a passionate team.
+                <h3 className="text-xl font-bold mb-2 text-white drop-shadow">
+                  About Us
+                </h3>
+                <p className="text-base text-gray-200 mb-4 text-center">
+                  We help businesses grow and succeed online with creative digital
+                  solutions and a passionate team.
                 </p>
-                <a href="#" className="text-xs font-bold text-red-400 underline hover:text-white transition">
+                <a
+                  href="#"
+                  className="text-xs font-bold text-[#e14242] underline hover:text-white transition"
+                >
                   LEARN MORE
                 </a>
               </div>
 
               {/* Our Services */}
-              <div className="flex flex-col items-center bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-red-600/40 hover:scale-105 hover:shadow-red-300 transition-all duration-300">
-                <div className="bg-red-600 w-14 h-14 flex items-center justify-center rounded-full shadow-lg mb-4 border-4 border-white/10">
+              <div className="flex flex-col items-center bg-gradient-to-br from-[#e14242]/10 via-white/10 to-black/10 backdrop-blur-md rounded-3xl p-10 shadow-lg border border-[#e14242]/20 hover:scale-105 hover:shadow-xl hover:border-[#e14242] transition-all duration-300 group">
+                <div className="bg-gradient-to-tr from-[#e14242] to-[#ff6a6a] w-16 h-16 flex items-center justify-center rounded-full shadow mb-5 border-4 border-white/10 animate-pulse group-hover:scale-110 transition">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-7 h-7 text-white"
+                    className="w-8 h-8 text-white"
                   >
                     <path
                       strokeLinecap="round"
@@ -71,25 +107,31 @@ export default function Intro() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-white">Our Services</h3>
-                <p className="text-sm text-gray-200 mb-4 text-center">
-                  Tailored digital strategies and scalable services to drive your business forward and maximize results.
+                <h3 className="text-xl font-bold mb-2 text-white drop-shadow">
+                  Our Services
+                </h3>
+                <p className="text-base text-gray-200 mb-4 text-center">
+                  Tailored digital strategies and scalable services to drive your
+                  business forward and maximize results.
                 </p>
-                <a href="#" className="text-xs font-bold text-red-400 underline hover:text-white transition">
+                <a
+                  href="#"
+                  className="text-xs font-bold text-[#e14242] underline hover:text-white transition"
+                >
                   LEARN MORE
                 </a>
               </div>
 
               {/* Contact Us */}
-              <div className="flex flex-col items-center bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-red-600/40 hover:scale-105 hover:shadow-red-300 transition-all duration-300">
-                <div className="bg-red-600 w-14 h-14 flex items-center justify-center rounded-full shadow-lg mb-4 border-4 border-white/10">
+              <div className="flex flex-col items-center bg-gradient-to-br from-[#e14242]/10 via-white/10 to-black/10 backdrop-blur-md rounded-3xl p-10 shadow-lg border border-[#e14242]/20 hover:scale-105 hover:shadow-xl hover:border-[#e14242] transition-all duration-300 group">
+                <div className="bg-gradient-to-tr from-[#e14242] to-[#ff6a6a] w-16 h-16 flex items-center justify-center rounded-full shadow mb-5 border-4 border-white/10 animate-pulse group-hover:scale-110 transition">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-7 h-7 text-white"
+                    className="w-8 h-8 text-white"
                   >
                     <path
                       strokeLinecap="round"
@@ -98,11 +140,17 @@ export default function Intro() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-white">Contact Us</h3>
-                <p className="text-sm text-gray-200 mb-4 text-center">
-                  Reach out to our team and discover how we can help your business thrive in the digital world.
+                <h3 className="text-xl font-bold mb-2 text-white drop-shadow">
+                  Contact Us
+                </h3>
+                <p className="text-base text-gray-200 mb-4 text-center">
+                  Reach out to our team and discover how we can help your
+                  business thrive in the digital world.
                 </p>
-                <a href="#" className="text-xs font-bold text-red-400 underline hover:text-white transition">
+                <a
+                  href="#"
+                  className="text-xs font-bold text-[#e14242] underline hover:text-white transition"
+                >
                   LEARN MORE
                 </a>
               </div>
@@ -110,6 +158,33 @@ export default function Intro() {
           </div>
         </div>
       </div>
+      {/* Floating Animation Keyframes */}
+      <style jsx>{`
+        @keyframes float-slow {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-18px);
+          }
+        }
+        @keyframes float-slow-reverse {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(18px);
+          }
+        }
+        .animate-float-slow {
+          animation: float-slow 5s ease-in-out infinite;
+        }
+        .animate-float-slow-reverse {
+          animation: float-slow-reverse 5s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
