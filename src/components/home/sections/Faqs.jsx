@@ -50,7 +50,7 @@ const Faqs = () => {
   };
 
   return (
-    <div className="bg-white px-4 md:px-10 lg:px-20 py-16 max-w-7xl mx-auto">
+    <section className="bg-white px-4 md:px-10 lg:px-20 py-16 max-w-7xl mx-auto">
       {/* Header */}
       <div className="mb-10">
         <div className="inline-block px-3 py-1 bg-[#e14242] rounded-md mb-3 shadow-lg">
@@ -64,10 +64,11 @@ const Faqs = () => {
         </p>
       </div>
 
-      {/* FAQ Cards */}
+      {/* FAQ Items */}
       <div className="flex flex-col gap-10">
         {faqData.map((faq, index) => {
           const isOpen = openIndex === index;
+
           return (
             <div
               key={index}
@@ -95,6 +96,8 @@ const Faqs = () => {
             >
               {/* Accent Glow */}
               <div className="pointer-events-none absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl bg-[#e14242]/20 group-hover:bg-[#e14242]/40 z-0 transition-all duration-300" />
+
+              {/* Title Section */}
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
                 <div className="flex items-start sm:items-center gap-6">
                   <div className="text-4xl sm:text-5xl font-medium text-black group-hover:text-white drop-shadow">
@@ -104,7 +107,11 @@ const Faqs = () => {
                     {faq.title}
                   </div>
                 </div>
-                <div className={`w-[50px] h-[50px] flex items-center justify-center rounded-full border border-[#191a23] bg-[#f3f3f3] shrink-0 shadow-md transition-all duration-300 ${isOpen ? "bg-[#e14242]/20" : ""}`}>
+                <div
+                  className={`w-[50px] h-[50px] flex items-center justify-center rounded-full border border-[#191a23] bg-[#f3f3f3] shrink-0 shadow-md transition-all duration-300 ${
+                    isOpen ? "bg-[#e14242]/20" : ""
+                  }`}
+                >
                   <img
                     src={isOpen ? image2 : image1}
                     alt="toggle-icon"
@@ -112,18 +119,26 @@ const Faqs = () => {
                   />
                 </div>
               </div>
+
+              {/* Answer Section */}
               {isOpen && (
                 <p className="mt-4 text-base sm:text-lg leading-relaxed text-black group-hover:text-white relative z-10 transition-colors duration-300">
                   {faq.answer}
                 </p>
               )}
-              {/* 3D Glow on hover */}
-              <div className="pointer-events-none absolute inset-0 rounded-[45px] opacity-0 group-hover:opacity-100 transition duration-300" style={{ boxShadow: "0 0 0 8px #e1424222, 0 8px 32px 0 #e1424222" }} />
+
+              {/* Glow Hover Effect */}
+              <div
+                className="pointer-events-none absolute inset-0 rounded-[45px] opacity-0 group-hover:opacity-100 transition duration-300"
+                style={{
+                  boxShadow: "0 0 0 8px #e1424222, 0 8px 32px 0 #e1424222",
+                }}
+              />
             </div>
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 
+// Image imports remain the same
 import team1 from "@/assets/home/mask-group.png";
 import team2 from "@/assets/home/mask-group-2.png";
 import team3 from "@/assets/home/mask-group-3.png";
@@ -18,10 +19,10 @@ const Team = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "John Smith",
-      role: "CEO & Founder",
+      name: "Aarav Mehta",
+      role: "Chief Technology Officer",
       description:
-        "Visionary leader with 15+ years of experience in digital transformation and business strategy.",
+        "Drives innovation and oversees technical excellence across all engineering teams.",
       image: team1,
       social: {
         twitter: "#",
@@ -31,10 +32,10 @@ const Team = () => {
     },
     {
       id: 2,
-      name: "Sarah Johnson",
-      role: "Creative Director",
+      name: "Priya Kapoor",
+      role: "Head of Design",
       description:
-        "Passionate about creating beautiful and intuitive user experiences that drive engagement.",
+        "Crafts compelling digital experiences with a deep focus on design systems and accessibility.",
       image: team2,
       social: {
         twitter: "#",
@@ -44,10 +45,10 @@ const Team = () => {
     },
     {
       id: 3,
-      name: "Michael Chen",
-      role: "Lead Developer",
+      name: "Rohit Sharma",
+      role: "Senior Full Stack Engineer",
       description:
-        "Expert in modern web technologies and scalable architecture solutions.",
+        "Specializes in scalable, secure applications with modern tech stacks.",
       image: team3,
       social: {
         twitter: "#",
@@ -57,10 +58,10 @@ const Team = () => {
     },
     {
       id: 4,
-      name: "Emily Davis",
-      role: "Marketing Director",
+      name: "Ananya Das",
+      role: "Content Strategist",
       description:
-        "Data-driven marketer focused on growth strategies and brand development.",
+        "Drives content strategy and storytelling for stronger brand presence and SEO impact.",
       image: team4,
       social: {
         twitter: "#",
@@ -70,10 +71,10 @@ const Team = () => {
     },
     {
       id: 5,
-      name: "David Kim",
-      role: "UX Designer",
+      name: "Kunal Patel",
+      role: "UI/UX Engineer",
       description:
-        "Creates intuitive and delightful user experiences that solve real problems.",
+        "Translates user needs into delightful and efficient user interface designs.",
       image: team5,
       social: {
         twitter: "#",
@@ -82,10 +83,10 @@ const Team = () => {
     },
     {
       id: 6,
-      name: "Lisa Wong",
-      role: "Project Manager",
+      name: "Neha Verma",
+      role: "Scrum Master",
       description:
-        "Ensures projects are delivered on time, on budget, and exceed expectations.",
+        "Facilitates agile teams, removes blockers, and ensures timely delivery of projects.",
       image: team6,
       social: {
         twitter: "#",
@@ -110,7 +111,7 @@ const Team = () => {
         </p>
       </div>
 
-      {/* Team Members */}
+      {/* Team Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
         {teamMembers.map((member) => (
           <div
@@ -154,11 +155,9 @@ const Team = () => {
         ))}
       </div>
 
-      {/* Buttons */}
+      {/* CTA Button */}
       <div className="flex flex-wrap justify-center gap-4 mt-16">
-        <button
-          className="w-60 bg-black text-white py-4 rounded-xl text-lg font-medium transition-all duration-300 border-b-4 border-[#e14242] shadow-[0_4px_24px_0_rgba(225,66,66,0.10)] hover:bg-[#e14242] hover:text-white hover:shadow-[0_8px_32px_0_rgba(225,66,66,0.18)] hover:-translate-y-1 hover:scale-105"
-        >
+        <button className="w-60 bg-black text-white py-4 rounded-xl text-lg font-medium transition-all duration-300 border-b-4 border-[#e14242] shadow-[0_4px_24px_0_rgba(225,66,66,0.10)] hover:bg-[#e14242] hover:text-white hover:shadow-[0_8px_32px_0_rgba(225,66,66,0.18)] hover:-translate-y-1 hover:scale-105">
           See all team
         </button>
       </div>

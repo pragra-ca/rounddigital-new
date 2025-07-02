@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { FaQuoteLeft, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import Image from 'next/image';
+import React, { useState, useEffect } from "react";
+import {
+  FaQuoteLeft,
+  FaStar,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
+import Image from "next/image";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -8,57 +13,66 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      quote: "Working with this team has been an absolute game-changer for our business. Their innovative approach and attention to detail are unmatched in the industry.",
-      author: "Alex Johnson",
-      company: "TechCorp Inc.",
-      role: "CEO",
+      quote:
+        "Their team delivered a seamless experience from start to finish. The new branding and design completely transformed how our customers view us.",
+      author: "Ishita Roy",
+      company: "BrandNest",
+      role: "Founder & CEO",
       rating: 5,
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+      avatar: "https://randomuser.me/api/portraits/women/12.jpg",
     },
     {
       id: 2,
-      quote: "The results have exceeded our expectations. Their expertise in digital transformation helped us reach new heights in our industry and connect with our audienc.",
-      author: "Maria Garcia",
-      company: "Global Solutions",
-      role: "Marketing Director",
+      quote:
+        "From UX to backend, they nailed every requirement. Communication was clear, and delivery was on point. We couldn’t be happier with the results.",
+      author: "Karan Mehta",
+      company: "CodeZen",
+      role: "Tech Lead",
       rating: 5,
-      avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+      avatar: "https://randomuser.me/api/portraits/men/34.jpg",
     },
     {
       id: 3,
-      quote: "Professional, creative, and reliable. They delivered our project on time and within budget, exceeding our expectations at every turn. Highly recommended!",
-      author: "James Wilson",
-      company: "InnovateX",
-      role: "Product Manager",
+      quote:
+        "We saw a 3x boost in conversions within two months of launch. Their SEO strategy and mobile-first approach were exactly what we needed.",
+      author: "Sana Kapoor",
+      company: "StyleLoop",
+      role: "Head of Marketing",
       rating: 4,
-      avatar: "https://randomuser.me/api/portraits/men/75.jpg"
+      avatar: "https://randomuser.me/api/portraits/women/55.jpg",
     },
     {
       id: 4,
-      quote: "Their team's ability to understand our vision and bring it to life is remarkable. The website they built for us has significantly increased our online presence.",
-      author: "Sarah Chen",
-      company: "Creative Minds",
-      role: "Founder",
+      quote:
+        "It’s rare to find a team that blends creativity, technical expertise, and professionalism so effortlessly. Highly recommended for startups.",
+      author: "Ravi Prasad",
+      company: "LaunchPad Labs",
+      role: "Co-Founder",
       rating: 5,
-      avatar: "https://randomuser.me/api/portraits/women/68.jpg"
+      avatar: "https://randomuser.me/api/portraits/men/90.jpg",
     },
     {
       id: 5,
-      quote: "From the initial consultation to the final delivery, the entire process was smooth and transparent. We've seen a 40% increase in leads since launching our new site.",
-      author: "David Kim",
-      company: "NextGen Tech",
-      role: "CTO",
+      quote:
+        "After working with them, we now have a faster, cleaner, and more scalable platform. They truly care about delivering long-term value.",
+      author: "Neelam Joshi",
+      company: "FinSage",
+      role: "Product Owner",
       rating: 5,
-      avatar: "https://randomuser.me/api/portraits/men/22.jpg"
-    }
+      avatar: "https://randomuser.me/api/portraits/women/30.jpg",
+    },
   ];
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    setCurrentSlide((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    setCurrentSlide((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
   };
 
   // Auto-advance slides every 5 seconds
@@ -70,12 +84,16 @@ const Testimonials = () => {
   }, []);
 
   const renderStars = (rating) => {
-    return Array(5).fill(0).map((_, i) => (
-      <FaStar
-        key={i}
-        className={`w-5 h-5 ${i < rating ? 'text-yellow-400 drop-shadow' : 'text-gray-300'}`}
-      />
-    ));
+    return Array(5)
+      .fill(0)
+      .map((_, i) => (
+        <FaStar
+          key={i}
+          className={`w-5 h-5 ${
+            i < rating ? "text-yellow-400 drop-shadow" : "text-gray-300"
+          }`}
+        />
+      ));
   };
 
   return (
@@ -93,7 +111,8 @@ const Testimonials = () => {
             What Our <span className="text-red-500">Clients Say</span>
           </h2>
           <p className="text-lg text-white/80">
-            Don't just take our word for it. Here's what our clients have to say about working with us.
+            Don't just take our word for it. Here's what our clients have to say
+            about working with us.
           </p>
         </div>
 
@@ -124,8 +143,12 @@ const Testimonials = () => {
                         />
                       </div>
                       <div>
-                        <h4 className="font-bold text-black group-hover:text-[#e14242] transition-colors duration-300">{testimonial.author}</h4>
-                        <p className="text-sm text-gray-600">{testimonial.role}, {testimonial.company}</p>
+                        <h4 className="font-bold text-black group-hover:text-[#e14242] transition-colors duration-300">
+                          {testimonial.author}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {testimonial.role}, {testimonial.company}
+                        </p>
                         <div className="flex mt-1">
                           {renderStars(testimonial.rating)}
                         </div>
@@ -159,7 +182,11 @@ const Testimonials = () => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 border-2 ${currentSlide === index ? 'bg-red-500 border-red-500 scale-125 shadow' : 'bg-gray-300 border-gray-300'}`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 border-2 ${
+                  currentSlide === index
+                    ? "bg-red-500 border-red-500 scale-125 shadow"
+                    : "bg-gray-300 border-gray-300"
+                }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}

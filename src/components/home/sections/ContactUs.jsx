@@ -1,11 +1,50 @@
+'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import contactimage from '@/assets/home/contactgroup.png'; // Adjust the path as necessary
+import contactimage from '@/assets/home/contactgroup.png';
+
 const ContactUs = () => {
   const [selectedOption, setSelectedOption] = useState("Say Hi");
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState('');
 
-  const handleOptionChange = (e)=> {
+  const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: '' });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    return newErrors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setStatus('');
+      return;
+    }
+
+    // Mock form submission
+    console.log({ ...formData, type: selectedOption });
+    setStatus('Message sent successfully!');
+    setFormData({ name: '', email: '', message: '' });
+    setErrors({});
   };
 
   return (
@@ -22,7 +61,7 @@ const ContactUs = () => {
         </div>
 
         {/* Form Container */}
-        <div className="bg-[#f6f6f6] rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col md:flex-row gap-10 md:items-center border-b-4 border-[#e14242] shadow-[0_8px_32px_0_rgba(225,66,66,0.10),0_2px_8px_0_rgba(25,26,35,0.10)] transition-all duration-300">
+        <div className="bg-[#f6f6f6] rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col md:flex-row gap-10 md:items-center border-b-4 border-[#e14242] shadow-[0_8px_32px_0_rgba(225,66,66,0.10),0_2px_8px_0_rgba(25,26,35,0.10)]">
           {/* Left: Form */}
           <div className="flex-1 w-full">
             {/* Radio Buttons */}
@@ -50,30 +89,42 @@ const ContactUs = () => {
             </div>
 
             {/* Form */}
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <label className="block mb-1 text-sm text-black">Name</label>
+                <label className="block mb-1 text-sm text-black">Name*</label>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Name"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black shadow focus:border-[#e14242] focus:ring-2 focus:ring-[#e14242]/20 transition"
                 />
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
               </div>
               <div>
                 <label className="block mb-1 text-sm text-black">Email*</label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Email"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black shadow focus:border-[#e14242] focus:ring-2 focus:ring-[#e14242]/20 transition"
                 />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
               <div>
                 <label className="block mb-1 text-sm text-black">Message*</label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Message"
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black resize-none shadow focus:border-[#e14242] focus:ring-2 focus:ring-[#e14242]/20 transition"
                 ></textarea>
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
               </div>
 
               <button
@@ -82,11 +133,12 @@ const ContactUs = () => {
               >
                 Send Message
               </button>
+              {status && <p className="text-green-600 font-medium mt-2">{status}</p>}
             </form>
           </div>
 
           {/* Right: Decorative Image */}
-          <div className="flex-1 full hidden md:flex justify-end relative">
+          <div className="flex-1 hidden md:flex justify-end relative">
             <Image
               src={contactimage}
               alt="Decorative"

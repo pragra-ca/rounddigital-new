@@ -18,35 +18,37 @@ const tokyoMagnifier =
 const tokyoMessenger =
   "/images/home/tokyo-sending-messages-from-one-place-to-another-1.png";
 
-
 const services = [
   {
     id: 1,
-    title: "Web Development",
-    subtitle: "Custom Websites",
-    description: "Fast, scalable websites tailored to your brand.",
+    title: "Cybersecurity",
+    subtitle: "Protect & Secure",
+    description:
+      "Safeguard your business with advanced cybersecurity solutions and proactive threat management.",
     bgColor: "bg-white",
-    textColor: "text-black",
-    badgeBg: "bg-[#e14242]",
-    badgeText: "text-white",
-    image: tokyoBrowserWindow,
-  },
-  {
-    id: 2,
-    title: "SEO Services",
-    subtitle: "Boost Rankings",
-    description: "Optimize your site to rank higher on search engines.",
-    bgColor: "bg-grey",
     textColor: "text-black",
     badgeBg: "bg-[#e14242]",
     badgeText: "text-white",
     image: tokyoMagnifier,
   },
   {
+    id: 2,
+    title: "IT Consulting",
+    subtitle: "Expert Guidance",
+    description:
+      "Strategic IT consulting to align technology with your business goals and drive digital transformation.",
+    bgColor: "bg-grey",
+    textColor: "text-black",
+    badgeBg: "bg-[#e14242]",
+    badgeText: "text-white",
+    image: tokyoBrowserWindow,
+  },
+  {
     id: 3,
-    title: "PPC Campaigns",
-    subtitle: "Drive Leads",
-    description: "Ads that convert. Maximize ROI with smart targeting.",
+    title: "Application Development",
+    subtitle: "Mobile & Web Apps",
+    description:
+      "Custom application development for mobile and web to enhance your digital presence.",
     bgColor: "bg-[#e14242]",
     textColor: "text-white",
     badgeBg: "bg-white",
@@ -55,9 +57,10 @@ const services = [
   },
   {
     id: 4,
-    title: "Social Media",
-    subtitle: "Brand Growth",
-    description: "Build your presence on all major platforms.",
+    title: "Cloud Application Development",
+    subtitle: "Modern Solutions",
+    description:
+      "Build and deploy scalable cloud-native applications for agility and growth.",
     bgColor: "bg-dark",
     textColor: "text-white",
     badgeBg: "bg-white",
@@ -66,25 +69,75 @@ const services = [
   },
   {
     id: 5,
-    title: "Workforce",
-    subtitle: "Smart Hiring",
-    description: "Flexible hiring solutions for business success.",
+    title: "Cloud Management",
+    subtitle: "Optimize & Scale",
+    description:
+      "Comprehensive cloud management services to optimize performance and reduce costs.",
     bgColor: "bg-[#e14242]",
     textColor: "text-white",
     badgeBg: "bg-white",
     badgeText: "text-black",
-    image: tokyoMessenger,
+    image: tokyoMagnifier,
   },
   {
     id: 6,
-    title: "Talent Factory",
-    subtitle: "Top Talent",
-    description: "Build high-performance teams quickly.",
+    title: "Custom Software Development",
+    subtitle: "Tailored Solutions",
+    description:
+      "Bespoke software solutions designed to meet your unique business requirements.",
     bgColor: "bg-white",
     textColor: "text-black",
     badgeBg: "bg-[#e14242]",
     badgeText: "text-white",
+    image: tokyoMessenger,
+  },
+  {
+    id: 7,
+    title: "Enterprise Content Management",
+    subtitle: "Organize & Control",
+    description:
+      "Streamline your content lifecycle with robust enterprise content management systems.",
+    bgColor: "bg-grey",
+    textColor: "text-black",
+    badgeBg: "bg-[#e14242]",
+    badgeText: "text-white",
     image: tokyoMagnifier,
+  },
+  {
+    id: 8,
+    title: "Software Testing",
+    subtitle: "Quality Assurance",
+    description:
+      "Ensure reliability and performance with comprehensive software testing services.",
+    bgColor: "bg-[#e14242]",
+    textColor: "text-white",
+    badgeBg: "bg-white",
+    badgeText: "text-black",
+    image: tokyoBrowserWindow,
+  },
+  {
+    id: 9,
+    title: "Web Design",
+    subtitle: "Creative UI/UX",
+    description:
+      "Engaging and user-centric web design to elevate your brand and user experience.",
+    bgColor: "bg-white",
+    textColor: "text-black",
+    badgeBg: "bg-[#e14242]",
+    badgeText: "text-white",
+    image: tokyoMessenger,
+  },
+  {
+    id: 10,
+    title: "Web Development",
+    subtitle: "Robust Platforms",
+    description:
+      "Modern, scalable web development solutions for businesses of all sizes.",
+    bgColor: "bg-grey",
+    textColor: "text-black",
+    badgeBg: "bg-[#e14242]",
+    badgeText: "text-white",
+    image: tokyoBrowserWindow,
   },
 ];
 
@@ -100,8 +153,7 @@ const Services = () => {
             </div>
           </div>
           <p className="md:max-w-[580px] text-black text-lg md:text-xl font-normal">
-            At our digital marketing agency, we offer a range of services to
-            help businesses grow and succeed online. These services include:
+           We help startups and enterprises design, build, and grow impactful digital products from branding to AI-driven marketing.
           </p>
         </div>
 
@@ -110,7 +162,8 @@ const Services = () => {
           {services.map((service, idx) => {
             // Use white border for dark cards, black border for others
             const borderClass =
-              service.bgColor === "bg-dark" || service.bgColor === "bg-[#e14242]"
+              service.bgColor === "bg-dark" ||
+              service.bgColor === "bg-[#e14242]"
                 ? "border-b-4 border-white"
                 : "border-b-4 border-black";
             return (
@@ -119,7 +172,13 @@ const Services = () => {
                 className={`group p-8 rounded-[36px] ${borderClass} border-solid shadow-2xl hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.18)] transition-all duration-300 ${service.bgColor} ${service.textColor} relative overflow-hidden`}
               >
                 {/* Animated Accent Blob */}
-                <div className={`absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl z-0 transition-all duration-300 ${service.bgColor === "bg-white" ? "bg-[#e14242]/10 group-hover:bg-[#e14242]/30" : "bg-black/10 group-hover:bg-black/20"}`}></div>
+                <div
+                  className={`absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl z-0 transition-all duration-300 ${
+                    service.bgColor === "bg-white"
+                      ? "bg-[#e14242]/10 group-hover:bg-[#e14242]/30"
+                      : "bg-black/10 group-hover:bg-black/20"
+                  }`}
+                ></div>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 h-full relative z-10">
                   {/* Left - Text */}
                   <div className="w-full sm:w-1/2 flex flex-col justify-start gap-3">
@@ -176,13 +235,18 @@ const Services = () => {
                   </div>
                 </div>
                 {/* Glow effect on hover */}
-                <div className="pointer-events-none absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition duration-300" style={{ boxShadow: "0 0 0 8px #00000022, 0 8px 32px 0 #00000022" }} />
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition duration-300"
+                  style={{
+                    boxShadow: "0 0 0 8px #00000022, 0 8px 32px 0 #00000022",
+                  }}
+                />
               </div>
             );
           })}
         </div>
 
-       {/* CTA Section */}
+        {/* CTA Section */}
         <div className="relative mt-24 bg-grey rounded-[45px] px-6 py-20 md:px-16 overflow-visible border-b-4 border-black">
           <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-8 relative z-10">
             {/* Left - Text */}

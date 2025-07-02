@@ -61,21 +61,27 @@ const Footer = () => {
           {/* Social Icons */}
           <div className="flex gap-4 text-white text-2xl">
             <a
-              href="#"
+              href="https://www.linkedin.com/company/rounddigital/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
               className="hover:text-blue-400 transition transform hover:scale-125 hover:drop-shadow-[0_4px_24px_#e14242] bg-[#181824] p-2 rounded-full border border-[#23232c] hover:border-[#e14242]"
             >
               <FaLinkedinIn />
             </a>
             <a
-              href="#"
+              href="https://facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               className="hover:text-blue-500 transition transform hover:scale-125 hover:drop-shadow-[0_4px_24px_#e14242] bg-[#181824] p-2 rounded-full border border-[#23232c] hover:border-[#e14242]"
             >
               <FaFacebookF />
             </a>
             <a
-              href="#"
+              href="https://twitter.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Twitter"
               className="hover:text-sky-400 transition transform hover:scale-125 hover:drop-shadow-[0_4px_24px_#e14242] bg-[#181824] p-2 rounded-full border border-[#23232c] hover:border-[#e14242]"
             >
@@ -92,17 +98,22 @@ const Footer = () => {
               Contact us
             </div>
             <p>
-              <span className="font-semibold text-white">Email:</span>{" "}
-              <a href="mailto:info@rounddigital.com" className="hover:text-red-400 transition">info@rounddigital.com</a>
+              <span className="font-semibold text-white">Service:</span>{" "}
+              <a href="mailto:info@rounddigital.co" className="hover:text-red-400 transition">info@rounddigital.co</a>
+            </p>
+            <p>
+              <span className="font-semibold text-white">Careers:</span>{" "}
+              <a href="mailto:careers@rounddigital.co" className="hover:text-red-400 transition">careers@rounddigital.co</a>
             </p>
             <p>
               <span className="font-semibold text-white">Phone:</span>{" "}
-              <a href="tel:5555678901" className="hover:text-red-400 transition">555-567-8901</a>
+              <a href="tel:9054075009" className="hover:text-red-400 transition">905-407-5009</a>
             </p>
-            <address className="not-italic">
-              <span className="font-semibold text-white">Address:</span><br />
-              1234 Main St<br />
-              Moonstone City, Stardust State 12345
+            {/* Mississauga Address */}
+            <address className="not-italic mt-2">
+              <span className="font-semibold text-white">Mississauga:</span><br />
+              160B - 110 Matheson Blvd W,<br />
+              Mississauga, ON L5M 6B8, Canada
             </address>
           </div>
 

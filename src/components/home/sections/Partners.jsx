@@ -1,18 +1,19 @@
 import React from 'react';
 import Image from 'next/image';
 
-const companyLogo = "/images/home/company-logo.svg";
-const companyLogo2 = "/images/home/company-logo-2.svg";
-const companyLogo3 = "/images/home/company-logo-3.svg";
-const companyLogo4 = "/images/home/company-logo-4.svg";
-const companyLogo5 = "/images/home/company-logo-5.svg";
-const companyLogo6 = "/images/home/company-logo-6.svg";
+import AzureLogo from "@/assets/partners/azure.png";
+import DataDogLogo from '@/assets/partners/data_dog.png';
+import ESolutionsLogo from '@/assets/partners/e_solutions.png';
+import EpslionSolutionsLogo from '@/assets/partners/epslion_solutions.png';
+import RoundAssistLogo from '@/assets/partners/round_assist.png';
+import TechMahindraLogo from '@/assets/partners/tech_mahindra.png';
+
 
 const Partners = () => {
   return (
     <div className="w-full px-4 lg:px-[100px] py-16 mx-auto max-w-7xl 2xl:container bg-white">
-      <div className="flex flex-wrap items-center justify-center gap-12 mt-12">
-        {[companyLogo6, companyLogo, companyLogo5, companyLogo2, companyLogo4, companyLogo3].map((logo, index) => (
+      <div className="flex flex-wrap items-center justify-center gap-8 mt-12 px-4">
+        {[AzureLogo, DataDogLogo, ESolutionsLogo, EpslionSolutionsLogo, RoundAssistLogo, TechMahindraLogo].map((logo, index) => (
           <div
             key={index}
             className="
