@@ -59,7 +59,7 @@ export default function AboutSection() {
                 </svg>
               </div>
               <span className="text-zinc-800 font-semibold text-lg">
-                Call Us Today <span className="text-[#e14242] font-bold">100-01-9719</span>
+                Call Us Today <span className="text-[#e14242] font-bold">905-407-5009</span>
               </span>
             </div>
             <p className="text-zinc-600 mt-3 text-center text-base">

@@ -47,9 +47,9 @@ const Footer = () => {
               <Link
                 key={name}
                 href={path}
-                className={`transition px-3 py-1 rounded-xl shadow-none hover:shadow-[0_2px_12px_#e14242] hover:bg-white/10 hover:scale-105 ${
+                className={`transition px-3 py-1 rounded-xl shadow-none  hover:bg-white/10 hover:scale-105 ${
                   isActive(path)
-                    ? "text-red-500 bg-white/10 shadow-[0_2px_12px_#e14242] scale-110"
+                    ? "text-red-500  scale-110"
                     : "hover:text-red-500"
                 }`}
               >

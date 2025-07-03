@@ -143,24 +143,24 @@ const services = [
 
 const Services = () => {
   return (
-    <section className="w-full py-20 md:py-28 bg-white">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px]">
+    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-28 bg-white overflow-x-hidden">
+      <div className="max-w-[1440px] mx-auto px-2 sm:px-4 md:px-8 lg:px-12 xl:px-[100px]">
         {/* Header */}
-        <div className="flex flex-col md:flex-row items-start gap-6 md:gap-10 mb-14">
+        <div className="flex flex-col md:flex-row items-start gap-4 md:gap-10 mb-10 md:mb-14">
           <div className="inline-flex flex-col items-start">
             <div className="inline-flex items-center gap-2.5 px-3 py-1 bg-[#e14242] rounded-[10px]">
               <h2 className="text-white text-2xl font-bold">Services</h2>
             </div>
           </div>
-          <p className="md:max-w-[580px] text-black text-lg md:text-xl font-normal">
-           We help startups and enterprises design, build, and grow impactful digital products from branding to AI-driven marketing.
+          <p className="md:max-w-[580px] text-black text-base sm:text-lg md:text-xl font-normal">
+            We help startups and enterprises design, build, and grow impactful
+            digital products from branding to AI-driven marketing.
           </p>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 xl:gap-12">
           {services.map((service, idx) => {
-            // Use white border for dark cards, black border for others
             const borderClass =
               service.bgColor === "bg-dark" ||
               service.bgColor === "bg-[#e14242]"
@@ -169,20 +169,20 @@ const Services = () => {
             return (
               <div
                 key={service.id}
-                className={`group p-8 rounded-[36px] ${borderClass} border-solid shadow-2xl hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.18)] transition-all duration-300 ${service.bgColor} ${service.textColor} relative overflow-hidden`}
+                className={`group p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-[28px] lg:rounded-[36px] ${borderClass} border-solid shadow-2xl hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.18)] transition-all duration-300 ${service.bgColor} ${service.textColor} relative overflow-hidden`}
               >
                 {/* Animated Accent Blob */}
                 <div
-                  className={`absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl z-0 transition-all duration-300 ${
+                  className={`absolute -top-8 -right-8 w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-full blur-2xl z-0 transition-all duration-300 ${
                     service.bgColor === "bg-white"
                       ? "bg-[#e14242]/10 group-hover:bg-[#e14242]/30"
                       : "bg-black/10 group-hover:bg-black/20"
                   }`}
                 ></div>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 h-full relative z-10">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 h-full relative z-10">
                   {/* Left - Text */}
-                  <div className="w-full sm:w-1/2 flex flex-col justify-start gap-3">
-                    <div className="flex gap-2 mb-2">
+                  <div className="w-full sm:w-1/2 flex flex-col justify-start gap-2 sm:gap-3">
+                    <div className="flex flex-wrap gap-2 mb-2">
                       <span
                         className={`px-3 py-1 rounded-[7px] text-xs font-semibold ${service.badgeBg} ${service.badgeText} shadow`}
                       >
@@ -194,12 +194,14 @@ const Services = () => {
                         {service.subtitle}
                       </span>
                     </div>
-                    <p className="text-base mb-2">{service.description}</p>
+                    <p className="text-sm md:text-base mb-2">
+                      {service.description}
+                    </p>
                     <Link
                       href={`/services#${service.title
                         .toLowerCase()
                         .replace(/\s+/g, "-")}`}
-                      className="group inline-flex items-center mt-2 text-base font-semibold"
+                      className="group inline-flex items-center mt-2 text-sm md:text-base font-semibold"
                     >
                       <span className="text-gray-600 bg-clip-text bg-gradient-to-r from-[#e14242] to-[#f97316] inline-block">
                         Learn More
@@ -221,22 +223,22 @@ const Services = () => {
                     </Link>
                   </div>
                   {/* Right - Image */}
-                  <div className="w-full sm:w-1/2 flex justify-center items-center">
-                    <div className="w-full h-auto max-w-[180px] md:max-w-[220px] lg:max-w-[260px] xl:max-w-[300px] relative aspect-[5/4]">
+                  <div className="w-full sm:w-1/2 flex justify-center items-center mt-4 sm:mt-0">
+                    <div className="w-full h-auto max-w-[180px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[320px] xl:max-w-[380px] 2xl:max-w-[420px] relative aspect-[5/4]">
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
                         className="object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-300"
                         priority={idx === 0}
-                        sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, (max-width: 1280px) 260px, 300px"
+                        sizes="(max-width: 640px) 180px, (max-width: 768px) 220px, (max-width: 1024px) 260px, (max-width: 1280px) 320px, (max-width: 1536px) 380px, 420px"
                       />
                     </div>
                   </div>
                 </div>
                 {/* Glow effect on hover */}
                 <div
-                  className="pointer-events-none absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition duration-300"
+                  className="pointer-events-none absolute inset-0 rounded-2xl md:rounded-[28px] lg:rounded-[36px] opacity-0 group-hover:opacity-100 transition duration-300"
                   style={{
                     boxShadow: "0 0 0 8px #00000022, 0 8px 32px 0 #00000022",
                   }}

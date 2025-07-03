@@ -32,9 +32,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "shadow-2xl bg-white/80 backdrop-blur-lg"
-          : "bg-white"
+        scrolled ? "shadow-2xl bg-white/80 backdrop-blur-lg" : "bg-white"
       }`}
       style={{
         WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
@@ -47,7 +45,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between py-3 md:py-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group" aria-label="Home">
+          <Link
+            href="/"
+            className="flex items-center gap-2 group"
+            aria-label="Home"
+          >
             <Image
               src="/images/logo.svg"
               alt="Rounddigital Logo"
@@ -64,7 +66,7 @@ const Navbar = () => {
               <Link
                 key={name}
                 href={path}
-                className={`text-base font-semibold transition-all duration-200 px-3 py-2 rounded-xl shadow-none hover:shadow-[0_2px_12px_#e14242] hover:bg-white/10 hover:scale-105 ${
+                className={`text-base font-semibold transition-all duration-200 px-3 py-2 rounded-xl shadow-none hover:bg-white/10 hover:scale-105 ${
                   isActive(path)
                     ? "text-red-600 bg-white/20 shadow-[0_2px_12px_#e14242] scale-110"
                     : "text-gray-800 hover:text-red-600"
@@ -131,9 +133,9 @@ const Navbar = () => {
                   key={name}
                   href={path}
                   onClick={() => setIsOpen(false)}
-                  className={`block text-base font-semibold px-3 py-3 rounded-xl transition-all duration-200 hover:shadow-[0_2px_12px_#e14242] hover:bg-[#e14242]/10 hover:scale-105 ${
+                  className={`block text-base font-semibold px-3 py-3 rounded-xl transition-all duration-200 hover:shadow-[0_2px_12px_#e14242]  hover:scale-105 ${
                     isActive(path)
-                      ? "text-red-600 bg-[#e14242]/10 shadow-[0_2px_12px_#e14242] scale-105"
+                      ? "text-red-600 scale-105"
                       : "text-gray-800 hover:text-red-600"
                   }`}
                 >
