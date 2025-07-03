@@ -31,12 +31,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white ${
         scrolled ? "shadow-2xl bg-white/80 backdrop-blur-lg" : "bg-white"
       }`}
       style={{
         WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
         backdropFilter: scrolled ? "blur(12px)" : "none",
+        backgroundColor: "white", // Always white background
         boxShadow: scrolled
           ? "0 8px 32px 0 rgba(225,66,66,0.08), 0 2px 8px 0 rgba(25,26,35,0.10)"
           : "none",
