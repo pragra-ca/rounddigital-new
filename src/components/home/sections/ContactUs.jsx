@@ -40,17 +40,29 @@ const ContactUs = () => {
       return;
     }
 
-    // Mock form submission
-    console.log({ ...formData, type: selectedOption });
-    setStatus('Message sent successfully!');
-    setFormData({ name: '', email: '', message: '' });
-    setErrors({});
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, type: selectedOption }),
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        setStatus('Message sent successfully!');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus(result.message || 'Failed to send message');
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus('Something went wrong');
+    }
   };
 
   return (
     <div className="w-full bg-white py-16 md:py-24 px-2 sm:px-4 lg:px-8 overflow-x-hidden">
       <div className="container mx-auto max-w-6xl">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
           <div className="bg-[#e14242] text-white px-4 py-1 rounded-md font-semibold text-lg">
             Contact Us
@@ -60,11 +72,8 @@ const ContactUs = () => {
           </p>
         </div>
 
-        {/* Form Container */}
         <div className="bg-[#f6f6f6] rounded-2xl p-4 sm:p-6 md:p-10 flex flex-col md:flex-row gap-8 md:gap-10 md:items-center border-b-4 border-[#e14242] shadow-[0_8px_32px_0_rgba(225,66,66,0.10),0_2px_8px_0_rgba(25,26,35,0.10)]">
-          {/* Left: Form */}
           <div className="flex-1 w-full min-w-0">
-            {/* Radio Buttons */}
             <div className="flex gap-4 sm:gap-6 mb-6 flex-wrap">
               <label className="flex items-center gap-2">
                 <input
@@ -88,7 +97,6 @@ const ContactUs = () => {
               </label>
             </div>
 
-            {/* Form */}
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
                 <label className="block mb-1 text-sm text-black">Name*</label>
@@ -137,7 +145,6 @@ const ContactUs = () => {
             </form>
           </div>
 
-          {/* Right: Decorative Image */}
           <div className="flex-1 hidden md:flex justify-end relative min-w-0">
             <Image
               src={contactimage}
