@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { FaLinkedinIn, FaFacebookF, FaTwitter } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 
@@ -10,7 +10,6 @@ const navLinks = [
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
   { name: "Use Cases", path: "/use-cases" },
-  { name: "Pricing", path: "/pricing" },
   { name: "Blog", path: "/blogs" },
 ];
 
@@ -18,6 +17,30 @@ const Footer = () => {
   const pathname = usePathname();
 
   const isActive = (path) => pathname === path;
+
+    const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    try {
+      setStatus("loading");
+
+      // Replace this with your API or email service
+      console.log("Subscribed email:", email);
+
+      // Simulate API delay
+      await new Promise((res) => setTimeout(res, 1000));
+
+      setStatus("success");
+      setEmail("");
+    } catch (error) {
+      console.error("Subscription failed:", error);
+      setStatus("error");
+    }
+  };
 
   return (
     <footer className="bg-[#0E0E14] text-white px-6 md:px-12 pt-12 pb-8 rounded-t-3xl relative overflow-hidden">
@@ -47,10 +70,8 @@ const Footer = () => {
               <Link
                 key={name}
                 href={path}
-                className={`transition px-3 py-1 rounded-xl shadow-none  hover:bg-white/10 hover:scale-105 ${
-                  isActive(path)
-                    ? "text-red-500  scale-110"
-                    : "hover:text-red-500"
+                className={`transition px-3 py-1 rounded-xl shadow-none hover:bg-white/10 hover:scale-105 ${
+                  isActive(path) ? "text-red-500 scale-110" : "hover:text-red-500"
                 }`}
               >
                 {name}
@@ -91,55 +112,93 @@ const Footer = () => {
         </div>
 
         {/* Middle Section */}
-        <div className="flex flex-col lg:flex-row justify-between gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
           {/* Contact Info */}
-          <div className="space-y-4 text-sm text-white/90 min-w-[220px]">
-            <div className="bg-gradient-to-r from-[#e14242] to-[#ff6a6a] px-4 py-1 rounded-full text-xs font-bold w-fit tracking-widest shadow uppercase shadow-[0_2px_12px_#e14242] animate-pulse">
-              Contact us
+          <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-white/90">
+            {/* Left: Mississauga */}
+            <div className="space-y-4 min-w-[240px]">
+              <div className="bg-gradient-to-r from-[#e14242] to-[#ff6a6a] px-4 py-1 rounded-full text-xs font-bold w-fit tracking-widest shadow uppercase shadow-[0_2px_12px_#e14242] animate-pulse">
+                Contact Us
+              </div>
+              <p>
+                <span className="font-semibold text-white">Service:</span>{" "}
+                <a
+                  href="mailto:info@rounddigital.co"
+                  className="hover:text-red-400 transition"
+                >
+                  info@rounddigital.co
+                </a>
+              </p>
+              <address className="not-italic mt-2 leading-6">
+                <span className="font-semibold text-white">Mississauga Office:</span>
+                <br />
+                160B - 110 Matheson Blvd W,
+                <br />
+                Mississauga, ON L5M 6B8, Canada
+              </address>
             </div>
-            <p>
-              <span className="font-semibold text-white">Service:</span>{" "}
-              <a href="mailto:info@rounddigital.co" className="hover:text-red-400 transition">info@rounddigital.co</a>
-            </p>
-            <p>
-              <span className="font-semibold text-white">Careers:</span>{" "}
-              <a href="mailto:careers@rounddigital.co" className="hover:text-red-400 transition">careers@rounddigital.co</a>
-            </p>
-            <p>
-              <span className="font-semibold text-white">Phone:</span>{" "}
-              <a href="tel:9054075009" className="hover:text-red-400 transition">905-407-5009</a>
-            </p>
-            {/* Mississauga Address */}
-            <address className="not-italic mt-2">
-              <span className="font-semibold text-white">Mississauga:</span><br />
-              160B - 110 Matheson Blvd W,<br />
-              Mississauga, ON L5M 6B8, Canada
-            </address>
+
+            {/* Right: Texas */}
+            <div className="space-y-4 min-w-[240px] pt-6 md:pt-10">
+              <p>
+                <span className="font-semibold text-white">Careers:</span>{" "}
+                <a
+                  href="mailto:careers@rounddigital.co"
+                  className="hover:text-red-400 transition"
+                >
+                  careers@rounddigital.co
+                </a>
+              </p>
+              <address className="not-italic mt-2 leading-6">
+                <span className="font-semibold text-white">Texas Office:</span>
+                <br />
+                450 Century Pkwy,
+                <br />
+                Ste 250, Allen, Texas 75013
+              </address>
+            </div>
           </div>
 
-          {/* Newsletter Form */}
-          <div className="bg-[#181824] p-8 rounded-2xl w-full max-w-md ml-auto mt-4 lg:mt-0 shadow-2xl border border-zinc-800 relative overflow-hidden group">
-            {/* 3D Glass Shine */}
+          {/* Newsletter */}
+          <div className="bg-[#181824] p-8 rounded-2xl w-full max-w-md shadow-2xl border border-zinc-800 relative overflow-hidden group">
             <div className="pointer-events-none absolute left-4 top-4 w-2/3 h-1/4 bg-white/20 rounded-t-2xl blur-[2px] opacity-60 z-10" />
-            <form className="flex flex-col sm:flex-row items-center gap-4 relative z-20" autoComplete="off">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full px-4 py-2 border border-gray-700 rounded bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 transition shadow-sm"
-                required
-              />
-              <button
-                type="submit"
-                className="w-full sm:w-auto bg-gradient-to-r from-[#e14242] to-[#ff6a6a] hover:from-[#ff6a6a] hover:to-[#e14242] text-white px-6 py-2 rounded-full font-bold shadow transition text-sm tracking-wide border-b-4 border-[#e14242] hover:scale-105 hover:shadow-lg duration-300"
-              >
-                Subscribe
-              </button>
-            </form>
+            <form
+      onSubmit={handleSubmit}
+      className="flex flex-col sm:flex-row items-center gap-4 relative z-20"
+      autoComplete="off"
+    >
+      <input
+        type="email"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="w-full px-4 py-2 border border-gray-700 rounded bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 transition shadow-sm"
+        required
+      />
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="w-full sm:w-auto bg-gradient-to-r from-[#e14242] to-[#ff6a6a] hover:from-[#ff6a6a] hover:to-[#e14242] text-white px-6 py-2 rounded-full font-bold shadow transition text-sm tracking-wide border-b-4 border-[#e14242] hover:scale-105 hover:shadow-lg duration-300"
+      >
+        {status === "loading" ? "Submitting..." : "Subscribe"}
+      </button>
+
+      {status === "success" && (
+        <p className="text-green-400 text-xs mt-2 w-full sm:w-auto">Subscribed successfully!</p>
+      )}
+      {status === "error" && (
+        <p className="text-red-400 text-xs mt-2 w-full sm:w-auto">Something went wrong.</p>
+      )}
+    </form>
             <p className="text-xs text-gray-400 mt-3 text-center z-20 relative">
               Get the latest updates and offers.
             </p>
-            {/* 3D Glow on hover */}
-            <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 z-10" style={{ boxShadow: "0 0 0 24px #e1424244, 0 12px 48px 0 #e1424244" }} />
+            <div
+              className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 z-10"
+              style={{
+                boxShadow: "0 0 0 24px #e1424244, 0 12px 48px 0 #e1424244",
+              }}
+            />
           </div>
         </div>
 
@@ -149,9 +208,12 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-gray-500 gap-3 pt-2">
           <p>
-            © {new Date().getFullYear()} <span className="font-semibold text-white">Rounddigital</span>. All Rights Reserved.
+            © {new Date().getFullYear()}{" "}
+            <span className="font-semibold text-white">Rounddigital</span>. All Rights Reserved.
           </p>
-          <Link href="#" className="hover:text-red-400 transition">Privacy Policy</Link>
+          <Link href="#" className="hover:text-red-400 transition">
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>
