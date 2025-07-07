@@ -21,9 +21,9 @@ const BecomePart = () => {
         </p>
 
         {/* CTA Button with responsive padding */}
-        <button className="bg-red-500 text-sm md:text-base hover:bg-red-600 text-black font-medium py-4 px-8 md:py-[17px] md:px-[39px] rounded-[8px] flex items-center gap-2 mx-auto">
+        {/* <button className="bg-red-500 text-sm md:text-base hover:bg-red-600 text-black font-medium py-4 px-8 md:py-[17px] md:px-[39px] rounded-[8px] flex items-center gap-2 mx-auto">
           See Pricing <CircleArrowRight size={16} />
-        </button>
+        </button> */}
       </div>
     </div>
   );

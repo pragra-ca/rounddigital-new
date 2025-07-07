@@ -46,9 +46,9 @@ const HowToWorkSection = () => {
                     Grow your brand with high-quality design for a flat monthly fee.<br className="hidden sm:block" />
                     Work with senior designers. Subscribe and make as many requests as you need – no limits.
                 </p>
-                <Button className="mt-6 w-[149px] h-[56px] text-white bg-gradient-to-r from-[#e14242] to-[#ff6a6a] font-semibold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 border-b-4 border-[#e14242]">
+                {/* <Button className="mt-6 w-[149px] h-[56px] text-white bg-gradient-to-r from-[#e14242] to-[#ff6a6a] font-semibold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 border-b-4 border-[#e14242]">
                     See Pricing
-                </Button>
+                </Button> */}
             </div>
 
             {/* Steps Timeline */}

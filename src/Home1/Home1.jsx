@@ -1287,9 +1287,9 @@ export const HomeComponent = () => {
                     Use Cases
                   </div>
 
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Space_Grotesk-Regular',Helvetica] font-normal text-white text-lg tracking-[0] leading-[normal] underline">
+                  {/* <div className="relative w-fit mt-[-1.00px] [font-family:'Space_Grotesk-Regular',Helvetica] font-normal text-white text-lg tracking-[0] leading-[normal] underline">
                     Pricing
-                  </div>
+                  </div> */}
 
                   <div className="relative w-fit mt-[-1.00px] [font-family:'Space_Grotesk-Regular',Helvetica] font-normal text-white text-lg tracking-[0] leading-[normal] underline">
                     Blog

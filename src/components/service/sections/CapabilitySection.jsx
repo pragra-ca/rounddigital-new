@@ -98,9 +98,9 @@ const CapabilitySection = () => {
               Creative Director. We partner with you to ensure <br className="hidden sm:block" />
               that your design elevates your brand to new levels.
             </p>
-            <Button className="w-[149px] h-[56px] text-black bg-gradient-to-r from-[#e14242] to-[#ff6a6a] hover:from-[#c12f2f] hover:to-[#e14242] mx-auto md:mx-0 font-bold shadow-lg transition-all duration-300">
+            {/* <Button className="w-[149px] h-[56px] text-black bg-gradient-to-r from-[#e14242] to-[#ff6a6a] hover:from-[#c12f2f] hover:to-[#e14242] mx-auto md:mx-0 font-bold shadow-lg transition-all duration-300">
               See Pricing
-            </Button>
+            </Button> */}
           </div>
         </div>
 

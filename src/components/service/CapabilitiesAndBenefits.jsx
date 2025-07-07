@@ -115,9 +115,9 @@ export default function CapabilitiesBenefits() {
             <p className="text-gray-300">
               A subscription can alleviate the stress of staffing, managing expenses, or make design calls like a Creative Director. We partner with you to ensure that your design elevates your brand to new levels.
             </p>
-            <button className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-md text-sm font-semibold">
+            {/* <button className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-md text-sm font-semibold">
               See Pricing
-            </button>
+            </button> */}
           </div>
           <div className="md:w-[48%] grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
             {benefits.map((b, i) => (

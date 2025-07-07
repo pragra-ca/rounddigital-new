@@ -67,9 +67,9 @@ export default function ServiceHero() {
               <p className="text-gray-300 text-base mb-4">
                 Grow your brand with high-quality design for a flat monthly fee. Work with senior designers. Subscribe and make as many requests as you need – no limits.
               </p>
-              <button className="mt-2 bg-red-500 hover:bg-red-600 transition-colors text-black font-semibold px-6 py-3 rounded-md text-sm w-max">
+              {/* <button className="mt-2 bg-red-500 hover:bg-red-600 transition-colors text-black font-semibold px-6 py-3 rounded-md text-sm w-max">
                 See Pricing
-              </button>
+              </button> */}
             </div>
           </div>
 
