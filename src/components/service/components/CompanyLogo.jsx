@@ -1,19 +1,18 @@
-import {
-  firstCompanyLogo,
-  secondCompanyLogo,
-  thirdCompanyLogo,
-  fourthCompanyLogo,
-  fifthCompanyLogo,
-} from '@/constant/constant'
+import AzureLogo from "@/assets/partners/azure.png";
+import DataDogLogo from '@/assets/partners/data_dog.png';
+import ESolutionsLogo from '@/assets/partners/e_solutions.png';
+import EpslionSolutionsLogo from '@/assets/partners/epslion_solutions.png';
+import RoundAssistLogo from '@/assets/partners/round_assist.png';
+import TechMahindraLogo from '@/assets/partners/tech_mahindra.png';
 import Image from 'next/image'
 
 const CompanyLogo = () => {
   const companyLogos = [
-    firstCompanyLogo,
-    secondCompanyLogo,
-    thirdCompanyLogo,
-    fourthCompanyLogo,
-    fifthCompanyLogo,
+    AzureLogo,
+    ESolutionsLogo,
+    EpslionSolutionsLogo,
+    RoundAssistLogo,
+    TechMahindraLogo,
   ]
 
   return (
