@@ -260,11 +260,13 @@ const Services = () => {
                 Reach out and explore how we can help your business grow with
                 tailored strategies and expert execution.
               </p>
+              <Link href="/contact">
               <button className="bg-dark text-white px-6 py-3 rounded-xl hover:bg-[#e14242] transition-colors">
                 Get your free proposal
               </button>
+              </Link>
             </div>
-
+          
             {/* Right - Empty space for positioning */}
             <div className="w-full md:w-1/2" />
           </div>

@@ -16,85 +16,86 @@ import team5 from "@/assets/home/team5.png";
 import team6 from "@/assets/home/mask-group-6.png";
 
 const Team = () => {
-  const teamMembers = [
-    {
-      id: 1,
-      name: "Aarav Mehta",
-      role: "Chief Technology Officer",
-      description:
-        "Drives innovation and oversees technical excellence across all engineering teams.",
-      image: team1,
-      social: {
-        twitter: "#",
-        linkedin: "#",
-        github: "#",
-      },
+const teamMembers = [
+  {
+    id: 1,
+    name: "Atin Singh",
+    role: "CEO & Founder",
+    description:
+      "Leads with vision and purpose, driving strategic growth and innovation across the organization.",
+    image: "https://res.cloudinary.com/dm1txojyd/image/upload/v1727253393/Atin_pp4vjq.jpg",
+    social: {
+      twitter: "#",
+      linkedin: "#",
+      github: "#",
     },
-    {
-      id: 2,
-      name: "Priya Kapoor",
-      role: "Head of Design",
-      description:
-        "Crafts compelling digital experiences with a deep focus on design systems and accessibility.",
-      image: team2,
-      social: {
-        twitter: "#",
-        linkedin: "#",
-        instagram: "#",
-      },
+  },
+  {
+    id: 2,
+    name: "Vivek Ghartan",
+    role: "CTO",
+    description:
+      "Oversees the company’s technical strategy, ensuring cutting-edge solutions and infrastructure.",
+    image: "https://res.cloudinary.com/dkyp14kzf/image/upload/v1736773360/Vivek_hboeow.jpg",
+    social: {
+      twitter: "#",
+      linkedin: "#",
+      instagram: "#",
     },
-    {
-      id: 3,
-      name: "Rohit Sharma",
-      role: "Senior Full Stack Engineer",
-      description:
-        "Specializes in scalable, secure applications with modern tech stacks.",
-      image: team3,
-      social: {
-        twitter: "#",
-        linkedin: "#",
-        github: "#",
-      },
+  },
+  {
+    id: 3,
+    name: "Sonali Singla",
+    role: "Technical Recruiter",
+    description:
+      "Connects top tech talent with opportunities, ensuring the growth of high-performing teams.",
+    image:   "https://res.cloudinary.com/dm1txojyd/image/upload/v1727254953/SonaliSingla_k2j0vx.png",
+    social: {
+      twitter: "#",
+      linkedin: "#",
+      github: "#",
     },
-    {
-      id: 4,
-      name: "Ananya Das",
-      role: "Content Strategist",
-      description:
-        "Drives content strategy and storytelling for stronger brand presence and SEO impact.",
-      image: team4,
-      social: {
-        twitter: "#",
-        linkedin: "#",
-        instagram: "#",
-      },
+  },
+  {
+    id: 4,
+    name: "Rahul Singh",
+    role: "Software Developer",
+    description:
+      "Builds scalable and high-performance web applications using modern development practices.",
+    image: "https://res.cloudinary.com/dm1txojyd/image/upload/v1727255082/passport_size_photo.._idtrmu.jpg",
+    social: {
+      twitter: "#",
+      linkedin: "#",
+      instagram: "#",
     },
-    {
-      id: 5,
-      name: "Kunal Patel",
-      role: "UI/UX Engineer",
-      description:
-        "Translates user needs into delightful and efficient user interface designs.",
-      image: team5,
-      social: {
-        twitter: "#",
-        linkedin: "#",
-      },
+  },
+  {
+    id: 5,
+    name: "Abhinav Roy",
+    role: "Software Developer",
+    description:
+      "Designs and implements robust backend and frontend systems that power great user experiences.",
+    image: "https://res.cloudinary.com/pragra/image/upload/v1744022235/Employees/small.jpg",
+    social: {
+      twitter: "#",
+      linkedin: "#",
     },
-    {
-      id: 6,
-      name: "Neha Verma",
-      role: "Scrum Master",
-      description:
-        "Facilitates agile teams, removes blockers, and ensures timely delivery of projects.",
-      image: team6,
-      social: {
-        twitter: "#",
-        linkedin: "#",
-        github: "#",
-      },
+  },
+  {
+    id: 6,
+    name: "Priyanshu Chakraborty",
+    role: "Web Designer",
+    description:
+      "Creates visually appealing and user-friendly designs that align with brand identity and goals.",
+    image: 'https://res.cloudinary.com/dm1txojyd/image/upload/v1727255058/Priyanshu_Image_vfkqgf.png',
+    social: {
+      twitter: "#",
+      linkedin: "#",
+      github: "#",
     },
-  ];
+  },
+];
+
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 py-16">
@@ -156,11 +157,11 @@ const Team = () => {
       </div>
 
       {/* CTA Button */}
-      <div className="flex flex-wrap justify-center gap-4 mt-16">
+      {/* <div className="flex flex-wrap justify-center gap-4 mt-16">
         <button className="w-60 bg-black text-white py-4 rounded-xl text-lg font-medium transition-all duration-300 border-b-4 border-[#e14242] shadow-[0_4px_24px_0_rgba(225,66,66,0.10)] hover:bg-[#e14242] hover:text-white hover:shadow-[0_8px_32px_0_rgba(225,66,66,0.18)] hover:-translate-y-1 hover:scale-105">
           See all team
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };

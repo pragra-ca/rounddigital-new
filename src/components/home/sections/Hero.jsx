@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const frame2 = "/images/home/frame-2.svg";
@@ -25,10 +26,12 @@ const Hero = () => {
             </p>
 
             {/* 3D Button */}
+            <Link href="/contact">
             <button className="relative px-[35px] py-5 rounded-[14px] text-white text-xl font-['Space_Grotesk-Regular'] leading-7 bg-black shadow-[0_8px_32px_0_rgba(25,26,35,0.18),0_2px_8px_0_rgba(225,66,66,0.10)] border-b-4 border-[#e14242] hover:bg-[#e14242] hover:text-white hover:shadow-[0_16px_48px_0_rgba(225,66,66,0.18)] hover:-translate-y-1 hover:scale-105 transition-all duration-300">
               Book a consultation
               <span className="pointer-events-none absolute left-2 top-2 w-2/3 h-1/3 bg-white/20 rounded-t-[14px] blur-[2px] opacity-60" />
             </button>
+            </Link>
           </div>
 
           {/* Image Section */}

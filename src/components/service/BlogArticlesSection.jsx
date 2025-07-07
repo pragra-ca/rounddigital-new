@@ -2,12 +2,13 @@
 
 import React from "react";
 import Image from "next/image";
-import blog1 from '@/assets/service/images/blog1.png';
-import blog2 from '@/assets/service/images/blog2.png';
-import blog3 from '@/assets/service/images/blog3.png';
-import blog4 from '@/assets/service/images/blog4.png';
-import blog5 from '@/assets/service/images/blog5.png';
-import blog6 from '@/assets/service/images/blog6.png';
+import blog1 from "@/assets/service/images/blog1.png";
+import blog2 from "@/assets/service/images/blog2.png";
+import blog3 from "@/assets/service/images/blog3.png";
+import blog4 from "@/assets/service/images/blog4.png";
+import blog5 from "@/assets/service/images/blog5.png";
+import blog6 from "@/assets/service/images/blog6.png";
+import Link from "next/link";
 
 const articles = [
   {
@@ -112,28 +113,80 @@ export default function BlogArticlesSection() {
       </div>
 
       <div className="mt-12 text-center relative z-10">
-        <button className="px-8 py-3 rounded-full bg-gradient-to-r from-[#e14242] to-[#ff6a6a] text-white font-semibold shadow-lg border-b-4 border-[#e14242] hover:scale-105 hover:shadow-xl transition-all duration-300">
-          LOAD MORE
-        </button>
+        <Link href="/blogs" className="inline-block">
+          <button className="px-8 py-3 rounded-full bg-gradient-to-r from-[#e14242] to-[#ff6a6a] text-white font-semibold shadow-lg border-b-4 border-[#e14242] hover:scale-105 hover:shadow-xl transition-all duration-300">
+            VIEW MORE
+          </button>
+        </Link>
       </div>
       <style jsx>{`
         .animate-pulse {
           animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.6; }
+          0%,
+          100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.6;
+          }
         }
-        .animate-float1 { animation: float1 7s ease-in-out infinite alternate; }
-        .animate-float2 { animation: float2 9s ease-in-out infinite alternate; }
-        .animate-float3 { animation: float3 8s ease-in-out infinite alternate; }
-        .animate-float4 { animation: float4 10s ease-in-out infinite alternate; }
-        .animate-float5 { animation: float5 12s ease-in-out infinite alternate; }
-        @keyframes float1 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-30px) scale(1.15);} }
-        @keyframes float2 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(24px) scale(1.1);} }
-        @keyframes float3 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-22px) scale(1.12);} }
-        @keyframes float4 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(18px) scale(1.08);} }
-        @keyframes float5 { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-26px) scale(1.13);} }
+        .animate-float1 {
+          animation: float1 7s ease-in-out infinite alternate;
+        }
+        .animate-float2 {
+          animation: float2 9s ease-in-out infinite alternate;
+        }
+        .animate-float3 {
+          animation: float3 8s ease-in-out infinite alternate;
+        }
+        .animate-float4 {
+          animation: float4 10s ease-in-out infinite alternate;
+        }
+        .animate-float5 {
+          animation: float5 12s ease-in-out infinite alternate;
+        }
+        @keyframes float1 {
+          0% {
+            transform: translateY(0) scale(1);
+          }
+          100% {
+            transform: translateY(-30px) scale(1.15);
+          }
+        }
+        @keyframes float2 {
+          0% {
+            transform: translateY(0) scale(1);
+          }
+          100% {
+            transform: translateY(24px) scale(1.1);
+          }
+        }
+        @keyframes float3 {
+          0% {
+            transform: translateY(0) scale(1);
+          }
+          100% {
+            transform: translateY(-22px) scale(1.12);
+          }
+        }
+        @keyframes float4 {
+          0% {
+            transform: translateY(0) scale(1);
+          }
+          100% {
+            transform: translateY(18px) scale(1.08);
+          }
+        }
+        @keyframes float5 {
+          0% {
+            transform: translateY(0) scale(1);
+          }
+          100% {
+            transform: translateY(-26px) scale(1.13);
+          }
+        }
       `}</style>
     </section>
   );
