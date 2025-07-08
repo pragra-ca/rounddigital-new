@@ -42,10 +42,14 @@ export default function BlogSlugPage() {
 
   return (
     <Layout>
-      <Head>
-        <title>{post.title} | Blog</title>
-        <meta name="description" content={post.description} />
-      </Head>
+      <Seo
+        title={`${post?.title} | RoundDigital Blog`}
+        description={
+          "Read the latest insights, strategies, and trends in web development, mobile apps, digital marketing, and branding by RoundDigital."
+        }
+        keywords={`RoundDigital, ${post?.title}, blog, tech insights, web development tips, digital marketing strategies, branding, startup growth, Canada tech blog`}
+      />
+
       <section className="w-full mt-8 md:mt-12 bg-gradient-to-br from-white via-zinc-50 to-white py-16 px-2 sm:px-6 md:px-12 min-h-[80vh]">
         <div className="max-w-4xl mx-auto">
           {/* Hero Image */}

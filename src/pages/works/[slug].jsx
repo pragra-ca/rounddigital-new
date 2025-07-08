@@ -2,6 +2,7 @@ import Layout from "@/components/layout";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Seo from "@/components/seo";
 
 const WorkDetail = () => {
   const router = useRouter();
@@ -24,6 +25,15 @@ const WorkDetail = () => {
 
   return (
     <Layout>
+      <Seo
+        title={`${project?.title} | Project by RoundDigital`}
+        description={
+          project?.description ||
+          "Explore how RoundDigital delivered tailored digital solutions to help clients achieve measurable growth through tech, design, and strategy."
+        }
+        keywords={`RoundDigital, ${project?.title}, project case study, web development, mobile app, MVP development, branding, digital marketing, startup tech solutions`}
+      />
+
       <div className="max-w-4xl mx-auto py-16 space-y-10 px-5 mt-12">
         {/* Title */}
         <div className="text-center space-y-4">
