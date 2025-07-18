@@ -4,19 +4,19 @@ import Capability from "../components/Capability";
 
 const CapabilitySection = () => {
   const capabilities = [
-    "Web design & UI",
-    "Social media visuals",
-    "Infographics",
-    "Design system",
-    "Email design",
-    "Stationery",
-    "Icons",
-    "Packaging & merch",
-    "Signage",
-    "Brochures",
-    "Logos & branding",
-    "Digital ads",
-    "Wireframes",
+    "Cybersecurity",
+    "IT Consulting",
+    "Application Development",
+    "Cloud Applications",
+    "Cloud Management",
+    "Custom Software",
+    "Enterprise Content Management",
+    "Software Testing",
+    "Web Design",
+    "Web Development",
+    "System Integration",
+    "Digital Transformation",
+    "DevOps & Automation",
   ];
 
   return (
@@ -53,10 +53,10 @@ const CapabilitySection = () => {
         {/* Capabilities Header */}
         <div className="text-center space-y-4">
           <p className="uppercase text-sm font-semibold tracking-wider text-[#e14242] animate-pulse">
-            Our capabilities
+            Our IT capabilities
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white drop-shadow-[0_2px_16px_#e1424222]">
-            We can help you with...
+            Comprehensive IT Solutions
           </h2>
         </div>
 
@@ -84,19 +84,22 @@ const CapabilitySection = () => {
               Benefits
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white leading-snug drop-shadow-[0_2px_16px_#e1424222]">
-              The design subscription <br />
-              that connects you to your <br />
-              dream team.
+              End-to-End IT Solutions <br />
+              & Digital Transformation <br />
+              for Your Business.
             </h2>
           </div>
 
           {/* Right Column */}
           <div className="w-full md:w-1/2 text-center md:text-left text-white space-y-6">
             <p className="text-sm sm:text-base leading-relaxed">
-              A subscription can alleviate the stress of staffing, <br className="hidden sm:block" />
-              managing expenses, or make design calls like a <br className="hidden sm:block" />
-              Creative Director. We partner with you to ensure <br className="hidden sm:block" />
-              that your design elevates your brand to new levels.
+              From cybersecurity and cloud management to custom{" "}
+              <br className="hidden sm:block" />
+              software development and web applications, we provide{" "}
+              <br className="hidden sm:block" />
+              comprehensive IT solutions. We partner with you to{" "}
+              <br className="hidden sm:block" />
+              drive digital transformation and business growth.
             </p>
             {/* <Button className="w-[149px] h-[56px] text-black bg-gradient-to-r from-[#e14242] to-[#ff6a6a] hover:from-[#c12f2f] hover:to-[#e14242] mx-auto md:mx-0 font-bold shadow-lg transition-all duration-300">
               See Pricing
@@ -114,8 +117,13 @@ const CapabilitySection = () => {
           animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.6; }
+          0%,
+          100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.6;
+          }
         }
         .rain-drop {
           animation-name: rain-fall;

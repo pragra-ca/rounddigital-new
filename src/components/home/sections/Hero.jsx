@@ -22,15 +22,17 @@ const Hero = () => {
             </p>
 
             <p className="w-[90%] sm:w-[80%] xl:w-[502px] font-normal text-black text-xl leading-7 font-['Space_Grotesk-Regular'] drop-shadow">
-              We partner with startups and enterprises to design, develop, and launch impactful digital experiences across web, e-commerce, branding, and AI solutions.
+              We provide comprehensive IT solutions including cybersecurity,
+              cloud management, custom software development, web applications,
+              and enterprise content management for businesses of all sizes.
             </p>
 
             {/* 3D Button */}
             <Link href="/contact">
-            <button className="relative px-[35px] py-5 rounded-[14px] text-white text-xl font-['Space_Grotesk-Regular'] leading-7 bg-black shadow-[0_8px_32px_0_rgba(25,26,35,0.18),0_2px_8px_0_rgba(225,66,66,0.10)] border-b-4 border-[#e14242] hover:bg-[#e14242] hover:text-white hover:shadow-[0_16px_48px_0_rgba(225,66,66,0.18)] hover:-translate-y-1 hover:scale-105 transition-all duration-300">
-              Book a consultation
-              <span className="pointer-events-none absolute left-2 top-2 w-2/3 h-1/3 bg-white/20 rounded-t-[14px] blur-[2px] opacity-60" />
-            </button>
+              <button className="relative px-[35px] py-5 rounded-[14px] text-white text-xl font-['Space_Grotesk-Regular'] leading-7 bg-black shadow-[0_8px_32px_0_rgba(25,26,35,0.18),0_2px_8px_0_rgba(225,66,66,0.10)] border-b-4 border-[#e14242] hover:bg-[#e14242] hover:text-white hover:shadow-[0_16px_48px_0_rgba(225,66,66,0.18)] hover:-translate-y-1 hover:scale-105 transition-all duration-300">
+                Book a consultation
+                <span className="pointer-events-none absolute left-2 top-2 w-2/3 h-1/3 bg-white/20 rounded-t-[14px] blur-[2px] opacity-60" />
+              </button>
             </Link>
           </div>
 
@@ -68,7 +70,12 @@ const Hero = () => {
                     src={group}
                     priority
                   />
-                  <div className="pointer-events-none absolute inset-0 rounded-[40px] opacity-0 hover:opacity-100 transition duration-300" style={{ boxShadow: "0 0 0 12px #e1424244, 0 8px 32px 0 #e1424244" }} />
+                  <div
+                    className="pointer-events-none absolute inset-0 rounded-[40px] opacity-0 hover:opacity-100 transition duration-300"
+                    style={{
+                      boxShadow: "0 0 0 12px #e1424244, 0 8px 32px 0 #e1424244",
+                    }}
+                  />
                   <div className="pointer-events-none absolute left-4 top-4 w-2/3 h-1/4 bg-white/40 rounded-t-[40px] blur-[2px] opacity-60" />
                 </div>
               </div>

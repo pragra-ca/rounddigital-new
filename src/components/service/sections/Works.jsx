@@ -6,163 +6,182 @@ import katimet from "@/assets/service/projects/katimet.png";
 import Image from "next/image";
 import Link from "next/link";
 
-
-
 export const works = [
   {
     id: 1,
-    slug: "insyght",
-    title: "Insyght",
+    slug: "securebank",
+    title: "SecureBank",
     subtitle:
-      "A comprehensive job portal connecting employers and job seekers with intelligent matching algorithms and streamlined application processes.",
-    client: "TechRecruit Solutions",
+      "A comprehensive banking security system with advanced threat detection and real-time fraud prevention capabilities.",
+    client: "Metropolitan Bank",
     year: "2024",
-    service: "Web Development",
+    service: "Financial Cybersecurity",
     caseStudyImage: insyght,
     description:
-      "Insyght is a cutting-edge job portal management system that redefines job posting and application with intelligent features and modern UX.",
+      "SecureBank is a cutting-edge banking security platform that provides multi-layered protection against cyber threats and financial fraud.",
     technologyStack: [
-      "React.js", "Redux", "Material UI", "Tailwind CSS",
-      "Node.js", "Express", "MongoDB", "JWT",
-      "Socket.io", "AWS S3", "Docker", "CI/CD (GitHub Actions)"
+      "Advanced Threat Detection",
+      "Machine Learning",
+      "Encryption Protocols",
+      "Multi-Factor Authentication",
+      "SIEM Integration",
+      "Blockchain Security",
+      "Real-time Monitoring",
+      "Incident Response",
+      "Compliance Management",
     ],
     keyFeatures: [
-      "AI-powered job matching",
-      "Location-based search filters",
-      "Custom company branding profiles",
-      "Application tracking system",
-      "Resume parsing & profile creation",
-      "Real-time notifications",
-      "In-app messaging",
-      "Hiring analytics dashboard"
+      "AI-powered fraud detection",
+      "Real-time transaction monitoring",
+      "Advanced encryption protocols",
+      "Multi-layered security barriers",
+      "Automated threat response",
+      "Compliance reporting",
+      "24/7 security monitoring",
+      "Risk assessment dashboard",
     ],
     impact: {
-      placementIncrease: "45%",
-      timeToHireReduction: "60%",
-      matchQualityImprovement: "78%",
-      companiesUsing: "50+",
-      monthlyApplications: "10,000+",
-      uptime: "99.9%"
+      fraudReduction: "85%",
+      threatDetection: "99.7%",
+      responseTime: "3 minutes",
+      complianceRate: "100%",
+      securityIncidents: "Zero breaches",
+      uptime: "99.99%",
     },
     testimonial: {
-      quote: "Insyght has completely transformed our recruitment process. The intelligent matching algorithm has saved us countless hours.",
-      name: "Kane Johnson",
-      role: "Head of Talent Acquisition, TechRecruit Solutions"
-    }
+      quote:
+        "Round Digital's cybersecurity solution has completely transformed our security posture. We now have complete confidence in our systems.",
+      name: "Andy Smith",
+      role: "Chief Security Officer, Metropolitan Bank",
+    },
   },
   {
     id: 2,
-    slug: "attendify",
-    title: "Attendify",
+    slug: "cybershield",
+    title: "CyberShield",
     subtitle:
-      "An e-learning platform enabling seamless online course delivery, user tracking, and certification for global educators.",
-    client: "SkillBridge Academy",
+      "An enterprise-grade security platform providing comprehensive protection against advanced persistent threats and malware.",
+    client: "TechCorp Industries",
     year: "2023",
-    service: "Edu-Tech Development",
+    service: "Enterprise Security",
     caseStudyImage: attendify,
     description:
-      "SkillBridge LMS is a robust learning management system built to provide engaging course experiences and track learner performance.",
+      "CyberShield is a robust enterprise security system built to defend against sophisticated cyber attacks and ensure business continuity.",
     technologyStack: [
-      "Next.js", "Tailwind CSS", "Firebase", "Chart.js", "Cloudinary"
+      "Endpoint Detection",
+      "Network Security",
+      "Cloud Protection",
+      "Behavioral Analysis",
+      "Threat Intelligence",
     ],
     keyFeatures: [
-      "Course creation & video hosting",
-      "Progress tracking",
-      "Quiz & assessment modules",
-      "Certificate generator",
-      "Discussion forums",
-      "Admin analytics dashboard"
+      "Advanced malware protection",
+      "Network intrusion detection",
+      "Cloud security monitoring",
+      "Behavioral threat analysis",
+      "Automated incident response",
+      "Security orchestration platform",
     ],
     impact: {
-      users: "25,000+ active learners",
-      courseCompletion: "80% avg. rate",
-      supportRequests: "50% drop"
+      threatsPrevented: "50,000+ monthly",
+      securityPosture: "95% improvement",
+      incidentResponse: "80% faster",
     },
     testimonial: {
-      quote: "SkillBridge made it easy for our instructors to launch, track, and improve courses globally with no tech hassle.",
-      name: "Sara Mehta",
-      role: "Founder, SkillBridge Academy"
-    }
+      quote:
+        "CyberShield has given us the security confidence we needed to scale our operations globally with zero compromises.",
+      name: "Sarah Chen",
+      role: "CTO, TechCorp Industries",
+    },
   },
   {
     id: 3,
-    slug: "unseal",
-    title: "Unseal",
+    slug: "datafortress",
+    title: "DataFortress",
     subtitle:
-      "A powerful digital marketing dashboard designed to streamline campaign management and performance insights.",
-    client: "BrandEdge Media",
+      "A comprehensive data protection and privacy compliance solution designed for healthcare and financial institutions.",
+    client: "HealthSecure Medical",
     year: "2023",
-    service: "Marketing & Analytics",
+    service: "Data Protection & Compliance",
     caseStudyImage: unseal,
     description:
-      "BrandBoost consolidates marketing efforts into a single dashboard with real-time performance tracking and client campaign reports.",
+      "DataFortress ensures complete data protection and regulatory compliance with advanced encryption and privacy controls.",
     technologyStack: [
-      "Vue.js", "Node.js", "MongoDB", "Socket.io", "Chart.js"
+      "Data Encryption",
+      "Access Controls",
+      "Audit Logging",
+      "Compliance Automation",
+      "Privacy Management",
     ],
     keyFeatures: [
-      "Live campaign status",
-      "Ad performance analytics",
-      "Social media integrations",
-      "Client-specific reports",
-      "Team collaboration tools"
+      "End-to-end data encryption",
+      "Role-based access controls",
+      "Automated compliance reporting",
+      "Data loss prevention",
+      "Privacy impact assessments",
     ],
     impact: {
-      campaignEfficiency: "35% improvement",
-      reportingTime: "70% faster",
-      clientsUsing: "200+"
+      dataProtection: "100% compliance",
+      auditReadiness: "90% faster",
+      privacyViolations: "Zero incidents",
     },
     testimonial: {
-      quote: "Our teams now manage all campaigns from a single dashboard. The analytics and real-time updates are game-changing.",
-      name: "James Nolan",
-      role: "Marketing Director, BrandEdge Media"
-    }
+      quote:
+        "Our data has never been more secure. The compliance automation has saved us countless hours and eliminated risks.",
+      name: "Dr. Michael Torres",
+      role: "Chief Medical Officer, HealthSecure Medical",
+    },
   },
   {
     id: 4,
-    slug: "katimet",
-    title: "Katimet",
+    slug: "threatguard",
+    title: "ThreatGuard",
     subtitle:
-      "An AI-enabled fleet management app to optimize vehicle tracking, maintenance scheduling, and fuel efficiency.",
-    client: "LogiTrack Corp",
+      "An AI-powered threat intelligence platform that provides real-time security insights and predictive threat analysis.",
+    client: "SecureLogistics Corp",
     year: "2022",
-    service: "Mobile App Development",
+    service: "Threat Intelligence",
     caseStudyImage: katimet,
     description:
-      "FleetFlow helps logistics companies monitor vehicle routes, automate maintenance reminders, and reduce operational costs.",
+      "ThreatGuard leverages artificial intelligence to predict, detect, and neutralize cyber threats before they impact business operations.",
     technologyStack: [
-      "React Native", "Firebase", "Google Maps API", "Node.js", "Figma"
+      "AI/ML Analytics",
+      "Threat Intelligence",
+      "Predictive Analysis",
+      "Security Automation",
+      "Risk Assessment",
     ],
     keyFeatures: [
-      "Live vehicle tracking",
-      "Predictive maintenance alerts",
-      "Driver performance dashboard",
-      "Fuel consumption analysis",
-      "Push notifications"
+      "Predictive threat modeling",
+      "Real-time threat intelligence",
+      "Automated security responses",
+      "Risk visualization dashboard",
+      "Threat hunting capabilities",
     ],
     impact: {
-      fuelSavings: "18%",
-      maintenanceCostReduction: "22%",
-      routeOptimization: "30% improvement"
+      threatPrediction: "92% accuracy",
+      falsePositives: "70% reduction",
+      securityEfficiency: "60% improvement",
     },
     testimonial: {
-      quote: "FleetFlow simplified our logistics workflow. We now have full visibility and control over our operations.",
-      name: "Amit Rao",
-      role: "Operations Manager, LogiTrack Corp"
-    }
-  }
+      quote:
+        "ThreatGuard's predictive capabilities have revolutionized our security operations. We're always one step ahead of threats.",
+      name: "James Rodriguez",
+      role: "Security Director, SecureLogistics Corp",
+    },
+  },
 ];
-
 
 const Works = () => {
   return (
     <div className="flex flex-col pt-[70px] max-w-7xl mx-auto container pb-16">
       <div className="flex flex-col items-center justify-center text-center">
         <h1 className="text-[40px] sm:text-[48px] font-extrabold bg-gradient-to-r from-[#e14242] via-[#ff6a6a] to-[#e14242] bg-clip-text text-transparent drop-shadow-[0_4px_24px_#e1424222]">
-          Our Beautiful Works
+          Our IT Projects
         </h1>
         <p className="text-[18px] text-[#111204CC] max-w-2xl">
-          We help our clients grow their bottom-line with clear and <br />{" "}
-          professional websites.
+          We help businesses grow with comprehensive <br /> IT solutions and
+          digital transformation services.
         </p>
         <button className="flex items-center justify-center gap-2 w-[184px] mt-5 h-[64px] border-[1.5px] text-[18px] border-[#e14242] rounded-[12px] bg-gradient-to-r from-[#e14242]/10 to-[#ff6a6a]/10 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-[#e14242] font-semibold">
           <Loader className="w-[24px] h-[24px] animate-spin" />

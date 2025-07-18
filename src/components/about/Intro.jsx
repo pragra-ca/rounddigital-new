@@ -50,8 +50,8 @@ export default function Intro() {
               <span className="text-[#e14242]">big idea</span> with us
             </h2>
             <p className="text-lg md:text-xl text-gray-200 mb-12 text-center max-w-2xl drop-shadow">
-              Effortless editing, powerful results. Double click and type to make
-              it yours.
+              Effortless editing, powerful results. Double click and type to
+              make it yours.
             </p>
 
             {/* Features Grid */}
@@ -78,8 +78,8 @@ export default function Intro() {
                   About Us
                 </h3>
                 <p className="text-base text-gray-200 mb-4 text-center">
-                  We help businesses grow and succeed online with creative digital
-                  solutions and a passionate team.
+                  We help businesses secure, scale, and succeed with
+                  comprehensive IT solutions and cybersecurity expertise.
                 </p>
                 <a
                   href="#"
@@ -111,8 +111,9 @@ export default function Intro() {
                   Our Services
                 </h3>
                 <p className="text-base text-gray-200 mb-4 text-center">
-                  Tailored digital strategies and scalable services to drive your
-                  business forward and maximize results.
+                  Comprehensive IT services from cybersecurity and cloud
+                  management to custom software development and enterprise
+                  solutions.
                 </p>
                 <a
                   href="#"
@@ -144,8 +145,8 @@ export default function Intro() {
                   Contact Us
                 </h3>
                 <p className="text-base text-gray-200 mb-4 text-center">
-                  Reach out to our team and discover how we can help your
-                  business thrive in the digital world.
+                  Connect with our IT experts to discuss cybersecurity, cloud
+                  solutions, and custom software development for your business.
                 </p>
                 <a
                   href="#"

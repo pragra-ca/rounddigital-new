@@ -17,9 +17,9 @@ const index = () => {
   return (
     <Layout>
       <Seo
-        title="Our Services | Web Development, Marketing & Branding Solutions | RoundDigital"
+        title="IT Services | Cybersecurity, Cloud Solutions & Custom Development | RoundDigital"
         description="Discover RoundDigital’s full range of services — from web and mobile app development to digital marketing, branding, UI/UX design, and MVP solutions tailored to help your business grow."
-        keywords="RoundDigital services, web development, mobile app development, digital marketing, branding, UI/UX design, MVP development, tech solutions, startup services, Canada digital agency"
+        keywords="IT services, cybersecurity, IT consulting, application development, cloud applications, cloud management, custom software development, enterprise content management, software testing, web design, web development, digital transformation"
       />
 
       <HeroSection />

@@ -14,10 +14,10 @@ const Testimonials = () => {
     {
       id: 1,
       quote:
-        "Their team delivered a seamless experience from start to finish. The new branding and design completely transformed how our customers view us.",
-      author: "Ishita Roy",
-      company: "BrandNest",
-      role: "Founder & CEO",
+        "Round Digital's cybersecurity solution has completely transformed our security posture. We now have complete confidence in our systems and zero security incidents.",
+      author: "Andy Smith",
+      company: "Metropolitan Bank",
+      role: "Chief Security Officer",
       rating: 5,
       avatar: "https://randomuser.me/api/portraits/women/12.jpg",
     },
@@ -25,19 +25,19 @@ const Testimonials = () => {
       id: 2,
       quote:
         "From UX to backend, they nailed every requirement. Communication was clear, and delivery was on point. We couldn’t be happier with the results.",
-      author: "Karan Mehta",
-      company: "CodeZen",
-      role: "Tech Lead",
+      author: "Sarah Chen",
+      company: "TechCorp Industries",
+      role: "Chief Technology Officer",
       rating: 5,
       avatar: "https://randomuser.me/api/portraits/men/34.jpg",
     },
     {
       id: 3,
       quote:
-        "We saw a 3x boost in conversions within two months of launch. Their SEO strategy and mobile-first approach were exactly what we needed.",
-      author: "Sana Kapoor",
-      company: "StyleLoop",
-      role: "Head of Marketing",
+        "The compliance automation and data protection features have saved us countless hours. We achieved 100% regulatory compliance within three months.",
+      author: "Dr. Michael Torres",
+      company: "HealthSecure Medical",
+      role: "Chief Medical Officer",
       rating: 4,
       avatar: "https://randomuser.me/api/portraits/women/55.jpg",
     },
@@ -45,19 +45,19 @@ const Testimonials = () => {
       id: 4,
       quote:
         "It’s rare to find a team that blends creativity, technical expertise, and professionalism so effortlessly. Highly recommended for startups.",
-      author: "Ravi Prasad",
-      company: "LaunchPad Labs",
-      role: "Co-Founder",
+      author: "James Rodriguez",
+      company: "SecureLogistics Corp",
+      role: "Security Director",
       rating: 5,
       avatar: "https://randomuser.me/api/portraits/men/90.jpg",
     },
     {
       id: 5,
       quote:
-        "After working with them, we now have a faster, cleaner, and more scalable platform. They truly care about delivering long-term value.",
-      author: "Neelam Joshi",
-      company: "FinSage",
-      role: "Product Owner",
+        "Round Digital's 24/7 security monitoring gives us peace of mind. Their incident response team is incredibly fast and professional.",
+      author: "Lisa Wang",
+      company: "DataSafe Corp",
+      role: "Chief Information Officer",
       rating: 5,
       avatar: "https://randomuser.me/api/portraits/women/30.jpg",
     },
@@ -65,13 +65,13 @@ const Testimonials = () => {
 
   const nextSlide = () => {
     setCurrentSlide((prev) =>
-      prev === testimonials.length - 1 ? 0 : prev + 1
+      prev === testimonials.length - 1 ? 0 : prev + 1,
     );
   };
 
   const prevSlide = () => {
     setCurrentSlide((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
+      prev === 0 ? testimonials.length - 1 : prev - 1,
     );
   };
 

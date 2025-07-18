@@ -17,9 +17,9 @@ export default function Home() {
   return (
     <Layout>
       <Seo
-        title="RoundDigital | Empowering Your Digital Journey to Success | RoundDigital"
-        description="At RoundDigital, we empower startups with cutting-edge applications—from idea to MVP. Our expert team offers web and mobile development, digital marketing, branding, and scalable design solutions to help your business thrive."
-        keywords="RoundDigital, RoundDigital Technologies, rounddigital, tech, canada tech, MVP development, web development, mobile app development, digital marketing, branding, web design, startup tech solutions"
+        title="RoundDigital | IT Services, Cybersecurity & Custom Software Development"
+        description="RoundDigital provides comprehensive IT solutions including cybersecurity, IT consulting, application development, cloud management, custom software development, enterprise content management, and web development services."
+        keywords="RoundDigital, IT services, cybersecurity, IT consulting, application development, cloud applications, cloud management, custom software development, enterprise content management, software testing, web design, web development, canada tech"
       />
       <Hero />
       <Partners />

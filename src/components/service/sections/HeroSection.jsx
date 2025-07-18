@@ -25,7 +25,7 @@ const HeroSection = () => {
         .from(buttonRef.current, { opacity: 0, scale: 0.8 }, "-=0.5")
         .from(trustedRef.current, { opacity: 0, y: 20 }, "-=0.5");
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   // Generate random small stars for the background
@@ -104,12 +104,12 @@ const HeroSection = () => {
             }}
           >
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#e14242] via-white to-[#e14242] animate-gradient-x">
-              Transform Your Vision
+              Transform Your Business
             </span>
             <span className="block mt-2">
-              Into{" "}
+              With{" "}
               <span className="text-[#e14242] italic drop-shadow-[0_1px_4px_#e14242]">
-                Reality
+                IT Excellence
               </span>
             </span>
           </h1>
@@ -119,8 +119,9 @@ const HeroSection = () => {
             ref={textRef}
             className="text-white/90 mt-7 max-w-2xl text-base sm:text-lg md:text-xl leading-relaxed drop-shadow-[0_1px_4px_#e14242] mx-auto"
           >
-            We boost your revenue and ensure sustainable long-term growth <br className="hidden sm:block" />
-            for your business through powerful, creative IT Solutions.
+            Comprehensive IT solutions from cybersecurity and cloud management{" "}
+            <br className="hidden sm:block" />
+            to custom software development and enterprise applications.
           </p>
 
           {/* CTA Button */}

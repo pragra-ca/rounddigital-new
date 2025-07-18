@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 const CaseStudies = () => {
   return (
@@ -19,9 +19,9 @@ const CaseStudies = () => {
             </div>
           </div>
           <p className="relative w-full md:max-w-[580px] text-[#000000] text-lg md:text-xl leading-relaxed font-normal">
-            See how we've helped visionary teams launch bold digital products,
-            scale platforms, and bring brands to life through design, AI, and
-            strategy.
+            Discover how we've helped businesses transform their IT
+            infrastructure, enhance cybersecurity, and accelerate growth through
+            custom software and cloud solutions.
           </p>
         </div>
 
@@ -32,8 +32,9 @@ const CaseStudies = () => {
             <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl bg-[#e14242]/20 group-hover:bg-[#e14242]/40 z-0 transition-all duration-300"></div>
             <div className="relative z-10">
               <p className="mb-6 text-white text-lg leading-relaxed">
-                Redesigned a global SaaS product with a modular UI system,
-                improving usability by 40% and decreasing time-to-market for new features.
+                Implemented comprehensive cybersecurity solutions for a
+                financial institution, reducing security incidents by 95% and
+                achieving complete regulatory compliance.
               </p>
               <Link
                 href="/case-studies/saas-redesign"
@@ -56,7 +57,9 @@ const CaseStudies = () => {
             </div>
             <div
               className="pointer-events-none absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition duration-300"
-              style={{ boxShadow: "0 0 0 8px #e1424222, 0 8px 32px 0 #e1424222" }}
+              style={{
+                boxShadow: "0 0 0 8px #e1424222, 0 8px 32px 0 #e1424222",
+              }}
             />
           </div>
 
@@ -65,8 +68,9 @@ const CaseStudies = () => {
             <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl bg-[#e14242]/20 group-hover:bg-[#e14242]/40 z-0 transition-all duration-300"></div>
             <div className="relative z-10">
               <p className="mb-6 text-white text-lg leading-relaxed">
-                Delivered a custom-built AI tool for a fintech startup that
-                automated workflows and saved 300+ hours/month in manual effort.
+                Developed and deployed a cloud-native enterprise application
+                that automated business processes and improved operational
+                efficiency by 60%.
               </p>
               <Link
                 href="/case-studies/ai-fintech"
@@ -89,7 +93,9 @@ const CaseStudies = () => {
             </div>
             <div
               className="pointer-events-none absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition duration-300"
-              style={{ boxShadow: "0 0 0 8px #e1424222, 0 8px 32px 0 #e1424222" }}
+              style={{
+                boxShadow: "0 0 0 8px #e1424222, 0 8px 32px 0 #e1424222",
+              }}
             />
           </div>
 
@@ -98,8 +104,9 @@ const CaseStudies = () => {
             <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl bg-[#e14242]/20 group-hover:bg-[#e14242]/40 z-0 transition-all duration-300"></div>
             <div className="relative z-10">
               <p className="mb-6 text-white text-lg leading-relaxed">
-                Partnered with a fashion retailer to evolve their brand identity
-                and digital presence, resulting in a 60% uplift in engagement.
+                Migrated a legacy system to modern cloud infrastructure with
+                enhanced security, resulting in 40% cost reduction and improved
+                scalability.
               </p>
               <Link
                 href="/case-studies/fashion-brand"
@@ -122,7 +129,9 @@ const CaseStudies = () => {
             </div>
             <div
               className="pointer-events-none absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition duration-300"
-              style={{ boxShadow: "0 0 0 8px #e1424222, 0 8px 32px 0 #e1424222" }}
+              style={{
+                boxShadow: "0 0 0 8px #e1424222, 0 8px 32px 0 #e1424222",
+              }}
             />
           </div>
         </div>

@@ -35,7 +35,8 @@ export default function AboutSection() {
               Who We Are
             </h3>
             <p className="text-zinc-600 mb-6 text-center text-base">
-              We design seamless mobile experiences that help you stand out and connect with your audience.
+              We deliver comprehensive IT solutions from cybersecurity to custom
+              software development that help your business thrive.
             </p>
             <a
               href="#"
@@ -59,7 +60,8 @@ export default function AboutSection() {
                 </svg>
               </div>
               <span className="text-zinc-800 font-semibold text-lg">
-                Call Us Today <span className="text-[#e14242] font-bold">905-407-5009</span>
+                Call Us Today{" "}
+                <span className="text-[#e14242] font-bold">905-407-5009</span>
               </span>
             </div>
             <p className="text-zinc-600 mt-3 text-center text-base">
@@ -99,7 +101,8 @@ export default function AboutSection() {
               Small Business
             </h3>
             <p className="text-zinc-600 mb-6 text-center text-base">
-              See how our expert team can help your business grow and thrive in the digital world.
+              Our expert IT team provides cybersecurity, cloud solutions, and
+              enterprise applications to transform your business.
             </p>
             <a
               href="#"

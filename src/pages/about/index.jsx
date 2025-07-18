@@ -13,8 +13,8 @@ const index = () => {
     <Layout>
       <Seo
         title="Empowering Your Digital Journey | About RoundDigital"
-        description="At RoundDigital, we empower startups and businesses with cutting-edge solutions — from idea to MVP. Our expert team delivers web and mobile development, digital marketing, branding, and scalable design strategies to help your business thrive."
-        keywords="RoundDigital, RoundDigital Technologies, MVP development, startup solutions, web development, mobile app development, digital marketing, branding, UI/UX design, Canada tech company"
+        description="RoundDigital delivers comprehensive IT solutions including cybersecurity, cloud management, custom software development, enterprise applications, and web development services to help businesses succeed in the digital landscape."
+        keywords="RoundDigital, IT services, cybersecurity solutions, IT consulting, application development, cloud management, custom software development, enterprise content management, software testing, web development, Canada tech company"
       />
       <AboutSection />
       <Intro />
