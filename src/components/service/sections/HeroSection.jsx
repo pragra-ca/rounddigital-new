@@ -141,7 +141,7 @@ const HeroSection = () => {
           >
             <div className="h-px w-10 bg-primary border border-[#e14242]" />
             <span className="text-white tracking-widest font-semibold drop-shadow-[0_1px_4px_#e14242]">
-              Trusted by amazing brands
+              Trusted by growing teams across Canada
             </span>
             <div className="h-px w-10 bg-primary border border-[#e14242]" />
           </div>

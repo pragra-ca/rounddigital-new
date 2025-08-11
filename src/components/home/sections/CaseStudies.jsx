@@ -37,7 +37,7 @@ const CaseStudies = () => {
                 achieving complete regulatory compliance.
               </p>
               <Link
-                href="/case-studies/saas-redesign"
+                href="/use-cases"
                 className="inline-flex items-center gap-2 text-white hover:text-[#e14242] transition-colors font-semibold group"
               >
                 Learn more
@@ -73,7 +73,7 @@ const CaseStudies = () => {
                 efficiency by 60%.
               </p>
               <Link
-                href="/case-studies/ai-fintech"
+                href="/use-cases"
                 className="inline-flex items-center gap-2 text-white hover:text-[#e14242] transition-colors font-semibold group"
               >
                 Learn more
@@ -109,7 +109,7 @@ const CaseStudies = () => {
                 scalability.
               </p>
               <Link
-                href="/case-studies/fashion-brand"
+                href="/use-cases"
                 className="inline-flex items-center gap-2 text-white hover:text-[#e14242] transition-colors font-semibold group"
               >
                 Learn more

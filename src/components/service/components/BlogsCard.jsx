@@ -11,37 +11,37 @@ import {
 const blogData = [
   {
     tag: 'BRANDING',
-    title: 'What is the branding, and what we need it?',
+    title: 'What is branding and why does it matter?',
     desc: 'On the other hand, we denounce with righteous indignation and...',
     image: blog1,
   },
   {
     tag: 'TIKTOK',
-    title: 'What is the branding, and what we need it?',
+    title: 'How to build a brand people remember',
     desc: 'On the other hand, we denounce with righteous indignation and...',
     image: blog2,
   },
   {
     tag: 'LOGO DESIGN',
-    title: 'What is the branding, and what we need it?',
+    title: 'Logo vs. Brand: What’s the difference?',
     desc: 'On the other hand, we denounce with righteous indignation and...',
     image: blog3,
   },
   {
     tag: 'FB',
-    title: 'What is the branding, and what we need it?',
+    title: 'Brand messaging that converts',
     desc: 'On the other hand, we denounce with righteous indignation and...',
     image: blog4,
   },
   {
     tag: 'AI',
-    title: 'What is the branding, and what we need it?',
+    title: 'Leveraging AI to strengthen your brand',
     desc: 'On the other hand, we denounce with righteous indignation and...',
     image: blog5,
   },
   {
     tag: 'NFT',
-    title: 'What is the branding, and what we need it?',
+    title: 'Design principles for modern startups',
     desc: 'On the other hand, we denounce with righteous indignation and...',
     image: blog6,
   },

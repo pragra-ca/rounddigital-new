@@ -26,7 +26,7 @@ const teamMembers = [
     image: "https://res.cloudinary.com/dm1txojyd/image/upload/v1727253393/Atin_pp4vjq.jpg",
     social: {
       twitter: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/",
       github: "#",
     },
   },
@@ -39,7 +39,7 @@ const teamMembers = [
     image: "https://res.cloudinary.com/dkyp14kzf/image/upload/v1736773360/Vivek_hboeow.jpg",
     social: {
       twitter: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/",
       instagram: "#",
     },
   },
@@ -52,7 +52,7 @@ const teamMembers = [
     image:   "https://res.cloudinary.com/dm1txojyd/image/upload/v1727254953/SonaliSingla_k2j0vx.png",
     social: {
       twitter: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/",
       github: "#",
     },
   },
@@ -65,7 +65,7 @@ const teamMembers = [
     image: "https://res.cloudinary.com/dm1txojyd/image/upload/v1727255082/passport_size_photo.._idtrmu.jpg",
     social: {
       twitter: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/",
       instagram: "#",
     },
   },
@@ -78,7 +78,7 @@ const teamMembers = [
     image: "https://res.cloudinary.com/pragra/image/upload/v1744022235/Employees/small.jpg",
     social: {
       twitter: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/",
     },
   },
   {
@@ -90,7 +90,7 @@ const teamMembers = [
     image: 'https://res.cloudinary.com/dm1txojyd/image/upload/v1727255058/Priyanshu_Image_vfkqgf.png',
     social: {
       twitter: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/",
       github: "#",
     },
   },

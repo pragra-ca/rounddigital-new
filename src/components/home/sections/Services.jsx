@@ -198,9 +198,7 @@ const Services = () => {
                       {service.description}
                     </p>
                     <Link
-                      href={`/services#${service.title
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
+                      href="/services"
                       className="group inline-flex items-center mt-2 text-sm md:text-base font-semibold"
                     >
                       <span className="text-gray-600 bg-clip-text bg-gradient-to-r from-[#e14242] to-[#f97316] inline-block">

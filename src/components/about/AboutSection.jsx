@@ -87,7 +87,7 @@ export default function AboutSection() {
             <div className="mt-8">
               <p className="mb-3 text-xs uppercase tracking-wider text-white/60">Trusted by</p>
               <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-                {['Acme', 'TechNova', 'CloudHub', 'FinEdge', 'HealthPlus'].map((brand) => (
+                {['SaaS', 'Retail', 'Healthcare', 'Finance', 'E‑commerce'].map((brand) => (
                   <span key={brand} className="text-sm font-semibold uppercase tracking-wider text-white/85">
                     {brand}
                   </span>

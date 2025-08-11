@@ -34,9 +34,9 @@ const benefits = [
   },
   {
     number: "3.",
-    icon: <div className="w-5 h-5 rounded-full bg-red-500 text-xs text-black font-bold flex items-center justify-center">w</div>,
-    title: "Powered by - Webflow",
-    desc: "We build every site on Webflow, making them dynamic, accessible, and easily scalable. It’s easy for you like Squarespace but better.",
+    icon: <div className="w-5 h-5 rounded-full bg-red-500 text-[10px] text-black font-bold flex items-center justify-center">NX</div>,
+    title: "Built with Next.js & React",
+    desc: "We ship fast, accessible, and scalable products using Next.js, React, and Tailwind. CMS-agnostic and ready to integrate with your stack.",
   },
   {
     number: "4.",

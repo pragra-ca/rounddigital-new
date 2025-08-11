@@ -7,7 +7,7 @@ import {
   ArrowPathIcon,
 } from "@heroicons/react/24/solid";
 
-const brands = ["Layers", "Quotient", "Circooles", "Hourglass", "Command+R"];
+const brands = ["SaaS", "Retail", "Healthcare", "Finance", "E‑commerce"];
 
 export default function ServiceHero() {
   return (
@@ -32,7 +32,7 @@ export default function ServiceHero() {
         <div className="mt-16">
           <div className="flex items-center justify-center gap-2 text-gray-400 text-xs tracking-wider uppercase">
             <div className="w-8 h-px bg-gray-600" />
-            Trusted by Amazing Brands
+            Trusted by growing teams across Canada
             <div className="w-8 h-px bg-gray-600" />
           </div>
           <div className="mt-6 bg-[#2A2A2A] rounded-xl px-6 py-4 flex flex-wrap justify-center items-center gap-4 sm:gap-6">
