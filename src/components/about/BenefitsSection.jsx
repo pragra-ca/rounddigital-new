@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import Link from "next/link";
 
 function BenefitsSection() {
   return (
@@ -35,9 +36,9 @@ function BenefitsSection() {
             <p className="text-zinc-600 text-base text-center mb-4">
               Work with passionate professionals who care about your success.
             </p>
-            <button className="mt-auto px-8 py-2 bg-zinc-900 text-white rounded-full font-semibold shadow hover:bg-red-600 transition-colors">
+            <Link href="/contact" className="mt-auto px-8 py-2 bg-zinc-900 text-white rounded-full font-semibold shadow hover:bg-red-600 transition-colors">
               Try Us
-            </button>
+            </Link>
           </div>
 
           {/* Card 2 */}
@@ -57,9 +58,9 @@ function BenefitsSection() {
             <p className="text-zinc-600 text-base text-center mb-4">
               Pulsar is designed for simplicity and impact. Edit and launch in minutes.
             </p>
-            <button className="mt-auto px-8 py-2 bg-red-600 text-white rounded-full font-semibold shadow hover:bg-black transition-colors">
+            <Link href="/services" className="mt-auto px-8 py-2 bg-red-600 text-white rounded-full font-semibold shadow hover:bg-black transition-colors">
               Get Started
-            </button>
+            </Link>
           </div>
 
           {/* Card 3 */}
@@ -79,9 +80,9 @@ function BenefitsSection() {
             <p className="text-zinc-600 text-base text-center mb-4">
               Your site looks stunning on every device, every time.
             </p>
-            <button className="mt-auto px-8 py-2 bg-red-600 text-white rounded-full font-semibold shadow hover:bg-black transition-colors">
+            <Link href="/contact" className="mt-auto px-8 py-2 bg-red-600 text-white rounded-full font-semibold shadow hover:bg-black transition-colors">
               Try This Plan
-            </button>
+            </Link>
           </div>
         </div>
       </div>

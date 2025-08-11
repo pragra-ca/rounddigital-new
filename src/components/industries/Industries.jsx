@@ -15,7 +15,7 @@ const services = [
     id: 1,
     title: "Healthcare",
     subtitle: "Industries",
-    description: "Empowering healthcare with digital innovation.",
+    description: "HIPAA‑ready patient apps, EHR integrations, telehealth, and analytics that improve outcomes.",
     bgColor: "bg-white",
     textColor: "text-black",
     badgeBg: "bg-[#e14242]",
@@ -26,7 +26,7 @@ const services = [
     id: 2,
     title: "Banking & Financial",
     subtitle: "Services",
-    description: "Secure and scalable solutions for finance sectors.",
+    description: "Bank‑grade platforms, KYC/AML, risk engines, and real‑time payments built for scale.",
     bgColor: "bg-[#e14242]",
     textColor: "text-white",
     badgeBg: "bg-white",
@@ -37,7 +37,7 @@ const services = [
     id: 3,
     title: "Manufacturing",
     subtitle: "Industry",
-    description: "Streamlining manufacturing through smart tech.",
+    description: "Smart factory dashboards, MES/ERP integrations, and predictive maintenance with IoT.",
     bgColor: "bg-black",
     textColor: "text-white",
     badgeBg: "bg-white",
@@ -48,7 +48,7 @@ const services = [
     id: 4,
     title: "Technology",
     subtitle: "Solution",
-    description: "Driving innovation with modern technology stacks.",
+    description: "Cloud‑native platforms, APIs, and AI copilots that accelerate product velocity.",
     bgColor: "bg-white",
     textColor: "text-black",
     badgeBg: "bg-[#e14242]",
@@ -59,7 +59,7 @@ const services = [
     id: 5,
     title: "Transportation",
     subtitle: "Industry",
-    description: "Optimizing logistics and mobility with tech.",
+    description: "Routing, fleet tracking, and warehouse automation to cut costs and delays.",
     bgColor: "bg-[#e14242]",
     textColor: "text-white",
     badgeBg: "bg-white",
@@ -70,7 +70,7 @@ const services = [
     id: 6,
     title: "Telecom",
     subtitle: "Industry",
-    description: "Enabling connectivity with smart telecom solutions.",
+    description: "5G provisioning, OSS/BSS modernization, and subscriber experience platforms.",
     bgColor: "bg-black",
     textColor: "text-white",
     badgeBg: "bg-white",
@@ -95,7 +95,7 @@ const Industries = () => {
             </div>
           </div>
           <p className="md:max-w-[580px] text-black text-lg md:text-xl font-normal">
-            At our digital marketing agency, we offer a range of services to help businesses grow and succeed online. These services include:
+            We deliver sector‑specific software and digital solutions—strategy, design, engineering, and growth—for startups and enterprises.
           </p>
         </div>
 
@@ -131,9 +131,7 @@ const Industries = () => {
                     </div>
                     <p className="text-base mb-2">{service.description}</p>
                     <Link
-                      href={`/services#${service.title
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
+                      href="/services"
                       className="group inline-flex items-center mt-2 text-base font-semibold"
                     >
                       <span className="mr-2 group-hover:underline transition-colors">Learn more</span>

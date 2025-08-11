@@ -39,7 +39,7 @@ export default function AboutSection() {
               software development that help your business thrive.
             </p>
             <a
-              href="#"
+              href="/about"
               className="inline-block text-base font-bold text-white bg-gradient-to-r from-[#e14242] to-[#ff6a6a] px-6 py-2 rounded-full shadow-lg border-b-4 border-[#e14242] hover:from-[#ff6a6a] hover:to-[#e14242] hover:scale-105  transition-all duration-300"
             >
               Learn more
@@ -105,7 +105,7 @@ export default function AboutSection() {
               enterprise applications to transform your business.
             </p>
             <a
-              href="#"
+              href="/services"
               className="inline-block text-base font-bold text-white bg-gradient-to-r from-black to-[#e14242] px-6 py-2 rounded-full shadow-lg border-b-4 border-black hover:from-[#e14242] hover:to-black hover:scale-105  transition-all duration-300"
             >
               Learn more

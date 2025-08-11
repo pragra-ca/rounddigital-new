@@ -22,40 +22,40 @@ const iconMap = {
 
 const sections = [
   {
-    title: "Section One",
+    title: "Smart Factory Automation",
     icon: "Factory",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididunt",
+      "Connect machines and lines with IoT to track OEE, detect faults early, and reduce downtime.",
   },
   {
-    title: "Section Two",
+    title: "Operations Dashboards",
     icon: "LayoutTemplate",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididunt",
+      "Unified KPIs for production, quality, and supply chain with role‑based views and alerts.",
   },
   {
-    title: "Section Three",
+    title: "Real‑time Monitoring",
     icon: "Activity",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididunt",
+      "Stream telemetry from assets to spot anomalies, predict failures, and optimize throughput.",
   },
   {
-    title: "Section Four",
+    title: "Enterprise Integrations",
     icon: "Building2",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididunt",
+      "MES/ERP/WMS integrations to keep data flowing across planning, inventory, and finance.",
   },
   {
-    title: "Section Five",
+    title: "Sustainable Manufacturing",
     icon: "Sprout",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididunt",
+      "Track energy use, scrap, and emissions to meet ESG goals and lower unit costs.",
   },
   {
-    title: "Section Six",
+    title: "Cost Optimization",
     icon: "CircleDollarSign",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididunt",
+      "Automate reporting, reduce manual work, and surface savings opportunities with analytics.",
   },
 ];
 
@@ -78,11 +78,11 @@ const IndustrySolutions = () => {
     <section className="bg-gray-50 py-16 px-4 text-center">
       <div className="max-w-4xl mx-auto mb-12">
         <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900">
-          Tailored Manufacturing <br /> Solutions for Every Industry.
+          Tailored Manufacturing <br /> Solutions for Every Industry
         </h2>
         <p className="text-gray-500 mt-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore
+          We help operations teams modernize with data‑driven workflows, connected equipment,
+          and scalable platforms that reduce downtime and accelerate output.
         </p>
       </div>
 

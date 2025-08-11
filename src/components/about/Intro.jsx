@@ -82,7 +82,7 @@ export default function Intro() {
                   comprehensive IT solutions and cybersecurity expertise.
                 </p>
                 <a
-                  href="#"
+                  href="/about"
                   className="text-xs font-bold text-[#e14242] underline hover:text-white transition"
                 >
                   LEARN MORE
@@ -116,7 +116,7 @@ export default function Intro() {
                   solutions.
                 </p>
                 <a
-                  href="#"
+                  href="/services"
                   className="text-xs font-bold text-[#e14242] underline hover:text-white transition"
                 >
                   LEARN MORE
@@ -149,7 +149,7 @@ export default function Intro() {
                   solutions, and custom software development for your business.
                 </p>
                 <a
-                  href="#"
+                  href="/contact"
                   className="text-xs font-bold text-[#e14242] underline hover:text-white transition"
                 >
                   LEARN MORE

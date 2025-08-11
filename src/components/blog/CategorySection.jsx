@@ -14,7 +14,7 @@ export const CategorySection = ({ title, articles }) => {
         </h2>
 
         <a
-          href="#"
+          href="/blogs"
           className={`text-sm font-bold flex items-center gap-1 font-roboto ${color}`}
         >
           all posts

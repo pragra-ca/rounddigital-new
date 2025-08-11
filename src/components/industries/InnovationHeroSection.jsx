@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import avatar3 from "@/assets/industries/avatar1.png";
 import avatar2 from "@/assets/industries/avatar2.png";
@@ -26,9 +27,9 @@ export default function InnovationHeroSection() {
           </h1>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-7">
-            <button className="bg-gradient-to-r from-red-600 to-red-400 hover:from-red-700 hover:to-red-500 text-white px-8 py-3 rounded-lg text-base font-bold shadow-lg transition-all duration-200 animate-bounce-slow">
+            <Link href="/services" className="bg-gradient-to-r from-red-600 to-red-400 hover:from-red-700 hover:to-red-500 text-white px-8 py-3 rounded-lg text-base font-bold shadow-lg transition-all duration-200 animate-bounce-slow">
               Explore Now
-            </button>
+            </Link>
 
             <div className="flex items-start gap-4">
               <div className="text-red-600 text-4xl font-extrabold drop-shadow animate-pulse">

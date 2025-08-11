@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import Link from "next/link";
 import Button from "../components/Button";
 import { star, ellips } from "@/constant/constant";
 import CompanyLogo from "../components/CompanyLogo";
@@ -126,9 +127,11 @@ const HeroSection = () => {
 
           {/* CTA Button */}
           <div ref={buttonRef}>
-            <Button className="mt-10 w-[180px] h-[56px] bg-gradient-to-r from-[#e14242] to-[#ff6a6a] text-white font-bold text-lg rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 border-b-4 border-[#e14242]">
-              Book A Meeting
-            </Button>
+            <Link href="/contact" className="inline-block">
+              <Button className="mt-10 w-[180px] h-[56px] bg-gradient-to-r from-[#e14242] to-[#ff6a6a] text-white font-bold text-lg rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 border-b-4 border-[#e14242]">
+                Book A Meeting
+              </Button>
+            </Link>
           </div>
 
           {/* Trusted By */}

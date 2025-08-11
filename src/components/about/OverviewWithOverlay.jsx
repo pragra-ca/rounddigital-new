@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import Link from "next/link";
 import { LoadingOverlay, ModalOverlay } from "../ui";
 import { useOverlay } from "../../hooks/useOverlay";
 
@@ -218,15 +219,13 @@ function OverviewWithOverlay() {
             >
               Close
             </button>
-            <button
-              onClick={() => {
-                detailsModal.hideOverlay();
-                // Could trigger another action here
-              }}
+            <Link
+              href="/services"
+              onClick={detailsModal.hideOverlay}
               className="px-6 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
             >
               Learn More
-            </button>
+            </Link>
           </div>
         </div>
       </ModalOverlay>

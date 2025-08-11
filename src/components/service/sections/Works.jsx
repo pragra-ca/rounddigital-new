@@ -1,10 +1,10 @@
 import { Loader } from "lucide-react";
+import Link from "next/link";
 import insyght from "@/assets/service/projects/insyght.png";
 import attendify from "@/assets/service/projects/attendify.png";
 import unseal from "@/assets/service/projects/unseal.png";
 import katimet from "@/assets/service/projects/katimet.png";
 import Image from "next/image";
-import Link from "next/link";
 
 export const works = [
   {
@@ -183,10 +183,13 @@ const Works = () => {
           We help businesses grow with comprehensive <br /> IT solutions and
           digital transformation services.
         </p>
-        <button className="flex items-center justify-center gap-2 w-[184px] mt-5 h-[64px] border-[1.5px] text-[18px] border-[#e14242] rounded-[12px] bg-gradient-to-r from-[#e14242]/10 to-[#ff6a6a]/10 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-[#e14242] font-semibold">
+        {/** Load More button commented out as requested **/}
+        {/**
+        <Link href="/works" className="inline-flex items-center justify-center gap-2 w-[184px] mt-5 h-[64px] border-[1.5px] text-[18px] border-[#e14242] rounded-[12px] bg-gradient-to-r from-[#e14242]/10 to-[#ff6a6a]/10 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-[#e14242] font-semibold">
           <Loader className="w-[24px] h-[24px] animate-spin" />
           Load More
-        </button>
+        </Link>
+        **/}
       </div>
       <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 place-items-center">
         {works.map((work, i) => (

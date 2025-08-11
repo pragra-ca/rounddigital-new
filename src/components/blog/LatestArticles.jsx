@@ -1,169 +1,132 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import ArticleCard from "./ArticleCard";
-import { format } from 'date-fns';
-
-// const blogPosts = [
-//   {
-//     slug: "real-estate-referral-fees-2025",
-//     title: "The Complete Guide to Real Estate Referral Fees for 2025",
-//     category: "THE BASICS",
-//     date: "April 8, 2025",
-//     author: "Yasbel Garcia",
-//     authorImage: "/images/th.jpeg",
-//     heroImage: "/images/article1.png",
-//     description:
-//       "Let's remove some of the mystery around real estate referrals and the associated fees. We'll review why referrals happen, explore how agreements work and offer you a template to get started.",
-//     cta: "Read the full guide →",
-//     content: `
-//       <h3>What Are Referral Fees?</h3>
-//       <p>Referral fees are payments made to agents who refer clients to other agents. This guide covers everything you need to know for 2025.</p>
-//       <ul>
-//         <li>Why referrals happen</li>
-//         <li>How agreements work</li>
-//         <li>Referral fee templates</li>
-//       </ul>
-//       <h3>Referral Agreement Template</h3>
-//       <p>Download our free template to get started with your own referral agreements.</p>
-//     `,
-//     tags: ["real estate", "referral", "fees", "guide", "2025"],
-//     readingTime: "5 min read",
-//     featured: false,
-//     relatedPosts: [
-//       {
-//         slug: "real-estate-conferences-2025",
-//         title: "10 Must-Attend Real Estate Conferences + Events in 2025",
-//       },
-//     ],
-//     gallery: ["/images/article1.png", "/images/event2.jpg"],
-//   },
-//   {
-//     slug: "best-real-estate-ai-tools-2025",
-//     title: "The Best 6 Real Estate AI Tools for 2025",
-//     category: "APPS + SOFTWARE",
-//     date: "April 6, 2025",
-//     author: "Andrew Wan",
-//     authorImage: "/images/th.jpeg",
-//     heroImage: "/images/article2.png",
-//     description:
-//       "Tools powered by artificial intelligence (AI) continue to become more popular in the real estate industry, and it's easy to see why!",
-//     cta: "Explore the tools →",
-//     content: `
-//       <h3>Why Use AI Tools?</h3>
-//       <p>AI tools can help you automate tasks, analyze data, and improve your workflow.</p>
-//       <ul>
-//         <li>Lead generation</li>
-//         <li>Market analysis</li>
-//         <li>Client communication</li>
-//       </ul>
-//       <h3>Top 6 AI Tools</h3>
-//       <ol>
-//         <li>Tool 1: RealAI</li>
-//         <li>Tool 2: PropBot</li>
-//         <li>Tool 3: HomeGenius</li>
-//         <li>Tool 4: MarketMind</li>
-//         <li>Tool 5: DealFinder</li>
-//         <li>Tool 6: SmartAgent</li>
-//       </ol>
-//     `,
-//     tags: ["real estate", "AI", "tools", "software", "2025"],
-//     readingTime: "6 min read",
-//     featured: false,
-//     relatedPosts: [
-//       {
-//         slug: "real-estate-referral-fees-2025",
-//         title: "The Complete Guide to Real Estate Referral Fees for 2025",
-//       },
-//     ],
-//     gallery: ["/images/article2.png", "/images/event3.jpg"],
-//   },
-//   {
-//     slug: "real-estate-trivia-2025",
-//     title: "Real Estate Trivia: 16 Fun Facts You Must Know in 2025",
-//     category: "REAL ESTATE HUMOR",
-//     date: "April 7, 2025",
-//     author: "Yasbel Garcia",
-//     authorImage: "/images/th.jpeg",
-//     heroImage: "/images/article3.png",
-//     description:
-//       "We compiled a list of real estate facts that are peculiar, surprising, quirky, and even bizarre but they're all actually true.",
-//     cta: "See all the facts →",
-//     content: `
-//       <h3>Fun Facts</h3>
-//       <ul>
-//         <li>The White House has 132 rooms.</li>
-//         <li>There's a house shaped like a shoe in Pennsylvania.</li>
-//         <li>In Scotland, homeowners paint their doors red when they pay off their mortgage.</li>
-//       </ul>
-//       <h3>More Trivia</h3>
-//       <p>Check out our full list for more fun real estate trivia!</p>
-//     `,
-//     tags: ["real estate", "trivia", "fun facts", "2025"],
-//     readingTime: "4 min read",
-//     featured: false,
-//     relatedPosts: [
-//       {
-//         slug: "best-real-estate-ai-tools-2025",
-//         title: "The Best 6 Real Estate AI Tools for 2025",
-//       },
-//     ],
-//     gallery: ["/images/article3.png"],
-//   },
-// ];
+import GridArticleCard from "./GridArticleCard";
+import { format } from "date-fns";
+import { urlFor } from "@/utlis/sanity";
 
 export const LatestArticles = ({ blogPosts = [] }) => {
-  console.log(blogPosts);
   if (!blogPosts || blogPosts.length === 0) {
     return (
-      <section className="w-full py-12 md:py-16 lg:py-20 bg-white">
-        <div className="container px-4 md:px-6">
-          <div className="text-center py-12">
-            <p className="text-gray-500">No blog posts found.</p>
-          </div>
+      <section className="bg-[#0b0b0b] text-white py-16">
+        <div className="container mx-auto px-6 text-center">
+          <p className="text-gray-400">No blog posts found.</p>
         </div>
       </section>
     );
   }
 
+  // removed category filtering and sort; using simple pagination
+  const [visible, setVisible] = useState(7); // featured + 6 in grid
+
+  // use posts as-is (no sorting)
+  const sorted = blogPosts;
+
+  const safeDate = (v) => {
+    if (!v) return "";
+    const t = Date.parse(v);
+    if (Number.isNaN(t)) return "";
+    try {
+      return format(new Date(t), "MMMM d, yyyy");
+    } catch {
+      return "";
+    }
+  };
+
+  // Reset pagination when posts list updates
+  // (keeps UX predictable when data changes)
+  // Note: if you want to preserve pagination on data changes, remove this effect.
+  // React rule-of-hooks requires useEffect import only if used; currently not needed.
+
+  const featured = sorted[0];
+  const rest = sorted.slice(1, Math.min(visible, Math.max(sorted.length, 1)));
+
   return (
-    <section className="w-full py-12 md:py-16 lg:py-20 bg-white">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Latest Articles
-            </h2>
-            <p className="max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              Stay up to date with the latest real estate news, tips, and insights from our team of experts.
-            </p>
+    <section className="bg-[#0b0b0b] text-white py-12">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-4 space-y-12">
+        
+        {/* Featured Article */}
+        {sorted.length > 0 && (
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-lg">
+          <div className="relative h-[360px] sm:h-[420px] md:h-[480px]">
+            {featured?.image && (
+              <img
+                src={urlFor(featured.image).url()}
+                alt={featured?.heading || "Featured"}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+            <div className="relative z-10 h-full flex items-end p-6 sm:p-10">
+              <div>
+                {safeDate(featured?.publishedAt) && (
+                  <span className="text-sm text-zinc-300 block mb-2">
+                    {safeDate(featured?.publishedAt)}
+                  </span>
+                )}
+                <Link href={`/blogs/${featured?.slug?.current || ""}`}>
+                  <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight hover:text-red-400 transition-colors">
+                    {featured?.heading || featured?.title || "Untitled Post"}
+                  </h1>
+                </Link>
+                {featured?.description && (
+                  <p className="mt-3 text-zinc-300 max-w-2xl line-clamp-3">
+                    {featured.description}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
+        )}
 
-        <div className="mt-12 space-y-8">
-          {blogPosts && blogPosts.map((post) => {
-            // Format date if it's a string or Date object
-            const formattedDate = post.publishedAt 
-              ? format(new Date(post.publishedAt), 'MMMM d, yyyy')
-              : 'No date';
-              
-            return (
-              <Link 
-                key={post.slug?.current || post._id} 
-                href={`/blogs/${post.slug?.current || ''}`}
-                className="block hover:opacity-90 transition-opacity"
+        {/* Intro */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold">Latest IT Articles</h2>
+            <p className="mt-2 text-sm sm:text-base text-zinc-400">
+              Insights on web and mobile development, product, and growth — curated by RoundDigital.
+            </p>
+          </div>
+          {/* controls removed */}
+        </div>
+
+        {/* Articles Grid */}
+        {sorted.length === 0 ? (
+          <p className="text-zinc-400">No posts available.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {rest.map((post) => (
+              <Link
+                key={post.slug?.current || post._id}
+                href={`/blogs/${post.slug?.current || ""}`}
+                className="block h-full"
               >
-                <ArticleCard
+                <GridArticleCard
+                  variant="dark"
                   img={post?.image}
-                  date={post?.date}
-                  category={post.categories?.[0]?.title || 'Uncategorized'}
-                  title={post?.heading || 'Untitled Post'}
-                  summary={post.description || ''}
-                  testimonial={post?.testimonial}
+                  date={safeDate(post.publishedAt)}
+                  category={post.categories?.[0]?.title || "Uncategorized"}
+                  title={post?.heading || post?.title || "Untitled Post"}
+                  summary={post.description || ""}
                 />
               </Link>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        )}
+
+        {/* Load More */}
+        {sorted.length > visible && (
+          <div className="flex justify-center pt-4">
+            <button
+              onClick={() => setVisible((v) => v + 6)}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-red-500/60"
+            >
+              Load more
+            </button>
+          </div>
+        )}
+
+        {/* Stacked list removed to keep layout concise with pagination */}
       </div>
     </section>
   );

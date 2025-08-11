@@ -208,10 +208,10 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-gray-500 gap-3 pt-2">
           <p>
-            © {new Date().getFullYear()}{" "}
+            &copy; {new Date().getFullYear()}{" "}
             <span className="font-semibold text-white">Rounddigital</span>. All Rights Reserved.
           </p>
-          <Link href="#" className="hover:text-red-400 transition">
+          <Link href="/privacy" className="hover:text-red-400 transition">
             Privacy Policy
           </Link>
         </div>

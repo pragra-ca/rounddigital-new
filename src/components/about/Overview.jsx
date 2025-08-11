@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 
 function Overview() {
   return (
@@ -83,9 +84,9 @@ function Overview() {
                 <h3 className="text-xl sm:text-2xl font-bold leading-snug text-zinc-900">
                   Save time, money, and stress with Pulsar
                 </h3>
-                <button className="mt-4 px-6 py-2 bg-gradient-to-r from-[#e14242] to-[#ff6a6a] text-white rounded-full font-semibold shadow hover:bg-black hover:from-[#e14242] hover:to-black hover:scale-105 transition-all">
+                <Link href="/services" className="inline-block mt-4 px-6 py-2 bg-gradient-to-r from-[#e14242] to-[#ff6a6a] text-white rounded-full font-semibold shadow hover:bg-black hover:from-[#e14242] hover:to-black hover:scale-105 transition-all">
                   Read More
-                </button>
+                </Link>
               </div>
             </div>
           </div>

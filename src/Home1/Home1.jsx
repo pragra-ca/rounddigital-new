@@ -254,7 +254,7 @@ export const HomeComponent = () => {
                   </div>
                 </div>
 
-                <Link href="#" key="Learn more">
+                <Link href="/services" key="Learn more">
                   <div className="relative w-[41px] h-[41px] bg-dark rounded-[20.5px]">
                     <img
                       className="absolute w-5 h-5 top-[11px] left-2.5"
@@ -291,7 +291,7 @@ export const HomeComponent = () => {
                   </div>
                 </div>
 
-                <Link href="#" key="Learn more">
+                <Link href="/services" key="Learn more">
                   <div className="relative w-[41px] h-[41px] bg-dark rounded-[20.5px]">
                     <img
                       className="absolute w-5 h-5 top-[11px] left-2.5"
@@ -361,7 +361,7 @@ export const HomeComponent = () => {
                   </div>
                 </div>
 
-                <Link href="#" key="Learn more">
+                <Link href="/services" key="Learn more">
                   <div className="relative w-[41px] h-[41px] bg-dark rounded-[20.5px]">
                     <img
                       className="absolute w-5 h-5 top-[11px] left-2.5"
@@ -398,7 +398,7 @@ export const HomeComponent = () => {
                   </div>
                 </div>
 
-                <Link href="#" key="Learn more">
+                <Link href="/services" key="Learn more">
                   <div className="relative w-[41px] h-[41px] bg-dark rounded-[20.5px]">
                     <img
                       className="absolute w-5 h-5 top-[11px] left-2.5"

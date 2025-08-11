@@ -76,7 +76,7 @@ const BlogIndex = () => {
         keywords="RoundDigital blog, tech trends, web development blogs, mobile app development, digital marketing tips, branding strategies, startup growth, MVP development, UI/UX design, Canada tech"
       />
       {/* <HeroSection heroData={heroData}/> */}
-      <main className="container mx-auto px-4 py-12">
+      <main className="py-12 md:py-16 lg:py-20">
         {/* <BlogHome /> */}
         <LatestArticles blogPosts={blogPosts} />
       </main>

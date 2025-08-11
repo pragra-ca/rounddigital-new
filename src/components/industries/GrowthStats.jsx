@@ -6,10 +6,11 @@ const GrowthStats = () => {
       {/* Heading */}
       <div className="max-w-2xl mx-auto mb-16">
         <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900">
-          Your Trusted Partner in <br /> Industrial Growth.
+          Outcomes That Matter for <br /> Operations & Engineering
         </h2>
         <p className="text-gray-500 mt-4 text-sm sm:text-base">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+          We ship reliable software for the factory floor and back office—measurable gains in uptime,
+          throughput, and cost per unit.
         </p>
       </div>
 
@@ -36,28 +37,28 @@ const GrowthStats = () => {
 
         {/* Red Circle (Top Left) */}
         <div className="absolute top-[10%] left-[10%] sm:left-[15%] w-60 h-60 sm:w-72 sm:h-72 bg-red-600 text-white rounded-full flex flex-col justify-center items-center p-6 shadow-md text-center">
-          <h3 className="text-2xl sm:text-3xl font-bold">300 +</h3>
-          <p className="text-base sm:text-lg font-medium mt-2">Lorem Section One</p>
+          <h3 className="text-2xl sm:text-3xl font-bold">300+</h3>
+          <p className="text-base sm:text-lg font-medium mt-2">Connected Assets</p>
           <p className="text-sm sm:text-sm mt-2 text-white/80">
-            Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt
+            Streaming telemetry to drive predictive maintenance and OEE gains.
           </p>
         </div>
 
         {/* White Circle (Right Middle) */}
         <div className="absolute bottom-[25%] right-[10%] sm:right-[14%] w-44 h-44 sm:w-52 sm:h-52 bg-white text-black rounded-full flex flex-col justify-center items-center p-6 shadow-md text-center border border-gray-200">
-          <h3 className="text-xl sm:text-2xl font-bold">90 +</h3>
-          <p className="text-base font-medium mt-2">Lorem Section Two</p>
+          <h3 className="text-xl sm:text-2xl font-bold">90+</h3>
+          <p className="text-base font-medium mt-2">Downtime Reduction</p>
           <p className="text-sm mt-2 text-black/70">
-            Lorem ipsum dolor sit.
+            Minutes saved per shift via alerts and automated workflows.
           </p>
         </div>
 
         {/* Black Circle (Bottom Center) */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-48 h-48 sm:w-56 sm:h-56 bg-black text-white rounded-full flex flex-col justify-center items-center p-6 shadow-md text-center">
           <h3 className="text-xl sm:text-2xl font-bold">12K</h3>
-          <p className="text-base font-medium mt-2">Lorem Section Three</p>
+          <p className="text-base font-medium mt-2">Monthly Orders</p>
           <p className="text-sm mt-2 text-white/80">
-            Lorem ipsum dolor sit.
+            Scalable systems that keep pace with production demand.
           </p>
         </div>
       </div>
