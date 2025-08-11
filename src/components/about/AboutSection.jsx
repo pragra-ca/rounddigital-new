@@ -16,7 +16,7 @@ export default function AboutSection() {
         </div>
       </div>
 
-      <div className="container mx-auto max-w-7xl px-6 md:px-8 lg:px-8">
+      <div className="container mx-auto max-w-7xl px-6 md:px-8 lg:px-4">
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16 md:py-24">
           {/* Left: Bold headline and CTAs */}
           <div>

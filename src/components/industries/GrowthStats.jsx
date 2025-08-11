@@ -45,7 +45,7 @@ const GrowthStats = () => {
         </div>
 
         {/* White Circle (Right Middle) */}
-        <div className="absolute bottom-[25%] right-[10%] sm:right-[14%] w-44 h-44 sm:w-52 sm:h-52 bg-white text-black rounded-full flex flex-col justify-center items-center p-6 shadow-md text-center border border-gray-200">
+        <div className="absolute bottom-[25%] right-[10%] sm:right-[14%] w-48 h-48 sm:w-56 sm:h-56 bg-white text-black rounded-full flex flex-col justify-center items-center p-6 shadow-md text-center border border-gray-200">
           <h3 className="text-xl sm:text-2xl font-bold">90+</h3>
           <p className="text-base font-medium mt-2">Downtime Reduction</p>
           <p className="text-sm mt-2 text-black/70">
