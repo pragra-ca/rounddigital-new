@@ -1,117 +1,143 @@
 import React from "react";
 import Image from "next/image";
-import men from "@/assets/about/men.png";
 import mobile from "@/assets/about/mobile.png";
-import Blcover from "@/assets/about/blcover.png";
-import Yellowbg from "@/assets/about/yellowbg.png";
 
 export default function AboutSection() {
   return (
-    <section className="w-full bg-gradient-to-br mt-12 from-white via-zinc-100 to-white py-24 px-2 sm:px-6 md:px-12 relative overflow-hidden">
-      {/* 3D Blobs for Depth */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#e14242]/10 rounded-full blur-3xl z-0" />
-      <div className="absolute -bottom-32 -right-32 w-[32rem] h-[32rem] bg-black/10 rounded-full blur-3xl z-0" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[#e14242]/10 via-transparent to-transparent rounded-full blur-[120px] z-0 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center justify-between relative z-10">
-        {/* Left: Modern Card */}
-        <div className="w-full lg:w-1/2 flex flex-col gap-10 items-center">
-          <div className="relative w-full max-w-md rounded-[2.5rem] overflow-visible shadow-2xl border-0 bg-gradient-to-br from-white via-[#fff7f7] to-[#ffeaea] px-10 pt-20 pb-12 flex flex-col items-center transition-all duration-300 hover:shadow-[0_24px_64px_0_rgba(225,66,66,0.18)] hover:-translate-y-2 hover:scale-105">
-            {/* Floating Mobile Image with Glow */}
-            <div className="absolute -top-20 left-1/2 -translate-x-1/2 z-20">
-              <div className="bg-gradient-to-tr from-[#e14242]/80 via-white/80 to-zinc-200/80 rounded-full p-3 shadow-2xl ring-4 ring-[#e14242]/10">
-                <Image
-                  src={mobile}
-                  alt="Mobile UI"
-                  className="w-36 h-36 object-contain rounded-full border-4 border-white shadow-lg"
-                />
-              </div>
-            </div>
-            {/* Card Content */}
-            <span className="bg-[#e14242] text-white text-xs font-bold px-6 py-1 rounded-full shadow mb-6 mt-2 tracking-widest uppercase border border-white/80 shadow-[0_2px_16px_#e14242]">
-              Mobile UI
-            </span>
-            <h3 className="text-3xl font-extrabold text-zinc-900 mb-2 text-center tracking-tight drop-shadow-2xl">
-              Who We Are
-            </h3>
-            <p className="text-zinc-600 mb-6 text-center text-base">
-              We deliver comprehensive IT solutions from cybersecurity to custom
-              software development that help your business thrive.
-            </p>
-            <a
-              href="/about"
-              className="inline-block text-base font-bold text-white bg-gradient-to-r from-[#e14242] to-[#ff6a6a] px-6 py-2 rounded-full shadow-lg border-b-4 border-[#e14242] hover:from-[#ff6a6a] hover:to-[#e14242] hover:scale-105  transition-all duration-300"
-            >
-              Learn more
-            </a>
-          </div>
-          {/* Contact Info */}
-          <div className="flex flex-col items-center mt-8">
-            <div className="flex items-center gap-3 justify-center">
-              <div className="bg-[#e14242] w-12 h-12 flex items-center justify-center rounded-2xl shadow-lg shadow-[0_4px_24px_#e14242] animate-pulse">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="22"
-                  height="22"
-                  fill="#FFF"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M6.62 10.79a15.093 15.093 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.75a1 1 0 01-1 1C10.63 22.79 1.21 13.37 1.21 2a1 1 0 011-1H6a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" />
-                </svg>
-              </div>
-              <span className="text-zinc-800 font-semibold text-lg">
-                Call Us Today{" "}
-                <span className="text-[#e14242] font-bold">905-407-5009</span>
-              </span>
-            </div>
-            <p className="text-zinc-600 mt-3 text-center text-base">
-              Let’s build your next big idea with{" "}
-              <span className="text-[#e14242] font-bold">Rounddigital</span>.
-            </p>
-          </div>
+    <section className="relative w-full mt-12 overflow-hidden bg-gradient-to-b from-[#0b0b0c] to-[#121216]">
+      {/* Background accents */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-[#e14242]/20 blur-3xl" />
+        <div className="absolute bottom-[-10rem] right-[-6rem] h-[24rem] w-[24rem] rounded-full bg-rose-500/10 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white/5 to-transparent" />
+        {/* subtle grid */}
+        <div className="absolute inset-0 opacity-[0.06]" aria-hidden>
+          <div className="h-full w-full" style={{backgroundImage:"linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px)", backgroundSize:"40px 40px"}} />
         </div>
+      </div>
 
-        {/* Right: Modern Card */}
-        <div className="w-full lg:w-1/2 flex flex-col gap-10 items-center">
-          <div className="space-y-3 w-full flex flex-col items-center mb-4">
-            <span className="inline-block bg-black text-white text-xs font-bold px-6 py-1 rounded-full shadow border border-[#e14242] tracking-widest uppercase shadow-[0_2px_16px_#e14242]">
-              Business
+      <div className="container mx-auto max-w-7xl px-6 md:px-8 lg:px-8">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16 md:py-24">
+          {/* Left: Bold headline and CTAs */}
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-zinc-200 backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#e14242]" />
+              About RoundDigital
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight text-zinc-900 text-center drop-shadow-2xl">
-              Grow Your Business <br />
-              <span className="text-[#e14242]">With Our Help</span>
+            <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight text-white">
+              We build secure, scalable
+              <span className="block bg-gradient-to-r from-[#ff6a6a] via-[#e14242] to-rose-400 bg-clip-text text-transparent py-3">digital products</span>
             </h1>
-          </div>
-          <div className="relative w-full max-w-md rounded-[2.5rem] overflow-visible shadow-2xl border-0 bg-gradient-to-br from-white via-[#f7f7ff] to-[#eaeaff] px-10 pt-20 pb-12 flex flex-col items-center transition-all duration-300 hover:shadow-[0_24px_64px_0_rgba(25,26,35,0.18)] hover:-translate-y-2 hover:scale-105">
-            {/* Floating Man Image with Glow */}
-            <div className="absolute -top-20 left-1/2 -translate-x-1/2 z-20">
-              <div className="bg-gradient-to-tr from-black/80 via-white/80 to-zinc-200/80 rounded-full p-3 shadow-2xl ring-4 ring-black/10">
-                <Image
-                  src={men}
-                  alt="Business Man"
-                  className="w-36 h-36 object-contain rounded-full border-4 border-white shadow-lg"
-                />
+            <span className="mt-4 inline-block h-1 w-24 rounded-full bg-gradient-to-r from-[#e14242] to-rose-400" />
+            <p className="mt-5 max-w-xl text-base md:text-lg text-zinc-300">
+              A senior team of designers and engineers helping companies launch fast, scale safely, and ship quality across web and mobile.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <a
+                href="/contact"
+                aria-label="Book a call on the contact page"
+                className="inline-flex items-center justify-center rounded-full bg-[#e14242] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(225,66,66,0.35)] transition hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#e14242] focus-visible:ring-offset-[#101014]"
+              >
+                Book a Call
+              </a>
+              <a
+                href="/services"
+                aria-label="Explore our services"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/30 focus-visible:ring-offset-[#101014]"
+              >
+                Explore Services
+              </a>
+            </div>
+            <p className="mt-2 text-xs text-white/60">Fast response — within 24 hours</p>
+
+            {/* Feature chips */}
+            <div className="mt-6 flex flex-wrap gap-3 text-white/90">
+              {[
+                'Cybersecurity-first',
+                'Cloud-native',
+                'Enterprise-grade'
+              ].map((label) => (
+                <span key={label} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 text-[#ff6a6a]"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-7.5 9.5a.75.75 0 01-1.127.05l-3.5-3.75a.75.75 0 111.1-1.02l2.9 3.109 6.988-8.852a.75.75 0 011.052-.089z" clipRule="evenodd" /></svg>
+                  {label}
+                </span>
+              ))}
+            </div>
+
+            {/* Stat strip */}
+            <div className="mt-10 max-w-xl rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div className="grid grid-cols-3 items-center text-white/90">
+                <div className="pr-6">
+                  <div className="text-3xl font-extrabold">70+</div>
+                  <div className="text-sm text-zinc-300">Projects Delivered</div>
+                </div>
+                <div className="border-l border-white/10 px-6">
+                  <div className="text-3xl font-extrabold">10yr</div>
+                  <div className="text-sm text-zinc-300">Experience</div>
+                </div>
+                <div className="border-l border-white/10 pl-6">
+                  <div className="text-3xl font-extrabold">98%</div>
+                  <div className="text-sm text-zinc-300">Client Satisfaction</div>
+                </div>
               </div>
             </div>
-            {/* Card Content */}
-            <span className="bg-black text-white text-xs font-bold px-6 py-1 rounded-full shadow mb-6 mt-2 tracking-widest uppercase border border-[#e14242] shadow-[0_2px_16px_#e14242]">
-              Team
-            </span>
-            <h3 className="text-3xl font-extrabold text-zinc-900 mb-2 text-center tracking-tight drop-shadow-2xl">
-              Small Business
-            </h3>
-            <p className="text-zinc-600 mb-6 text-center text-base">
-              Our expert IT team provides cybersecurity, cloud solutions, and
-              enterprise applications to transform your business.
-            </p>
-            <a
-              href="/services"
-              className="inline-block text-base font-bold text-white bg-gradient-to-r from-black to-[#e14242] px-6 py-2 rounded-full shadow-lg border-b-4 border-black hover:from-[#e14242] hover:to-black hover:scale-105  transition-all duration-300"
-            >
-              Learn more
-            </a>
+
+            {/* Logos row */}
+            <div className="mt-8">
+              <p className="mb-3 text-xs uppercase tracking-wider text-white/60">Trusted by</p>
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+                {['Acme', 'TechNova', 'CloudHub', 'FinEdge', 'HealthPlus'].map((brand) => (
+                  <span key={brand} className="text-sm font-semibold uppercase tracking-wider text-white/85">
+                    {brand}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Premium mockup card with glow */}
+          <div className="relative mx-auto w-full max-w-xl">
+            {/* Glow */}
+            <div className="pointer-events-none absolute -inset-6 rounded-[28px] bg-gradient-to-tr from-[#e14242]/25 via-rose-400/10 to-transparent blur-2xl" />
+            <div className="relative rounded-[22px] border border-white/10 bg-white/5 p-4 backdrop-blur-md shadow-[0_24px_80px_rgba(0,0,0,0.35)] transition hover:shadow-[0_32px_100px_rgba(225,66,66,0.20)]">
+              {/* Mock browser header */}
+              <div className="mb-3 flex items-center gap-1">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+              </div>
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-xl bg-black/30 ring-1 ring-white/10">
+                <Image src={mobile} alt="Product preview" priority className="h-full w-full object-contain" />
+              </div>
+            </div>
+            {/* Floating badge */}
+            <div className="absolute -bottom-6 -left-6 hidden sm:flex items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-white/90 backdrop-blur shadow-md">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#e14242]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 text-white"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-7.5 9.5a.75.75 0 01-1.127.05l-3.5-3.75a.75.75 0 111.1-1.02l2.9 3.109 6.988-8.852a.75.75 0 011.052-.089z" clipRule="evenodd" /></svg>
+              </span>
+              <div>
+                <div className="text-xs font-semibold">Trusted by teams</div>
+                <div className="text-[11px] text-white/70">Security-first delivery</div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Bottom curved divider */}
+      <div className="pointer-events-none relative -mb-px mt-6 text-white/5">
+        <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" className="h-12 w-full">
+          <path d="M0,64 C240,16 480,16 720,48 C960,80 1200,80 1440,48 L1440,80 L0,80 Z" fill="currentColor" />
+        </svg>
+      </div>
+
+      {/* Scroll cue */}
+      <div className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-4">
+        <a href="/about#overview" className="group inline-flex flex-col items-center text-white/50 hover:text-white/80">
+          <span className="text-[11px]">Scroll</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 transition group-hover:translate-y-0.5"><path fillRule="evenodd" d="M10 3a.75.75 0 01.75.75v9.69l3.22-3.22a.75.75 0 111.06 1.06l-4.5 4.5a.75.75 0 01-1.06 0l-4.5-4.5a.75.75 0 111.06-1.06l3.22 3.22V3.75A.75.75 0 0110 3z" clipRule="evenodd" /></svg>
+        </a>
       </div>
     </section>
   );
