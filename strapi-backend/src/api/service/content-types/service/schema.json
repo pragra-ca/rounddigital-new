@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service",
+    "description": "IT Services offered by the company"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "bg-white"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "text-black"
+    },
+    "badgeBg": {
+      "type": "string",
+      "default": "bg-[#e14242]"
+    },
+    "badgeText": {
+      "type": "string",
+      "default": "text-white"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
