@@ -536,11 +536,13 @@ export interface ApiJobPositionJobPosition extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    benefits: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     department: Schema.Attribute.String & Schema.Attribute.Required;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
+    experience: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -552,6 +554,8 @@ export interface ApiJobPositionJobPosition extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     requirements: Schema.Attribute.JSON;
     responsibilities: Schema.Attribute.JSON;
+    salary: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     type: Schema.Attribute.Enumeration<
       ['Full-time', 'Part-time', 'Contract', 'Internship']

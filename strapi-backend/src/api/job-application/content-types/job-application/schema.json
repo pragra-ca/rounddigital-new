@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "job_applications",
+  "info": {
+    "singularName": "job-application",
+    "pluralName": "job-applications",
+    "displayName": "Job Application",
+    "description": "Job application submissions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "linkedIn": {
+      "type": "string"
+    },
+    "portfolio": {
+      "type": "string"
+    },
+    "coverLetter": {
+      "type": "text"
+    },
+    "jobPosition": {
+      "type": "string",
+      "required": true
+    },
+    "resume": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["files"]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["new", "reviewed", "shortlisted", "rejected"],
+      "default": "new"
+    }
+  }
+}
