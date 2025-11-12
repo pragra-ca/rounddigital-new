@@ -176,3 +176,5 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "All three issues have been fixed: 1) Hero section statistics updated from 500+ to 100+ in two places, 2) Office addresses confirmed correct on contact page (Mississauga and Texas), 3) Strapi job-positions API configured for public access by disabling auth in route config, careers page successfully fetching real job data. Ready for backend testing to validate Strapi API endpoints and data integrity."
+  - agent: "testing"
+    message: "✅ BACKEND TESTING COMPLETE: Strapi CMS API fully functional. Job positions API working perfectly - all 6 positions accessible without authentication, proper data structure, fast response times (<15ms), and frontend integration confirmed. Protected endpoints (contact-submissions, newsletter-subscriptions, job-applications) correctly secured with 403 responses. Minor issue: Services API also protected (403) - not configured for public access like job-positions, but this doesn't affect core functionality. Overall: 8/9 tests passed (88.9% success rate). All primary objectives achieved - careers page successfully fetching real data from Strapi instead of fallback."
