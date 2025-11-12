@@ -196,21 +196,43 @@ export default {
       });
 
       if (publicRole) {
-        await strapi.query('plugin::users-permissions.permission').updateMany({
+        // Get all job-position permissions
+        const jobPermissions = await strapi.query('plugin::users-permissions.permission').findMany({
           where: {
-            role: publicRole.id,
-            action: 'api::job-position.job-position.find',
+            action: {
+              $in: ['api::job-position.job-position.find', 'api::job-position.job-position.findOne'],
+            },
           },
-          data: { enabled: true },
         });
-        
-        await strapi.query('plugin::users-permissions.permission').updateMany({
-          where: {
-            role: publicRole.id,
-            action: 'api::job-position.job-position.findOne',
-          },
-          data: { enabled: true },
-        });
+
+        // Update or create permissions
+        for (const action of ['api::job-position.job-position.find', 'api::job-position.job-position.findOne']) {
+          const existingPermission = jobPermissions.find(p => p.action === action && p.role === publicRole.id);
+          
+          if (existingPermission) {
+            // Update existing permission
+            await strapi.query('plugin::users-permissions.permission').update({
+              where: { id: existingPermission.id },
+              data: { enabled: true },
+            });
+          } else {
+            // Check if permission exists for any role
+            const anyPermission = await strapi.query('plugin::users-permissions.permission').findOne({
+              where: { action },
+            });
+            
+            if (anyPermission) {
+              // Create new permission based on existing one
+              await strapi.query('plugin::users-permissions.permission').create({
+                data: {
+                  action,
+                  role: publicRole.id,
+                  enabled: true,
+                },
+              });
+            }
+          }
+        }
         
         console.log('✅ Job positions API made public');
       }
