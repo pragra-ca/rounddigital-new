@@ -95,6 +95,76 @@ export default {
       console.log('✅ Services seeded successfully');
     }
 
+    // Seed job positions
+    const jobsCount = await strapi.db.query('api::job-position.job-position').count();
+    
+    if (jobsCount === 0) {
+      console.log('📝 Seeding job positions...');
+      
+      const jobs = [
+        {
+          title: 'Senior Full Stack Developer',
+          department: 'Engineering',
+          location: 'Remote / Mississauga',
+          type: 'Full-time',
+          description: 'Build scalable web applications using React, Node.js, and cloud technologies.',
+          order: 1,
+          publishedAt: new Date(),
+        },
+        {
+          title: 'AI/ML Engineer',
+          department: 'AI & Data Science',
+          location: 'Remote / Texas',
+          type: 'Full-time',
+          description: 'Develop machine learning models and AI solutions for enterprise clients.',
+          order: 2,
+          publishedAt: new Date(),
+        },
+        {
+          title: 'Cybersecurity Consultant',
+          department: 'Security',
+          location: 'Hybrid',
+          type: 'Full-time',
+          description: 'Assess security posture, conduct penetration testing, and implement security solutions.',
+          order: 3,
+          publishedAt: new Date(),
+        },
+        {
+          title: 'Cloud Solutions Architect',
+          department: 'Cloud & Infrastructure',
+          location: 'Remote',
+          type: 'Full-time',
+          description: 'Design and implement cloud-native architectures on AWS, Azure, or GCP.',
+          order: 4,
+          publishedAt: new Date(),
+        },
+        {
+          title: 'DevOps Engineer',
+          department: 'Engineering',
+          location: 'Remote / Mississauga',
+          type: 'Full-time',
+          description: 'Build and maintain CI/CD pipelines, infrastructure as code, and automated deployments.',
+          order: 5,
+          publishedAt: new Date(),
+        },
+        {
+          title: 'Technical Project Manager',
+          department: 'Project Management',
+          location: 'Hybrid',
+          type: 'Full-time',
+          description: 'Lead technical projects, coordinate teams, and ensure successful delivery.',
+          order: 6,
+          publishedAt: new Date(),
+        },
+      ];
+
+      for (const job of jobs) {
+        await strapi.db.query('api::job-position.job-position').create({ data: job });
+      }
+      
+      console.log('✅ Job positions seeded successfully');
+    }
+
     console.log('🎉 Data seeding completed!');
   },
 };
