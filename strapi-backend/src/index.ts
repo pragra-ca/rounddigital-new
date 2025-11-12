@@ -165,6 +165,35 @@ export default {
       console.log('✅ Job positions seeded successfully');
     }
 
+    // Set public permissions for job positions
+    try {
+      const publicRole = await strapi.query('plugin::users-permissions.role').findOne({
+        where: { type: 'public' },
+      });
+
+      if (publicRole) {
+        await strapi.query('plugin::users-permissions.permission').updateMany({
+          where: {
+            role: publicRole.id,
+            action: 'api::job-position.job-position.find',
+          },
+          data: { enabled: true },
+        });
+        
+        await strapi.query('plugin::users-permissions.permission').updateMany({
+          where: {
+            role: publicRole.id,
+            action: 'api::job-position.job-position.findOne',
+          },
+          data: { enabled: true },
+        });
+        
+        console.log('✅ Job positions API made public');
+      }
+    } catch (error) {
+      console.log('⚠️ Could not set public permissions:', error.message);
+    }
+
     console.log('🎉 Data seeding completed!');
   },
 };
