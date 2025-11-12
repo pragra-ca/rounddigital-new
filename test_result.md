@@ -101,3 +101,75 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Fix three outstanding issues: 1) Update '500+ Projects' statistic to '100+ Projects' across the website, 2) Ensure office addresses are displayed correctly in the contact section, 3) Configure Strapi job-positions API for public access so the careers page fetches real data from CMS instead of using fallback"
+
+backend:
+  - task: "Strapi job-positions API public access"
+    implemented: true
+    working: true
+    file: "strapi-backend/src/api/job-position/routes/job-position.ts"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Modified route configuration to disable authentication for find and findOne actions. API now returns job positions data without 403 errors."
+
+frontend:
+  - task: "Update 500+ Projects to 100+ Projects"
+    implemented: true
+    working: true
+    file: "frontend/src/components/home/sections/Hero.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Updated two instances: line 59 trust indicator and line 103 in secondary card. Changed from '500+' to '100+'. Screenshot confirmed changes are visible."
+  
+  - task: "Display office addresses correctly"
+    implemented: true
+    working: true
+    file: "frontend/src/components/contact/ContactDetails.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Verified addresses are correct: Mississauga Office (160B - 110 Matheson Blvd W) and Texas Office (450 Century Pkwy, Ste 250). Screenshot confirmed addresses display properly on contact page."
+
+  - task: "Careers page fetching from Strapi API"
+    implemented: true
+    working: true
+    file: "frontend/src/pages/careers/index.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Fixed data transformation to match Strapi v5 flat structure (properties directly on object, not under 'attributes'). Careers page now successfully displays jobs from Strapi API."
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Strapi job-positions API public access"
+    - "Update 500+ Projects to 100+ Projects"
+    - "Display office addresses correctly"
+    - "Careers page fetching from Strapi API"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "All three issues have been fixed: 1) Hero section statistics updated from 500+ to 100+ in two places, 2) Office addresses confirmed correct on contact page (Mississauga and Texas), 3) Strapi job-positions API configured for public access by disabling auth in route config, careers page successfully fetching real job data. Ready for backend testing to validate Strapi API endpoints and data integrity."
