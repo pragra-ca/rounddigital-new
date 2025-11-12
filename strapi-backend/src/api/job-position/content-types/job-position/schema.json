@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "job_positions",
+  "info": {
+    "singularName": "job-position",
+    "pluralName": "job-positions",
+    "displayName": "Job Position",
+    "description": "Open job positions and career opportunities"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "department": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["Full-time", "Part-time", "Contract", "Internship"],
+      "default": "Full-time",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "responsibilities": {
+      "type": "json"
+    },
+    "requirements": {
+      "type": "json"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
