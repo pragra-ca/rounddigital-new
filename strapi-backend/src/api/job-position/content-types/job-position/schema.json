@@ -40,6 +40,19 @@
     "requirements": {
       "type": "json"
     },
+    "benefits": {
+      "type": "json"
+    },
+    "salary": {
+      "type": "string"
+    },
+    "experience": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
     "order": {
       "type": "integer",
       "default": 0
