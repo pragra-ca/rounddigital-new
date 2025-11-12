@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /Profile/
+Disallow: /admin/
+Disallow: /payments/
+Disallow: /account/
+
+Sitemap: https://www.rounddigital.co/sitemap.xml
+Host: https://www.rounddigital.co

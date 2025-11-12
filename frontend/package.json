@@ -1,0 +1,38 @@
+{
+  "name": "rounddigital-new",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@heroicons/react": "^2.2.0",
+    "@sanity/client": "^6.15.20",
+    "@sanity/image-url": "^1.0.2",
+    "classnames": "^2.5.1",
+    "date-fns": "^4.1.0",
+    "form-data": "^4.0.4",
+    "formidable": "^3.5.4",
+    "lucide-react": "^0.523.0",
+    "next": "15.1.6",
+    "nodemailer": "^7.0.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "24.0.10",
+    "@types/react": "19.1.8",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.8.3"
+  }
+}
