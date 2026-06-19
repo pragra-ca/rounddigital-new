@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #191a23;
+  background-color: #ffffff;
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full;
+    border: 1px solid rgba(225, 66, 66, 0.15);
+    background-color: rgba(225, 66, 66, 0.05);
+  }
+
+  .section-eyebrow-dot {
+    @apply w-2 h-2 rounded-full animate-pulse;
+    background-color: var(--primary);
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold leading-tight tracking-tight;
+    color: var(--ink);
+  }
+
+  .section-subtitle {
+    @apply text-lg leading-relaxed;
+    color: #475569;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+    background-color: var(--primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--primary-dark);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-white font-semibold rounded-xl border transition-all duration-300 shadow-sm hover:shadow-md;
+    color: var(--ink);
+    border-color: #e2e8f0;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .card-surface {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300;
+    border: 1px solid #f1f5f9;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(128, 128, 128, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(128, 128, 128, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .text-gradient {
+    background-image: linear-gradient(to right, var(--primary), var(--primary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-shimmer {
+    background-size: 200% auto;
+    animation: heroShimmer 4s linear infinite;
+  }
+
+  .nav-cta-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-cta-shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 60%
+    );
+    transform: translateX(-120%);
+    animation: navCtaShine 3s ease-in-out infinite;
+  }
+
+  .nav-mega-enter {
+    animation: navMegaEnter 0.22s ease-out forwards;
+  }
+}
+
+@keyframes navCtaShine {
+  0%, 70% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+@keyframes navMegaEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroShimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+:root {
+  --black: rgba(0, 0, 0, 1);
+  --dark: rgba(25, 26, 35, 1);
+  --green: rgba(185, 255, 102, 1);
+  --grey: rgba(243, 243, 243, 1);
+  --primary: #e14242;
+  --primary-dark: #c93838;
+  --primary-light: #ff6a6a;
+  --ink: #191a23;
+  --h-1-font-family: "Space Grotesk", Helvetica;
+  --h-1-font-size: 60px;
+  --h-1-font-style: normal;
+  --h-1-font-weight: 500;
+  --h-1-letter-spacing: 0px;
+  --h-1-line-height: normal;
+  --h-2-font-family: "Space Grotesk", Helvetica;
+  --h-2-font-size: 40px;
+  --h-2-font-style: normal;
+  --h-2-font-weight: 500;
+  --h-2-letter-spacing: 0px;
+  --h-2-line-height: normal;
+  --h-3-font-family: "Space Grotesk", Helvetica;
+  --h-3-font-size: 30px;
+  --h-3-font-style: normal;
+  --h-3-font-weight: 500;
+  --h-3-letter-spacing: 0px;
+  --h-3-line-height: normal;
+  --h-4-font-family: "Space Grotesk", Helvetica;
+  --h-4-font-size: 20px;
+  --h-4-font-style: normal;
+  --h-4-font-weight: 500;
+  --h-4-letter-spacing: 0px;
+  --h-4-line-height: normal;
+  --p-font-family: "Space Grotesk", Helvetica;
+  --p-font-size: 18px;
+  --p-font-style: normal;
+  --p-font-weight: 400;
+  --p-letter-spacing: 0px;
+  --p-line-height: normal;
+  --shadow: 0px 5px 0px 0px rgba(25, 26, 35, 1);
+  --x-19-1a-23: rgba(25, 26, 35, 1);
+}
