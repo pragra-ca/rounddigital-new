@@ -7,6 +7,28 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  turbopack: {
+    root: import.meta.dirname,
+    rules: {
+      '*.svg': {
+        loaders: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgo: true,
+              svgoConfig: {
+                plugins: [
+                  { name: 'removeViewBox', active: false },
+                  { name: 'removeDimensions', active: true },
+                ],
+              },
+            },
+          },
+        ],
+        as: '*.js',
+      },
+    },
+  },
   webpack(config, { isServer }) {
     // Fix for require-hook module resolution
     if (isServer) {
