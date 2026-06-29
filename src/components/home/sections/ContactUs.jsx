@@ -105,8 +105,8 @@ const ContactUs = () => {
                   icon: PhoneIcon,
                   title: 'Phone',
                   content: (
-                    <a href="tel:+1234567890" className="text-slate-600 hover:text-primary transition-colors">
-                      +1 (234) 567-8900
+                    <a href="tel:+19054075009" className="text-slate-600 hover:text-primary transition-colors">
+                      +1 905-407-5009
                     </a>
                   ),
                 },
@@ -169,7 +169,7 @@ const ContactUs = () => {
                   <label htmlFor="phone" className="block text-sm font-semibold text-ink mb-2">
                     Phone Number
                   </label>
-                  <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className={inputClass('phone')} placeholder="+1 (234) 567-8900" />
+                  <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className={inputClass('phone')} placeholder="+1 905-407-5009" />
                 </div>
                 <div>
                   <label htmlFor="company" className="block text-sm font-semibold text-ink mb-2">

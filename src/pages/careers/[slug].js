@@ -348,7 +348,7 @@ export default function JobDetailPage({ job, relatedJobs }) {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-ink mb-2">Phone *</label>
-                      <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className={inputClass("phone")} placeholder="+1 (234) 567-8900" />
+                      <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className={inputClass("phone")} placeholder="+1 905-407-5009" />
                       {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                     </div>
                   </div>
