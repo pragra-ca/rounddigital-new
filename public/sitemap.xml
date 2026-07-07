@@ -1,142 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://rounddigital-new.vercel.app/</loc>
-  <lastmod>2025-07-08T05:44:12+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/about</loc>
-  <lastmod>2025-07-08T05:44:13+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/services</loc>
-  <lastmod>2025-07-08T05:44:13+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/use-cases</loc>
-  <lastmod>2025-07-08T05:44:13+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/contact</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/works/insyght</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/works/attendify</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/works/unseal</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/works/katimet</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/real-estate-conferences-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/real-estate-referral-fees-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/best-real-estate-ai-tools-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/real-estate-trivia-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/best-real-estate-company-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/open-house-ideas-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/home-inspector-guide</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/top-crm-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/real-estate-ai-tools</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/prospecting-letters-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/real-estate-drones-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/postcard-templates-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/virtual-staging-guide-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/real-estate-software-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/real-estate-investing-apps-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://rounddigital-new.vercel.app/blogs/real-estate-builders-2025</loc>
-  <lastmod>2025-07-08T05:44:14+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.round.digital/</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.round.digital/services</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.round.digital/services/ai-machine-learning</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.round.digital/services/cloud-solutions</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.round.digital/services/cybersecurity</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.round.digital/services/custom-software</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.round.digital/services/data-analytics</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.round.digital/services/digital-transformation</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.round.digital/services/global-talent</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.round.digital/services/engagement-models</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.round.digital/about</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.round.digital/industries</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.round.digital/contact</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.round.digital/careers</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.round.digital/careers/senior-full-stack-developer</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.round.digital/careers/ai-ml-engineer</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.round.digital/careers/cybersecurity-consultant</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.round.digital/careers/cloud-solutions-architect</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.round.digital/careers/devops-engineer</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.round.digital/careers/technical-project-manager</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.round.digital/blogs</loc><lastmod>2026-07-06</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.round.digital/blogs/rise-of-autonomous-ai-agents</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.round.digital/blogs/digital-transformation-critical-steps-2025</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.round.digital/blogs/production-ready-ai-agent-systems</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.round.digital/blogs/economics-of-ai-agents-roi-analysis</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.round.digital/blogs/legacy-to-cloud-native-transformation-playbook</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.round.digital/blogs/multi-agent-systems-coordination-patterns</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.round.digital/blogs/measuring-success-digital-transformation-kpis</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.round.digital/blogs/security-compliance-ai-agent-deployments</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.round.digital/works/ai-customer-service-automation</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.round.digital/works/banking-digital-transformation</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.round.digital/works/ai-document-processing</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.round.digital/works/healthcare-ai-platform</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.round.digital/works/supply-chain-ai-optimization</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.round.digital/works/ecommerce-conversational-ai</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.round.digital/privacy</loc><lastmod>2026-07-06</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.round.digital/terms</loc><lastmod>2026-07-06</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+/* Fonts are loaded via <link> in _document.js (preconnect + non-blocking)
+   instead of CSS @import, which would add a render-blocking round-trip. */
 
 @tailwind base;
 @tailwind components;
@@ -131,6 +132,412 @@ body {
   }
   100% {
     background-position: 200% center;
+  }
+}
+
+/* ============================================================
+   Signal Field design system (claude.ai/design — direction 4a)
+   Dark-first theme with a light mode, scoped under .sf
+   ============================================================ */
+
+.sf {
+  --sf-bg: #08070c;
+  --sf-text: #f2f0f5;
+  --sf-heading: #f2f0f5;
+  --sf-muted: rgba(242, 240, 245, 0.65);
+  --sf-faint: rgba(242, 240, 245, 0.45);
+  --sf-border: rgba(242, 240, 245, 0.12);
+  --sf-border-strong: rgba(242, 240, 245, 0.25);
+  --sf-surface: rgba(242, 240, 245, 0.03);
+  --sf-card-bg: transparent;
+  --sf-card-shadow: none;
+  --sf-accent: #ff5240;
+  --sf-accent-ink: #08070c;
+  --sf-accent-border: rgba(255, 82, 64, 0.4);
+  --sf-accent-soft: rgba(255, 82, 64, 0.12);
+  --sf-accent-glow: rgba(255, 82, 64, 0.4);
+  --sf-glow-sm: 0 0 24px rgba(255, 82, 64, 0.4);
+  --sf-glow-lg: 0 0 34px rgba(255, 82, 64, 0.45);
+  --sf-logo-glow: drop-shadow(0 0 10px rgba(255, 82, 64, 0.55));
+  --sf-live: #4ade80;
+  --sf-live-glow: rgba(74, 222, 128, 0.9);
+  --sf-input-bg: transparent;
+  --sf-hero-glow: rgba(255, 82, 64, 0.28);
+  --sf-hero-glow-mid: rgba(255, 82, 64, 0.08);
+  background-color: var(--sf-bg);
+  color: var(--sf-text);
+  font-family: 'Instrument Sans', 'Space Grotesk', sans-serif;
+  transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+html[data-rd-theme='light'] .sf {
+  --sf-bg: #f7f5f1;
+  --sf-text: #14121a;
+  --sf-heading: #14121a;
+  --sf-muted: rgba(20, 18, 26, 0.62);
+  --sf-faint: rgba(20, 18, 26, 0.45);
+  --sf-border: rgba(20, 18, 26, 0.1);
+  --sf-border-strong: rgba(20, 18, 26, 0.25);
+  --sf-surface: #ffffff;
+  --sf-card-bg: #ffffff;
+  --sf-card-shadow: 0 8px 22px rgba(20, 18, 26, 0.05);
+  --sf-accent: #e0442f;
+  --sf-accent-ink: #ffffff;
+  --sf-accent-border: rgba(224, 68, 47, 0.4);
+  --sf-accent-soft: #fff2ef;
+  --sf-accent-glow: rgba(224, 68, 47, 0.3);
+  --sf-glow-sm: 0 6px 18px rgba(224, 68, 47, 0.3);
+  --sf-glow-lg: 0 10px 26px rgba(224, 68, 47, 0.35);
+  --sf-logo-glow: none;
+  --sf-live: #22a45d;
+  --sf-live-glow: rgba(34, 164, 93, 0.7);
+  --sf-input-bg: #ffffff;
+  --sf-hero-glow: rgba(224, 68, 47, 0.16);
+  --sf-hero-glow-mid: rgba(224, 68, 47, 0.05);
+}
+
+@layer components {
+/* Theme-driven logo swap — both variants render, CSS picks (no JS flash) */
+.sf .sf-logo-dark {
+  display: block;
+}
+
+.sf .sf-logo-light {
+  display: none;
+}
+
+html[data-rd-theme='light'] .sf .sf-logo-dark {
+  display: none;
+}
+
+html[data-rd-theme='light'] .sf .sf-logo-light {
+  display: block;
+}
+
+/* Accessibility: skip link, visible focus, selection */
+.sf-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  font: 600 13px 'Sora', sans-serif;
+  background-color: var(--sf-accent);
+  color: var(--sf-accent-ink);
+  padding: 12px 22px;
+  border-radius: 0 0 12px 0;
+}
+
+.sf-skip-link:focus {
+  left: 0;
+}
+
+.sf a:focus-visible,
+.sf button:focus-visible,
+.sf input:focus-visible,
+.sf select:focus-visible,
+.sf textarea:focus-visible,
+.sf [tabindex]:focus-visible {
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.sf ::selection {
+  background-color: var(--sf-accent);
+  color: var(--sf-accent-ink);
+}
+
+/* Themed scrollbar */
+.sf {
+  scrollbar-color: var(--sf-border-strong) transparent;
+}
+
+.sf ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.sf ::-webkit-scrollbar-thumb {
+  background-color: var(--sf-border-strong);
+  border-radius: 99px;
+}
+
+.sf ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--sf-accent-border);
+}
+
+.sf ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sf h1,
+.sf h2,
+.sf h3,
+.sf h4 {
+  font-family: 'Sora', sans-serif;
+  color: var(--sf-heading);
+}
+
+.sf-sora {
+  font-family: 'Sora', sans-serif;
+}
+
+.sf-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.sf-container {
+  @apply max-w-[1328px] mx-auto px-5 sm:px-8 lg:px-11;
+}
+
+.sf-eyebrow {
+  font: 600 12px 'Sora', sans-serif;
+  color: var(--sf-accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.sf-card {
+  position: relative;
+  border: 1px solid var(--sf-border);
+  border-radius: 18px;
+  background-color: var(--sf-card-bg);
+  box-shadow: var(--sf-card-shadow);
+  transition: border-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease, background-color 0.45s ease;
+}
+
+.sf-card-hover:hover {
+  border-color: var(--sf-accent-border);
+  transform: translateY(-3px);
+}
+
+/* Cursor spotlight — a soft accent glow that follows the pointer */
+.sf-card-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at var(--sf-mx, 50%) var(--sf-my, 50%),
+    var(--sf-accent-soft),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.sf-card-hover:hover::before {
+  opacity: 1;
+}
+
+.sf-chip {
+  font: 500 13px 'JetBrains Mono', ui-monospace, monospace;
+  border: 1px solid var(--sf-border);
+  border-radius: 99px;
+  padding: 8px 18px;
+  color: var(--sf-muted);
+  background-color: var(--sf-card-bg);
+  transition: border-color 0.3s ease, color 0.3s ease,
+    background-color 0.45s ease;
+  white-space: nowrap;
+}
+
+.sf-chip:hover {
+  border-color: var(--sf-accent-border);
+  color: var(--sf-accent);
+}
+
+.sf-chip-accent {
+  border-color: var(--sf-accent-border);
+  color: var(--sf-accent);
+  background-color: var(--sf-accent-soft);
+}
+
+.sf-btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300;
+  font-family: 'Sora', sans-serif;
+  background-color: var(--sf-accent);
+  color: var(--sf-accent-ink);
+  box-shadow: var(--sf-glow-lg);
+}
+
+.sf-btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.sf-btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300;
+  font-family: 'Sora', sans-serif;
+  color: var(--sf-text);
+  border: 1px solid var(--sf-border-strong);
+}
+
+.sf-btn-ghost:hover {
+  border-color: var(--sf-accent-border);
+  color: var(--sf-accent);
+}
+
+.sf-input {
+  border: 1px solid var(--sf-border-strong);
+  border-radius: 10px;
+  padding: 13px 14px;
+  font: 400 14px 'Instrument Sans', sans-serif;
+  color: var(--sf-text);
+  background-color: var(--sf-input-bg);
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.45s ease;
+}
+
+.sf-input::placeholder {
+  color: var(--sf-faint);
+}
+
+.sf-input:focus {
+  border-color: var(--sf-accent-border);
+}
+
+.sf-input-label {
+  font: 500 11px 'JetBrains Mono', ui-monospace, monospace;
+  color: var(--sf-faint);
+  letter-spacing: 0.04em;
+}
+
+.sf-process-cell {
+  border-bottom: 1px solid var(--sf-border);
+}
+
+.sf-process-cell:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 1024px) {
+  .sf-process-cell {
+    border-bottom: none;
+    border-right: 1px solid var(--sf-border);
+  }
+
+  .sf-process-cell:last-child {
+    border-right: none;
+  }
+}
+
+.sf-placeholder {
+  border: 1px dashed var(--sf-border-strong);
+  border-radius: 14px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--sf-surface),
+    var(--sf-surface) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Marquee — infinite platform strip, pauses on hover */
+.sf-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.sf-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: sf-marquee-scroll 36s linear infinite;
+  will-change: transform;
+}
+
+.sf-marquee:hover .sf-marquee-track {
+  animation-play-state: paused;
+}
+
+.sf-marquee-half {
+  display: flex;
+  gap: 10px;
+  padding-right: 10px;
+  align-items: center;
+}
+
+/* Word-by-word headline reveal */
+.sf-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em);
+  filter: blur(6px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.65, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.65, 0.2, 1),
+    filter 0.7s cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+
+.sf-words-on .sf-word {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+}
+
+@keyframes sf-marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes rd-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+@keyframes rd-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rd-spin-slow {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf *,
+  .sf *::before,
+  .sf *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .sf .sf-marquee-track {
+    animation: none !important;
+  }
+
+  .sf .sf-word {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
 

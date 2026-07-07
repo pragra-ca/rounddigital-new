@@ -1,6 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      // Legacy/orphaned routes → canonical pages
+      { source: '/jobs', destination: '/careers', permanent: true },
+      { source: '/pricing', destination: '/services/engagement-models', permanent: true },
+      { source: '/use-cases', destination: '/industries', permanent: true },
+      { source: '/blog', destination: '/blogs', permanent: true },
+      { source: '/blog/:slug', destination: '/blogs/:slug', permanent: true },
+      { source: '/work/:slug', destination: '/works/:slug', permanent: true },
+    ];
+  },
   images: {
     unoptimized: true,
     dangerouslyAllowSVG: true,

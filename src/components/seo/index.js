@@ -11,11 +11,13 @@ const Seo = ({
   articlePublishedTime,
   articleModifiedTime,
   noindex = false,
-  canonicalUrl
+  canonicalUrl,
+  jsonLd = []
 }) => {
   const router = useRouter();
   const baseUrl = "https://www.round.digital";
-  const currentUrl = canonicalUrl || `${baseUrl}${router.asPath}`;
+  const cleanPath = router.asPath.split("?")[0].split("#")[0];
+  const currentUrl = canonicalUrl || `${baseUrl}${cleanPath === "/" ? "" : cleanPath}`;
   
   // Comprehensive default keywords based on site content
   const defaultKeywords = [
@@ -77,9 +79,7 @@ const Seo = ({
   const defaultTitle = title || "RoundDigital | Enterprise IT Solutions, AI Development & Cybersecurity";
   const fullTitle = title ? `${title} | RoundDigital` : defaultTitle;
 
-  // Default OG image - using favicon as fallback until proper OG image is created
-  // TODO: Create a proper OG image (1200x630px) at /public/images/og-image.jpg
-  const defaultOgImage = ogImage || `${baseUrl}/favicon.svg`;
+  const defaultOgImage = ogImage || `${baseUrl}/og-image.png`;
   const ogImageUrl = ogImage?.startsWith('http') ? ogImage : defaultOgImage;
 
   return (
@@ -245,6 +245,15 @@ const Seo = ({
           })
         }}
       />
+
+      {/* Page-specific structured data (FAQPage, Service, Article, …) */}
+      {jsonLd.map((schema, i) => (
+        <script
+          key={`jsonld-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
     </Head>
   );
 };
