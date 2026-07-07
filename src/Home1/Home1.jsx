@@ -66,7 +66,7 @@ export const HomeComponent = () => {
           </div>
 
           <p className="relative w-[580px] mt-[-1.00px] font-p font-[number:var(--p-font-weight)] text-[#000000] text-[length:var(--p-font-size)] tracking-[var(--p-letter-spacing)] leading-[var(--p-line-height)] [font-style:var(--p-font-style)]">
-            At our digital marketing agency, we offer a range of services to
+            At our digital marketing enterprise company, we offer a range of services to
             help businesses grow and succeed online. These services include:
           </p>
         </div>
@@ -153,7 +153,7 @@ export const HomeComponent = () => {
               </p>
 
               <p className="relative w-full lg:max-w-[502px] [font-family:'Space_Grotesk-Regular',Helvetica] font-normal text-[#000000] text-base sm:text-lg lg:text-xl tracking-[0] leading-relaxed">
-                Our digital marketing agency helps businesses grow and succeed
+                Our digital marketing enterprise company helps businesses grow and succeed
                 online through a range of services including SEO, PPC, social
                 media marketing, and content creation.
               </p>

@@ -530,7 +530,7 @@ export const sfServices = {
     ],
     faqs: [
       {
-        q: "How is this different from a staffing agency?",
+        q: "How is this different from a staffing enterprise company?",
         a: "Every consultant comes from our own delivery bench — people who've shipped RoundDigital projects — with our engineering leadership backing their work.",
       },
       {

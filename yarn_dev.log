@@ -1,0 +1,10 @@
+yarn run v1.22.22
+$ next dev
+▲ Next.js 16.2.10 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 550ms
+
+○ Compiling / ...
+ GET / 200 in 4.9s (next.js: 4.8s, application-code: 119ms)
+ GET /about 200 in 992ms (next.js: 893ms, application-code: 99ms)

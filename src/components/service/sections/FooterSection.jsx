@@ -19,7 +19,7 @@ const FooterSection = () => {
                 <div className="max-w-md text-center md:text-left">
                     <img src={footerLogo} alt="footer logo" className="mx-auto md:mx-0" />
                     <p className="text-[16px] mt-[25px] text-gray-300 leading-relaxed">
-                        Kronix – the leading digital agency based in <br /> the UK, working with
+                        Kronix – the leading digital enterprise company based in <br /> the UK, working with
                         top-tier clients, from <br /> start-ups to enterprises.
                     </p>
                 </div>

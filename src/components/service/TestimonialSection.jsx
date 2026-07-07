@@ -10,7 +10,7 @@ const testimonials = [
     company: "Gymstory",
     logo: "G",
     headline:
-      "Kornix Is The Best Digital Agency I Have Ever Seen!",
+      "Kornix Is The Best Digital Enterprise Company I Have Ever Seen!",
     content:
       "I recently hired Ideapeel for a custom web development project and couldn't be happier with the results. The team was able to bring my unique ideas to life and create a website that truly stands out.",
     name: "Diana Loreza",
