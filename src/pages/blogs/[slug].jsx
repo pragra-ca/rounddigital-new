@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import React, { useState } from 'react';
-import Layout from '@/components/layout';
+import Layout from "@/components/sf/Layout";
 import Seo from '@/components/seo';
 import { blogs, getBlogBySlug, toBlogPost } from '@/data/blogs';
 

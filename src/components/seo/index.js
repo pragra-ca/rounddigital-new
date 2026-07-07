@@ -11,11 +11,13 @@ const Seo = ({
   articlePublishedTime,
   articleModifiedTime,
   noindex = false,
-  canonicalUrl
+  canonicalUrl,
+  jsonLd = []
 }) => {
   const router = useRouter();
   const baseUrl = "https://www.round.digital";
-  const currentUrl = canonicalUrl || `${baseUrl}${router.asPath}`;
+  const cleanPath = router.asPath.split("?")[0].split("#")[0];
+  const currentUrl = canonicalUrl || `${baseUrl}${cleanPath === "/" ? "" : cleanPath}`;
   
   // Comprehensive default keywords based on site content
   const defaultKeywords = [
@@ -77,9 +79,7 @@ const Seo = ({
   const defaultTitle = title || "RoundDigital | Enterprise IT Solutions, AI Development & Cybersecurity";
   const fullTitle = title ? `${title} | RoundDigital` : defaultTitle;
 
-  // Default OG image - using favicon as fallback until proper OG image is created
-  // TODO: Create a proper OG image (1200x630px) at /public/images/og-image.jpg
-  const defaultOgImage = ogImage || `${baseUrl}/favicon.svg`;
+  const defaultOgImage = ogImage || `${baseUrl}/og-image.png`;
   const ogImageUrl = ogImage?.startsWith('http') ? ogImage : defaultOgImage;
 
   return (
@@ -167,14 +167,32 @@ const Seo = ({
             "url": baseUrl,
             "logo": `${baseUrl}/favicon.svg`,
             "description": defaultDescription,
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "160B - 110 Matheson Blvd W",
-              "addressLocality": "Mississauga",
-              "addressRegion": "ON",
-              "postalCode": "L5M 6B8",
-              "addressCountry": "CA"
-            },
+            "address": [
+              {
+                "@type": "PostalAddress",
+                "streetAddress": "160B - 110 Matheson Blvd W",
+                "addressLocality": "Mississauga",
+                "addressRegion": "ON",
+                "postalCode": "L5M 6B8",
+                "addressCountry": "CA"
+              },
+              {
+                "@type": "PostalAddress",
+                "streetAddress": "450 Century Pkwy, Ste 250",
+                "addressLocality": "Allen",
+                "addressRegion": "TX",
+                "postalCode": "75013",
+                "addressCountry": "US"
+              },
+              {
+                "@type": "PostalAddress",
+                "streetAddress": "Supreme HQ, 302, Mumbai-Pune Expressway, Baner Annex, Baner",
+                "addressLocality": "Pune",
+                "addressRegion": "Maharashtra",
+                "postalCode": "411045",
+                "addressCountry": "IN"
+              }
+            ],
             "contactPoint": {
               "@type": "ContactPoint",
               "telephone": "+1-905-407-5009",
@@ -245,6 +263,15 @@ const Seo = ({
           })
         }}
       />
+
+      {/* Page-specific structured data (FAQPage, Service, Article, …) */}
+      {jsonLd.map((schema, i) => (
+        <script
+          key={`jsonld-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
     </Head>
   );
 };
