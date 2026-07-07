@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
  * Signal Field motion layer, wired once per page from SfLayout:
