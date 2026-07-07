@@ -9,6 +9,10 @@ const CONTACT_ROWS = [
   { label: "PHONE", value: "+1 905-407-5009", href: "tel:+19054075009" },
   { label: "CA", value: "160B - 110 Matheson Blvd W, Mississauga, ON L5M 6B8" },
   { label: "US", value: "450 Century Pkwy, Ste 250, Allen, TX 75013" },
+  {
+    label: "IN",
+    value: "Supreme HQ, 302, Mumbai-Pune Expressway, Baner Annex, Baner, Pune, Maharashtra 411045",
+  },
   { label: "HOURS", value: "Mon–Fri 9:00–18:00 · Responses within one business day" },
 ];
 
@@ -57,7 +61,7 @@ export default function ContactPage() {
     <SfLayout>
       <Seo
         title="Contact Us: Book a Free AI Strategy Call"
-        description="30 minutes with a senior engineer, not a sales rep. Scope your highest-ROI AI or software opportunity — offices in Mississauga, ON and Allen, TX. Call +1 905-407-5009."
+        description="30 minutes with a senior engineer, not a sales rep. Scope your highest-ROI AI or software opportunity — offices in Mississauga, Dallas and Pune. Call +1 905-407-5009."
         keywords="contact RoundDigital, book AI consultation, free strategy call, AI consulting quote, IT services Mississauga, IT services Dallas"
       />
 

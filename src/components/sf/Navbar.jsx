@@ -126,7 +126,7 @@ export default function SfNavbar() {
           info@rounddigital.co
         </a>
         <span>
-          TORONTO · DALLAS&nbsp;&nbsp;|&nbsp;&nbsp;
+          TORONTO · DALLAS · PUNE&nbsp;&nbsp;|&nbsp;&nbsp;
           <a href="tel:+19054075009" className="transition-colors hover:text-[color:var(--sf-accent)]">
             +1 905-407-5009
           </a>

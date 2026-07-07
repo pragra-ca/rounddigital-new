@@ -71,6 +71,15 @@ const OFFICES = [
     city: "Dallas",
     lines: ["450 Century Pkwy, Ste 250", "Allen, TX 75013", "Mon–Fri 9:00–18:00"],
   },
+  {
+    tag: "INDIA · MAHARASHTRA",
+    city: "Pune",
+    lines: [
+      "Supreme HQ, 302, Mumbai-Pune Expressway",
+      "Baner Annex, Baner, Pune 411045",
+      "Mon–Fri 9:00–18:00 IST",
+    ],
+  },
 ];
 
 export default function AboutPage() {
@@ -78,7 +87,7 @@ export default function AboutPage() {
     <SfLayout>
       <Seo
         title="About Us: Senior AI & Software Consultants"
-        description="Meet RoundDigital — 20+ senior consultants across Toronto and Dallas. The engineers you meet on the first call are the ones who build your system. No juniors, no bench."
+        description="Meet RoundDigital — 20+ senior consultants across Toronto, Dallas and Pune. The engineers you meet on the first call are the ones who build your system. No juniors, no bench."
         keywords="about RoundDigital, AI consulting firm, software consultants, IT consulting team, Mississauga, Toronto, Dallas"
       />
 
@@ -110,9 +119,9 @@ export default function AboutPage() {
               className="m-0 text-[16px] leading-[1.65]"
               style={{ color: "var(--sf-muted)" }}
             >
-              20+ expert consultants across Toronto and Dallas. No juniors learning on your
-              dime, no handoffs to offshore bench — the people you meet on the first call are
-              the people who build your system.
+              20+ expert consultants across Toronto, Dallas and Pune. No juniors learning on
+              your dime, no handoffs to an anonymous bench — the people you meet on the first
+              call are the people who build your system.
             </p>
           </div>
         </div>
@@ -180,7 +189,7 @@ export default function AboutPage() {
 
       {/* Offices */}
       <section className="px-5 pb-14 sm:px-8 lg:px-11">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-[18px] md:grid-cols-2">
+        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-[18px] md:grid-cols-3">
           {OFFICES.map((office, i) => (
             <div
               key={office.city}

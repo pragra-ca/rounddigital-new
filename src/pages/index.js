@@ -121,8 +121,8 @@ function Hero() {
           style={{ color: "var(--sf-muted)" }}
         >
           We turn ambitious ideas into battle-ready tech — AI agents, ironclad security,
-          and software that ships fast. Engineered in Toronto and Dallas for enterprises
-          worldwide.
+          and software that ships fast. Engineered in Toronto, Dallas and Pune for
+          enterprises worldwide.
         </p>
         <div data-reveal data-reveal-delay="0.24" className="flex flex-wrap justify-center gap-[14px]">
           <PillLink href="/contact" size="lg">
@@ -351,7 +351,7 @@ export default function Home() {
     <SfLayout>
       <Seo
         title="AI Agent Development & Enterprise IT Services"
-        description="RoundDigital builds production AI agents, secure cloud platforms and custom software for enterprises. Senior teams in Toronto and Dallas. Book a free strategy call."
+        description="RoundDigital builds production AI agents, secure cloud platforms and custom software for enterprises. Senior teams in Toronto, Dallas and Pune. Book a free strategy call."
         keywords="AI agent development company, enterprise IT services, AI development, cybersecurity, cloud solutions, custom software development, digital transformation, Toronto, Dallas"
       />
       <Hero />
