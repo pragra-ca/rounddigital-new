@@ -1,6 +1,6 @@
 import SfLayout from "@/components/sf/Layout";
 import Seo from "@/components/seo";
-import { Eyebrow, PillLink } from "@/components/sf/ui";
+import { CountUp, Eyebrow, PillLink } from "@/components/sf/ui";
 
 const VALUES = [
   {
@@ -20,44 +20,20 @@ const VALUES = [
   },
 ];
 
-const TEAM = [
-  {
-    name: "Atin Singh",
-    role: "Chief Executive Officer",
-    image: "https://res.cloudinary.com/dm1txojyd/image/upload/v1727253393/Atin_pp4vjq.jpg",
-  },
-  {
-    name: "Renu Singh",
-    role: "HR Head",
-    image: "https://res.cloudinary.com/dm1txojyd/image/upload/v1736773360/Renu_Singh.jpg",
-  },
-  {
-    name: "Neha Gaur",
-    role: "AI Engineer",
-    image: "https://res.cloudinary.com/dm1txojyd/image/upload/v1736773360/Neha_Gaur.jpg",
-  },
-  {
-    name: "Himanshu Kansal",
-    role: "Software Engineer",
-    image: "https://res.cloudinary.com/dm1txojyd/image/upload/v1736773360/Himanshu_Kansal.jpg",
-  },
-  {
-    name: "Rahul Singh",
-    role: "Software Developer",
-    image:
-      "https://res.cloudinary.com/dm1txojyd/image/upload/v1727255082/passport_size_photo.._idtrmu.jpg",
-  },
-  {
-    name: "Abhinav Roy",
-    role: "Software Developer",
-    image: "https://res.cloudinary.com/pragra/image/upload/v1744022235/Employees/small.jpg",
-  },
-  {
-    name: "Priyanshu Chakraborty",
-    role: "Web Designer",
-    image:
-      "https://res.cloudinary.com/dm1txojyd/image/upload/v1727255058/Priyanshu_Image_vfkqgf.png",
-  },
+const STATS = [
+  { value: "100+", label: "Projects delivered" },
+  { value: "20+", label: "Senior consultants" },
+  { value: "3", label: "Global offices" },
+  { value: "10+", label: "Years shipping" },
+];
+
+const DISCIPLINES = [
+  "AI & agent engineering",
+  "Cloud & platform",
+  "Cybersecurity & compliance",
+  "Data & analytics",
+  "Product & custom software",
+  "Delivery & program management",
 ];
 
 const OFFICES = [
@@ -149,38 +125,66 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="px-5 pb-14 sm:px-8 lg:px-11">
-        <div className="mx-auto max-w-[1240px]">
-          <h2
-            data-reveal
-            className="m-0 mb-6 text-[26px] font-bold tracking-[-0.02em] sm:text-[32px]"
+      {/* Scale / by the numbers */}
+      <section
+        className="grid grid-cols-2 gap-px lg:grid-cols-4"
+        style={{
+          backgroundColor: "var(--sf-border)",
+          borderTop: "1px solid var(--sf-border)",
+          borderBottom: "1px solid var(--sf-border)",
+        }}
+      >
+        {STATS.map((stat) => (
+          <div
+            key={stat.label}
+            className="px-7 py-8 transition-colors duration-[450ms]"
+            style={{ backgroundColor: "var(--sf-bg)" }}
           >
-            The team
-          </h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {TEAM.map((member, i) => (
+            <div
+              className="sf-sora text-[30px] font-extrabold sm:text-[38px]"
+              style={{ color: "var(--sf-accent)" }}
+            >
+              <CountUp value={stat.value} />
+            </div>
+            <div className="text-[13px]" style={{ color: "var(--sf-faint)" }}>
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Expertise, not headcount */}
+      <section className="px-5 py-14 sm:px-8 lg:px-11">
+        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
+          <div data-reveal>
+            <Eyebrow className="mb-4">How we&apos;re built</Eyebrow>
+            <h2 className="m-0 mb-4 text-[26px] font-bold tracking-[-0.02em] sm:text-[34px]">
+              A senior bench across every discipline you need.
+            </h2>
+            <p className="m-0 text-[15px] leading-[1.7]" style={{ color: "var(--sf-muted)" }}>
+              We&apos;re not a body shop and we&apos;re not a two-person studio. RoundDigital
+              is a senior, cross-functional team spanning Toronto, Dallas and Pune — the
+              engineers, architects and delivery leads who&apos;ve shipped AI and enterprise
+              systems into production, staffed onto your project directly. You get the depth
+              of a large firm and the accountability of the people actually doing the work.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-[14px] sm:grid-cols-2">
+            {DISCIPLINES.map((discipline, i) => (
               <div
-                key={member.name}
+                key={discipline}
                 data-reveal
-                data-reveal-delay={`${(i % 4) * 0.06}`}
-                className="group flex flex-col gap-[10px]"
+                data-reveal-delay={`${(i % 2) * 0.08}`}
+                className="sf-card sf-card-hover flex items-center gap-3 rounded-2xl px-5 py-4"
               >
-                <div
-                  className="h-[220px] overflow-hidden rounded-[14px]"
-                  style={{ border: "1px solid var(--sf-border)" }}
-                >
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
-                </div>
-                <div className="sf-sora text-[15px] font-bold">{member.name}</div>
-                <div className="-mt-[6px] text-[12.5px]" style={{ color: "var(--sf-faint)" }}>
-                  {member.role}
-                </div>
+                <span
+                  className="h-[7px] w-[7px] shrink-0 rounded-full"
+                  style={{
+                    backgroundColor: "var(--sf-accent)",
+                    boxShadow: "0 0 8px var(--sf-accent-glow)",
+                  }}
+                />
+                <span className="sf-sora text-[15px] font-semibold">{discipline}</span>
               </div>
             ))}
           </div>
