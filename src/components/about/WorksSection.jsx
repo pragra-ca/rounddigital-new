@@ -31,7 +31,7 @@ function WorksSection() {
             WEBSITE
           </span>
           <div className="px-4 py-3 text-lg font-semibold text-zinc-900 bg-white/90 rounded-xl shadow-xl border border-red-200 backdrop-blur-sm">
-            Website Design for Digital Agency
+            Website Design for Digital Enterprise Company
           </div>
         </div>
       </div>

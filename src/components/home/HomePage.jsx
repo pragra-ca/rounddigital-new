@@ -16,7 +16,7 @@ const HomePage = () => {
     <>
       <Head>
         <title>Round Digital - Digital Marketing & Web Development</title>
-        <meta name="description" content="Round Digital is a full-service digital marketing and web development agency that helps businesses grow online." />
+        <meta name="description" content="Round Digital is a full-service digital marketing and web development enterprise company that helps businesses grow online." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

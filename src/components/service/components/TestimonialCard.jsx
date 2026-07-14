@@ -9,7 +9,7 @@ const testimonials = [
         id: 'gymstory',
         company: 'Gymstory',
         logo: testimonialLogo,
-        highlight: 'Kornix Is The Best Digital Agency I Have Ever Seen!<br />Highly Recommended!',
+        highlight: 'Kornix Is The Best Digital Enterprise Company I Have Ever Seen!<br />Highly Recommended!',
         text: `I recently partnered with <strong>Round Digital</strong> for a custom web development project<br />and couldn't be happier with the results.`,
         name: 'Sumit Kumar',
         role: 'Full Stack Developer',
