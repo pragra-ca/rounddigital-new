@@ -1,15 +1,15 @@
-import SfLayout from "@/components/sf/Layout";
+import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import ServiceDetail from "@/components/sf/ServiceDetail";
-import { sfServices, buildServiceJsonLd } from "@/data/sfServices";
+import RdServiceDetail from "@/components/rd/ServiceDetail";
+import { rdServices, buildRdServiceJsonLd } from "@/data/rdServices";
 
-const service = sfServices["ai-machine-learning"];
+const service = rdServices["ai-machine-learning"];
 
 export default function AiMachineLearningPage() {
   return (
-    <SfLayout>
-      <Seo {...service.seo} jsonLd={buildServiceJsonLd(service)} />
-      <ServiceDetail service={service} />
-    </SfLayout>
+    <RdLayout>
+      <Seo {...service.seo} jsonLd={buildRdServiceJsonLd(service)} />
+      <RdServiceDetail service={service} />
+    </RdLayout>
   );
 }

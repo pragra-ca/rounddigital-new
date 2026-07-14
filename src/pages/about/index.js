@@ -1,190 +1,92 @@
-import SfLayout from "@/components/sf/Layout";
+import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { CountUp, Eyebrow, PillLink } from "@/components/sf/ui";
+import { CountUp, RdButton } from "@/components/rd/ui";
+
+const MONO = "'Space Mono',monospace";
+const wrap = { maxWidth: 1280, margin: "0 auto" };
 
 const VALUES = [
-  {
-    num: "01",
-    title: "Ship > talk",
-    desc: "Agents in production, not decks in review. Every engagement has a working system milestone inside 6 weeks.",
-  },
-  {
-    num: "02",
-    title: "Security first",
-    desc: "SOC 2 / ISO 27001-aligned delivery. AI systems inherit enterprise controls — never the other way around.",
-  },
-  {
-    num: "03",
-    title: "ROI or nothing",
-    desc: "We model the business case before we write code, and we only take projects we believe clear it within 12 months.",
-  },
+  { n: "01", t: "Ship > talk", d: "Agents in production, not decks in review. Every engagement has a working system milestone inside 6 weeks." },
+  { n: "02", t: "Security first", d: "SOC 2 / ISO 27001-aligned delivery. AI systems inherit enterprise controls — never the other way around." },
+  { n: "03", t: "ROI or nothing", d: "We model the business case before we write code, and we only take projects we believe clear it within 12 months." },
 ];
-
 const STATS = [
-  { value: "100+", label: "Projects delivered" },
-  { value: "20+", label: "Senior consultants" },
-  { value: "3", label: "Global offices" },
-  { value: "10+", label: "Years shipping" },
+  { n: "100+", l: "Projects delivered" },
+  { n: "20+", l: "Senior consultants" },
+  { n: "3", l: "Global offices" },
+  { n: "10+", l: "Years shipping" },
 ];
-
-const DISCIPLINES = [
-  "AI & agent engineering",
-  "Cloud & platform",
-  "Cybersecurity & compliance",
-  "Data & analytics",
-  "Product & custom software",
-  "Delivery & program management",
-];
-
+const DISCIPLINES = ["AI & agent engineering", "Cloud & platform", "Cybersecurity & compliance", "Data & analytics", "Product & custom software", "Delivery & program management"];
 const OFFICES = [
-  {
-    tag: "HQ · CANADA",
-    city: "Mississauga",
-    lines: ["160B - 110 Matheson Blvd W", "Mississauga, ON L5M 6B8", "Mon–Fri 9:00–18:00"],
-  },
-  {
-    tag: "US · TEXAS",
-    city: "Dallas",
-    lines: ["450 Century Pkwy, Ste 250", "Allen, TX 75013", "Mon–Fri 9:00–18:00"],
-  },
-  {
-    tag: "INDIA · MAHARASHTRA",
-    city: "Pune",
-    lines: [
-      "Supreme HQ, 302, Mumbai-Pune Expressway",
-      "Baner Annex, Baner, Pune 411045",
-      "Mon–Fri 9:00–18:00 IST",
-    ],
-  },
+  { tag: "HQ · CANADA", city: "Mississauga", lines: ["160B - 110 Matheson Blvd W", "Mississauga, ON L5M 6B8"] },
+  { tag: "US · TEXAS", city: "Dallas", lines: ["450 Century Pkwy, Ste 250", "Allen, TX 75013"] },
+  { tag: "INDIA · MAHARASHTRA", city: "Pune", lines: ["Supreme HQ, 302, Mumbai-Pune Expressway", "Baner Annex, Baner, Pune 411045"] },
 ];
 
 export default function AboutPage() {
   return (
-    <SfLayout>
+    <RdLayout>
       <Seo
         title="About Us: Senior AI & Software Consultants"
-        description="Meet RoundDigital — 20+ senior consultants across Toronto, Dallas and Pune. The engineers you meet on the first call are the ones who build your system. No juniors, no bench."
-        keywords="about RoundDigital, AI consulting firm, software consultants, IT consulting team, Mississauga, Toronto, Dallas"
+        description="Meet Round Digital — 20+ senior consultants across Toronto, Dallas and Pune. The engineers you meet on the first call are the ones who build your system."
+        keywords="about RoundDigital, AI consulting firm, software consultants, Mississauga, Toronto, Dallas, Pune"
       />
-
-      {/* Hero */}
-      <section
-        className="relative overflow-hidden px-5 pb-14 pt-[70px] sm:px-8 lg:px-11"
-        style={{ borderBottom: "1px solid var(--sf-border)" }}
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-[260px] -left-[160px] h-[560px] w-[560px] rounded-full"
-          style={{ background: "radial-gradient(circle, var(--sf-hero-glow), transparent 65%)" }}
-        />
-        <div className="relative mx-auto max-w-[1240px]">
-          <div className="max-w-[760px]">
-            <Eyebrow data-reveal className="mb-4">
-              About RoundDigital
-            </Eyebrow>
-            <h1
-              data-reveal
-              data-reveal-delay="0.08"
-              className="m-0 mb-5 text-[38px] font-extrabold leading-[1.06] tracking-[-0.03em] sm:text-[54px]"
-            >
-              A senior team that bets its name on shipping.
-            </h1>
-            <p
-              data-reveal
-              data-reveal-delay="0.16"
-              className="m-0 text-[16px] leading-[1.65]"
-              style={{ color: "var(--sf-muted)" }}
-            >
-              20+ expert consultants across Toronto, Dallas and Pune. No juniors learning on
-              your dime, no handoffs to an anonymous bench — the people you meet on the first
-              call are the people who build your system.
-            </p>
-          </div>
+      <section style={{ padding: "96px 5% 64px" }}>
+        <div style={{ ...wrap, maxWidth: 900 }}>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>ABOUT ROUND DIGITAL</p>
+          <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 24px", font: `700 clamp(44px,4.6vw,76px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
+            A senior team that bets its name on shipping.
+          </h1>
+          <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: 0, fontSize: 20, lineHeight: 1.65, color: "var(--rd-text-2)" }}>
+            20+ expert consultants across Toronto, Dallas and Pune. No juniors learning on your
+            dime, no handoffs to an anonymous bench — the people you meet on the first call are
+            the people who build your system.
+          </p>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="px-5 py-14 sm:px-8 lg:px-11">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-[18px] md:grid-cols-3">
-          {VALUES.map((value, i) => (
-            <div
-              key={value.num}
-              data-reveal
-              data-reveal-delay={`${i * 0.08}`}
-              className="sf-card sf-card-hover rounded-2xl p-7"
-            >
-              <div className="sf-mono mb-3 text-[15px] font-extrabold" style={{ color: "var(--sf-accent)" }}>
-                {value.num}
-              </div>
-              <div className="sf-sora mb-[10px] text-[19px] font-bold">{value.title}</div>
-              <div className="text-[14px] leading-[1.55]" style={{ color: "var(--sf-muted)" }}>
-                {value.desc}
-              </div>
+      <section style={{ padding: "0 5% 80px" }}>
+        <div className="rd-grid-3" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+          {VALUES.map((v) => (
+            <div key={v.n} data-rd-reveal className="rd-card" style={{ padding: "40px 32px", borderRadius: 28 }}>
+              <div style={{ font: `700 15px ${MONO}`, color: "var(--rd-accent)", marginBottom: 14 }}>{v.n}</div>
+              <h3 style={{ margin: "0 0 12px", font: `700 22px ${MONO}` }}>{v.t}</h3>
+              <p style={{ margin: 0, fontSize: 16, color: "var(--rd-text-2)" }}>{v.d}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Scale / by the numbers */}
-      <section
-        className="grid grid-cols-2 gap-px lg:grid-cols-4"
-        style={{
-          backgroundColor: "var(--sf-border)",
-          borderTop: "1px solid var(--sf-border)",
-          borderBottom: "1px solid var(--sf-border)",
-        }}
-      >
-        {STATS.map((stat) => (
-          <div
-            key={stat.label}
-            className="px-7 py-8 transition-colors duration-[450ms]"
-            style={{ backgroundColor: "var(--sf-bg)" }}
-          >
-            <div
-              className="sf-sora text-[30px] font-extrabold sm:text-[38px]"
-              style={{ color: "var(--sf-accent)" }}
-            >
-              <CountUp value={stat.value} />
+      {/* Scale band */}
+      <section style={{ padding: "0 5% 80px" }}>
+        <div className="rd-grid-4" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
+          {STATS.map((s) => (
+            <div key={s.l} data-rd-reveal className="rd-card" style={{ padding: "36px 28px", borderRadius: 24 }}>
+              <div style={{ font: `700 44px ${MONO}`, color: "var(--rd-accent)" }}><CountUp value={s.n} /></div>
+              <div style={{ color: "var(--rd-text-3)", fontSize: 15 }}>{s.l}</div>
             </div>
-            <div className="text-[13px]" style={{ color: "var(--sf-faint)" }}>
-              {stat.label}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
-      {/* Expertise, not headcount */}
-      <section className="px-5 py-14 sm:px-8 lg:px-11">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
-          <div data-reveal>
-            <Eyebrow className="mb-4">How we&apos;re built</Eyebrow>
-            <h2 className="m-0 mb-4 text-[26px] font-bold tracking-[-0.02em] sm:text-[34px]">
-              A senior bench across every discipline you need.
-            </h2>
-            <p className="m-0 text-[15px] leading-[1.7]" style={{ color: "var(--sf-muted)" }}>
-              We&apos;re not a body shop and we&apos;re not a two-person studio. RoundDigital
-              is a senior, cross-functional team spanning Toronto, Dallas and Pune — the
-              engineers, architects and delivery leads who&apos;ve shipped AI and enterprise
-              systems into production, staffed onto your project directly. You get the depth
-              of a large firm and the accountability of the people actually doing the work.
+      {/* Disciplines */}
+      <section style={{ padding: "0 5% 80px" }}>
+        <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 56, alignItems: "start" }}>
+          <div data-rd-reveal>
+            <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>HOW WE&apos;RE BUILT</p>
+            <h2 style={{ margin: "0 0 20px", font: `700 clamp(30px,2.8vw,44px)/1.15 ${MONO}` }}>A senior bench across every discipline.</h2>
+            <p style={{ margin: 0, fontSize: 17, lineHeight: 1.7, color: "var(--rd-text-2)" }}>
+              Not a body shop, not a two-person studio. Round Digital is a senior,
+              cross-functional team spanning Toronto, Dallas and Pune — the engineers,
+              architects and delivery leads who&apos;ve shipped AI and enterprise systems into
+              production, staffed onto your project directly.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-[14px] sm:grid-cols-2">
-            {DISCIPLINES.map((discipline, i) => (
-              <div
-                key={discipline}
-                data-reveal
-                data-reveal-delay={`${(i % 2) * 0.08}`}
-                className="sf-card sf-card-hover flex items-center gap-3 rounded-2xl px-5 py-4"
-              >
-                <span
-                  className="h-[7px] w-[7px] shrink-0 rounded-full"
-                  style={{
-                    backgroundColor: "var(--sf-accent)",
-                    boxShadow: "0 0 8px var(--sf-accent-glow)",
-                  }}
-                />
-                <span className="sf-sora text-[15px] font-semibold">{discipline}</span>
+          <div className="rd-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+            {DISCIPLINES.map((d) => (
+              <div key={d} data-rd-reveal className="rd-card" style={{ display: "flex", alignItems: "center", gap: 12, padding: "18px 20px", borderRadius: 18 }}>
+                <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--rd-accent)", flexShrink: 0 }} />
+                <span style={{ font: `700 15px ${MONO}` }}>{d}</span>
               </div>
             ))}
           </div>
@@ -192,59 +94,29 @@ export default function AboutPage() {
       </section>
 
       {/* Offices */}
-      <section className="px-5 pb-14 sm:px-8 lg:px-11">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-[18px] md:grid-cols-3">
-          {OFFICES.map((office, i) => (
-            <div
-              key={office.city}
-              data-reveal
-              data-reveal-delay={`${i * 0.08}`}
-              className="sf-card sf-card-hover rounded-2xl p-7"
-            >
-              <div
-                className="sf-mono mb-3 text-[11px] font-semibold tracking-[0.12em]"
-                style={{ color: "var(--sf-accent)" }}
-              >
-                {office.tag}
-              </div>
-              <div className="sf-sora mb-2 text-[20px] font-bold">{office.city}</div>
-              <div className="text-[14px] leading-[1.6]" style={{ color: "var(--sf-muted)" }}>
-                {office.lines.map((line) => (
-                  <span key={line}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
+      <section style={{ padding: "0 5% 96px" }}>
+        <div className="rd-grid-3" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+          {OFFICES.map((o) => (
+            <div key={o.city} data-rd-reveal className="rd-card" style={{ padding: "36px 32px", borderRadius: 28 }}>
+              <div style={{ font: `700 11px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)", marginBottom: 12 }}>{o.tag}</div>
+              <h3 style={{ margin: "0 0 10px", font: `700 24px ${MONO}` }}>{o.city}</h3>
+              <div style={{ fontSize: 15, lineHeight: 1.6, color: "var(--rd-text-2)" }}>
+                {o.lines.map((l) => <div key={l}>{l}</div>)}
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-5 pb-14 sm:px-8 lg:px-11">
-        <div
-          data-reveal
-          className="relative mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-6 overflow-hidden rounded-[22px] px-6 py-11 sm:px-[50px] lg:flex-row"
-          style={{
-            border: "1px solid var(--sf-accent-border)",
-            backgroundImage:
-              "radial-gradient(ellipse at 0% 130%, var(--sf-accent-glow), transparent 60%)",
-          }}
-        >
-          <div className="text-center lg:text-left">
-            <h2 className="m-0 mb-2 text-[24px] font-bold tracking-[-0.02em] sm:text-[28px]">
-              Want to work with us?
-            </h2>
-            <p className="m-0 text-[14.5px]" style={{ color: "var(--sf-muted)" }}>
-              Meet the senior engineers who&apos;ll actually build your system.
-            </p>
-          </div>
-          <PillLink href="/contact" size="lg" className="whitespace-nowrap">
-            Book a call
-          </PillLink>
+      <section style={{ padding: "0 5% 112px" }}>
+        <div data-rd-reveal style={{ ...wrap, textAlign: "center", border: "1px solid var(--rd-border)", borderRadius: 40, padding: "80px 8%" }}>
+          <h2 style={{ margin: "0 0 16px", font: `700 clamp(32px,3vw,52px)/1.15 ${MONO}` }}>Want to work with us?</h2>
+          <p style={{ margin: "0 auto 32px", maxWidth: 520, fontSize: 20, color: "var(--rd-text-2)" }}>
+            Meet the senior engineers who&apos;ll actually build your system.
+          </p>
+          <RdButton href="/contact">Book a call</RdButton>
         </div>
       </section>
-    </SfLayout>
+    </RdLayout>
   );
 }

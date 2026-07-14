@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "@/components/sf/Layout";
+import Layout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
 import Link from "next/link";
 import {
