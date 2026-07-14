@@ -276,6 +276,126 @@ export const rdServices = {
   },
 };
 
+// Longer-form, human-written SEO content merged into each service above.
+const RD_SERVICE_CONTENT = {
+  "ai-machine-learning": {
+    overview: {
+      heading: "Production AI agents, not science projects",
+      paragraphs: [
+        "Most AI initiatives stall in the gap between an impressive demo and a system your business can actually depend on. We close that gap. RoundDigital designs, builds and operates AI agents that run real workflows in production — handling customer conversations, processing documents, and making the routine decisions that quietly consume your team's week.",
+        "Every engagement starts with the workflow, not the model. We map where the time and money actually go, pick the highest-value slice, and ship a working agent on your real data within weeks — evaluated against human baselines before it ever touches a customer. Then we harden it: guardrails, audit trails, monitoring and continuous evals, so the system stays accurate as the world around it changes.",
+      ],
+    },
+    outcomes: [
+      { t: "Faster cycle times", d: "Work that took days happens in minutes, around the clock, without adding headcount." },
+      { t: "Accuracy you can audit", d: "Every agent decision is logged with its reasoning, so compliance and finance can trust the output." },
+      { t: "ROI inside a year", d: "We only take on agent builds where the modelled return clears the cost within twelve months." },
+    ],
+  },
+  "cloud-solutions": {
+    overview: {
+      heading: "Cloud that earns its keep",
+      paragraphs: [
+        "Moving to the cloud is easy to start and hard to finish well. The teams that win treat it as an engineering discipline, not a lift-and-shift checkbox — and that's exactly how we run it. RoundDigital designs cloud-native architecture, migrates legacy workloads without downtime, and keeps the bill honest long after go-live, across AWS, Azure and Google Cloud.",
+        "We've moved 50+ applications for a multinational bank with zero downtime using staged, strangler-pattern cutovers — the old system stays alive until the new one has proven itself. And because cloud spend has a way of creeping, every platform we build ships with cost budgets in code, continuous right-sizing and monthly FinOps reporting, so you scale on capability instead of surprise invoices.",
+      ],
+    },
+    outcomes: [
+      { t: "Zero-downtime migration", d: "Staged cutovers and parallel runs mean customers never notice the platform changing underneath them." },
+      { t: "Lower run costs", d: "FinOps discipline typically cuts cloud spend without cutting capacity — one client by 60%." },
+      { t: "A platform teams enjoy", d: "Paved-road CI/CD and observability so your engineers ship faster and sleep better." },
+    ],
+  },
+  cybersecurity: {
+    overview: {
+      heading: "Security engineered in, not bolted on",
+      paragraphs: [
+        "Security that lives in a separate binder is security that fails under pressure. We build controls into the architecture — identity-aware access, zero-trust segmentation, guardrails and audit trails — so your enterprise stack and your AI systems inherit protection instead of inheriting risk.",
+        "Our engagements start with an honest security review that tells you exactly where you stand and what to fix first, then a prioritized remediation roadmap you can run with us or in-house. For teams heading into SOC 2 or ISO 27001, we build and operate the evidence pipelines that get you through the audit — treating compliance as engineering, not paperwork.",
+      ],
+    },
+    outcomes: [
+      { t: "Threats caught early", d: "24/7 monitoring and response that spots attacks before they land." },
+      { t: "Audit-ready by design", d: "SOC 2 / ISO 27001 controls and evidence built into delivery from day one." },
+      { t: "AI you can deploy safely", d: "Guardrails and full audit trails purpose-built for agentic systems." },
+    ],
+  },
+  "custom-software": {
+    overview: {
+      heading: "Software built to be run for years",
+      paragraphs: [
+        "Anyone can ship a prototype. Shipping software a business can operate, extend and trust for years is a different craft — and it's the one we're built for. RoundDigital designs and builds web platforms, APIs, internal tools and mobile apps on modern stacks, hardened for production and handed over clean.",
+        "Senior engineers from our Toronto, Dallas and Pune teams own features end to end, with test-driven development and CI/CD from the first commit. You get the repo, the documentation and the pipeline — full IP, no lock-in, no mystery bench. Whether you're launching a new product or rescuing one that's stalled, the work moves on a steady, visible rhythm.",
+      ],
+    },
+    outcomes: [
+      { t: "Production quality from day one", d: "Automated tests, code review and security checks on every change." },
+      { t: "You own everything", d: "Full source, docs and pipeline transfer — no lock-in, no black boxes." },
+      { t: "A working milestone in six weeks", d: "You see real software early and often, not a big reveal at the end." },
+    ],
+  },
+  "data-analytics": {
+    overview: {
+      heading: "From data you can't trust to decisions you can",
+      paragraphs: [
+        "Most organizations aren't short on data — they're short on data they can act on. Reports disagree, pipelines break quietly, and the number in the board deck is three weeks old. We fix the foundation: governed pipelines, a warehouse or lakehouse that's genuinely a single source of truth, and dashboards leadership checks because they believe them.",
+        "We start from the decision you most need to make and build backwards to the minimum pipeline and model that answers it — then widen from there. The same platform that powers today's reporting is the one that makes your data AI-ready, so your analytics investment and your AI roadmap pull in the same direction instead of competing for budget.",
+      ],
+    },
+    outcomes: [
+      { t: "One source of truth", d: "Governed, documented data your whole organization can rely on." },
+      { t: "Faster time to insight", d: "Streaming and batch pipelines that turn raw events into answers in near-real time." },
+      { t: "AI-ready foundations", d: "Clean, well-modelled data that unblocks the automation you want next." },
+    ],
+  },
+  "digital-transformation": {
+    overview: {
+      heading: "Modernize without betting the company",
+      paragraphs: [
+        "Legacy systems rarely fail loudly — they just make everything slower, riskier and more expensive until the business can't move. We modernize them the way that doesn't require a heroic, all-or-nothing cutover: an honest assessment of what to keep, wrap, rewrite or retire, then a sequenced roadmap that delivers value every quarter instead of a promise for year three.",
+        "Everything ships incrementally behind strangler patterns and feature flags, with the old system alive until the new one has earned trust. And because technology change only sticks when the operating model changes with it, we bring the DevOps practices, team topologies and hands-on engineering that make the new way of working permanent — not a slide that gets ignored after kickoff.",
+      ],
+    },
+    outcomes: [
+      { t: "No big-bang risk", d: "Reversible, incremental steps mean value lands continuously and rollback is always possible." },
+      { t: "Value every quarter", d: "Multi-year programs delivered as a chain of shippable milestones." },
+      { t: "Change that sticks", d: "New practices and ownership embedded in your teams, not just your architecture." },
+    ],
+  },
+  "global-talent": {
+    overview: {
+      heading: "Senior engineers, embedded like your own",
+      paragraphs: [
+        "Hiring senior engineers is slow, expensive and — for specialist AI and cloud roles — often impossible on the timeline you actually have. We extend your team with vetted senior engineers, architects and AI specialists from our Toronto, Dallas and Pune network, embedded in your workflow, your tools and your rhythm within weeks.",
+        "These aren't résumés off a bench you'll never meet. Fewer than 5% of applicants make it through our technical screening and paid trial, and every placement comes with our engineering leadership behind their work. Need a full squad instead of individuals? We stand up dedicated pods — a lead, engineers and QA — with a single point of accountability for delivery.",
+      ],
+    },
+    outcomes: [
+      { t: "Embedded in weeks, not months", d: "Typically two weeks from brief to engineers shipping in your codebase." },
+      { t: "Genuinely senior", d: "Vetted specialists who raise the bar for your in-house team, not fill a seat." },
+      { t: "Flex up or down", d: "Scale the team monthly, with a two-week replacement guarantee if a fit isn't right." },
+    ],
+  },
+  "engagement-models": {
+    overview: {
+      heading: "Work with us the way that fits your risk",
+      paragraphs: [
+        "Every project carries a different mix of certainty, urgency and internal capacity — so a single contract shape rarely fits. We offer three: fixed-price projects for scoped outcomes, embedded teams for evolving roadmaps, and fully managed AI operations for systems in production. Most clients start with a fixed-price discovery that de-risks the big decision, then move to whatever the real work needs.",
+        "Whichever model you pick, the principles don't change: milestone-based delivery, complete visibility into progress, full IP ownership and no lock-in. Every proposal shows the modelled ROI next to the cost, and managed operations carry SLAs and a 30-day exit. You should never feel trapped in an engagement — only glad you're in it.",
+      ],
+    },
+    outcomes: [
+      { t: "Match the model to the risk", d: "Fixed-price, embedded team or managed ops — and switch as your needs change." },
+      { t: "Total transparency", d: "Milestone billing and progress you can see, with ROI modelled up front." },
+      { t: "No lock-in, ever", d: "Full IP transfer and a clean exit — you stay because it's working." },
+    ],
+  },
+};
+
+Object.keys(rdServices).forEach((id) => {
+  if (RD_SERVICE_CONTENT[id]) Object.assign(rdServices[id], RD_SERVICE_CONTENT[id]);
+});
+
 export const RD_PROCESS = [
   { time: "WK 1–2", title: "Discover", body: "Map the workflow, data and ROI target. Pick the highest-value slice." },
   { time: "WK 3–5", title: "Prototype", body: "A working milestone on your real data, evaluated against baselines." },

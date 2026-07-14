@@ -27,6 +27,22 @@ export default function RdServiceDetail({ service }) {
         </div>
       </section>
 
+      {/* Overview */}
+      {service.overview ? (
+        <section style={{ padding: "0 5% 88px" }}>
+          <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: 56, alignItems: "start" }}>
+            <h2 data-rd-reveal style={{ margin: 0, font: `700 clamp(28px,2.6vw,42px)/1.15 ${MONO}` }}>
+              {service.overview.heading}
+            </h2>
+            <div data-rd-reveal data-rd-reveal-delay="0.05" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              {service.overview.paragraphs.map((p, i) => (
+                <p key={i} style={{ margin: 0, fontSize: 18, lineHeight: 1.7, color: "var(--rd-text-2)" }}>{p}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {/* Stats */}
       <section style={{ padding: "0 5% 80px" }}>
         <div style={wrap}>
@@ -64,6 +80,23 @@ export default function RdServiceDetail({ service }) {
         </div>
       </section>
 
+      {/* Outcomes */}
+      {service.outcomes ? (
+        <section style={{ padding: "0 5% 80px" }}>
+          <div style={wrap}>
+            <h2 data-rd-reveal style={{ margin: "0 0 48px", font: `700 clamp(30px,2.8vw,48px)/1.15 ${MONO}` }}>What you get</h2>
+            <div className="rd-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+              {service.outcomes.map((o) => (
+                <div key={o.t} data-rd-reveal className="rd-card" style={{ padding: "36px 30px", borderRadius: 28 }}>
+                  <h3 style={{ margin: "0 0 12px", font: `700 20px ${MONO}` }}>{o.t}</h3>
+                  <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{o.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {/* How we ship */}
       <section style={{ padding: "0 5% 80px" }}>
         <div style={wrap}>
@@ -94,14 +127,16 @@ export default function RdServiceDetail({ service }) {
 
       {/* FAQ */}
       <section style={{ padding: "0 5% 80px" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto 0 0" }}>
+        <div style={wrap}>
           <h2 data-rd-reveal style={{ margin: "0 0 40px", font: `700 clamp(30px,2.8vw,48px)/1.15 ${MONO}` }}>Questions CTOs ask us</h2>
-          {service.faqs.map((f) => (
-            <div key={f.q} data-rd-reveal style={{ borderTop: "1px solid var(--rd-border)", padding: "26px 4px" }}>
-              <h3 style={{ margin: "0 0 10px", font: `700 19px ${MONO}` }}>{f.q}</h3>
-              <p style={{ margin: 0, fontSize: 16, color: "var(--rd-text-2)" }}>{f.a}</p>
-            </div>
-          ))}
+          <div style={{ maxWidth: 940 }}>
+            {service.faqs.map((f) => (
+              <div key={f.q} data-rd-reveal style={{ borderTop: "1px solid var(--rd-border)", padding: "26px 4px" }}>
+                <h3 style={{ margin: "0 0 10px", font: `700 19px ${MONO}` }}>{f.q}</h3>
+                <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{f.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

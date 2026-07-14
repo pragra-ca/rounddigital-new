@@ -84,8 +84,16 @@ export function CountUp({ value, className = "", style, duration = 1400 }) {
       return undefined;
     }
 
+    if (typeof IntersectionObserver === "undefined") {
+      setDisplay(value);
+      return undefined;
+    }
+
     let raf;
     const run = () => {
+      // Reset to 0 only at the moment we actually animate, so a stat that
+      // never scrolls into view keeps showing its real value.
+      setDisplay(`${prefix}${(0).toFixed(decimals)}${suffix}`);
       const start = performance.now();
       const frame = (now) => {
         const p = Math.min((now - start) / duration, 1);
@@ -97,7 +105,6 @@ export function CountUp({ value, className = "", style, duration = 1400 }) {
       };
       raf = requestAnimationFrame(frame);
     };
-    setDisplay(`${prefix}${(0).toFixed(decimals)}${suffix}`);
     const obs = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
