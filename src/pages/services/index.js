@@ -20,20 +20,21 @@ export default function ServicesIndexPage() {
   return (
     <RdLayout>
       <Seo
-        title="Enterprise IT & AI Services in Toronto, Dallas & Pune"
-        description="AI agent development, cloud migration, cybersecurity, custom software, data engineering and digital transformation — one senior team, one delivery rhythm."
-        keywords="enterprise IT services, AI services, cloud migration, cybersecurity, custom software development, data engineering"
+        title="Enterprise IT Services & Global Talent Sourcing | Toronto, Dallas & Pune"
+        description="AI agent development, cloud migration, cybersecurity, custom software, data engineering, digital transformation and global talent sourcing across every industry."
+        keywords="enterprise IT services, AI services, cloud migration, cybersecurity, custom software development, data engineering, global talent sourcing, staffing"
       />
       <section style={{ padding: "96px 5% 64px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <p data-rd-reveal style={{ margin: "0 0 16px", font: "600 15px 'Inter',sans-serif" }}>Our services</p>
           <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 28px", maxWidth: 900, font: `700 clamp(44px,4.6vw,76px)/1.08 ${MONO}`, letterSpacing: "-0.01em" }}>
-            Everything it takes to ship enterprise AI.
+            Everything it takes to ship — and the people to run it.
           </h1>
           <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: 0, maxWidth: 640, fontSize: 20, color: "var(--rd-text-2)" }}>
-            Eight services, one senior team, one operating rhythm: discover, prototype, ship,
-            operate. Whether you need an AI agent in production or a legacy system retired, the
-            path is the same — and it starts with a working milestone inside six weeks.
+            A complete IT practice — AI, cloud, security, software, data and transformation — plus
+            global talent sourcing for any industry, technical or not. Whether you need an AI agent
+            in production, a legacy system retired or forty people mobilized, it starts the same
+            way: a working milestone inside six weeks.
           </p>
         </div>
       </section>

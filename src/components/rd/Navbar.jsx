@@ -10,7 +10,7 @@ export const RD_SERVICES = [
   { title: "Custom Software", tag: "Tailored solutions", id: "custom-software" },
   { title: "Data & Analytics", tag: "Decision intelligence", id: "data-analytics" },
   { title: "Digital Transformation", tag: "Modernize operations", id: "digital-transformation" },
-  { title: "Global Talent", tag: "Scale on demand", id: "global-talent" },
+  { title: "Global Talent Sourcing", tag: "Any role, any industry", id: "global-talent" },
   { title: "Engagement Models", tag: "Ways to work", id: "engagement-models" },
 ];
 

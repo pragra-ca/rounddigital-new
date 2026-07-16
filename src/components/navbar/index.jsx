@@ -57,9 +57,9 @@ const serviceLinks = [
     icon: RocketLaunchIcon,
   },
   {
-    name: "Global Talent",
+    name: "Global Talent Sourcing",
     path: "/services/global-talent",
-    desc: "Scale teams on demand",
+    desc: "Any role, any industry",
     icon: UserGroupIcon,
   },
   {

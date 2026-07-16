@@ -222,12 +222,22 @@ const Seo = ({
               "Cloud Computing",
               "Software Development",
               "Digital Transformation",
-              "Data Analytics"
+              "Data Analytics",
+              "Global Talent Sourcing",
+              "IT Staff Augmentation",
+              "Healthcare Staffing",
+              "Skilled Trades Recruitment",
+              "Managed Back-Office Services"
             ],
             "offers": {
               "@type": "AggregateOffer",
-              "offerCount": "6+",
+              "offerCount": "8",
               "itemOffered": [
+                {
+                  "@type": "Service",
+                  "name": "Global Talent Sourcing",
+                  "description": "Technology, professional, healthcare and skilled workforce sourcing across every industry"
+                },
                 {
                   "@type": "Service",
                   "name": "AI Agent Development",

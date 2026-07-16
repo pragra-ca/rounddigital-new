@@ -7,6 +7,7 @@ import {
   BENEFITS,
   HERO_STATS,
   HOME_CASES,
+  HOME_FAQS,
   INDUSTRIES,
   INSIGHTS,
   JOURNEY,
@@ -15,6 +16,8 @@ import {
   SERVICE_CARDS,
   TECHS,
   TESTIMONIALS,
+  TRUST_ITEMS,
+  WHY_US,
 } from "@/data/rdHome";
 
 const MONO_H = "'Space Mono',monospace";
@@ -24,15 +27,21 @@ function Hero() {
   return (
     <section style={{ padding: "96px 5% 80px" }}>
       <div style={wrap}>
+        <p data-rd-reveal style={{ margin: "0 0 20px", font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent)" }}>
+          For ambitious small &amp; mid-sized businesses
+        </p>
         <h1
           data-rd-reveal
-          style={{ margin: "0 0 28px", maxWidth: 820, font: `700 clamp(48px,5vw,84px)/1.08 ${MONO_H}`, letterSpacing: "-0.01em" }}
+          data-rd-reveal-delay="0.05"
+          style={{ margin: "0 0 28px", maxWidth: 900, font: `700 clamp(44px,4.8vw,80px)/1.08 ${MONO_H}`, letterSpacing: "-0.01em" }}
         >
-          We engineer the AI-first enterprise
+          Fortune-500 engineering, right-sized for you
         </h1>
-        <p data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 36px", maxWidth: 560, fontSize: 20, color: "var(--rd-text-2)" }}>
-          Round Digital builds production AI agents, secure cloud platforms, and custom
-          software for global enterprises.
+        <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: "0 0 36px", maxWidth: 600, fontSize: 20, color: "var(--rd-text-2)" }}>
+          Round Digital brings production AI, secure cloud, and custom software to growing
+          businesses — the same rigor big companies pay millions for, sized and priced for how
+          you actually grow. And when the constraint is people rather than software, our global
+          talent practice sources them, in any industry.
         </p>
         <div data-rd-reveal data-rd-reveal-delay="0.1" style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <RdButton href="/contact">Book a strategy session</RdButton>
@@ -83,15 +92,15 @@ function Services() {
   return (
     <section id="services" style={{ padding: "96px 5%" }}>
       <div style={wrap}>
-        <SectionIntro eyebrow="Services" title="Engineering the intelligent enterprise" body="Production-grade AI, cloud, and software engineering from architecture to operations." />
-        <div className="rd-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 28 }}>
+        <SectionIntro eyebrow="Services" title="Two ways we close the gap" body="A full IT practice — AI, cloud and software engineering from architecture to operations — and a global talent practice that staffs any industry, technical or not." />
+        <div className="rd-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
           {SERVICE_CARDS.map((c) => (
             <Link key={c.title} href={c.href} data-rd-reveal className="rd-card rd-card-lift" style={{ display: "flex", flexDirection: "column" }}>
               <img src={c.img} alt={c.tag} className="rd-img" style={{ aspectRatio: "16/10" }} />
-              <div style={{ padding: "32px 28px 28px", display: "flex", flexDirection: "column", gap: 14, flex: 1 }}>
+              <div style={{ padding: "30px 26px 26px", display: "flex", flexDirection: "column", gap: 13, flex: 1 }}>
                 <p style={{ margin: 0, fontSize: 14, fontWeight: 600, color: "var(--rd-text-3)" }}>{c.tag}</p>
-                <h3 style={{ margin: 0, font: `700 26px ${MONO_H}`, lineHeight: 1.25 }}>{c.title}</h3>
-                <p style={{ margin: 0, fontSize: 16, color: "var(--rd-text-2)", flex: 1 }}>{c.desc}</p>
+                <h3 style={{ margin: 0, font: `700 22px ${MONO_H}`, lineHeight: 1.25 }}>{c.title}</h3>
+                <p style={{ margin: 0, fontSize: 15, color: "var(--rd-text-2)", flex: 1 }}>{c.desc}</p>
                 <span style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 500, fontSize: 16 }}>
                   Explore <Arrow />
                 </span>
@@ -129,7 +138,7 @@ function Industries() {
   return (
     <section id="industries" style={{ padding: "96px 5%" }}>
       <div style={wrap}>
-        <SectionIntro eyebrow="Industries" title="Engineered for your industry" body="Deep domain expertise combined with AI engineering excellence. We solve the problems that keep industry leaders awake at night." />
+        <SectionIntro eyebrow="Industries" title="Engineered — and staffed — for your industry" body="Twelve sectors, two capabilities: the systems that run the work, and the people who do it. Whichever one is your constraint, we cover it." />
         <div data-rd-reveal className="rd-tabs" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.4fr", borderRadius: 40, overflow: "hidden" }}>
           <div style={{ display: "flex", flexDirection: "column" }}>
             {INDUSTRIES.map((it, i) => (
@@ -139,13 +148,13 @@ function Industries() {
                 onClick={() => setActive(i)}
                 style={{
                   textAlign: "left",
-                  padding: "26px 32px",
+                  padding: "17px 30px",
                   background: active === i ? "var(--rd-card)" : "transparent",
                   color: "var(--rd-text)",
                   border: "none",
                   borderBottom: i < INDUSTRIES.length - 1 ? "1px solid var(--rd-divider)" : "none",
                   cursor: "pointer",
-                  font: `700 20px ${MONO_H}`,
+                  font: `700 16px ${MONO_H}`,
                   textTransform: "uppercase",
                   transition: "background 0.25s ease",
                 }}
@@ -158,8 +167,8 @@ function Industries() {
             <p style={{ margin: 0, font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>{ind.tag}</p>
             <h3 style={{ margin: 0, font: `700 clamp(28px,2.4vw,40px)/1.2 ${MONO_H}` }}>{ind.title}</h3>
             <p style={{ margin: 0, fontSize: 18, color: "var(--rd-text-2)" }}>{ind.body}</p>
-            <Link href="/industries" style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 500, marginTop: 8 }}>
-              Learn more <Arrow />
+            <Link href={`/industries/${ind.slug}`} style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 500, marginTop: 8 }}>
+              {ind.name} in depth <Arrow />
             </Link>
           </div>
         </div>
@@ -233,11 +242,13 @@ function CaseStudies() {
 
 function Testimonials() {
   const [page, setPage] = useState(0);
-  const pages = [TESTIMONIALS.slice(0, 2), TESTIMONIALS.slice(2, 4)];
+  const pages = [];
+  for (let i = 0; i < TESTIMONIALS.length; i += 2) pages.push(TESTIMONIALS.slice(i, i + 2));
+  const count = pages.length;
   return (
     <section style={{ padding: "96px 5%", overflow: "hidden" }}>
       <div style={wrap}>
-        <SectionIntro title="Client results" body="What our partners say about engineering with Round Digital." maxWidth={640} />
+        <SectionIntro title="Client results" body="From 30-person startups to the Fortune 500 — what our partners say about engineering with Round Digital." maxWidth={680} />
         <div style={{ overflow: "hidden" }}>
           <div style={{ display: "flex", transition: "transform 0.5s ease", transform: `translateX(-${page * 100}%)` }}>
             {pages.map((grp, gi) => (
@@ -259,15 +270,15 @@ function Testimonials() {
           </div>
         </div>
         <div style={{ marginTop: 44, display: "flex", alignItems: "center", justifyContent: "center", gap: 24 }}>
-          <button type="button" aria-label="Previous" onClick={() => setPage((p) => (p + 1) % 2)} className="rd-carousel-btn">
+          <button type="button" aria-label="Previous" onClick={() => setPage((p) => (p - 1 + count) % count)} className="rd-carousel-btn">
             <svg width="16" height="16" viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg>
           </button>
           <div style={{ display: "flex", gap: 8 }}>
-            {[0, 1].map((i) => (
+            {pages.map((_, i) => (
               <button key={i} type="button" aria-label={`Page ${i + 1}`} onClick={() => setPage(i)} style={{ width: 8, height: 8, borderRadius: "50%", border: "none", cursor: "pointer", padding: 0, background: page === i ? "var(--rd-text)" : "var(--rd-border-2)", transition: "background 0.3s" }} />
             ))}
           </div>
-          <button type="button" aria-label="Next" onClick={() => setPage((p) => (p + 1) % 2)} className="rd-carousel-btn">
+          <button type="button" aria-label="Next" onClick={() => setPage((p) => (p + 1) % count)} className="rd-carousel-btn">
             <svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg>
           </button>
         </div>
@@ -435,17 +446,89 @@ function FinalCta() {
   );
 }
 
+function TrustBar() {
+  return (
+    <section style={{ padding: "0 5% 8px" }}>
+      <div data-rd-reveal style={{ ...wrap, display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "12px 20px" }}>
+        {TRUST_ITEMS.map((t, i) => (
+          <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "12px 20px" }}>
+            <span style={{ font: `700 13px ${MONO_H}`, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--rd-text-3)" }}>{t}</span>
+            {i < TRUST_ITEMS.length - 1 ? <span style={{ color: "var(--rd-accent)", marginLeft: 20 }}>·</span> : null}
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function WhyUs() {
+  return (
+    <section style={{ padding: "96px 5%" }}>
+      <div style={wrap}>
+        <SectionIntro
+          eyebrow="Why Round Digital"
+          title="Big-company engineering, without the big-company baggage"
+          body="Growing businesses deserve better than junior freelancers, offshore guesswork, or consultancies that bill for the privilege of a meeting. Here's what you get instead."
+        />
+        <div className="rd-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+          {WHY_US.map((w) => (
+            <div key={w.title} data-rd-reveal className="rd-card rd-card-lift" style={{ padding: "36px 30px", borderRadius: 28 }}>
+              <span style={{ font: `700 12px ${MONO_H}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent)" }}>{w.tag}</span>
+              <h3 style={{ margin: "14px 0 12px", font: `700 21px ${MONO_H}`, lineHeight: 1.25 }}>{w.title}</h3>
+              <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{w.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomeFaq() {
+  return (
+    <section style={{ padding: "96px 5%" }}>
+      <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: 56, alignItems: "start" }}>
+        <div data-rd-reveal>
+          <p style={{ margin: "0 0 16px", font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>FAQ</p>
+          <h2 style={{ margin: "0 0 20px", font: `700 clamp(32px,3vw,52px)/1.12 ${MONO_H}` }}>Questions growing businesses ask</h2>
+          <p style={{ margin: 0, fontSize: 18, lineHeight: 1.7, color: "var(--rd-text-2)" }}>
+            Straight answers, no sales runaround. Still unsure?{" "}
+            <Link href="/contact" style={{ color: "var(--rd-accent)", fontWeight: 600 }}>Ask us directly</Link>.
+          </p>
+        </div>
+        <div>
+          {HOME_FAQS.map((f) => (
+            <div key={f.q} data-rd-reveal style={{ borderTop: "1px solid var(--rd-border)", padding: "24px 4px" }}>
+              <h3 style={{ margin: "0 0 10px", font: `700 18px ${MONO_H}` }}>{f.q}</h3>
+              <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{f.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const HOME_FAQ_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: HOME_FAQS.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+};
+
 export default function Home() {
   return (
     <RdLayout>
       <Seo
-        title="AI Agent Development & Enterprise IT Services"
-        description="Round Digital engineers the AI-first enterprise — production AI agents, secure cloud platforms and custom software for global enterprises. Toronto, Dallas & Pune."
-        keywords="AI agent development, enterprise AI, cloud engineering, custom software, digital transformation, cybersecurity, Toronto, Dallas, Pune"
+        title="AI, Cloud & Software Engineering for Growing Businesses"
+        description="Fortune-500 engineering, right-sized for small and mid-sized businesses. Round Digital builds production AI, secure cloud and custom software — fixed price, senior engineers, you own the IP. Toronto, Dallas & Pune."
+        keywords="AI development for small business, SMB software development, custom software for growing businesses, AI agency for SMB, cloud engineering, fixed price software development, Toronto, Dallas, Pune"
+        jsonLd={[HOME_FAQ_JSONLD]}
       />
       <Hero />
+      <TrustBar />
       <Logos />
       <Services />
+      <WhyUs />
       <Journey />
       <Industries />
       <Benefits />
@@ -453,6 +536,7 @@ export default function Home() {
       <Testimonials />
       <ProcessGrid />
       <Technology />
+      <HomeFaq />
       <Insights />
       <Careers />
       <FinalCta />

@@ -128,7 +128,7 @@ export default function RdServiceDetail({ service }) {
       {/* FAQ */}
       <section style={{ padding: "0 5% 80px" }}>
         <div style={wrap}>
-          <h2 data-rd-reveal style={{ margin: "0 0 40px", font: `700 clamp(30px,2.8vw,48px)/1.15 ${MONO}` }}>Questions CTOs ask us</h2>
+          <h2 data-rd-reveal style={{ margin: "0 0 40px", font: `700 clamp(30px,2.8vw,48px)/1.15 ${MONO}` }}>Questions clients ask us</h2>
           <div style={{ maxWidth: 940 }}>
             {service.faqs.map((f) => (
               <div key={f.q} data-rd-reveal style={{ borderTop: "1px solid var(--rd-border)", padding: "26px 4px" }}>
