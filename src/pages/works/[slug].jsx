@@ -1,250 +1,128 @@
 import Link from "next/link";
-import SfLayout from "@/components/sf/Layout";
+import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { CountUp, Eyebrow } from "@/components/sf/ui";
-import { sfCaseStudies } from "@/data/sfCaseStudies";
+import { Arrow, Breadcrumb, CountUp, RdButton } from "@/components/rd/ui";
+import { rdCases, RD_CASE_ORDER } from "@/data/rdCases";
+
+const MONO = "'Space Mono',monospace";
+const wrap = { maxWidth: 1280, margin: "0 auto" };
 
 export async function getStaticPaths() {
-  return {
-    paths: Object.keys(sfCaseStudies).map((slug) => ({ params: { slug } })),
-    fallback: false,
-  };
+  return { paths: Object.keys(rdCases).map((slug) => ({ params: { slug } })), fallback: false };
 }
-
 export async function getStaticProps({ params }) {
-  return {
-    props: { slug: params.slug },
-  };
+  return { props: { slug: params.slug } };
 }
 
 export default function WorkDetail({ slug }) {
-  const cs = sfCaseStudies[slug];
+  const cs = rdCases[slug];
+  const idx = RD_CASE_ORDER.indexOf(slug);
+  const next = rdCases[RD_CASE_ORDER[(idx + 1) % RD_CASE_ORDER.length]];
 
   return (
-    <SfLayout>
+    <RdLayout>
       <Seo
-        title={`Case Study: ${cs.breadcrumb}`}
-        description={`${cs.title} — ${cs.stats
-          .slice(0, 2)
-          .map((stat) => `${stat.value} ${stat.label}`)
-          .join(", ")}. See how RoundDigital delivered it, step by step.`}
-        keywords={`${cs.breadcrumb} case study, ${cs.meta[0].value}, AI case study, digital transformation results, RoundDigital`}
+        title={`Case Study: ${cs.short}`}
+        description={`${cs.title} — ${cs.stats.slice(0, 2).map((s) => `${s.n} ${s.l}`).join(", ")}. See how Round Digital delivered it.`}
+        keywords={`${cs.short} case study, ${cs.industry}, AI case study, digital transformation`}
         ogType="article"
-        jsonLd={[
-          {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: cs.title,
-            description: cs.challenge,
-            author: { "@type": "Organization", name: "RoundDigital" },
-            publisher: {
-              "@type": "Organization",
-              name: "RoundDigital",
-              url: "https://www.round.digital",
-            },
-            about: cs.meta[0].value,
-          },
-        ]}
+        jsonLd={[{ "@context": "https://schema.org", "@type": "Article", headline: cs.title, description: cs.challenge, author: { "@type": "Organization", name: "RoundDigital" }, publisher: { "@type": "Organization", name: "RoundDigital", url: "https://www.round.digital" } }]}
       />
 
-      {/* Hero */}
-      <section
-        className="px-5 pb-11 pt-14 sm:px-8 lg:px-11"
-        style={{ borderBottom: "1px solid var(--sf-border)" }}
-      >
-        <div className="mx-auto max-w-[1240px]">
-          <div data-reveal className="sf-mono mb-5 text-[12px] font-medium" style={{ color: "var(--sf-faint)" }}>
-            <Link href="/" className="transition-colors hover:text-[color:var(--sf-accent)]">
-              Home
-            </Link>
-            {" / "}
-            <Link href="/#case-studies" className="transition-colors hover:text-[color:var(--sf-accent)]">
-              Work
-            </Link>
-            {" / "}
-            <span style={{ color: "var(--sf-accent)" }}>{cs.breadcrumb}</span>
-          </div>
-          <Eyebrow data-reveal data-reveal-delay="0.06" className="mb-[14px]">
-            {cs.kicker}
-          </Eyebrow>
-          <h1
-            data-reveal
-            data-reveal-delay="0.12"
-            className="m-0 mb-[22px] max-w-[22ch] text-[36px] font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-[52px]"
-          >
+      <section style={{ padding: "72px 5% 48px" }}>
+        <div style={wrap}>
+          <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Case studies", href: "/#case-studies" }, { label: cs.short }]} />
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>
+            {cs.num} · {cs.industry} · {cs.service}
+          </p>
+          <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 28px", maxWidth: 960, font: `700 clamp(40px,4.2vw,72px)/1.08 ${MONO}`, letterSpacing: "-0.01em" }}>
             {cs.title}
           </h1>
-          <div className="flex flex-wrap gap-x-10 gap-y-4 text-[13.5px]" data-reveal data-reveal-delay="0.18">
-            {cs.meta.map((item) => (
-              <span key={item.label} style={{ color: "var(--sf-faint)" }}>
-                <strong style={{ color: "var(--sf-text)" }}>{item.label}</strong>
-                <br />
-                {item.value}
-              </span>
-            ))}
+          <div data-rd-reveal data-rd-reveal-delay="0.1" style={{ display: "flex", gap: 40, flexWrap: "wrap", fontSize: 14, color: "var(--rd-text-3)" }}>
+            <span><strong style={{ color: "var(--rd-text)", display: "block", fontFamily: MONO }}>INDUSTRY</strong>{cs.industry}</span>
+            <span><strong style={{ color: "var(--rd-text)", display: "block", fontFamily: MONO }}>SERVICE</strong>{cs.service}</span>
+            <span><strong style={{ color: "var(--rd-text)", display: "block", fontFamily: MONO }}>TIMELINE</strong>{cs.timeline}</span>
           </div>
         </div>
       </section>
 
-      {/* Stats band */}
-      <section
-        className="grid grid-cols-2 gap-px lg:grid-cols-4"
-        style={{
-          backgroundColor: "var(--sf-border)",
-          borderBottom: "1px solid var(--sf-border)",
-        }}
-      >
-        {cs.stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="px-7 py-[26px] transition-colors duration-[450ms]"
-            style={{ backgroundColor: "var(--sf-bg)" }}
-          >
-            <div
-              className="sf-sora text-[26px] font-extrabold sm:text-[32px]"
-              style={{ color: "var(--sf-accent)" }}
-            >
-              <CountUp value={stat.value} />
-            </div>
-            <div className="text-[13px]" style={{ color: "var(--sf-faint)" }}>
-              {stat.label}
-            </div>
-          </div>
-        ))}
+      <section style={{ padding: "0 5% 64px" }}>
+        <div style={wrap}>
+          <img data-rd-reveal src={cs.img} alt={cs.title} className="rd-img" style={{ aspectRatio: "21/9", borderRadius: 40 }} />
+        </div>
       </section>
 
-      {/* Story */}
-      <section className="px-5 py-14 sm:px-8 lg:px-11">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-12 lg:grid-cols-2">
-          <div className="flex flex-col gap-[34px]">
-            {[
-              ["The challenge", cs.challenge],
-              ["The solution", cs.solution],
-              ["The results", cs.results],
-            ].map(([heading, body], i) => (
-              <div key={heading} data-reveal data-reveal-delay={`${i * 0.08}`}>
-                <Eyebrow className="mb-3">{heading}</Eyebrow>
-                <p className="m-0 text-[15px] leading-[1.7]" style={{ color: "var(--sf-muted)" }}>
-                  {body}
-                </p>
+      {/* Stats */}
+      <section style={{ padding: "0 5% 80px" }}>
+        <div className="rd-grid-4" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
+          {cs.stats.map((st) => (
+            <div key={st.l} data-rd-reveal className="rd-card" style={{ padding: "32px 28px", borderRadius: 24 }}>
+              <div style={{ font: `700 40px ${MONO}`, color: "var(--rd-accent)" }}>
+                <CountUp value={st.n} />
+              </div>
+              <div style={{ color: "var(--rd-text-3)", fontSize: 15, marginTop: 6 }}>{st.l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Challenge / Solution */}
+      <section style={{ padding: "0 5% 80px" }}>
+        <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56 }}>
+          {[["The challenge", cs.challenge], ["The solution", cs.solution]].map(([h, body]) => (
+            <div key={h} data-rd-reveal>
+              <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>{h.toUpperCase()}</p>
+              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.7, color: "var(--rd-text-2)" }}>{body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How we did it */}
+      <section style={{ padding: "0 5% 80px" }}>
+        <div style={wrap}>
+          <h2 data-rd-reveal style={{ margin: "0 0 48px", font: `700 clamp(30px,2.8vw,48px)/1.15 ${MONO}` }}>How we did it</h2>
+          <div className="rd-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+            {cs.steps.map((b, i) => (
+              <div key={b.t} data-rd-reveal style={{ display: "flex", gap: 22, borderTop: "1px solid var(--rd-border)", padding: "28px 4px 8px" }}>
+                <span style={{ font: `700 16px ${MONO}`, color: "var(--rd-accent)" }}>{`0${i + 1}`}</span>
+                <div>
+                  <h3 style={{ margin: "0 0 8px", font: `700 20px ${MONO}` }}>{b.t}</h3>
+                  <p style={{ margin: 0, fontSize: 16, color: "var(--rd-text-2)" }}>{b.d}</p>
+                </div>
               </div>
             ))}
           </div>
-          <div className="flex flex-col gap-[18px]">
-            <div
-              data-reveal
-              data-reveal-delay="0.1"
-              className="rounded-[14px] p-6"
-              style={{
-                border: "1px solid var(--sf-border)",
-                backgroundColor: "var(--sf-surface)",
-              }}
-            >
-              <div
-                className="sf-mono mb-5 text-[11px] font-medium tracking-[0.12em]"
-                style={{ color: "var(--sf-faint)" }}
-              >
-                SYSTEM AT A GLANCE
-              </div>
-              <div className="flex flex-col">
-                {cs.diagram.map((node, i) => (
-                  <div key={node.label}>
-                    <div
-                      className="flex items-start gap-4 rounded-xl px-4 py-3"
-                      style={{ border: "1px solid var(--sf-border)" }}
-                    >
-                      <span
-                        className="sf-mono mt-[2px] text-[11px] font-extrabold"
-                        style={{ color: "var(--sf-accent)" }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="flex flex-col gap-[2px]">
-                        <span className="sf-sora text-[14px] font-bold">{node.label}</span>
-                        <span className="text-[12.5px]" style={{ color: "var(--sf-muted)" }}>
-                          {node.sub}
-                        </span>
-                      </span>
-                    </div>
-                    {i < cs.diagram.length - 1 ? (
-                      <div className="flex justify-center py-[2px]">
-                        <span
-                          className="text-[12px] leading-none"
-                          style={{ color: "var(--sf-accent)" }}
-                          aria-hidden="true"
-                        >
-                          ↓
-                        </span>
-                      </div>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div
-              data-reveal
-              data-reveal-delay="0.18"
-              className="rounded-[14px] p-[26px]"
-              style={{
-                border: "1px solid var(--sf-accent-border)",
-                backgroundImage:
-                  "linear-gradient(160deg, var(--sf-accent-soft), transparent 60%)",
-              }}
-            >
-              <p className="m-0 mb-[14px] text-[17px] leading-[1.6]" style={{ color: "var(--sf-text)" }}>
-                &ldquo;{cs.quote.text}&rdquo;
-              </p>
-              <span className="sf-mono text-[12px] font-medium" style={{ color: "var(--sf-faint)" }}>
-                {cs.quote.attribution}
-              </span>
-            </div>
+        </div>
+      </section>
+
+      {/* Stack + Quote */}
+      <section style={{ padding: "0 5% 80px" }}>
+        <div style={wrap}>
+          <p data-rd-reveal style={{ margin: "0 0 20px", font: `700 13px ${MONO}`, letterSpacing: "0.14em", color: "var(--rd-text-3)" }}>STACK WE USED</p>
+          <div data-rd-reveal style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 56 }}>
+            {cs.stack.map((t) => <span key={t} className="rd-chip">{t}</span>)}
+          </div>
+          <div data-rd-reveal className="rd-card" style={{ padding: "56px 48px" }}>
+            <blockquote style={{ margin: "0 0 28px", font: `700 clamp(22px,2vw,30px)/1.4 ${MONO}` }}>&ldquo;{cs.quote}&rdquo;</blockquote>
+            <p style={{ margin: 0, fontWeight: 600 }}>{cs.quoteName}</p>
+            <p style={{ margin: 0, fontSize: 15, color: "var(--rd-text-3)" }}>{cs.quoteRole}</p>
           </div>
         </div>
       </section>
 
-      {/* More outcomes */}
-      <section className="px-5 pb-14 sm:px-8 lg:px-11">
-        <div className="mx-auto max-w-[1240px]">
-          <div data-reveal className="mb-[22px] flex items-baseline justify-between">
-            <h2 className="m-0 text-[24px] font-bold tracking-[-0.02em] sm:text-[28px]">
-              More outcomes
-            </h2>
-            <Link
-              href="/#case-studies"
-              className="sf-sora text-[13px] font-semibold transition-opacity hover:opacity-80"
-              style={{ color: "var(--sf-accent)" }}
-            >
-              All work →
-            </Link>
+      {/* Next case */}
+      <section style={{ padding: "0 5% 112px" }}>
+        <Link href={`/works/${next.id}`} data-rd-reveal className="rd-card rd-card-lift" style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, padding: "40px 44px", flexWrap: "wrap" }}>
+          <div>
+            <p style={{ margin: "0 0 8px", font: `700 13px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>NEXT CASE — {next.num}</p>
+            <h3 style={{ margin: 0, font: `700 clamp(22px,2vw,30px) ${MONO}` }}>{next.title}</h3>
           </div>
-          <div className="grid grid-cols-1 gap-[18px] md:grid-cols-2">
-            {cs.related.map((relatedSlug, i) => {
-              const related = sfCaseStudies[relatedSlug];
-              if (!related) return null;
-              return (
-                <Link
-                  key={relatedSlug}
-                  href={`/works/${relatedSlug}`}
-                  data-reveal
-                  data-reveal-delay={`${i * 0.08}`}
-                  className="sf-card sf-card-hover rounded-2xl p-[26px]"
-                >
-                  <div className="sf-mono mb-[10px] text-[11px] font-medium" style={{ color: "var(--sf-faint)" }}>
-                    {related.kicker}
-                  </div>
-                  <div className="sf-sora mb-2 text-[18px] font-bold">{related.title}</div>
-                  <div className="text-[13.5px]" style={{ color: "var(--sf-muted)" }}>
-                    {related.stats
-                      .slice(0, 2)
-                      .map((stat) => `${stat.value} ${stat.label}`)
-                      .join(" · ")}
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontWeight: 600, whiteSpace: "nowrap" }}>
+            Read case <Arrow size={16} />
+          </span>
+        </Link>
       </section>
-    </SfLayout>
+    </RdLayout>
   );
 }

@@ -1,126 +1,84 @@
-import SfLayout from "@/components/sf/Layout";
+import { useState } from "react";
+import Link from "next/link";
+import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { Eyebrow, PillLink } from "@/components/sf/ui";
+import { Arrow, RdButton } from "@/components/rd/ui";
+import { INDUSTRIES } from "@/data/rdHome";
 
-const INDUSTRIES = [
-  {
-    tag: "RETAIL & E-COMMERCE",
-    title: "Service at scale",
-    desc: "Support agents, demand forecasting and personalization — proven at 10,000+ inquiries a day.",
-  },
-  {
-    tag: "BANKING & FINANCE",
-    title: "Modernize without downtime",
-    desc: "Legacy migration, document automation and compliance-grade controls for regulated institutions.",
-  },
-  {
-    tag: "HEALTHCARE",
-    title: "HIPAA-safe intelligence",
-    desc: "Intake automation, records processing and patient communication with privacy engineered in.",
-  },
-  {
-    tag: "MANUFACTURING & LOGISTICS",
-    title: "Operations that see ahead",
-    desc: "Predictive maintenance, supply-chain visibility and document flows across the chain.",
-  },
-  {
-    tag: "SAAS & TECHNOLOGY",
-    title: "AI features that ship",
-    desc: "Embedded copilots, RAG search and agentic features inside your product — fast.",
-  },
-  {
-    tag: "PROFESSIONAL SERVICES",
-    title: "Billable hours, reclaimed",
-    desc: "Research, drafting and knowledge agents for legal, accounting and consulting teams.",
-  },
-];
+const MONO = "'Space Mono',monospace";
+const wrap = { maxWidth: 1280, margin: "0 auto" };
 
 export default function IndustriesPage() {
+  const [active, setActive] = useState(0);
+  const ind = INDUSTRIES[active];
   return (
-    <SfLayout>
+    <RdLayout>
       <Seo
-        title="AI Solutions for Retail, Banking & Healthcare"
-        description="Industry-specific AI and automation: retail support at scale, zero-downtime banking modernization, HIPAA-safe healthcare AI, supply-chain intelligence and more."
-        keywords="AI solutions by industry, retail AI, banking modernization, healthcare AI, HIPAA compliant AI, manufacturing automation, SaaS AI features, legal AI"
+        title="IT Services & Global Talent Sourcing by Industry"
+        description="Technology delivery and workforce sourcing across twelve industries — healthcare, banking, energy, construction, hospitality, transport, the public sector and more."
+        keywords="IT services by industry, global talent sourcing, healthcare staffing, skilled trades recruitment, offshore back-office teams, industry AI solutions"
       />
-
-      {/* Hero */}
-      <section
-        className="px-5 pb-[50px] pt-[70px] sm:px-8 lg:px-11"
-        style={{ borderBottom: "1px solid var(--sf-border)" }}
-      >
-        <div className="mx-auto max-w-[1240px]">
-          <Eyebrow data-reveal className="mb-4">
-            Industries
-          </Eyebrow>
-          <h1
-            data-reveal
-            data-reveal-delay="0.08"
-            className="m-0 mb-[18px] max-w-[20ch] text-[38px] font-extrabold leading-[1.06] tracking-[-0.03em] sm:text-[54px]"
-          >
-            Domain-deep, not domain-adjacent.
+      <section style={{ padding: "96px 5% 64px" }}>
+        <div style={{ ...wrap, maxWidth: 900 }}>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>INDUSTRIES</p>
+          <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 24px", font: `700 clamp(44px,4.6vw,76px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
+            Engineered — and staffed — for your industry.
           </h1>
-          <p
-            data-reveal
-            data-reveal-delay="0.16"
-            className="m-0 max-w-[56ch] text-[16px] leading-[1.6]"
-            style={{ color: "var(--sf-muted)" }}
-          >
-            Every industry has its own compliance regime, legacy stack and failure modes. We
-            build AI that respects all three.
+          <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: 0, fontSize: 20, lineHeight: 1.65, color: "var(--rd-text-2)" }}>
+            Twelve sectors, two capabilities. We build the systems that run the work, and we
+            source the people who do it — from AI engineers and cloud architects to nurses,
+            technicians, accountants and managed back-office teams.
           </p>
         </div>
       </section>
 
-      {/* Grid */}
-      <section className="px-5 py-[50px] sm:px-8 lg:px-11">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-[18px] md:grid-cols-2 lg:grid-cols-3">
-          {INDUSTRIES.map((industry, i) => (
-            <div
-              key={industry.tag}
-              data-reveal
-              data-reveal-delay={`${(i % 3) * 0.08}`}
-              className="sf-card sf-card-hover flex flex-col gap-[10px] rounded-2xl p-7"
-            >
-              <span
-                className="sf-mono text-[11px] font-medium tracking-[0.12em]"
-                style={{ color: "var(--sf-accent)" }}
-              >
-                {industry.tag}
-              </span>
-              <span className="sf-sora text-[19px] font-bold">{industry.title}</span>
-              <span className="text-[13.5px] leading-[1.55]" style={{ color: "var(--sf-muted)" }}>
-                {industry.desc}
-              </span>
-            </div>
-          ))}
+      <section style={{ padding: "0 5% 64px" }}>
+        <div data-rd-reveal className="rd-tabs" style={{ ...wrap, display: "grid", gridTemplateColumns: "0.9fr 1.4fr", borderRadius: 40, overflow: "hidden" }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {INDUSTRIES.map((it, i) => (
+              <button key={it.name} type="button" onClick={() => setActive(i)} style={{ textAlign: "left", padding: "17px 30px", background: active === i ? "var(--rd-card)" : "transparent", color: "var(--rd-text)", border: "none", borderBottom: i < INDUSTRIES.length - 1 ? "1px solid var(--rd-divider)" : "none", cursor: "pointer", font: `700 16px ${MONO}`, transition: "background 0.25s ease" }}>
+                {it.name}
+              </button>
+            ))}
+          </div>
+          <div style={{ background: "var(--rd-card)", padding: 56, display: "flex", flexDirection: "column", justifyContent: "center", gap: 20, minHeight: 460 }}>
+            <p style={{ margin: 0, font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>{ind.tag}</p>
+            <h3 style={{ margin: 0, font: `700 clamp(28px,2.4vw,40px)/1.2 ${MONO}` }}>{ind.title}</h3>
+            <p style={{ margin: 0, fontSize: 18, color: "var(--rd-text-2)" }}>{ind.body}</p>
+            <Link href={`/industries/${ind.slug}`} style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 500, marginTop: 8 }}>{ind.name} in depth <Arrow /></Link>
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-5 pb-14 sm:px-8 lg:px-11">
-        <div
-          data-reveal
-          className="relative mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-6 overflow-hidden rounded-[22px] px-6 py-11 sm:px-[50px] lg:flex-row"
-          style={{
-            border: "1px solid var(--sf-accent-border)",
-            backgroundImage:
-              "radial-gradient(ellipse at 0% 130%, var(--sf-accent-glow), transparent 60%)",
-          }}
-        >
-          <div className="text-center lg:text-left">
-            <h2 className="m-0 mb-2 text-[24px] font-bold tracking-[-0.02em] sm:text-[28px]">
-              Don&apos;t see your industry?
-            </h2>
-            <p className="m-0 text-[14.5px]" style={{ color: "var(--sf-muted)" }}>
-              If it has workflows, it has agent-shaped opportunities. Let&apos;s find yours.
-            </p>
+      {/* Card grid: gives every industry page a real crawlable link, which the
+          tab widget above cannot do on its own. */}
+      <section style={{ padding: "0 5% 96px" }}>
+        <div style={wrap}>
+          <h2 data-rd-reveal style={{ margin: "0 0 32px", font: `700 clamp(26px,2.4vw,40px)/1.15 ${MONO}` }}>Explore every industry</h2>
+          <div className="rd-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+            {INDUSTRIES.map((it) => (
+              <Link key={it.slug} href={`/industries/${it.slug}`} data-rd-reveal className="rd-card rd-card-lift" style={{ padding: "32px 28px", borderRadius: 24, display: "flex", flexDirection: "column", gap: 12 }}>
+                <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>{it.tag}</span>
+                <span style={{ font: `700 21px ${MONO}`, lineHeight: 1.25 }}>{it.title}</span>
+                <span style={{ fontSize: 15, lineHeight: 1.55, color: "var(--rd-text-2)", flex: 1 }}>{it.body}</span>
+                <span style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 500, fontSize: 15 }}>
+                  {it.name} <Arrow />
+                </span>
+              </Link>
+            ))}
           </div>
-          <PillLink href="/contact" size="lg" className="whitespace-nowrap">
-            Book a call
-          </PillLink>
         </div>
       </section>
-    </SfLayout>
+
+      <section style={{ padding: "0 5% 112px" }}>
+        <div data-rd-reveal style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap", border: "1px solid var(--rd-border)", borderRadius: 40, padding: "56px 8%" }}>
+          <div>
+            <h2 style={{ margin: "0 0 8px", font: `700 clamp(26px,2.4vw,36px) ${MONO}` }}>Don&apos;t see your industry?</h2>
+            <p style={{ margin: 0, fontSize: 18, color: "var(--rd-text-2)" }}>If it has workflows, it has agent-shaped opportunities — and if it has vacancies, we can source them. Let&apos;s find yours.</p>
+          </div>
+          <RdButton href="/contact">Book a call</RdButton>
+        </div>
+      </section>
+    </RdLayout>
   );
 }

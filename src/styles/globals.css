@@ -136,6 +136,340 @@ body {
 }
 
 /* ============================================================
+   RoundDigital "Site" design system (claude.ai/design — RoundDigital
+   Site.dc.html). Space Mono + Inter, red accent on warm-dark, with a
+   light mode. Scoped under .rd; theme via html[data-rd-theme].
+   ============================================================ */
+
+.rd {
+  --rd-accent: #ff0000;
+  --rd-bg: #251c1e;
+  --rd-card: #0d0305;
+  --rd-text: #ffffff;
+  --rd-text-2: #dad9d9;
+  --rd-text-3: #b6b3b4;
+  --rd-border: rgba(255, 255, 255, 0.12);
+  --rd-border-2: rgba(255, 255, 255, 0.2);
+  --rd-border-btn: rgba(255, 255, 255, 0.3);
+  --rd-divider: rgba(255, 255, 255, 0.08);
+  --rd-nav-bg: rgba(37, 28, 30, 0.92);
+  background-color: var(--rd-bg);
+  color: var(--rd-text);
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html[data-rd-theme="light"] .rd {
+  --rd-bg: #ffffff;
+  --rd-card: #f2f2f2;
+  --rd-text: #0d0305;
+  --rd-text-2: #554e50;
+  --rd-text-3: #868182;
+  --rd-border: rgba(13, 3, 5, 0.15);
+  --rd-border-2: rgba(13, 3, 5, 0.2);
+  --rd-border-btn: #0d0305;
+  --rd-divider: rgba(13, 3, 5, 0.08);
+  --rd-nav-bg: rgba(255, 255, 255, 0.92);
+}
+
+.rd h1,
+.rd h2,
+.rd h3,
+.rd h4 {
+  font-family: "Space Mono", monospace;
+  text-transform: uppercase;
+  color: var(--rd-text);
+  margin: 0;
+}
+
+.rd-mono {
+  font-family: "Space Mono", monospace;
+}
+
+.rd a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.rd-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.rd-eyebrow {
+  font: 700 14px "Space Mono", monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rd-accent);
+}
+
+/* Buttons */
+.rd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 100px;
+  font: 600 17px "Inter", sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    color 0.2s ease;
+}
+
+.rd-btn-primary {
+  background: var(--rd-accent);
+  color: #ffffff;
+  padding: 14px 34px;
+}
+
+.rd-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -10px var(--rd-accent);
+  color: #ffffff;
+}
+
+.rd-btn-ghost {
+  border: 1px solid var(--rd-border-btn);
+  color: var(--rd-text);
+  padding: 13px 34px;
+}
+
+.rd-btn-ghost:hover {
+  background: var(--rd-text);
+  color: var(--rd-bg);
+}
+
+/* Cards */
+.rd-card {
+  background: var(--rd-card);
+  border-radius: 32px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.rd-card-lift:hover {
+  transform: translateY(-6px);
+}
+
+.rd-chip {
+  padding: 10px 22px;
+  border-radius: 100px;
+  background: var(--rd-card);
+  font: 700 15px "Space Mono", monospace;
+  color: var(--rd-text-2);
+  white-space: nowrap;
+}
+
+.rd-input {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--rd-border-2);
+  background: var(--rd-card);
+  color: var(--rd-text);
+  font: 400 15px "Inter", sans-serif;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.rd-input::placeholder {
+  color: var(--rd-text-3);
+}
+
+.rd-input:focus {
+  border-color: var(--rd-accent);
+}
+
+/* Theme-driven logo swap: transparent red mark works on both themes */
+.rd .rd-logo {
+  height: 30px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(255, 0, 0, 0.35));
+}
+
+/* Halftone-safe image treatment */
+.rd-img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Accessibility */
+.rd a:focus-visible,
+.rd button:focus-visible,
+.rd input:focus-visible,
+.rd select:focus-visible,
+.rd textarea:focus-visible {
+  outline: 2px solid var(--rd-accent);
+  outline-offset: 3px;
+}
+
+.rd ::selection {
+  background: var(--rd-accent);
+  color: #ffffff;
+}
+
+/* Navbar interactions + responsive */
+.rd .rd-navlink {
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.rd .rd-navlink:hover {
+  background: var(--rd-card);
+  color: inherit;
+}
+.rd .rd-menu-item {
+  transition: background 0.2s ease, padding-left 0.2s ease;
+}
+.rd .rd-menu-item:hover {
+  background: var(--rd-card);
+  color: inherit;
+}
+.rd .rd-theme-toggle:hover {
+  border-color: var(--rd-text);
+  transform: rotate(20deg);
+}
+.rd .rd-contact-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 24px -8px var(--rd-accent);
+  color: #fff;
+}
+
+@media (max-width: 1180px) {
+  .rd .rd-wordmark {
+    display: none !important;
+  }
+}
+@media (max-width: 940px) {
+  .rd .rd-navlinks {
+    display: none !important;
+  }
+  .rd .rd-hamburger {
+    display: flex !important;
+  }
+  .rd .rd-contact-cta {
+    display: none !important;
+  }
+}
+
+.rd .rd-footer-link:hover {
+  color: var(--rd-text);
+}
+
+.rd .rd-carousel-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--rd-border-btn);
+  background: none;
+  color: var(--rd-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.rd .rd-carousel-btn:hover {
+  background: var(--rd-text);
+  color: var(--rd-bg);
+}
+
+/* Responsive grid collapse for RD sections */
+@media (max-width: 900px) {
+  .rd .rd-footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 40px !important;
+  }
+  .rd .rd-grid-3,
+  .rd .rd-grid-4,
+  .rd .rd-bento,
+  .rd .rd-process-grid,
+  .rd .rd-tabs,
+  .rd .rd-hero-collage {
+    grid-template-columns: 1fr !important;
+  }
+  .rd .rd-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+  .rd .rd-bento > *,
+  .rd .rd-process-grid > * {
+    grid-row: auto !important;
+    grid-column: auto !important;
+  }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  .rd .rd-grid-3,
+  .rd .rd-grid-4 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 600px) {
+  .rd .rd-footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@keyframes rd-nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rd-view-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rd-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reveal only hides content once JS confirms it will animate it back in
+   (root gets .rd-reveal-on). If the effect never runs, content stays
+   visible — the page is never dependent on JS to be readable. */
+.rd.rd-reveal-on [data-rd-reveal]:not(.rd-in) {
+  opacity: 0;
+}
+
+.rd.rd-reveal-on [data-rd-reveal].rd-in {
+  animation: rd-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rd [data-rd-reveal] {
+    opacity: 1;
+    animation: none !important;
+  }
+  .rd *,
+  .rd *::before,
+  .rd *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
    Signal Field design system (claude.ai/design — direction 4a)
    Dark-first theme with a light mode, scoped under .sf
    ============================================================ */

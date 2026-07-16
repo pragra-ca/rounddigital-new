@@ -1,9 +1,10 @@
 import Link from "next/link";
-import SfLayout from "@/components/sf/Layout";
+import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { Eyebrow, PillLink } from "@/components/sf/ui";
-import { sfServices } from "@/data/sfServices";
+import { Arrow, RdButton } from "@/components/rd/ui";
+import { rdServices } from "@/data/rdServices";
 
+const MONO = "'Space Mono',monospace";
 const ORDER = [
   "ai-machine-learning",
   "cloud-solutions",
@@ -17,76 +18,44 @@ const ORDER = [
 
 export default function ServicesIndexPage() {
   return (
-    <SfLayout>
+    <RdLayout>
       <Seo
-        title="Enterprise IT & AI Services in Toronto & Dallas"
-        description="AI agent development, cloud migration, cybersecurity, custom software, data engineering and digital transformation — one senior team, one delivery rhythm."
-        keywords="enterprise IT services, AI services, cloud migration, cybersecurity services, custom software development, data engineering, digital transformation consulting"
+        title="Enterprise IT Services & Global Talent Sourcing | Toronto, Dallas & Pune"
+        description="AI agent development, cloud migration, cybersecurity, custom software, data engineering, digital transformation and global talent sourcing across every industry."
+        keywords="enterprise IT services, AI services, cloud migration, cybersecurity, custom software development, data engineering, global talent sourcing, staffing"
       />
-
-      {/* Hero */}
-      <section
-        className="relative overflow-hidden px-5 pb-[50px] pt-[70px] sm:px-8 lg:px-11"
-        style={{ borderBottom: "1px solid var(--sf-border)" }}
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-[180px] -top-[120px] h-[560px] w-[560px] rounded-full"
-          style={{ background: "radial-gradient(circle, var(--sf-hero-glow), transparent 65%)" }}
-        />
-        <div className="relative mx-auto max-w-[1240px]">
-          <Eyebrow data-reveal className="mb-4">
-            Our services
-          </Eyebrow>
-          <h1
-            data-reveal
-            data-reveal-delay="0.08"
-            className="m-0 mb-[18px] max-w-[20ch] text-[40px] font-extrabold leading-[1.06] tracking-[-0.03em] sm:text-[54px]"
-          >
-            Everything it takes to ship enterprise AI.
+      <section style={{ padding: "96px 5% 64px" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: "600 15px 'Inter',sans-serif" }}>Our services</p>
+          <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 28px", maxWidth: 900, font: `700 clamp(44px,4.6vw,76px)/1.08 ${MONO}`, letterSpacing: "-0.01em" }}>
+            Everything it takes to ship — and the people to run it.
           </h1>
-          <p
-            data-reveal
-            data-reveal-delay="0.16"
-            className="m-0 max-w-[56ch] text-[16px] leading-[1.6]"
-            style={{ color: "var(--sf-muted)" }}
-          >
-            Eight services, one senior team, one operating rhythm: discover, prototype,
-            ship, operate. Whether you need an AI agent in production or a legacy system
-            retired, the path is the same — and it starts with a working milestone inside
-            six weeks.
+          <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: 0, maxWidth: 640, fontSize: 20, color: "var(--rd-text-2)" }}>
+            A complete IT practice — AI, cloud, security, software, data and transformation — plus
+            global talent sourcing for any industry, technical or not. Whether you need an AI agent
+            in production, a legacy system retired or forty people mobilized, it starts the same
+            way: a working milestone inside six weeks.
           </p>
         </div>
       </section>
 
-      {/* Grid */}
-      <section className="px-5 py-[50px] sm:px-8 lg:px-11">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-[18px] md:grid-cols-2 lg:grid-cols-3">
-          {ORDER.map((slug, i) => {
-            const service = sfServices[slug];
+      <section style={{ padding: "0 5% 96px" }}>
+        <div className="rd-grid-4" style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
+          {ORDER.map((slug) => {
+            const s = rdServices[slug];
             return (
               <Link
                 key={slug}
                 href={`/services/${slug}`}
-                data-reveal
-                data-reveal-delay={`${(i % 3) * 0.08}`}
-                className="sf-card sf-card-hover group flex flex-col gap-[11px] p-7"
+                data-rd-reveal
+                className="rd-card rd-card-lift"
+                style={{ padding: "32px 28px", borderRadius: 28, border: "1px solid transparent", display: "flex", flexDirection: "column", gap: 14 }}
               >
-                <span
-                  className="sf-mono text-[11px] font-medium uppercase tracking-[0.12em]"
-                  style={{ color: "var(--sf-accent)" }}
-                >
-                  {service.eyebrow}
-                </span>
-                <span className="sf-sora text-[20px] font-bold">{service.name}</span>
-                <span className="text-[14px] leading-[1.55]" style={{ color: "var(--sf-muted)" }}>
-                  {service.tagline}
-                </span>
-                <span
-                  className="sf-sora mt-auto text-[13px] font-semibold transition-transform duration-300 group-hover:translate-x-1"
-                  style={{ color: "var(--sf-accent)" }}
-                >
-                  Learn more →
+                <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent)" }}>{s.tag}</span>
+                <span style={{ font: `700 22px ${MONO}`, lineHeight: 1.25 }}>{s.title}</span>
+                <span style={{ fontSize: 15, lineHeight: 1.55, color: "var(--rd-text-2)", flex: 1 }}>{s.desc}</span>
+                <span style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 500, fontSize: 15 }}>
+                  Learn more <Arrow />
                 </span>
               </Link>
             );
@@ -94,30 +63,15 @@ export default function ServicesIndexPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-5 pb-14 sm:px-8 lg:px-11">
-        <div
-          data-reveal
-          className="relative mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-6 overflow-hidden rounded-[22px] px-6 py-11 sm:px-[50px] lg:flex-row"
-          style={{
-            border: "1px solid var(--sf-accent-border)",
-            backgroundImage:
-              "radial-gradient(ellipse at 0% 130%, var(--sf-accent-glow), transparent 60%)",
-          }}
-        >
-          <div className="text-center lg:text-left">
-            <h2 className="m-0 mb-2 text-[24px] font-bold tracking-[-0.02em] sm:text-[28px]">
-              Not sure where to start?
-            </h2>
-            <p className="m-0 text-[14.5px]" style={{ color: "var(--sf-muted)" }}>
-              One call with a senior engineer, and you&apos;ll leave with a plan.
-            </p>
-          </div>
-          <PillLink href="/contact" size="lg" className="whitespace-nowrap">
-            Book a call
-          </PillLink>
+      <section style={{ padding: "0 5% 112px" }}>
+        <div data-rd-reveal style={{ maxWidth: 1280, margin: "0 auto", textAlign: "center", border: "1px solid var(--rd-border)", borderRadius: 40, padding: "80px 8%" }}>
+          <h2 style={{ margin: "0 0 16px", font: `700 clamp(32px,3vw,52px)/1.15 ${MONO}` }}>Not sure where to start?</h2>
+          <p style={{ margin: "0 auto 32px", maxWidth: 520, fontSize: 20, color: "var(--rd-text-2)" }}>
+            One call with a senior engineer, and you&apos;ll leave with a plan.
+          </p>
+          <RdButton href="/contact">Book a call</RdButton>
         </div>
       </section>
-    </SfLayout>
+    </RdLayout>
   );
 }
