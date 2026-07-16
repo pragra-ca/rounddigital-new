@@ -23,25 +23,51 @@ const OFFICES = [
   { tag: "INDIA · MAHARASHTRA", city: "Pune", lines: ["Supreme HQ, 302, Mumbai-Pune Expressway", "Baner Annex, Baner, Pune 411045"] },
 ];
 
+const STORY = [
+  "Round Digital started with a simple frustration. Growing businesses were being sold enterprise software promises and delivered junior-freelancer reality — endless timelines, surprise invoices, and code nobody could maintain after handover.",
+  "Our founders had spent years shipping systems for banks, global retailers and Fortune 500s, and they knew the discipline that made those projects succeed: senior engineers, tight scope, security from day one, and relentless focus on the business outcome. So they set out to bring exactly that discipline to companies that could never justify a Big-Four price tag.",
+  "A decade and 100+ projects later, that's still the whole idea. We're a senior, cross-functional team across Toronto, Dallas and Pune — the engineers, architects and delivery leads who've shipped real systems into production, staffed directly onto your project. Enterprise-grade engineering, right-sized and honestly priced, built by the people who actually build it.",
+];
+
+const GUARANTEES = [
+  { t: "Fixed-price discovery", d: "You know the investment before you ever commit to a build. No open-ended meters." },
+  { t: "Senior engineers only", d: "No juniors learning on your budget, no anonymous offshore bench — the people you meet build your system." },
+  { t: "You own the IP", d: "Full source code, documentation and transfer on every engagement. No lock-in, ever." },
+  { t: "ROI or we say no", d: "We only take on work we believe pays for itself within twelve months — and we'll tell you if it won't." },
+];
+
 export default function AboutPage() {
   return (
     <RdLayout>
       <Seo
-        title="About Us: Senior AI & Software Consultants"
-        description="Meet Round Digital — 20+ senior consultants across Toronto, Dallas and Pune. The engineers you meet on the first call are the ones who build your system."
-        keywords="about RoundDigital, AI consulting firm, software consultants, Mississauga, Toronto, Dallas, Pune"
+        title="About Us: Enterprise Engineering, Right-Sized for SMBs"
+        description="Round Digital brings Fortune-500 engineering discipline to growing businesses. 20+ senior engineers across Toronto, Dallas and Pune — fixed price, senior-only, you own the IP."
+        keywords="about RoundDigital, software company for small business, SMB engineering partner, AI consulting firm, Mississauga, Toronto, Dallas, Pune"
       />
       <section style={{ padding: "96px 5% 64px" }}>
         <div style={{ ...wrap, maxWidth: 900 }}>
           <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>ABOUT ROUND DIGITAL</p>
           <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 24px", font: `700 clamp(44px,4.6vw,76px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
-            A senior team that bets its name on shipping.
+            Enterprise engineering, right-sized for you.
           </h1>
           <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: 0, fontSize: 20, lineHeight: 1.65, color: "var(--rd-text-2)" }}>
-            20+ expert consultants across Toronto, Dallas and Pune. No juniors learning on your
-            dime, no handoffs to an anonymous bench — the people you meet on the first call are
-            the people who build your system.
+            We bring the engineering discipline that Fortune 500s pay millions for to small and
+            mid-sized businesses — delivered by 20+ senior consultants across Toronto, Dallas
+            and Pune. No juniors on your budget, no anonymous bench: the people you meet on the
+            first call are the people who build your system.
           </p>
+        </div>
+      </section>
+
+      {/* Our story */}
+      <section style={{ padding: "0 5% 88px" }}>
+        <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: 56, alignItems: "start" }}>
+          <h2 data-rd-reveal style={{ margin: 0, font: `700 clamp(28px,2.6vw,42px)/1.15 ${MONO}` }}>Our story</h2>
+          <div data-rd-reveal data-rd-reveal-delay="0.05" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            {STORY.map((p, i) => (
+              <p key={i} style={{ margin: 0, fontSize: 18, lineHeight: 1.7, color: "var(--rd-text-2)" }}>{p}</p>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -87,6 +113,24 @@ export default function AboutPage() {
               <div key={d} data-rd-reveal className="rd-card" style={{ display: "flex", alignItems: "center", gap: 12, padding: "18px 20px", borderRadius: 18 }}>
                 <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--rd-accent)", flexShrink: 0 }} />
                 <span style={{ font: `700 15px ${MONO}` }}>{d}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Guarantees */}
+      <section style={{ padding: "0 5% 88px" }}>
+        <div style={wrap}>
+          <div data-rd-reveal style={{ marginBottom: 40 }}>
+            <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>OUR PROMISE</p>
+            <h2 style={{ margin: 0, font: `700 clamp(30px,2.8vw,48px)/1.15 ${MONO}` }}>What we guarantee, in writing.</h2>
+          </div>
+          <div className="rd-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
+            {GUARANTEES.map((g) => (
+              <div key={g.t} data-rd-reveal className="rd-card" style={{ padding: "32px 28px", borderRadius: 24 }}>
+                <h3 style={{ margin: "0 0 12px", font: `700 19px ${MONO}` }}>{g.t}</h3>
+                <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{g.d}</p>
               </div>
             ))}
           </div>
