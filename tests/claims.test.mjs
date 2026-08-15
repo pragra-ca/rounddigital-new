@@ -92,6 +92,20 @@ test("flags possession-verb ISO claims, not just certified/compliant", () => {
   assert.equal(findForbiddenClaims("We hold ISO 27001.").length, 1);
 });
 
+test("flags an unqualified 'SOC 2 audited' claim", () => {
+  const hits = findForbiddenClaims("SOC 2 audited");
+  assert.equal(hits.length, 1);
+});
+
+test("does not flag 'audits' (plural noun) in honest service-marketing copy", () => {
+  assert.equal(
+    findForbiddenClaims(
+      "We build and operate the controls and evidence pipelines that get you through SOC 2 and ISO 27001 audits."
+    ).length,
+    0
+  );
+});
+
 test("regression: allow-cases from spec §2/§8 remain unflagged", () => {
   assert.equal(findForbiddenClaims("Our controls are aligned to ISO 27001.").length, 0);
   assert.equal(findForbiddenClaims("ISO 9001 certification is in progress.").length, 0);

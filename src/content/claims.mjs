@@ -15,8 +15,12 @@
 const CERT_GAP = String.raw`[\s-]{0,40}`;
 
 // Verbs that assert possession of a certification, whether framed as
-// "certified/compliant" or as plain possession ("hold", "attained").
-const CERT_VERBS = String.raw`certified|certification(?!\s+is\s+in\s+progress)(?!\s+is\s+planned)|accredited|appraised|compliant|hold|holds|attained|awarded`;
+// "certified/compliant", as plain possession ("hold", "attained"), or as an
+// unqualified claim that an audit occurred ("audited" — deliberately not
+// "audits": the plural noun shows up in legitimate service-marketing copy
+// like "get you through SOC 2 ... audits", which describes work performed
+// for a client, not a claim about our own posture).
+const CERT_VERBS = String.raw`certified|certification(?!\s+is\s+in\s+progress)(?!\s+is\s+planned)|accredited|appraised|compliant|hold|holds|attained|awarded|audited`;
 
 const CERT_ASSERTION = String.raw`${CERT_GAP}(?:${CERT_VERBS})`;
 
@@ -40,7 +44,7 @@ export const FORBIDDEN_CLAIMS = [
     // 27001.") or as the usual certified/compliant suffix ("ISO 27001
     // certified."). Both forms are checked; either alone is enough to flag.
     pattern: new RegExp(
-      String.raw`${NOT_PURSUING}(?:\b(?:hold|holds|attained|awarded)${CERT_GAP}ISO(?:/IEC)?\s*\d{4,5}(?:[:-]\d{4})?|ISO(?:/IEC)?\s*\d{4,5}(?:[:-]\d{4})?${CERT_ASSERTION})`,
+      String.raw`${NOT_PURSUING}(?:\b(?:hold|holds|attained|awarded|audited)${CERT_GAP}ISO(?:/IEC)?\s*\d{4,5}(?:[:-]\d{4})?|ISO(?:/IEC)?\s*\d{4,5}(?:[:-]\d{4})?${CERT_ASSERTION})`,
       "gi"
     ),
     reason: "ISO certification is not held. Use 'aligned to' or 'certification is in progress'.",
