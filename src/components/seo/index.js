@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { buildOrganizationSchema } from "@/content/organization.mjs";
 
 const Seo = ({ 
   title, 
@@ -111,12 +112,6 @@ const Seo = ({
       <meta name="msapplication-TileColor" content="#e14242" />
       <meta name="application-name" content="RoundDigital" />
       
-      {/* Geographic Tags */}
-      <meta name="geo.region" content="CA-ON" />
-      <meta name="geo.placename" content="Mississauga, Ontario" />
-      <meta name="geo.position" content="43.5890;-79.6441" />
-      <meta name="ICBM" content="43.5890, -79.6441" />
-      
       {/* Business/Organization Tags */}
       <meta name="contact" content="info@rounddigital.co" />
       <meta name="copyright" content="RoundDigital" />
@@ -127,121 +122,13 @@ const Seo = ({
         content="1-oTgGaARXtqTHAkUDKHoSZBd1yqsHtogEZ2YqqD06E"
       /> */}
       
-      {/* Structured Data - JSON-LD */}
+      {/* Structured Data — Organization, built from the verified-facts module */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "RoundDigital",
-            "url": baseUrl,
-            "logo": `${baseUrl}/favicon.svg`,
-            "description": defaultDescription,
-            "address": [
-              {
-                "@type": "PostalAddress",
-                "streetAddress": "160B - 110 Matheson Blvd W",
-                "addressLocality": "Mississauga",
-                "addressRegion": "ON",
-                "postalCode": "L5M 6B8",
-                "addressCountry": "CA"
-              },
-              {
-                "@type": "PostalAddress",
-                "streetAddress": "450 Century Pkwy, Ste 250",
-                "addressLocality": "Allen",
-                "addressRegion": "TX",
-                "postalCode": "75013",
-                "addressCountry": "US"
-              },
-              {
-                "@type": "PostalAddress",
-                "streetAddress": "Supreme HQ, 302, Mumbai-Pune Expressway, Baner Annex, Baner",
-                "addressLocality": "Pune",
-                "addressRegion": "Maharashtra",
-                "postalCode": "411045",
-                "addressCountry": "IN"
-              }
-            ],
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "telephone": "+1-905-407-5009",
-              "contactType": "Customer Service",
-              "email": "info@rounddigital.co",
-              "areaServed": "Worldwide",
-              "availableLanguage": "English"
-            },
-            "sameAs": [
-              "https://www.linkedin.com/company/rounddigital/",
-              "https://twitter.com/rounddigital",
-              "https://facebook.com/rounddigital"
-            ],
-            "foundingDate": "2015",
-            "numberOfEmployees": {
-              "@type": "QuantitativeValue",
-              "value": "20+"
-            },
-            "areaServed": {
-              "@type": "Place",
-              "name": "Worldwide"
-            },
-            "knowsAbout": [
-              "Artificial Intelligence",
-              "Machine Learning",
-              "Cybersecurity",
-              "Cloud Computing",
-              "Software Development",
-              "Digital Transformation",
-              "Data Analytics",
-              "Global Talent Sourcing",
-              "IT Staff Augmentation",
-              "Healthcare Staffing",
-              "Skilled Trades Recruitment",
-              "Managed Back-Office Services"
-            ],
-            "offers": {
-              "@type": "AggregateOffer",
-              "offerCount": "8",
-              "itemOffered": [
-                {
-                  "@type": "Service",
-                  "name": "Global Talent Sourcing",
-                  "description": "Technology, professional, healthcare and skilled workforce sourcing across every industry"
-                },
-                {
-                  "@type": "Service",
-                  "name": "AI Agent Development",
-                  "description": "Custom intelligent agents for workflow automation"
-                },
-                {
-                  "@type": "Service",
-                  "name": "Cybersecurity Services",
-                  "description": "Enterprise security and compliance solutions"
-                },
-                {
-                  "@type": "Service",
-                  "name": "Cloud Solutions",
-                  "description": "Cloud migration and infrastructure services"
-                },
-                {
-                  "@type": "Service",
-                  "name": "Custom Software Development",
-                  "description": "Enterprise-grade software solutions"
-                },
-                {
-                  "@type": "Service",
-                  "name": "Digital Transformation",
-                  "description": "Strategic consulting and implementation"
-                },
-                {
-                  "@type": "Service",
-                  "name": "Data Analytics",
-                  "description": "Business intelligence and analytics solutions"
-                }
-              ]
-            }
-          })
+          __html: JSON.stringify(
+            buildOrganizationSchema({ baseUrl, description: defaultDescription })
+          ),
         }}
       />
 
