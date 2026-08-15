@@ -5,7 +5,12 @@ const head = { ...cell, font: "700 12px var(--rd-font-mono)", letterSpacing: "0.
 
 export default function NaicsTable() {
   return (
-    <div style={{ overflowX: "auto", border: "1px solid var(--rd-border)", borderRadius: 12 }}>
+    <div
+      tabIndex={0}
+      role="region"
+      aria-label="NAICS and PSC codes by capability"
+      style={{ overflowX: "auto", border: "1px solid var(--rd-border)", borderRadius: 12 }}
+    >
       <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 720, fontSize: 15 }}>
         <caption className="sr-only">
           NAICS and PSC codes by capability, with the applicable SBA size standard
