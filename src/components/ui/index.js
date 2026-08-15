@@ -6,4 +6,3 @@ export {
   FullScreenModal,
 } from "./Overlay";
 export { default as FullScreenOverlay } from "./FullScreenOverlay";
-export { default as OverlayDemo } from "./OverlayDemo";
