@@ -940,8 +940,8 @@ html[data-rd-theme='light'] .sf .sf-logo-light {
    can never drift from the web page. Target: one to two US Letter pages. */
 @media print {
   .no-print,
-  .rd nav,
-  .rd footer {
+  .rd > header,
+  .rd > footer {
     display: none !important;
   }
 
