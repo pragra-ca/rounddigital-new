@@ -684,7 +684,7 @@ git commit -m "fix(seo): build Organization schema from verified facts, drop unc
 
 ### Task 5: WCAG AA accent tokens
 
-`--rd-accent: #ff0000` on `--rd-bg: #251c1e` measures 4.21:1 — it fails AA for normal text and it is used for eyebrow text throughout the site. Add a separate text-safe accent rather than changing the brand fill colour.
+`--rd-accent: #ff0000` on `--rd-bg: #251c1e` measures 4.16:1 — it fails AA for normal text and it is used for eyebrow text throughout the site. Add a separate text-safe accent rather than changing the brand fill colour.
 
 **Files:**
 - Create: `src/content/contrast.mjs`
