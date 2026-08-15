@@ -935,3 +935,42 @@ html[data-rd-theme='light'] .sf .sf-logo-light {
   white-space: nowrap;
   border: 0;
 }
+
+/* Capability statement print output. The PDF is generated from this DOM so it
+   can never drift from the web page. Target: one to two US Letter pages. */
+@media print {
+  .no-print,
+  .rd nav,
+  .rd footer {
+    display: none !important;
+  }
+
+  html,
+  body,
+  .rd {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .rd-capability {
+    padding: 0 !important;
+  }
+
+  .rd-capability * {
+    color: #000000 !important;
+  }
+
+  .rd-capability a {
+    text-decoration: underline;
+  }
+
+  .rd-capability h2 {
+    color: #000000 !important;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 4px;
+  }
+
+  @page {
+    margin: 14mm;
+  }
+}
