@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "node --test tests/*.mjs",
-    "check": "yarn test && yarn lint"
+    "check:claims": "node scripts/check-claims.mjs",
+    "check": "npm test && npm run check:claims && npm run lint"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
