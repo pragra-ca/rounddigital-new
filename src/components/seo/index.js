@@ -19,53 +19,29 @@ const Seo = ({
   const cleanPath = router.asPath.split("?")[0].split("#")[0];
   const currentUrl = canonicalUrl || `${baseUrl}${cleanPath === "/" ? "" : cleanPath}`;
   
-  // Comprehensive default keywords based on site content
+  // Site-wide keyword floor. Deliberately short: Google has ignored the
+  // keywords meta since 2009, and every term here is also a claim we may be
+  // asked to substantiate in a bid. No certification names. See spec §2.
   const defaultKeywords = [
-    "RoundDigital",
+    "Round Digital",
     "IT services",
-    "AI development",
-    "artificial intelligence",
-    "machine learning",
-    "AI agent development",
-    "AI product integration",
-    "cybersecurity",
-    "enterprise security",
-    "cloud solutions",
-    "AWS",
-    "Azure",
-    "Google Cloud",
-    "cloud migration",
+    "AI enablement",
+    "AI governance",
     "custom software development",
-    "enterprise software",
-    "web development",
-    "mobile app development",
-    "legacy modernization",
-    "API development",
-    "digital transformation",
-    "data analytics",
-    "business intelligence",
-    "DevOps",
-    "cloud-native development",
-    "global talent solutions",
-    "staff augmentation",
-    "remote teams",
-    "engagement models",
-    "IT consulting",
-    "enterprise solutions",
-    "software consulting",
-    "Canada tech",
-    "Toronto IT services",
-    "Mississauga technology",
-    "enterprise IT solutions",
-    "technology consulting",
-    "software engineering",
-    "application development",
-    "system integration",
-    "compliance",
-    "SOC 2",
-    "ISO 27001",
-    "GDPR compliance",
-    "HIPAA compliance"
+    "cloud engineering",
+    "cybersecurity services",
+    "data engineering",
+    "survey research",
+    "public opinion research",
+    "program evaluation",
+    "IT staff augmentation",
+    "technical training",
+    "workforce development",
+    "women-owned technology company",
+    "small business IT contractor",
+    "Mississauga",
+    "Ontario",
+    "Noida",
   ];
 
   const keywordsData = keywords 
@@ -90,8 +66,6 @@ const Seo = ({
       <meta name="description" content={defaultDescription} />
       <meta name="keywords" content={keywordsData} />
       <meta name="author" content="RoundDigital" />
-      <meta name="language" content="English" />
-      <meta name="revisit-after" content="7 days" />
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
       <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow"} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -146,10 +120,7 @@ const Seo = ({
       {/* Business/Organization Tags */}
       <meta name="contact" content="info@rounddigital.co" />
       <meta name="copyright" content="RoundDigital" />
-      <meta name="coverage" content="Worldwide" />
-      <meta name="distribution" content="Global" />
-      <meta name="rating" content="General" />
-      
+
       {/* Google Site Verification */}
       {/* <meta
         name="google-site-verification"

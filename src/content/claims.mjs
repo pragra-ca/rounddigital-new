@@ -56,6 +56,11 @@ export const FORBIDDEN_CLAIMS = [
     pattern: /\bGSA\s*(?:MAS|Schedule)\s*holder\b/gi,
     reason: "No GSA vehicle is held. Spec §8 Tier 3.",
   },
+  {
+    pattern: /["'](?:SOC\s*2(?:\s*Type\s*I{1,2})?|ISO(?:\/IEC)?\s*\d{4,5}(?:[:-]\d{4})?|CMMI(?:\s*Level\s*[1-5])?)["']/gi,
+    reason:
+      "A bare certification name as a standalone string literal reads as a claim (e.g. an SEO keyword array). Certification names belong only in claims.mjs and credentials.mjs.",
+  },
 ];
 
 export function findForbiddenClaims(text) {

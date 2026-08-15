@@ -80,7 +80,7 @@ export const rdServices = {
     statsLabel: "SECURITY ENGAGEMENTS, BY THE NUMBERS",
     stats: [
       { n: "24/7", l: "threat monitoring" },
-      { n: "SOC 2", l: "aligned processes" },
+      { n: "Controls", l: "mapped to SOC 2 criteria" },
       { n: "ISO", l: "27001 aligned" },
       { n: "100%", l: "audit trail coverage" },
     ],

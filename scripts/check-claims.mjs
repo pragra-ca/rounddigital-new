@@ -25,8 +25,8 @@ function lineOf(text, index) {
 let failures = 0;
 for (const root of ROOTS) {
   for (const file of walk(root)) {
-    // The claims registry itself contains the forbidden strings by design.
-    if (file.includes("claims.mjs")) continue;
+    // These two files are the sanctioned homes for certification names.
+    if (file.includes("claims.mjs") || file.includes("credentials.mjs")) continue;
     const text = readFileSync(file, "utf8");
     for (const hit of findForbiddenClaims(text)) {
       failures += 1;

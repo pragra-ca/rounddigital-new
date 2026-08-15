@@ -44,3 +44,19 @@ test("reports the index of the match so the scanner can print a location", () =>
   const hits = findForbiddenClaims("padding padding SOC 2 certified");
   assert.ok(hits[0].index > 0);
 });
+
+test("flags a bare certification name used as a standalone string literal", () => {
+  assert.equal(findForbiddenClaims('const kw = ["SOC 2", "cloud"]').length, 1);
+  assert.equal(findForbiddenClaims('"ISO 27001",').length, 1);
+  // "CMMI Level 3" trips two independent rules here: the pre-existing bare
+  // CMMI-level pattern (no quotes or assertion word required) and the new
+  // quoted-string-literal pattern added above. Both firing is correct.
+  assert.equal(findForbiddenClaims('"CMMI Level 3"').length, 2);
+});
+
+test("does not flag a certification name inside honest prose", () => {
+  assert.equal(
+    findForbiddenClaims("Our controls are aligned to ISO 27001 and reviewed annually.").length,
+    0
+  );
+});

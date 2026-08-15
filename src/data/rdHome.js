@@ -107,7 +107,7 @@ export const BENEFITS = {
     img: "/rd/images/benefit-1.jpg",
   },
   cards: [
-    { tag: "Security", title: "Enterprise security", body: "SOC 2 compliant engineering with zero-trust architecture built into every deployment.", img: "/rd/images/hero-4.jpg" },
+    { tag: "Security", title: "Enterprise security", body: "Zero-trust architecture, least-privilege access and encrypted data paths designed into every deployment, with controls mapped to SOC 2 criteria.", img: "/rd/images/hero-4.jpg" },
     { tag: "Scale", title: "Scalable architecture", body: "Cloud-native platforms designed to handle millions of transactions with predictable cost.", img: "/rd/images/hero-5.jpg" },
     { tag: "AI", title: "AI-native solutions", body: "We embed intelligence into your core operations, not just bolt it on.", img: "/rd/images/hero-1.jpg" },
     { tag: "Cost", title: "Lower costs", body: "Optimized cloud spending and efficient engineering that reduces total cost of ownership.", img: "/rd/images/hero-2.jpg" },

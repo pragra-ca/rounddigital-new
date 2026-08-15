@@ -228,8 +228,8 @@ export const sfServices = {
       },
     ],
     stack: [
-      { name: "SOC 2", accent: true },
-      { name: "ISO 27001", accent: true },
+      { name: "SOC 2 aligned", accent: true },
+      { name: "ISO 27001 aligned", accent: true },
       { name: "Microsoft Sentinel" },
       { name: "CrowdStrike" },
       { name: "Wiz" },
