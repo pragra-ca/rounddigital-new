@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/generate-sitemap.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "node --test tests/*.mjs",
     "check:claims": "node scripts/check-claims.mjs",
-    "check": "npm test && npm run check:claims && npm run lint"
+    "check": "npm test && npm run check:claims && npm run lint",
+    "sitemap": "node scripts/generate-sitemap.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
