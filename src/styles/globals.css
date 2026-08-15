@@ -144,6 +144,9 @@ body {
 .rd {
   --rd-accent: #ff0000;
   --rd-accent-text: #ff6b6b;
+  --rd-font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --rd-font-body: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --rd-font-mono: 'Space Mono', ui-monospace, monospace;
   --rd-bg: #251c1e;
   --rd-card: #0d0305;
   --rd-text: #ffffff;
