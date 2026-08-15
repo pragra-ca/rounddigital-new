@@ -15,6 +15,7 @@ const COMPANY_LINKS = [
   { label: "Case studies", href: "/#case-studies" },
   { label: "Careers", href: "/careers" },
   { label: "Insights", href: "/#insights" },
+  { label: "Public sector", href: "/government" },
   { label: "Contact", href: "/contact" },
 ];
 

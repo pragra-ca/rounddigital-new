@@ -25,3 +25,16 @@ test("entry ids are unique", () => {
   const ids = PAST_PERFORMANCE.map((e) => e.id);
   assert.equal(new Set(ids).size, ids.length);
 });
+
+test("every entry states its relationship to Round Digital", () => {
+  // Federal evaluators read "past performance" as customer references.
+  // Perfectum.ai (own product) and Pragra (predecessor entity) are not
+  // customers, so every entry must be labelled to avoid misleading an
+  // evaluator into reading them as third-party engagements.
+  for (const e of PAST_PERFORMANCE) {
+    assert.ok(
+      typeof e.relationship === "string" && e.relationship.trim().length > 0,
+      `${e.id} is missing a relationship`
+    );
+  }
+});

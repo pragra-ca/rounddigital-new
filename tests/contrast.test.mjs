@@ -1,5 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { contrastRatio, TOKENS } from "../src/content/contrast.mjs";
 
 test("contrastRatio matches known reference values", () => {
@@ -40,5 +42,23 @@ test("the accent fill still passes 3:1 for large text and UI boundaries", () => 
       contrastRatio(t.accent, t.bg) >= 3,
       `${name}: accent fill fails the 3:1 non-text threshold`
     );
+  }
+});
+
+test("TOKENS hand-mirrors globals.css — every hex value actually appears there", () => {
+  // TOKENS is a manual copy of the CSS custom properties, kept in sync by
+  // hand (see the comment in contrast.mjs). A CSS-only colour edit would
+  // silently desync it and this suite would keep testing stale colours. So
+  // fail loudly instead: every hex literal in TOKENS must be found verbatim
+  // in globals.css.
+  const cssPath = fileURLToPath(new URL("../src/styles/globals.css", import.meta.url));
+  const css = readFileSync(cssPath, "utf8");
+  for (const [name, t] of Object.entries(TOKENS)) {
+    for (const [key, hex] of Object.entries(t)) {
+      assert.ok(
+        css.includes(hex),
+        `${name}.${key} (${hex}) is not present in globals.css — TOKENS is out of sync`
+      );
+    }
   }
 });

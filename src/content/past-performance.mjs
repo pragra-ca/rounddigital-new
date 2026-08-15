@@ -8,6 +8,7 @@ export const PAST_PERFORMANCE = [
   {
     id: "perfectum",
     client: "Perfectum.ai",
+    relationship: "Own product — designed, built and operated by Round Digital",
     factId: "perfectum-platform",
     challenge:
       "Training providers needed to author, deliver and license courses from one system, with the standards conformance corporate and public-sector buyers require.",
@@ -20,6 +21,7 @@ export const PAST_PERFORMANCE = [
   {
     id: "shipcarte",
     client: "ShipCarte",
+    relationship: "Client engagement",
     factId: "shipcarte-platform",
     challenge:
       "Shippers needed rate comparison, booking and tracking across many carriers and modes, without integrating each carrier separately.",
@@ -32,6 +34,7 @@ export const PAST_PERFORMANCE = [
   {
     id: "pragra",
     client: "Pragra",
+    relationship: "Predecessor entity — Round Digital is the successor to Pragra LLC",
     factId: "forbes-2024",
     challenge:
       "Career changers and employers needed technical training that produced job-ready practitioners rather than course completions.",

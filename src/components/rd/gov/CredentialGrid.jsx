@@ -17,7 +17,7 @@ export default function CredentialGrid({ status, heading, intro }) {
 
   return (
     <section style={{ padding: "72px 5%" }}>
-      <div className="rd-container">
+      <div style={{ maxWidth: 1180, margin: "0 auto" }}>
         {heading ? (
           <h2 style={{ margin: "0 0 12px", font: "700 clamp(28px,2.4vw,40px)/1.15 var(--rd-font-display)" }}>
             {heading}

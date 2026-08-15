@@ -81,7 +81,7 @@ export const rdServices = {
     stats: [
       { n: "24/7", l: "threat monitoring" },
       { n: "Controls", l: "mapped to SOC 2 criteria" },
-      { n: "ISO", l: "27001 aligned" },
+      { n: "Aligned", l: "to ISO 27001 controls" },
       { n: "100%", l: "audit trail coverage" },
     ],
     builds: [

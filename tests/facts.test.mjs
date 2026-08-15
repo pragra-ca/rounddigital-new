@@ -38,3 +38,19 @@ test("no location is claimed without an operating status", () => {
     );
   }
 });
+
+test("every verified fact's source is a valid https URL", () => {
+  // PastPerformanceCard calls `new URL(fact.source).hostname` directly. A
+  // malformed or non-https source would throw at render time, not build
+  // time, so this is enforced here instead.
+  for (const fact of VERIFIED_FACTS) {
+    assert.doesNotThrow(
+      () => new URL(fact.source),
+      `fact ${fact.id} has a source that does not parse as a URL: ${fact.source}`
+    );
+    assert.ok(
+      fact.source.startsWith("https://"),
+      `fact ${fact.id} source is not https: ${fact.source}`
+    );
+  }
+});

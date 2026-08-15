@@ -520,7 +520,7 @@ export default function Home() {
     <RdLayout>
       <Seo
         title="AI, Cloud & Software Engineering for Growing Businesses"
-        description="Fortune-500 engineering, right-sized for small and mid-sized businesses. Round Digital builds production AI, secure cloud and custom software — fixed price, senior engineers, you own the IP. Toronto, Dallas & Pune."
+        description="Fortune-500 engineering, right-sized for small and mid-sized businesses. Round Digital builds production AI, secure cloud and custom software — fixed price, senior engineers, you own the IP. Mississauga, Ontario and Noida, India."
         keywords="AI development for small business, SMB software development, custom software for growing businesses, AI agency for SMB, cloud engineering, fixed price software development, Toronto, Dallas, Pune"
         jsonLd={[HOME_FAQ_JSONLD]}
       />

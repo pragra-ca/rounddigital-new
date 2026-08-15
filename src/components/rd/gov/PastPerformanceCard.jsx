@@ -11,7 +11,14 @@ export default function PastPerformanceCard({ entry }) {
   return (
     <article style={{ border: "1px solid var(--rd-border)", borderRadius: 12, padding: "28px 26px" }}>
       <header style={{ display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap", marginBottom: 18 }}>
-        <h3 style={{ margin: 0, font: "700 22px var(--rd-font-display)" }}>{entry.client}</h3>
+        <div>
+          <h3 style={{ margin: 0, font: "700 22px var(--rd-font-display)" }}>{entry.client}</h3>
+          {entry.relationship ? (
+            <p style={{ margin: "4px 0 0", font: "13px var(--rd-font-mono)", color: "var(--rd-text-3)" }}>
+              {entry.relationship}
+            </p>
+          ) : null}
+        </div>
         <span style={{ font: "13px var(--rd-font-mono)", color: "var(--rd-text-3)" }}>{entry.period}</span>
       </header>
       <dl style={{ margin: 0 }}>
