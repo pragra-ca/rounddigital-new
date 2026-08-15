@@ -60,3 +60,42 @@ test("does not flag a certification name inside honest prose", () => {
     0
   );
 });
+
+test("flags a line-wrapped/indented certification assertion", () => {
+  const hits = findForbiddenClaims("We are ISO 27001\n          certified.");
+  assert.equal(hits.length, 1);
+  assert.match(hits[0].reason, /not held/i);
+});
+
+test("flags a certified women-owned business claim", () => {
+  assert.equal(
+    findForbiddenClaims("We are a certified women-owned business.").length,
+    1
+  );
+  assert.equal(findForbiddenClaims("Round Digital is WBE certified.").length, 1);
+});
+
+test("flags an SBA-certified small disadvantaged business claim", () => {
+  const hits = findForbiddenClaims(
+    "We are an SBA-certified small disadvantaged business."
+  );
+  assert.equal(hits.length, 1);
+  assert.match(hits[0].reason, /ineligible/i);
+});
+
+test("flags SOC 2 Type 2 certified claims written with the Arabic numeral", () => {
+  assert.equal(findForbiddenClaims("SOC 2 Type 2 certified").length, 1);
+  assert.equal(findForbiddenClaims("SOC 2 Type II certified").length, 1);
+});
+
+test("flags possession-verb ISO claims, not just certified/compliant", () => {
+  assert.equal(findForbiddenClaims("We hold ISO 27001.").length, 1);
+});
+
+test("regression: allow-cases from spec §2/§8 remain unflagged", () => {
+  assert.equal(findForbiddenClaims("Our controls are aligned to ISO 27001.").length, 0);
+  assert.equal(findForbiddenClaims("ISO 9001 certification is in progress.").length, 0);
+  assert.equal(findForbiddenClaims("We are pursuing WBE Canada certification.").length, 0);
+  assert.equal(findForbiddenClaims("Round Digital is women-owned and led.").length, 0);
+  assert.equal(findForbiddenClaims("controls mapped to SOC 2 criteria").length, 0);
+});

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/generate-sitemap.mjs && next build",
+    "build": "npm run check:claims && node scripts/generate-sitemap.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "node --test tests/*.mjs",
