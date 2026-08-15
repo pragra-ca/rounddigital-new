@@ -46,7 +46,7 @@ export default function AboutPage() {
       />
       <section style={{ padding: "96px 5% 64px" }}>
         <div style={{ ...wrap, maxWidth: 900 }}>
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>ABOUT ROUND DIGITAL</p>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>ABOUT ROUND DIGITAL</p>
           <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 24px", font: `700 clamp(44px,4.6vw,76px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
             Enterprise engineering, right-sized for you.
           </h1>
@@ -75,7 +75,7 @@ export default function AboutPage() {
         <div className="rd-grid-3" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
           {VALUES.map((v) => (
             <div key={v.n} data-rd-reveal className="rd-card" style={{ padding: "40px 32px", borderRadius: 28 }}>
-              <div style={{ font: `700 15px ${MONO}`, color: "var(--rd-accent)", marginBottom: 14 }}>{v.n}</div>
+              <div style={{ font: `700 15px ${MONO}`, color: "var(--rd-accent-text)", marginBottom: 14 }}>{v.n}</div>
               <h3 style={{ margin: "0 0 12px", font: `700 22px ${MONO}` }}>{v.t}</h3>
               <p style={{ margin: 0, fontSize: 16, color: "var(--rd-text-2)" }}>{v.d}</p>
             </div>
@@ -88,7 +88,7 @@ export default function AboutPage() {
         <div className="rd-grid-4" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
           {STATS.map((s) => (
             <div key={s.l} data-rd-reveal className="rd-card" style={{ padding: "36px 28px", borderRadius: 24 }}>
-              <div style={{ font: `700 44px ${MONO}`, color: "var(--rd-accent)" }}><CountUp value={s.n} /></div>
+              <div style={{ font: `700 44px ${MONO}`, color: "var(--rd-accent-text)" }}><CountUp value={s.n} /></div>
               <div style={{ color: "var(--rd-text-3)", fontSize: 15 }}>{s.l}</div>
             </div>
           ))}
@@ -99,7 +99,7 @@ export default function AboutPage() {
       <section style={{ padding: "0 5% 80px" }}>
         <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 56, alignItems: "start" }}>
           <div data-rd-reveal>
-            <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>HOW WE&apos;RE BUILT</p>
+            <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>HOW WE&apos;RE BUILT</p>
             <h2 style={{ margin: "0 0 20px", font: `700 clamp(30px,2.8vw,44px)/1.15 ${MONO}` }}>A senior bench across every discipline.</h2>
             <p style={{ margin: 0, fontSize: 17, lineHeight: 1.7, color: "var(--rd-text-2)" }}>
               Not a body shop, not a two-person studio. Round Digital is a senior,
@@ -123,7 +123,7 @@ export default function AboutPage() {
       <section style={{ padding: "0 5% 88px" }}>
         <div style={wrap}>
           <div data-rd-reveal style={{ marginBottom: 40 }}>
-            <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>OUR PROMISE</p>
+            <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>OUR PROMISE</p>
             <h2 style={{ margin: 0, font: `700 clamp(30px,2.8vw,48px)/1.15 ${MONO}` }}>What we guarantee, in writing.</h2>
           </div>
           <div className="rd-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
@@ -142,7 +142,7 @@ export default function AboutPage() {
         <div className="rd-grid-3" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
           {OFFICES.map((o) => (
             <div key={o.city} data-rd-reveal className="rd-card" style={{ padding: "36px 32px", borderRadius: 28 }}>
-              <div style={{ font: `700 11px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)", marginBottom: 12 }}>{o.tag}</div>
+              <div style={{ font: `700 11px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)", marginBottom: 12 }}>{o.tag}</div>
               <h3 style={{ margin: "0 0 10px", font: `700 24px ${MONO}` }}>{o.city}</h3>
               <div style={{ fontSize: 15, lineHeight: 1.6, color: "var(--rd-text-2)" }}>
                 {o.lines.map((l) => <div key={l}>{l}</div>)}

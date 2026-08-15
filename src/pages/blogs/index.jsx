@@ -66,7 +66,7 @@ export default function BlogIndex({ blogPosts }) {
       />
       <section style={{ padding: "96px 5% 44px" }}>
         <div style={wrap}>
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>INSIGHTS</p>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>INSIGHTS</p>
           <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: 0, font: `700 clamp(44px,4.6vw,76px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
             Field notes from the AI frontier.
           </h1>
@@ -77,12 +77,12 @@ export default function BlogIndex({ blogPosts }) {
         <section style={{ padding: "0 5% 28px" }}>
           <Link href={`/blogs/${featured.slug.current}`} data-rd-reveal className="rd-card rd-card-lift" style={{ ...wrap, display: "grid", gridTemplateColumns: "1.2fr 1fr", overflow: "hidden" }}>
             <div style={{ padding: "44px 40px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 14 }}>
-              <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>
+              <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>
                 FEATURED · {(featured.category || "INSIGHTS").toUpperCase()} · {fmt(featured.publishedAt)}
               </span>
               <span style={{ font: `700 clamp(24px,2.4vw,32px)/1.2 ${MONO}` }}>{featured.title}</span>
               <span style={{ fontSize: 15, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{featured.excerpt}</span>
-              <span style={{ display: "flex", alignItems: "center", gap: 6, font: "500 14px 'Inter',sans-serif", color: "var(--rd-accent)" }}>Read the article <Arrow /></span>
+              <span style={{ display: "flex", alignItems: "center", gap: 6, font: "500 14px 'Inter',sans-serif", color: "var(--rd-accent-text)" }}>Read the article <Arrow /></span>
             </div>
             <img src={COVERS[0]} alt="" className="rd-img" style={{ minHeight: 260, height: "100%" }} />
           </Link>
@@ -95,7 +95,7 @@ export default function BlogIndex({ blogPosts }) {
             <Link key={post._id} href={`/blogs/${post.slug.current}`} data-rd-reveal className="rd-card rd-card-lift" style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
               <img src={COVERS[(i + 1) % COVERS.length]} alt="" className="rd-img" style={{ height: 150 }} />
               <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 10 }}>
-                <span style={{ font: `700 11px ${MONO}`, letterSpacing: "0.08em", color: "var(--rd-accent)" }}>{(post.category || "INSIGHTS").toUpperCase()} · {fmt(post.publishedAt)}</span>
+                <span style={{ font: `700 11px ${MONO}`, letterSpacing: "0.08em", color: "var(--rd-accent-text)" }}>{(post.category || "INSIGHTS").toUpperCase()} · {fmt(post.publishedAt)}</span>
                 <span style={{ font: `700 17px/1.3 ${MONO}` }}>{post.title}</span>
               </div>
             </Link>

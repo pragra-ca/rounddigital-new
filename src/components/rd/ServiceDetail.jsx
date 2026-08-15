@@ -11,7 +11,7 @@ export default function RdServiceDetail({ service }) {
       <section style={{ padding: "72px 5% 64px" }}>
         <div style={wrap}>
           <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: service.title }]} />
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent)" }}>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent-text)" }}>
             {service.tag}
           </p>
           <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 28px", maxWidth: 940, font: `700 clamp(40px,4.2vw,72px)/1.08 ${MONO}`, letterSpacing: "-0.01em" }}>
@@ -52,7 +52,7 @@ export default function RdServiceDetail({ service }) {
           <div className="rd-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
             {service.stats.map((st) => (
               <div key={st.l} data-rd-reveal className="rd-card" style={{ padding: "32px 28px", borderRadius: 24 }}>
-                <div style={{ font: `700 40px ${MONO}`, color: "var(--rd-accent)" }}>
+                <div style={{ font: `700 40px ${MONO}`, color: "var(--rd-accent-text)" }}>
                   <CountUp value={st.n} />
                 </div>
                 <div style={{ color: "var(--rd-text-3)", fontSize: 15, marginTop: 6 }}>{st.l}</div>
@@ -69,7 +69,7 @@ export default function RdServiceDetail({ service }) {
           <div className="rd-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
             {service.builds.map((b, i) => (
               <div key={b.t} data-rd-reveal style={{ display: "flex", gap: 22, borderTop: "1px solid var(--rd-border)", padding: "28px 4px 8px" }}>
-                <span style={{ font: `700 16px ${MONO}`, color: "var(--rd-accent)" }}>{`0${i + 1}`}</span>
+                <span style={{ font: `700 16px ${MONO}`, color: "var(--rd-accent-text)" }}>{`0${i + 1}`}</span>
                 <div>
                   <h3 style={{ margin: "0 0 8px", font: `700 20px ${MONO}` }}>{b.t}</h3>
                   <p style={{ margin: 0, fontSize: 16, color: "var(--rd-text-2)" }}>{b.d}</p>
@@ -104,7 +104,7 @@ export default function RdServiceDetail({ service }) {
           <div className="rd-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
             {RD_PROCESS.map((p) => (
               <div key={p.title} data-rd-reveal className="rd-card" style={{ padding: "32px 28px", borderRadius: 24 }}>
-                <p style={{ margin: "0 0 14px", font: `700 13px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>{p.time}</p>
+                <p style={{ margin: "0 0 14px", font: `700 13px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>{p.time}</p>
                 <h3 style={{ margin: "0 0 10px", font: `700 20px ${MONO}` }}>{p.title}</h3>
                 <p style={{ margin: 0, fontSize: 15, color: "var(--rd-text-2)" }}>{p.body}</p>
               </div>

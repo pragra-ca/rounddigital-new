@@ -32,7 +32,7 @@ export default function WorkDetail({ slug }) {
       <section style={{ padding: "72px 5% 48px" }}>
         <div style={wrap}>
           <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Case studies", href: "/#case-studies" }, { label: cs.short }]} />
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>
             {cs.num} · {cs.industry} · {cs.service}
           </p>
           <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 28px", maxWidth: 960, font: `700 clamp(40px,4.2vw,72px)/1.08 ${MONO}`, letterSpacing: "-0.01em" }}>
@@ -57,7 +57,7 @@ export default function WorkDetail({ slug }) {
         <div className="rd-grid-4" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
           {cs.stats.map((st) => (
             <div key={st.l} data-rd-reveal className="rd-card" style={{ padding: "32px 28px", borderRadius: 24 }}>
-              <div style={{ font: `700 40px ${MONO}`, color: "var(--rd-accent)" }}>
+              <div style={{ font: `700 40px ${MONO}`, color: "var(--rd-accent-text)" }}>
                 <CountUp value={st.n} />
               </div>
               <div style={{ color: "var(--rd-text-3)", fontSize: 15, marginTop: 6 }}>{st.l}</div>
@@ -71,7 +71,7 @@ export default function WorkDetail({ slug }) {
         <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56 }}>
           {[["The challenge", cs.challenge], ["The solution", cs.solution]].map(([h, body]) => (
             <div key={h} data-rd-reveal>
-              <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>{h.toUpperCase()}</p>
+              <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>{h.toUpperCase()}</p>
               <p style={{ margin: 0, fontSize: 17, lineHeight: 1.7, color: "var(--rd-text-2)" }}>{body}</p>
             </div>
           ))}
@@ -85,7 +85,7 @@ export default function WorkDetail({ slug }) {
           <div className="rd-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
             {cs.steps.map((b, i) => (
               <div key={b.t} data-rd-reveal style={{ display: "flex", gap: 22, borderTop: "1px solid var(--rd-border)", padding: "28px 4px 8px" }}>
-                <span style={{ font: `700 16px ${MONO}`, color: "var(--rd-accent)" }}>{`0${i + 1}`}</span>
+                <span style={{ font: `700 16px ${MONO}`, color: "var(--rd-accent-text)" }}>{`0${i + 1}`}</span>
                 <div>
                   <h3 style={{ margin: "0 0 8px", font: `700 20px ${MONO}` }}>{b.t}</h3>
                   <p style={{ margin: 0, fontSize: 16, color: "var(--rd-text-2)" }}>{b.d}</p>
@@ -115,7 +115,7 @@ export default function WorkDetail({ slug }) {
       <section style={{ padding: "0 5% 112px" }}>
         <Link href={`/works/${next.id}`} data-rd-reveal className="rd-card rd-card-lift" style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, padding: "40px 44px", flexWrap: "wrap" }}>
           <div>
-            <p style={{ margin: "0 0 8px", font: `700 13px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>NEXT CASE — {next.num}</p>
+            <p style={{ margin: "0 0 8px", font: `700 13px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>NEXT CASE — {next.num}</p>
             <h3 style={{ margin: 0, font: `700 clamp(22px,2vw,30px) ${MONO}` }}>{next.title}</h3>
           </div>
           <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontWeight: 600, whiteSpace: "nowrap" }}>

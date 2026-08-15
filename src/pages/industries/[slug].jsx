@@ -20,7 +20,7 @@ export default function IndustryPage({ slug }) {
       <section style={{ padding: "72px 5% 64px" }}>
         <div style={wrap}>
           <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Industries", href: "/industries" }, { label: ind.name }]} />
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>
             {ind.tag}
           </p>
           <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 28px", maxWidth: 940, font: `700 clamp(36px,3.8vw,66px)/1.1 ${MONO}`, letterSpacing: "-0.01em" }}>
@@ -72,7 +72,7 @@ export default function IndustryPage({ slug }) {
             const items = col.items || col.roles;
             return (
               <div key={col.heading} data-rd-reveal className="rd-card" style={{ padding: "44px 40px", borderRadius: 32, display: "flex", flexDirection: "column", gap: 18 }}>
-                <p style={{ margin: 0, font: `700 13px ${MONO}`, letterSpacing: "0.14em", color: "var(--rd-accent)" }}>
+                <p style={{ margin: 0, font: `700 13px ${MONO}`, letterSpacing: "0.14em", color: "var(--rd-accent-text)" }}>
                   {idx === 0 ? "TECHNOLOGY WE BUILD" : "TALENT WE SOURCE"}
                 </p>
                 <h2 style={{ margin: 0, font: `700 clamp(24px,2vw,32px)/1.2 ${MONO}` }}>{col.heading}</h2>
@@ -80,7 +80,7 @@ export default function IndustryPage({ slug }) {
                 <ul style={{ margin: "6px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
                   {items.map((it) => (
                     <li key={it} style={{ display: "flex", gap: 12, fontSize: 16, lineHeight: 1.55, color: "var(--rd-text-2)" }}>
-                      <span aria-hidden="true" style={{ color: "var(--rd-accent)", flexShrink: 0 }}>—</span>
+                      <span aria-hidden="true" style={{ color: "var(--rd-accent-text)", flexShrink: 0 }}>—</span>
                       <span>{it}</span>
                     </li>
                   ))}
@@ -151,7 +151,7 @@ export default function IndustryPage({ slug }) {
               if (!s) return null;
               return (
                 <Link key={id} href={`/services/${id}`} data-rd-reveal className="rd-card rd-card-lift" style={{ padding: "30px 26px", borderRadius: 24, display: "flex", flexDirection: "column", gap: 12 }}>
-                  <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent)" }}>{s.tag}</span>
+                  <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent-text)" }}>{s.tag}</span>
                   <span style={{ font: `700 20px ${MONO}`, lineHeight: 1.25 }}>{s.title}</span>
                   <span style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 500, fontSize: 15 }}>
                     Explore <Arrow />

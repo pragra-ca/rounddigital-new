@@ -21,7 +21,7 @@ export default function CareersPage({ jobs }) {
       />
       <section style={{ padding: "96px 5% 64px" }}>
         <div style={{ ...wrap, maxWidth: 900 }}>
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>CAREERS</p>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>CAREERS</p>
           <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 24px", font: `700 clamp(44px,4.6vw,76px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
             Build the future with us.
           </h1>
@@ -42,14 +42,14 @@ export default function CareersPage({ jobs }) {
             {jobs.map((job) => (
               <Link key={job.slug} href={`/careers/${job.slug}`} data-rd-reveal className="rd-card rd-card-lift" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr auto", gap: 20, alignItems: "center", padding: "28px 32px", borderRadius: 24 }}>
                 <div>
-                  <span style={{ font: `700 11px ${MONO}`, letterSpacing: "0.1em", color: "var(--rd-accent)" }}>{(job.department || "").toUpperCase()}</span>
+                  <span style={{ font: `700 11px ${MONO}`, letterSpacing: "0.1em", color: "var(--rd-accent-text)" }}>{(job.department || "").toUpperCase()}</span>
                   <div style={{ font: `700 21px ${MONO}`, margin: "6px 0" }}>{job.title}</div>
                   <div style={{ fontSize: 15, color: "var(--rd-text-2)" }}>{job.tagline}</div>
                 </div>
                 <div style={{ fontSize: 14, color: "var(--rd-text-3)", display: "flex", flexWrap: "wrap", gap: "4px 18px" }}>
                   <span>{job.location}</span><span>{job.type}</span><span>{job.experience}</span>
                 </div>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 6, font: "500 15px 'Inter',sans-serif", color: "var(--rd-accent)", whiteSpace: "nowrap" }}>View role <Arrow /></span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6, font: "500 15px 'Inter',sans-serif", color: "var(--rd-accent-text)", whiteSpace: "nowrap" }}>View role <Arrow /></span>
               </Link>
             ))}
           </div>

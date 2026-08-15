@@ -27,7 +27,7 @@ function Hero() {
   return (
     <section style={{ padding: "96px 5% 80px" }}>
       <div style={wrap}>
-        <p data-rd-reveal style={{ margin: "0 0 20px", font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent)" }}>
+        <p data-rd-reveal style={{ margin: "0 0 20px", font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent-text)" }}>
           For ambitious small &amp; mid-sized businesses
         </p>
         <h1
@@ -164,7 +164,7 @@ function Industries() {
             ))}
           </div>
           <div style={{ background: "var(--rd-card)", padding: 56, display: "flex", flexDirection: "column", justifyContent: "center", gap: 20, minHeight: 480 }}>
-            <p style={{ margin: 0, font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>{ind.tag}</p>
+            <p style={{ margin: 0, font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>{ind.tag}</p>
             <h3 style={{ margin: 0, font: `700 clamp(28px,2.4vw,40px)/1.2 ${MONO_H}` }}>{ind.title}</h3>
             <p style={{ margin: 0, fontSize: 18, color: "var(--rd-text-2)" }}>{ind.body}</p>
             <Link href={`/industries/${ind.slug}`} style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 500, marginTop: 8 }}>
@@ -323,7 +323,7 @@ function Technology() {
         <SectionIntro eyebrow="Technology" title="Our engineering ecosystem" body="We select the right tool for the problem. No dogma, just disciplined engineering with modern, battle-tested stacks." />
         <div data-rd-reveal className="rd-tabs" style={{ display: "grid", gridTemplateColumns: "1.5fr 0.9fr", borderRadius: 40, overflow: "hidden" }}>
           <div style={{ background: "var(--rd-card)", padding: 56, display: "flex", flexDirection: "column", justifyContent: "center", gap: 20, minHeight: 420 }}>
-            <p style={{ margin: 0, font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>{t.tag}</p>
+            <p style={{ margin: 0, font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>{t.tag}</p>
             <h3 style={{ margin: 0, font: `700 clamp(26px,2.2vw,36px)/1.2 ${MONO_H}` }}>{t.title}</h3>
             <p style={{ margin: 0, fontSize: 18, color: "var(--rd-text-2)" }}>{t.body}</p>
             <p style={{ margin: 0, font: `700 15px ${MONO_H}`, color: "var(--rd-text-3)" }}>{t.stack}</p>
@@ -453,7 +453,7 @@ function TrustBar() {
         {TRUST_ITEMS.map((t, i) => (
           <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "12px 20px" }}>
             <span style={{ font: `700 13px ${MONO_H}`, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--rd-text-3)" }}>{t}</span>
-            {i < TRUST_ITEMS.length - 1 ? <span style={{ color: "var(--rd-accent)", marginLeft: 20 }}>·</span> : null}
+            {i < TRUST_ITEMS.length - 1 ? <span style={{ color: "var(--rd-accent-text)", marginLeft: 20 }}>·</span> : null}
           </span>
         ))}
       </div>
@@ -473,7 +473,7 @@ function WhyUs() {
         <div className="rd-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
           {WHY_US.map((w) => (
             <div key={w.title} data-rd-reveal className="rd-card rd-card-lift" style={{ padding: "36px 30px", borderRadius: 28 }}>
-              <span style={{ font: `700 12px ${MONO_H}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent)" }}>{w.tag}</span>
+              <span style={{ font: `700 12px ${MONO_H}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent-text)" }}>{w.tag}</span>
               <h3 style={{ margin: "14px 0 12px", font: `700 21px ${MONO_H}`, lineHeight: 1.25 }}>{w.title}</h3>
               <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{w.body}</p>
             </div>
@@ -489,11 +489,11 @@ function HomeFaq() {
     <section style={{ padding: "96px 5%" }}>
       <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: 56, alignItems: "start" }}>
         <div data-rd-reveal>
-          <p style={{ margin: "0 0 16px", font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>FAQ</p>
+          <p style={{ margin: "0 0 16px", font: `700 14px ${MONO_H}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>FAQ</p>
           <h2 style={{ margin: "0 0 20px", font: `700 clamp(32px,3vw,52px)/1.12 ${MONO_H}` }}>Questions growing businesses ask</h2>
           <p style={{ margin: 0, fontSize: 18, lineHeight: 1.7, color: "var(--rd-text-2)" }}>
             Straight answers, no sales runaround. Still unsure?{" "}
-            <Link href="/contact" style={{ color: "var(--rd-accent)", fontWeight: 600 }}>Ask us directly</Link>.
+            <Link href="/contact" style={{ color: "var(--rd-accent-text)", fontWeight: 600 }}>Ask us directly</Link>.
           </p>
         </div>
         <div>

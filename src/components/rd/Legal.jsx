@@ -6,7 +6,7 @@ export function RdLegal({ eyebrow, title, intro, sections }) {
     <>
       <section style={{ padding: "96px 5% 40px", borderBottom: "1px solid var(--rd-border)" }}>
         <div style={{ maxWidth: 820, margin: "0 auto" }}>
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>{eyebrow}</p>
+          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>{eyebrow}</p>
           <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 20px", font: `700 clamp(40px,4.4vw,64px)/1.06 ${MONO}` }}>{title}</h1>
           <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: 0, fontSize: 18, lineHeight: 1.65, color: "var(--rd-text-2)" }}>{intro}</p>
         </div>
@@ -23,7 +23,7 @@ export function RdLegal({ eyebrow, title, intro, sections }) {
             <h2 style={{ margin: "0 0 8px", font: `700 18px ${MONO}` }}>Questions?</h2>
             <p style={{ margin: 0, fontSize: 15, color: "var(--rd-text-2)" }}>
               Email{" "}
-              <a href="mailto:info@rounddigital.co" style={{ color: "var(--rd-accent)", fontWeight: 600 }}>info@rounddigital.co</a>
+              <a href="mailto:info@rounddigital.co" style={{ color: "var(--rd-accent-text)", fontWeight: 600 }}>info@rounddigital.co</a>
               {" "}— we respond within one business day.
             </p>
           </div>

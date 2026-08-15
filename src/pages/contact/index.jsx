@@ -51,7 +51,7 @@ export default function ContactPage() {
       <section style={{ padding: "96px 5% 80px" }}>
         <div className="rd-grid-2" style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 56 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
-            <p data-rd-reveal style={{ margin: 0, font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent)" }}>GET IN TOUCH</p>
+            <p data-rd-reveal style={{ margin: 0, font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>GET IN TOUCH</p>
             <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: 0, font: `700 clamp(40px,4.4vw,72px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
               Book a call. Leave with a plan.
             </h1>
@@ -62,7 +62,7 @@ export default function ContactPage() {
             <div data-rd-reveal data-rd-reveal-delay="0.15" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {CONTACT_ROWS.map((r) => (
                 <div key={r.label} style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
-                  <span style={{ font: `700 12px ${MONO}`, color: "var(--rd-accent)", width: 44, flexShrink: 0 }}>{r.label}</span>
+                  <span style={{ font: `700 12px ${MONO}`, color: "var(--rd-accent-text)", width: 44, flexShrink: 0 }}>{r.label}</span>
                   {r.href ? (
                     <a href={r.href} style={{ color: "var(--rd-text-2)" }}>{r.value}</a>
                   ) : (
@@ -100,7 +100,7 @@ export default function ContactPage() {
               <textarea className="rd-input" required placeholder="Tell us about the workflow you want to automate…" value={form.message} onChange={update("message")} style={{ minHeight: 110, resize: "vertical" }} />
             </label>
             {status.message ? (
-              <div role="status" style={{ borderRadius: 12, padding: "12px 16px", border: "1px solid var(--rd-border-2)", fontSize: 14, color: status.state === "success" ? "var(--rd-text)" : "var(--rd-accent)" }}>
+              <div role="status" style={{ borderRadius: 12, padding: "12px 16px", border: "1px solid var(--rd-border-2)", fontSize: 14, color: status.state === "success" ? "var(--rd-text)" : "var(--rd-accent-text)" }}>
                 {status.message}
               </div>
             ) : null}

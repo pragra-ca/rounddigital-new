@@ -51,7 +51,7 @@ export default function ServicesIndexPage() {
                 className="rd-card rd-card-lift"
                 style={{ padding: "32px 28px", borderRadius: 28, border: "1px solid transparent", display: "flex", flexDirection: "column", gap: 14 }}
               >
-                <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent)" }}>{s.tag}</span>
+                <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent-text)" }}>{s.tag}</span>
                 <span style={{ font: `700 22px ${MONO}`, lineHeight: 1.25 }}>{s.title}</span>
                 <span style={{ fontSize: 15, lineHeight: 1.55, color: "var(--rd-text-2)", flex: 1 }}>{s.desc}</span>
                 <span style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 500, fontSize: 15 }}>

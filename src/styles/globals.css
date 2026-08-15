@@ -143,6 +143,7 @@ body {
 
 .rd {
   --rd-accent: #ff0000;
+  --rd-accent-text: #ff6b6b;
   --rd-bg: #251c1e;
   --rd-card: #0d0305;
   --rd-text: #ffffff;
@@ -162,6 +163,8 @@ body {
 }
 
 html[data-rd-theme="light"] .rd {
+  --rd-accent: #d40000;
+  --rd-accent-text: #c00000;
   --rd-bg: #ffffff;
   --rd-card: #f2f2f2;
   --rd-text: #0d0305;
@@ -203,7 +206,7 @@ html[data-rd-theme="light"] .rd {
   font: 700 14px "Space Mono", monospace;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--rd-accent);
+  color: var(--rd-accent-text);
 }
 
 /* Buttons */
