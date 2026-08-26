@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the template. It documents which keys the contact and RFP forms
+# need and contains no secrets, so it is meant to be committed.
+!.env.example
 
 # vercel
 .vercel
@@ -51,3 +54,8 @@ public/sitemap.xml
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Playwright MCP scratch output
+.playwright-mcp/
+test-results/
+playwright-report/

@@ -1,0 +1,105 @@
+{
+  "updatedAt": "2026-08-17T02:25:06.745Z",
+  "missions": [
+    {
+      "id": "session:c121f7ce-d8ca-46b3-a9a4-a5c3f0184752:none",
+      "source": "session",
+      "name": "none",
+      "objective": "Session mission",
+      "createdAt": "2026-08-17T02:05:36.768Z",
+      "updatedAt": "2026-08-17T02:25:06.745Z",
+      "status": "done",
+      "workerCount": 3,
+      "taskCounts": {
+        "total": 3,
+        "pending": 0,
+        "blocked": 0,
+        "inProgress": 0,
+        "completed": 3,
+        "failed": 0
+      },
+      "agents": [
+        {
+          "name": "assessment-a-design:aassess",
+          "role": "assessment-a-design",
+          "ownership": "aassessment-a-design-0af7ada593d36c83",
+          "status": "done",
+          "currentStep": null,
+          "latestUpdate": "completed",
+          "completedSummary": null,
+          "updatedAt": "2026-08-17T02:25:06.745Z"
+        },
+        {
+          "name": "assessment-b-detector:aassess",
+          "role": "assessment-b-detector",
+          "ownership": "aassessment-b-detector-0523843691a1b9bd",
+          "status": "done",
+          "currentStep": null,
+          "latestUpdate": "completed",
+          "completedSummary": null,
+          "updatedAt": "2026-08-17T02:22:44.504Z"
+        },
+        {
+          "name": "assessment-c-content:aassess",
+          "role": "assessment-c-content",
+          "ownership": "aassessment-c-content-782fe091dffa3268",
+          "status": "done",
+          "currentStep": null,
+          "latestUpdate": "completed",
+          "completedSummary": null,
+          "updatedAt": "2026-08-17T02:24:09.413Z"
+        }
+      ],
+      "timeline": [
+        {
+          "id": "session-start:aassessment-c-content-782fe091dffa3268:2026-08-17T02:21:32.952Z",
+          "at": "2026-08-17T02:21:32.952Z",
+          "kind": "update",
+          "agent": "assessment-c-content:aassess",
+          "detail": "started assessment-c-content:aassess",
+          "sourceKey": "session-start:aassessment-c-content-782fe091dffa3268"
+        },
+        {
+          "id": "session-stop:aassessment-a-design-0af7ada593d36c83:2026-08-17T02:22:37.486Z",
+          "at": "2026-08-17T02:22:37.486Z",
+          "kind": "completion",
+          "agent": "assessment-a-design:aassess",
+          "detail": "completed",
+          "sourceKey": "session-stop:aassessment-a-design-0af7ada593d36c83"
+        },
+        {
+          "id": "session-start:aassessment-a-design-0af7ada593d36c83:2026-08-17T02:22:37.757Z",
+          "at": "2026-08-17T02:22:37.757Z",
+          "kind": "update",
+          "agent": "assessment-a-design:aassess",
+          "detail": "started assessment-a-design:aassess",
+          "sourceKey": "session-start:aassessment-a-design-0af7ada593d36c83"
+        },
+        {
+          "id": "session-stop:aassessment-b-detector-0523843691a1b9bd:2026-08-17T02:22:44.504Z",
+          "at": "2026-08-17T02:22:44.504Z",
+          "kind": "completion",
+          "agent": "assessment-b-detector:aassess",
+          "detail": "completed",
+          "sourceKey": "session-stop:aassessment-b-detector-0523843691a1b9bd"
+        },
+        {
+          "id": "session-stop:aassessment-c-content-782fe091dffa3268:2026-08-17T02:24:09.413Z",
+          "at": "2026-08-17T02:24:09.413Z",
+          "kind": "completion",
+          "agent": "assessment-c-content:aassess",
+          "detail": "completed",
+          "sourceKey": "session-stop:aassessment-c-content-782fe091dffa3268"
+        },
+        {
+          "id": "session-stop:aassessment-a-design-0af7ada593d36c83:2026-08-17T02:25:06.745Z",
+          "at": "2026-08-17T02:25:06.745Z",
+          "kind": "completion",
+          "agent": "assessment-a-design:aassess",
+          "detail": "completed",
+          "sourceKey": "session-stop:aassessment-a-design-0af7ada593d36c83"
+        }
+      ]
+    }
+  ]
+}

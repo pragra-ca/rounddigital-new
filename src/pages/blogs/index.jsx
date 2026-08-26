@@ -1,111 +1,132 @@
-import { useState } from "react";
 import Link from "next/link";
-import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { Arrow } from "@/components/rd/ui";
-import { blogSummaries, toBlogListItem } from "@/data/blogSummaries";
+import Layout from "@/components/system/Layout";
+import {
+  Arrow,
+  Breadcrumb,
+  Container,
+  CtaBand,
+  Eyebrow,
+  Note,
+  Panel,
+  Section,
+  SectionHead,
+} from "@/components/system/ui";
+import { blogs } from "@/data/blogs";
 
-const MONO = "'Space Mono',monospace";
-const wrap = { maxWidth: 1280, margin: "0 auto" };
-const COVERS = ["/rd/images/hero-5.jpg", "/rd/images/hero-2.jpg", "/rd/images/feature-1.jpg", "/rd/images/pillar-1.jpg", "/rd/images/benefit-2.jpg", "/rd/images/hero-1.jpg", "/rd/images/pillar-0.jpg", "/rd/images/feature-3.jpg"];
+// Planned reference guides. Listed as forthcoming rather than linked, because
+// a link to an unwritten page is worse than an honest "not yet".
+const PLANNED = [
+  "Implementing NIST AI RMF: a control-by-control walkthrough",
+  "ISO 42001 readiness: what an AI management system actually requires",
+  "Designing a program evaluation that survives an audit",
+  "TBIPS, ProServices or SBIPS: choosing a Canadian federal supply arrangement",
+  "WCAG 2.2 AA and Section 508 for public-sector digital services",
+  "Registered apprenticeship as an enterprise workforce strategy",
+];
 
-export async function getStaticProps() {
-  return { props: { blogPosts: blogSummaries.map(toBlogListItem) } };
+function formatDate(value) {
+  if (!value) return null;
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toISOString().slice(0, 10);
 }
 
-function fmt(date) {
-  try {
-    return new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  } catch {
-    return "";
-  }
-}
-
-function Newsletter() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle");
-  const submit = async (e) => {
-    e.preventDefault();
-    if (status === "sending") return;
-    setStatus("sending");
-    try {
-      const res = await fetch("/api/newsletter", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
-      if (!res.ok) throw new Error();
-      setStatus("done");
-      setEmail("");
-    } catch {
-      setStatus("error");
-    }
-  };
-  return (
-    <div data-rd-reveal style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap", border: "1px solid var(--rd-border)", borderRadius: 40, padding: "48px 8%" }}>
-      <div>
-        <div style={{ font: `700 22px ${MONO}`, marginBottom: 6 }}>Stay ahead of the curve</div>
-        <div style={{ fontSize: 16, color: "var(--rd-text-2)" }}>
-          {status === "done" ? "You're in. See you next month." : status === "error" ? "Something went wrong. Try again." : "Monthly insights on AI, cloud and digital transformation. No fluff."}
-        </div>
-      </div>
-      <form onSubmit={submit} style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-        <input type="email" required placeholder="you@company.com" value={email} onChange={(e) => setEmail(e.target.value)} className="rd-input" style={{ minWidth: 220 }} />
-        <button type="submit" disabled={status === "sending"} className="rd-btn rd-btn-primary" style={{ padding: "12px 26px", fontSize: 15 }}>
-          {status === "sending" ? "…" : "Subscribe"}
-        </button>
-      </form>
-    </div>
+export default function BlogsIndex() {
+  const posts = [...blogs].sort(
+    (a, b) => new Date(b.publishedAt || b.publishDate || 0) - new Date(a.publishedAt || a.publishDate || 0)
   );
-}
 
-export default function BlogIndex({ blogPosts }) {
-  const [featured, ...rest] = blogPosts;
   return (
-    <RdLayout>
+    <Layout>
       <Seo
-        title="AI Agents, Cloud & Digital Transformation Blog"
-        description="Field notes from the AI frontier: practical guides on AI agents, cloud migration, security and digital transformation — written by the engineers who ship them."
-        keywords="AI blog, AI agents guide, digital transformation insights, cloud migration blog"
+        title="Insights — Technology & Procurement"
+        description="Practical writing on AI governance, evidence-based program evaluation, procurement readiness and workforce capability — from the people who deliver."
+        keywords="AI governance guide, NIST AI RMF, program evaluation, procurement readiness, technology insights"
       />
-      <section style={{ padding: "96px 5% 44px" }}>
-        <div style={wrap}>
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>INSIGHTS</p>
-          <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: 0, font: `700 clamp(44px,4.6vw,76px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
-            Field notes from the AI frontier.
+
+      <Section as="div" className="rds-hero">
+        <Container>
+          <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Insights" }]} />
+          <h1 className="rds-h1" style={{ margin: "var(--s5) 0 0", maxWidth: "17ch" }}>
+            Reference guides, and the earlier archive.
           </h1>
-        </div>
-      </section>
+          <div className="rds-hero-rule" aria-hidden="true" />
+          <p className="rds-lead" style={{ marginTop: "var(--s5)" }}>
+            The six guides in preparation below are the ones worth waiting for:
+            governance, evidence, procurement mechanics and capability, written by
+            the people who do the delivery. The published archive above them is
+            earlier general-interest writing, kept for reference.
+          </p>
+        </Container>
+      </Section>
 
-      {featured ? (
-        <section style={{ padding: "0 5% 28px" }}>
-          <Link href={`/blogs/${featured.slug.current}`} data-rd-reveal className="rd-card rd-card-lift" style={{ ...wrap, display: "grid", gridTemplateColumns: "1.2fr 1fr", overflow: "hidden" }}>
-            <div style={{ padding: "44px 40px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 14 }}>
-              <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>
-                FEATURED · {(featured.category || "INSIGHTS").toUpperCase()} · {fmt(featured.publishedAt)}
-              </span>
-              <span style={{ font: `700 clamp(24px,2.4vw,32px)/1.2 ${MONO}` }}>{featured.title}</span>
-              <span style={{ fontSize: 15, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{featured.excerpt}</span>
-              <span style={{ display: "flex", alignItems: "center", gap: 6, font: "500 14px 'Inter',sans-serif", color: "var(--rd-accent-text)" }}>Read the article <Arrow /></span>
-            </div>
-            <img src={COVERS[0]} alt="" className="rd-img" style={{ minHeight: 260, height: "100%" }} />
-          </Link>
-        </section>
-      ) : null}
+      <Section>
+        <Container>
+          <SectionHead index="01" label="Published" />
+          <ul className="rds-pillarlist">
+            {posts.map((p) => {
+              const date = formatDate(p.publishedAt || p.publishDate);
+              return (
+                <li key={p.slug}>
+                  <Link href={`/blogs/${p.slug}`}>
+                    <div className="rds-pillarlist-main">
+                      {p.tags?.length ? (
+                        <span className="rds-code">{p.tags.slice(0, 2).join(" · ")}</span>
+                      ) : null}
+                      <h2 className="rds-h3" style={{ margin: "var(--s2) 0 var(--s2)" }}>{p.title}</h2>
+                      <p style={{ color: "var(--fg-2)", fontSize: 15, maxWidth: "68ch" }}>{p.excerpt}</p>
+                    </div>
+                    <div className="rds-pillarlist-side">
+                      {date ? (
+                        <p className="rds-meta rds-mono" style={{ marginBottom: "var(--s3)" }}>{date}</p>
+                      ) : null}
+                      <span className="rds-arrow">
+                        Read <Arrow />
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </Container>
+      </Section>
 
-      <section style={{ padding: "0 5% 64px" }}>
-        <div className="rd-grid-4" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
-          {rest.map((post, i) => (
-            <Link key={post._id} href={`/blogs/${post.slug.current}`} data-rd-reveal className="rd-card rd-card-lift" style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
-              <img src={COVERS[(i + 1) % COVERS.length]} alt="" className="rd-img" style={{ height: 150 }} />
-              <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 10 }}>
-                <span style={{ font: `700 11px ${MONO}`, letterSpacing: "0.08em", color: "var(--rd-accent-text)" }}>{(post.category || "INSIGHTS").toUpperCase()} · {fmt(post.publishedAt)}</span>
-                <span style={{ font: `700 17px/1.3 ${MONO}` }}>{post.title}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <Section className="rds-band">
+        <Container>
+          <SectionHead index="02" label="In preparation" />
+          <div className="rds-splithead" style={{ marginBottom: "var(--s6)" }}>
+            <h2 className="rds-h2">Reference guides we are writing.</h2>
+            <p className="rds-prose">
+              Each is intended as a working document rather than a blog post — the kind
+              of thing you would keep open while doing the task. They are listed here
+              unlinked because they are not written yet.
+            </p>
+          </div>
 
-      <section style={{ padding: "0 5% 112px" }}>
-        <Newsletter />
-      </section>
-    </RdLayout>
+          <Panel fill>
+            <ul className="rds-ticklist">
+              {PLANNED.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          </Panel>
+
+          <Note title="Want one of these sooner?">
+            If a guide on this list would help a decision you are making now, say so and
+            we will prioritise it — or answer the question directly, which is usually
+            faster for both of us.
+          </Note>
+        </Container>
+      </Section>
+
+      <CtaBand
+        title="Have a question these do not answer?"
+        body="Ask it directly. You will get an answer from someone who does the work rather than a link to a gated asset."
+        primary={{ label: "Ask us", href: "/contact" }}
+        secondary={{ label: "Explore services", href: "/services" }}
+      />
+    </Layout>
   );
 }

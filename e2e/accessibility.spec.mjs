@@ -15,6 +15,10 @@ const PAGES = [
   { path: "/", name: "homepage" },
   { path: "/government", name: "public-sector hub" },
   { path: "/government/capability-statement", name: "capability statement" },
+  // Both carry interactive controls that swap content in place — a chip group
+  // and a native accordion — so they warrant scanning more than a static page.
+  { path: "/government/where-we-can-contract", name: "jurisdiction page" },
+  { path: "/government/vendor-qualification", name: "vendor qualification" },
   { path: "/services", name: "services index" },
   { path: "/industries", name: "industries index" },
   { path: "/contact", name: "contact" },

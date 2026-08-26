@@ -14,7 +14,7 @@ export const RD_INDUSTRIES = [
     name: "Retail & E-commerce",
     tag: "RETAIL & E-COMMERCE",
     title: "Service at scale",
-    body: "Support agents, demand forecasting and personalization — proven at 10,000+ inquiries a day. And when peak season arrives, we staff the contact centre and fulfilment teams behind it.",
+    body: "Support agents, demand forecasting and personalization, sized against your own historical peak. And when peak season arrives, we staff the contact centre and fulfilment teams behind it.",
     headline: "Retail runs on two curves: traffic and staffing. We flatten both.",
     intro: [
       "Retail demand does not arrive evenly. It arrives in spikes — a promotion, a season, a product that unexpectedly moves — and the cost of being wrong is symmetrical. Under-forecast and you are out of stock with paid traffic still landing on the page. Over-forecast and the margin sits in a warehouse. Meanwhile the contact centre absorbs every downstream consequence of both.",
@@ -55,7 +55,7 @@ export const RD_INDUSTRIES = [
       { t: "Support cost that decouples from growth", d: "Order volume rises without headcount rising in lockstep." },
     ],
     faqs: [
-      { q: "Can support agents handle our peak season volume?", a: "That's the case they're built for. Our retail deployments have handled 10,000+ inquiries a day, and capacity scales with demand rather than with hiring. We size the deployment against your historical peak, not your average, and load-test against it before the season." },
+      { q: "Can support agents handle our peak season volume?", a: "That is the case they are built for: capacity scales with demand rather than with hiring. We size the deployment against your historical peak rather than your average, and load-test against that figure before the season so the headroom is measured rather than assumed." },
       { q: "Will personalization work with our catalogue size?", a: "Semantic search and recommendations work across catalogue sizes; what matters more is data quality and the conversion path they sit on. We assess both in discovery, and we'd rather tell you the ROI isn't there than ship a pilot that quietly gets switched off." },
       { q: "How far ahead do you need notice for seasonal staffing?", a: "Six to eight weeks is comfortable for volume contact centre and fulfilment roles, including screening and onboarding. We can compress it, but the earlier the brief lands the better the candidate pool — the whole sector is hiring in the same window." },
       { q: "Do you integrate with our existing commerce platform?", a: "Yes. We work with Shopify, Salesforce Commerce Cloud, Magento, custom stacks and the ERP behind them. Integration effort is scoped in discovery so it isn't a surprise mid-build." },
@@ -63,7 +63,7 @@ export const RD_INDUSTRIES = [
     related: ["ai-machine-learning", "custom-software", "global-talent"],
     seo: {
       title: "Retail & E-commerce AI Solutions and Staffing",
-      description: "AI support agents, demand forecasting and personalization for retail and e-commerce — plus seasonal contact centre and fulfilment staffing. Proven at 10,000+ inquiries a day.",
+      description: "AI support agents, demand forecasting and personalisation for retail and e-commerce — built by the team that then staffs and trains around them.",
       keywords: "retail AI solutions, e-commerce automation, demand forecasting, retail personalization, seasonal contact centre staffing, fulfilment staffing, omnichannel order management",
     },
   },
@@ -121,8 +121,8 @@ export const RD_INDUSTRIES = [
     ],
     related: ["digital-transformation", "cloud-solutions", "cybersecurity", "global-talent"],
     seo: {
-      title: "Banking & Financial Services Modernization and Staffing",
-      description: "Zero-downtime core migration, KYC and AML automation, and compliance-grade controls for financial institutions — plus sourced compliance analysts and back-office teams.",
+      title: "Banking & Financial Services Technology",
+      description: "Zero-downtime core migration, KYC and AML automation, and compliance-grade controls for financial institutions.",
       keywords: "banking modernization, core banking migration, KYC automation, AML compliance, financial services AI, fraud detection, compliance analyst staffing",
     },
   },
@@ -179,8 +179,8 @@ export const RD_INDUSTRIES = [
     ],
     related: ["ai-machine-learning", "global-talent", "cybersecurity"],
     seo: {
-      title: "Healthcare AI Automation & Clinical Staffing Solutions",
-      description: "HIPAA-safe intake automation, records processing and patient communication — plus credentialed nurses, allied health and medical administrators sourced for your region.",
+      title: "Healthcare AI and Clinical Staffing",
+      description: "HIPAA-safe intake automation, records processing and patient communication, plus credentialed clinical staffing for the teams that use them.",
       keywords: "healthcare AI, HIPAA compliant automation, clinical documentation, prior authorization automation, nurse staffing, allied health recruitment, international nurse recruitment, FHIR integration",
     },
   },
@@ -238,8 +238,8 @@ export const RD_INDUSTRIES = [
     ],
     related: ["ai-machine-learning", "data-analytics", "global-talent"],
     seo: {
-      title: "Manufacturing & Logistics AI, Automation and Technical Staffing",
-      description: "Predictive maintenance, supply-chain visibility and document automation for manufacturers and logistics operators — plus sourced plant engineers, technicians and planners.",
+      title: "Manufacturing & Logistics Technology",
+      description: "Predictive maintenance, supply-chain visibility and document automation for manufacturers and logistics operators.",
       keywords: "manufacturing AI, predictive maintenance, supply chain visibility, logistics automation, IoT platform, computer vision quality inspection, maintenance technician recruitment, skilled trades sourcing",
     },
   },
@@ -297,7 +297,7 @@ export const RD_INDUSTRIES = [
     ],
     related: ["ai-machine-learning", "custom-software", "global-talent", "engagement-models"],
     seo: {
-      title: "AI Features & Engineering Teams for SaaS Companies",
+      title: "AI Features & Teams for SaaS Companies",
       description: "Embedded copilots, RAG search and agentic features built into your product — plus senior AI and platform engineers embedded with your team in weeks.",
       keywords: "SaaS AI features, embedded copilot, RAG search, agentic AI product, multi-tenant AI architecture, inference cost optimization, AI engineer staff augmentation, dedicated development pod",
     },
@@ -355,7 +355,7 @@ export const RD_INDUSTRIES = [
     ],
     related: ["ai-machine-learning", "data-analytics", "global-talent"],
     seo: {
-      title: "AI & Talent Solutions for Legal, Accounting and Consulting Firms",
+      title: "Technology for Professional Services",
       description: "Research, drafting and knowledge agents for professional services firms — plus qualified accountants, paralegals and analysts sourced to scale delivery.",
       keywords: "legal AI, accounting automation, professional services AI, document review automation, knowledge management agents, paralegal staffing, accountant recruitment, offshore accounting team",
     },
@@ -414,8 +414,8 @@ export const RD_INDUSTRIES = [
     ],
     related: ["data-analytics", "cloud-solutions", "global-talent"],
     seo: {
-      title: "Energy & Utilities Data Platforms and Technical Staffing",
-      description: "Field data platforms, outage prediction and regulatory reporting for energy and utility operators — plus sourced field technicians, HSE specialists and project engineers.",
+      title: "Energy & Utilities Data Platforms",
+      description: "Field data platforms, outage prediction and regulatory reporting for energy and utility operators, with the technical staffing to run them.",
       keywords: "energy sector AI, utilities data platform, outage prediction, asset performance management, SCADA analytics, regulatory reporting automation, field technician recruitment, energy engineer sourcing",
     },
   },
@@ -473,8 +473,8 @@ export const RD_INDUSTRIES = [
     ],
     related: ["custom-software", "global-talent", "data-analytics"],
     seo: {
-      title: "Construction Technology and Skilled Trades Sourcing",
-      description: "Project controls, document automation and site intelligence for contractors and developers — plus sourced skilled trades, supervisors, QS and estimators with mobilization handled.",
+      title: "Construction Tech & Trades Sourcing",
+      description: "Project controls, document automation and site intelligence for contractors and developers, plus sourcing for the skilled trades behind the schedule.",
       keywords: "construction technology, project controls software, construction document automation, site progress tracking, skilled trades recruitment, quantity surveyor sourcing, international construction staffing",
     },
   },
@@ -497,7 +497,7 @@ export const RD_INDUSTRIES = [
     ],
     technology: {
       heading: "What we build for public sector bodies",
-      body: "Citizen services built to WCAG 2.1 AA as a requirement rather than a remediation item, deployed in-jurisdiction, and delivered in increments a procurement framework can actually absorb.",
+      body: "Citizen services built to WCAG 2.2 AA as a requirement rather than a remediation item, deployed in-jurisdiction, and delivered in increments a procurement framework can actually absorb.",
       items: [
         "Citizen-facing service platforms built to accessibility standards from the first design decision",
         "Case management modernization with migration paths that don't risk the record",
@@ -518,23 +518,23 @@ export const RD_INDUSTRIES = [
         "Managed back-office pods for records, correspondence and processing",
       ],
     },
-    compliance: ["WCAG 2.1 AA", "Data residency by jurisdiction", "ISO 27001 aligned", "SOC 2 aligned", "Security clearance screening"],
+    compliance: ["WCAG 2.2 AA", "Data residency by jurisdiction", "ISO 27001 aligned", "SOC 2 aligned", "Security clearance screening"],
     outcomes: [
       { t: "Services citizens can actually use", d: "Accessibility designed in from the first decision rather than remediated before launch." },
       { t: "Modernization without risking the record", d: "Incremental migration with the legacy system authoritative until the new one has earned trust." },
       { t: "Delivery capacity inside your frameworks", d: "Cleared, compliant contract staff procured the way you're required to procure them." },
     ],
     faqs: [
-      { q: "Do you meet accessibility requirements?", a: "We build to WCAG 2.1 AA as a design requirement, not a remediation task before launch. Accessibility is tested continuously through delivery, because retrofitting it is both more expensive and worse for the people it's meant to serve." },
+      { q: "Do you meet accessibility requirements?", a: "We build to WCAG 2.2 AA as a design requirement, not a remediation task before launch. Accessibility is tested continuously through delivery, because retrofitting it is both more expensive and worse for the people it's meant to serve." },
       { q: "Can you guarantee data residency?", a: "Yes. We deploy into your jurisdiction — your tenancy, your cloud region, or on-premise where legislation requires it. Residency constraints shape the architecture from the first decision rather than being handled at the end." },
       { q: "Do your staff hold security clearances?", a: "We screen against the clearance level a role requires and won't present someone whose clearance pathway we haven't verified. Clearance timelines are set by the granting authority, not by us — we plan around them honestly rather than promising dates we don't control." },
       { q: "How do you fit public procurement processes?", a: "We deliver in increments that map to how frameworks actually fund and review work, with fixed-price discovery to de-risk the scoping decision before a larger commitment. Full IP transfer is standard — nothing we build leaves you locked to us." },
     ],
     related: ["digital-transformation", "cybersecurity", "custom-software", "global-talent"],
     seo: {
-      title: "Public Sector Digital Services and Cleared Contract Staffing",
-      description: "Accessible citizen platforms, case management and records modernization with data residency and WCAG 2.1 AA compliance — plus cleared, compliant contract staff.",
-      keywords: "public sector digital transformation, government software development, citizen service platform, WCAG 2.1 AA accessibility, case management modernization, data residency, cleared contract staffing",
+      title: "Public Sector Digital Services",
+      description: "Accessible citizen platforms, case management and records modernization with data residency and WCAG 2.2 AA compliance — plus cleared, compliant contract staff.",
+      keywords: "public sector digital transformation, government software development, citizen service platform, WCAG 2.2 AA accessibility, case management modernization, data residency, cleared contract staffing",
     },
   },
   {
@@ -591,8 +591,8 @@ export const RD_INDUSTRIES = [
     ],
     related: ["global-talent", "data-analytics", "ai-machine-learning"],
     seo: {
-      title: "Hospitality Technology and High-Volume Staffing Solutions",
-      description: "Revenue management, guest experience and booking systems for hospitality operators — plus high-volume front-of-house, culinary and housekeeping sourcing for seasonal peaks.",
+      title: "Hospitality Technology & Staffing",
+      description: "Revenue management, guest experience and booking systems for hospitality operators, plus the high-volume staffing those systems are meant to support.",
       keywords: "hospitality technology, hotel revenue management, guest experience AI, PMS integration, hospitality staffing, seasonal hospitality recruitment, chef recruitment, housekeeping staffing",
     },
   },
@@ -636,7 +636,7 @@ export const RD_INDUSTRIES = [
         "Managed back-office pods for admissions and records processing",
       ],
     },
-    compliance: ["FERPA", "GDPR", "PIPEDA", "Accessibility (WCAG 2.1 AA)", "Accreditation reporting"],
+    compliance: ["FERPA", "GDPR", "PIPEDA", "Accessibility (WCAG 2.2 AA)", "Accreditation reporting"],
     outcomes: [
       { t: "Admissions that scale with applications", d: "International volume absorbed without adding administrators in proportion." },
       { t: "Intervention while it still helps", d: "At-risk signals surfaced early enough to change the outcome, not just record it." },
@@ -650,8 +650,8 @@ export const RD_INDUSTRIES = [
     ],
     related: ["custom-software", "data-analytics", "global-talent"],
     seo: {
-      title: "Education Technology Platforms and Academic Staffing",
-      description: "Admissions automation, student platforms and retention analytics for educational institutions — plus faculty, instructional designers and international academic recruitment.",
+      title: "Education Technology & Academic Staffing",
+      description: "Admissions automation, student platforms and retention analytics for educational institutions, with academic and technical staffing alongside.",
       keywords: "education technology, admissions automation, student information system integration, retention analytics, LMS integration, faculty recruitment, international academic staffing, FERPA compliance",
     },
   },
@@ -709,8 +709,8 @@ export const RD_INDUSTRIES = [
     ],
     related: ["data-analytics", "global-talent", "custom-software"],
     seo: {
-      title: "Transport & Aviation Systems and Licensed Crew Sourcing",
-      description: "Fleet telematics, crew scheduling and maintenance compliance for transport and aviation operators — plus licensed drivers, ground crew and aircraft maintenance engineers.",
+      title: "Transport & Aviation Systems",
+      description: "Fleet telematics, crew scheduling and maintenance compliance for transport and aviation operators, including licensed crew sourcing.",
       keywords: "aviation technology, fleet telematics, crew scheduling software, predictive maintenance aviation, airworthiness compliance, licensed driver recruitment, aircraft maintenance engineer sourcing",
     },
   },

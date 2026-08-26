@@ -1,0 +1,7 @@
+{
+  "tool_name": "mcp__plugin_playwright_playwright__browser_run_code_unsafe",
+  "tool_input_preview": "{\"code\":\"async (page) => {\\n  const urls = ['http://localhost:3001/','http://localhost:3001/government','http://localhost:3001/rfp','http://localhost:3001/services/ai-enablement','http://localhost:300...",
+  "error": "### Error\nError: ENOENT: no such file or directory, open '/Users/perfectumai/products/rounddigital-new/.playwright-mcp/responsive.json'",
+  "timestamp": "2026-08-17T02:14:04.250Z",
+  "retry_count": 1
+}

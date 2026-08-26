@@ -1,0 +1,121 @@
+{
+  "updatedAt": "2026-08-25T22:27:04.953Z",
+  "missions": [
+    {
+      "id": "session:4917ada1-7b69-4f07-8dcf-96a7b46aba2e:none",
+      "source": "session",
+      "name": "none",
+      "objective": "Session mission",
+      "createdAt": "2026-08-25T14:12:22.040Z",
+      "updatedAt": "2026-08-25T22:27:04.953Z",
+      "status": "done",
+      "workerCount": 3,
+      "taskCounts": {
+        "total": 3,
+        "pending": 0,
+        "blocked": 0,
+        "inProgress": 0,
+        "completed": 3,
+        "failed": 0
+      },
+      "agents": [
+        {
+          "name": "general-purpose:acc6900",
+          "role": "general-purpose",
+          "ownership": "acc69006a15954e82",
+          "status": "done",
+          "currentStep": null,
+          "latestUpdate": "completed",
+          "completedSummary": null,
+          "updatedAt": "2026-08-25T22:27:04.953Z"
+        },
+        {
+          "name": "critiqueA:acritiq",
+          "role": "critiqueA",
+          "ownership": "acritiqueA-e5604ea9ce58df98",
+          "status": "done",
+          "currentStep": null,
+          "latestUpdate": "completed",
+          "completedSummary": null,
+          "updatedAt": "2026-08-25T19:13:00.469Z"
+        },
+        {
+          "name": "critiqueB:acritiq",
+          "role": "critiqueB",
+          "ownership": "acritiqueB-bef182933ba0f0da",
+          "status": "done",
+          "currentStep": null,
+          "latestUpdate": "completed",
+          "completedSummary": null,
+          "updatedAt": "2026-08-25T19:08:38.937Z"
+        }
+      ],
+      "timeline": [
+        {
+          "id": "session-stop:acritiqueB-bef182933ba0f0da:2026-08-25T19:08:38.937Z",
+          "at": "2026-08-25T19:08:38.937Z",
+          "kind": "completion",
+          "agent": "critiqueB:acritiq",
+          "detail": "completed",
+          "sourceKey": "session-stop:acritiqueB-bef182933ba0f0da"
+        },
+        {
+          "id": "session-stop:acritiqueA-e5604ea9ce58df98:2026-08-25T19:11:43.304Z",
+          "at": "2026-08-25T19:11:43.304Z",
+          "kind": "completion",
+          "agent": "critiqueA:acritiq",
+          "detail": "completed",
+          "sourceKey": "session-stop:acritiqueA-e5604ea9ce58df98"
+        },
+        {
+          "id": "session-start:acritiqueA-e5604ea9ce58df98:2026-08-25T19:11:58.560Z",
+          "at": "2026-08-25T19:11:58.560Z",
+          "kind": "update",
+          "agent": "critiqueA:acritiq",
+          "detail": "started critiqueA:acritiq",
+          "sourceKey": "session-start:acritiqueA-e5604ea9ce58df98"
+        },
+        {
+          "id": "session-stop:a3560e271c27b3425:2026-08-25T19:12:05.695Z",
+          "at": "2026-08-25T19:12:05.695Z",
+          "kind": "completion",
+          "agent": "general-purpose:acc6900",
+          "detail": "completed",
+          "sourceKey": "session-stop:a3560e271c27b3425"
+        },
+        {
+          "id": "session-stop:acritiqueA-e5604ea9ce58df98:2026-08-25T19:13:00.469Z",
+          "at": "2026-08-25T19:13:00.469Z",
+          "kind": "completion",
+          "agent": "critiqueA:acritiq",
+          "detail": "completed",
+          "sourceKey": "session-stop:acritiqueA-e5604ea9ce58df98"
+        },
+        {
+          "id": "session-stop:ad6340054efd212db:2026-08-25T19:19:06.470Z",
+          "at": "2026-08-25T19:19:06.470Z",
+          "kind": "completion",
+          "agent": "general-purpose:acc6900",
+          "detail": "completed",
+          "sourceKey": "session-stop:ad6340054efd212db"
+        },
+        {
+          "id": "session-stop:a6db019f5c204429b:2026-08-25T19:19:13.740Z",
+          "at": "2026-08-25T19:19:13.740Z",
+          "kind": "completion",
+          "agent": "general-purpose:acc6900",
+          "detail": "completed",
+          "sourceKey": "session-stop:a6db019f5c204429b"
+        },
+        {
+          "id": "session-stop:a6f1123a9e529049c:2026-08-25T22:27:04.953Z",
+          "at": "2026-08-25T22:27:04.953Z",
+          "kind": "completion",
+          "agent": "general-purpose:acc6900",
+          "detail": "completed",
+          "sourceKey": "session-stop:a6f1123a9e529049c"
+        }
+      ]
+    }
+  ]
+}

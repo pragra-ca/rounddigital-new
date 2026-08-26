@@ -18,7 +18,10 @@ const Seo = ({
   const router = useRouter();
   const baseUrl = "https://www.round.digital";
   const cleanPath = router.asPath.split("?")[0].split("#")[0];
-  const currentUrl = canonicalUrl || `${baseUrl}${cleanPath === "/" ? "" : cleanPath}`;
+  // The root canonical keeps its trailing slash so it matches the <loc> the
+  // sitemap generator emits for "/". A canonical that disagrees with the
+  // sitemap is a self-inflicted duplicate-URL signal.
+  const currentUrl = canonicalUrl || `${baseUrl}${cleanPath === "/" ? "/" : cleanPath}`;
   
   // Site-wide keyword floor. Deliberately short: Google has ignored the
   // keywords meta since 2009, and every term here is also a claim we may be
@@ -49,12 +52,17 @@ const Seo = ({
     ? `${keywords}, ${defaultKeywords.join(", ")}`
     : defaultKeywords.join(", ");
 
-  const defaultDescription = 
+  // "Trusted by leading enterprises worldwide" was the fallback description on
+  // every page without its own — an unverifiable superlative shipped in the
+  // metadata of a site whose entire premise is verifiability.
+  const defaultDescription =
     description ||
-    "RoundDigital provides comprehensive IT solutions including AI development, cybersecurity, cloud services, custom software development, and digital transformation. Trusted by leading enterprises worldwide.";
+    "Round Digital builds the system, staffs it, trains the people who run it, and measures whether it worked. Women-owned technology and workforce services for government, enterprise and nonprofit buyers.";
 
-  const defaultTitle = title || "RoundDigital | Enterprise IT Solutions, AI Development & Cybersecurity";
-  const fullTitle = title ? `${title} | RoundDigital` : defaultTitle;
+  // The brand is "Round Digital" — two words — in the legal name, the footer
+  // and every line of body copy. The suffix said "RoundDigital".
+  const defaultTitle = title || "Round Digital — IT, AI, Research, Staffing and Training";
+  const fullTitle = title ? `${title} | Round Digital` : defaultTitle;
 
   const defaultOgImage = ogImage || `${baseUrl}/og-image.png`;
   const ogImageUrl = ogImage?.startsWith('http') ? ogImage : defaultOgImage;
@@ -104,16 +112,22 @@ const Seo = ({
       <meta name="twitter:description" content={defaultDescription} />
       <meta name="twitter:image" content={ogImageUrl} />
       <meta name="twitter:image:alt" content={fullTitle} />
-      <meta name="twitter:creator" content="@rounddigital" />
-      <meta name="twitter:site" content="@rounddigital" />
+      {/* twitter:creator / twitter:site removed — the handle "@rounddigital"
+          appears nowhere else and is unverified. An unowned handle in metadata
+          is a claim like any other. Restore only once the account exists. */}
       
       {/* Additional SEO Tags */}
-      <meta name="theme-color" content="#e14242" />
-      <meta name="msapplication-TileColor" content="#e14242" />
+      {/* Brand red, text-safe variant — the value browser chrome and Windows
+          tiles paint behind light UI. #e14242 here was the pre-rebuild red and
+          was the last colour in the codebase still pointing at the old brand. */}
+      <meta name="theme-color" content="#c81e22" />
+      <meta name="msapplication-TileColor" content="#c81e22" />
       <meta name="application-name" content="RoundDigital" />
       
       {/* Business/Organization Tags */}
-      <meta name="contact" content="info@rounddigital.co" />
+      {/* Was info@rounddigital.co — a different domain from round.digital,
+          which is the one used everywhere a human can read it. */}
+      <meta name="contact" content="hello@round.digital" />
       <meta name="copyright" content="RoundDigital" />
 
       {/* Google Site Verification */}

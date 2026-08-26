@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Round Digital — enterprise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Jost:wght@500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#f7f6f4;color:#14161a;
+       font-family:Inter,system-ui,sans-serif;font-size:17px;line-height:1.6;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1320px;margin-inline:auto;padding-inline:40px}
+  @media(max-width:760px){.wrap{padding-inline:20px}}
+  a{color:inherit;text-decoration:none}
+
+  /* utility bar — the strip every enterprise site has */
+  .util{background:#14161a;color:#9aa0a8;font-size:11.5px;letter-spacing:.03em}
+  .util-in{display:flex;align-items:center;gap:20px;height:34px;
+           font-family:'JetBrains Mono',monospace}
+  .util a:hover{color:#fff}
+  .util .r{margin-left:auto;display:flex;gap:18px;align-items:center}
+  .util .dot{width:5px;height:5px;border-radius:50%;background:#3ddc84;display:inline-block;margin-right:6px}
+  @media(max-width:820px){.util .hide-sm{display:none}}
+
+  nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(16px);
+      background:rgba(247,246,244,.9);border-bottom:1px solid #e2e0dc}
+  .nav-in{display:flex;align-items:center;gap:30px;height:66px}
+  .brand{display:flex;align-items:center;gap:10px;flex:none}
+  .brand-mark{width:24px;height:21px;background:#fd3f42;border-radius:2px 10px 10px 2px}
+  .brand-word{font-family:Jost,sans-serif;font-weight:500;font-size:14.5px;letter-spacing:.055em;text-transform:uppercase}
+  .nav-links{display:flex;gap:22px;font-size:14px;color:#4a5058;margin-left:22px;height:100%;align-items:center}
+  .nav-item{position:relative;height:100%;display:flex;align-items:center}
+  .nav-item > a{display:flex;align-items:center;gap:5px;height:100%}
+  .nav-item:hover > a{color:#14161a}
+  .caret{width:8px;height:8px;opacity:.55}
+  .mega{position:absolute;top:100%;left:-24px;min-width:620px;background:#fff;
+        border:1px solid #e2e0dc;box-shadow:0 24px 60px -18px rgba(20,22,26,.22);
+        padding:22px;display:none;grid-template-columns:1fr 1fr;gap:6px}
+  .nav-item:hover .mega{display:grid}
+  .mega a{display:block;padding:11px 13px;border:1px solid transparent}
+  .mega a:hover{background:#f7f6f4;border-color:#e2e0dc}
+  .mega b{display:block;font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .mega span{display:block;font-size:11.5px;color:#6b7078;margin-top:3px;
+             font-family:'JetBrains Mono',monospace;letter-spacing:.03em}
+  .nav-r{margin-left:auto;display:flex;align-items:center;gap:16px;font-size:14px}
+  .btn{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;
+       padding:10px 18px;transition:.2s;border-radius:2px}
+  .btn-dark{background:#14161a;color:#fff}.btn-dark:hover{background:#c81e22}
+  .btn-line{border:1px solid #c3c0ba;color:#14161a}.btn-line:hover{border-color:#14161a}
+  .btn-lg{padding:14px 24px;font-size:14.5px}
+  @media(max-width:1080px){.nav-links{display:none}}
+
+  .hero{position:relative;overflow:hidden;
+        background:radial-gradient(ellipse 60% 44% at 50% 0%,rgba(253,63,66,.07),transparent 68%)}
+  .grid-bg{position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(#14161a 1px,transparent 1px),
+                     linear-gradient(90deg,#14161a 1px,transparent 1px);
+    background-size:72px 72px;opacity:.03;
+    -webkit-mask-image:radial-gradient(ellipse 72% 56% at 50% 20%,#000 18%,transparent 74%);
+            mask-image:radial-gradient(ellipse 72% 56% at 50% 20%,#000 18%,transparent 74%)}
+  .hero-in{position:relative;z-index:2;text-align:center;padding-block:82px 0}
+  h1{font-family:'Inter Tight',sans-serif;font-weight:500;
+     font-size:clamp(33px,4.5vw,64px);line-height:1.03;letter-spacing:-.035em;
+     margin:0 auto;max-width:25ch}
+  h1 em{font-style:normal;color:#7b8189}
+  .datarow{margin:34px auto 0;max-width:940px;display:grid;
+           grid-template-columns:1fr auto 1fr;align-items:center;gap:22px;
+           font-family:'JetBrains Mono',monospace;font-size:11px;
+           letter-spacing:.15em;text-transform:uppercase;color:#6b7078}
+  .datarow .l{text-align:right}.datarow .r{text-align:left}
+  .datarow b{color:#14161a;font-weight:500}
+  .datarow .mid{display:flex;align-items:center;gap:10px;white-space:nowrap}
+  .datarow .rule{height:1px;width:70px;background:#cfccc6}
+  @media(max-width:760px){.datarow{grid-template-columns:1fr;gap:9px;text-align:center}
+    .datarow .l,.datarow .r{text-align:center}.datarow .rule{display:none}}
+  .sub{margin:30px auto 0;max-width:56ch;font-size:clamp(15px,1.15vw,17px);color:#4a5058}
+  .hero-actions{margin-top:30px;display:flex;gap:11px;justify-content:center;flex-wrap:wrap;padding-bottom:80px}
+
+  .bleed{position:relative;background:#0a0c10;color:#fff;overflow:hidden}
+  .bleed + .bleed{border-top:1px solid rgba(255,255,255,.09)}
+  .bleed-in{display:grid;grid-template-columns:1fr 1.35fr;min-height:430px;align-items:stretch}
+  .bleed-l{padding:52px 46px;display:flex;flex-direction:column;justify-content:center;
+           border-right:1px solid rgba(255,255,255,.09)}
+  .bleed-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;
+             color:#7b8189;display:flex;align-items:center;gap:9px}
+  .bleed-tag i{width:6px;height:6px;border-radius:50%;background:#3ddc84;display:block;
+               animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+  .bleed-name{font-family:'Inter Tight',sans-serif;font-size:clamp(29px,3.4vw,47px);
+              font-weight:500;letter-spacing:-.035em;line-height:1;margin:15px 0 0}
+  .bleed-l p{color:#9aa0a8;font-size:15px;line-height:1.6;margin:15px 0 0;max-width:38ch}
+  .specs{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+  .specs span{font-family:'JetBrains Mono',monospace;font-size:10.5px;
+              border:1px solid rgba(255,255,255,.2);padding:5px 9px;color:#aab0b8}
+  .bleed-link{margin-top:24px;font-size:14px;font-weight:600;display:inline-flex;
+              align-items:center;gap:7px;color:#fff;width:fit-content;
+              border-bottom:2px solid #fd3f42;padding-bottom:3px}
+  .bleed-r{padding:38px;display:flex;align-items:center;justify-content:center;
+           background:radial-gradient(ellipse at 50% 40%,rgba(253,63,66,.11),transparent 62%)}
+  @media(max-width:900px){.bleed-in{grid-template-columns:1fr}
+    .bleed-l{border-right:0;border-bottom:1px solid rgba(255,255,255,.09);padding:38px 22px}
+    .bleed-r{padding:22px}}
+  .screen{width:100%;max-width:600px;border-radius:7px;overflow:hidden;background:#0e1218;
+          border:1px solid rgba(255,255,255,.13);box-shadow:0 34px 70px -24px rgba(0,0,0,.9)}
+  .screen-bar{display:flex;align-items:center;gap:8px;padding:10px 13px;
+              border-bottom:1px solid rgba(255,255,255,.08);background:#11161d}
+  .sd{width:8px;height:8px;border-radius:50%;background:#2c343d}
+  .screen-title{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#6e7883;margin-left:7px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px}
+  .kpi{border:1px solid rgba(255,255,255,.09);padding:10px;background:#0b1016;border-radius:3px}
+  .kpi-l{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;color:#6e7883;text-transform:uppercase}
+  .kpi-v{font-family:'Inter Tight',sans-serif;font-size:20px;font-weight:600;letter-spacing:-.03em;margin-top:4px}
+  .kpi-v.ok{color:#3ddc84}
+  .rows{padding:0 14px 14px}
+  .row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;
+       padding:9px 11px;border:1px solid rgba(255,255,255,.07);border-radius:3px;
+       background:#0b1016;margin-bottom:6px;font-size:12.5px;color:#aab0b8}
+  .row b{color:#fff;font-weight:500}
+  .row .st{font-family:'JetBrains Mono',monospace;font-size:10px;color:#3ddc84}
+  @media(max-width:520px){.kpis{grid-template-columns:repeat(2,1fr)}}
+
+  section{padding-block:clamp(70px,8vw,116px)}
+  .tint{background:#fff;border-block:1px solid #e2e0dc}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;
+           text-transform:uppercase;color:#6b7078;display:flex;align-items:center;gap:11px}
+  .eyebrow::before{content:"";width:24px;height:2px;background:#fd3f42}
+  .head{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:end}
+  h2{font-family:'Inter Tight',sans-serif;font-weight:500;
+     font-size:clamp(27px,3.5vw,45px);line-height:1.06;letter-spacing:-.032em;margin:18px 0 0}
+  .lede{font-size:16.5px;color:#4a5058;line-height:1.62;margin:0}
+  @media(max-width:860px){.head{grid-template-columns:1fr;gap:16px;align-items:start}}
+
+  .pillars{display:grid;grid-template-columns:repeat(5,1fr);margin-top:42px;
+           border:1px solid #ddd9d3;background:#fff}
+  .pillar{padding:26px 20px;border-left:1px solid #ddd9d3;transition:background .2s}
+  .pillar:first-child{border-left:0}
+  .pillar:hover{background:#faf9f7}
+  .pillar .n{font-family:'JetBrains Mono',monospace;font-size:10px;color:#c81e22;letter-spacing:.14em}
+  .pillar h3{font-family:'Inter Tight',sans-serif;font-size:17px;font-weight:600;
+             letter-spacing:-.02em;margin:11px 0 0;line-height:1.2}
+  .pillar p{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#6b7078;
+            margin:9px 0 0;line-height:1.6}
+  .pillar .code{font-family:'JetBrains Mono',monospace;font-size:10px;color:#9a958d;margin-top:14px;display:block}
+  @media(max-width:1000px){.pillars{grid-template-columns:repeat(2,1fr)}
+    .pillar{border-left:1px solid #ddd9d3;border-top:1px solid #ddd9d3}
+    .pillar:nth-child(odd){border-left:0}}
+  @media(max-width:560px){.pillars{grid-template-columns:1fr}.pillar{border-left:0}}
+
+  .inds{display:grid;grid-template-columns:repeat(4,1fr);margin-top:42px;
+        border:1px solid #ddd9d3;background:#fff}
+  .ind{padding:20px;border-left:1px solid #ddd9d3;border-top:1px solid #ddd9d3;
+       display:flex;align-items:center;justify-content:space-between;gap:10px;
+       font-size:14.5px;transition:background .2s}
+  .ind:hover{background:#faf9f7}
+  .ind:nth-child(-n+4){border-top:0}
+  .ind:nth-child(4n+1){border-left:0}
+  .ind .ar{color:#c81e22;opacity:0;transition:opacity .2s}
+  .ind:hover .ar{opacity:1}
+  @media(max-width:900px){.inds{grid-template-columns:repeat(2,1fr)}
+    .ind:nth-child(-n+4){border-top:1px solid #ddd9d3}
+    .ind:nth-child(-n+2){border-top:0}
+    .ind:nth-child(4n+1){border-left:1px solid #ddd9d3}
+    .ind:nth-child(odd){border-left:0}}
+
+  .tracks{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:42px}
+  .track{border:1px solid #ddd9d3;padding:32px 28px;background:#fff;
+         transition:box-shadow .25s,transform .25s,border-color .25s}
+  .track:hover{box-shadow:0 18px 40px -14px rgba(20,22,26,.17);transform:translateY(-3px);border-color:#bdb8b0}
+  .track-n{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#c81e22}
+  .track h3{font-family:'Inter Tight',sans-serif;font-size:23px;font-weight:600;letter-spacing:-.028em;margin:12px 0 0}
+  .track p{color:#4a5058;font-size:15px;margin:11px 0 0}
+  .track ul{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+  .track li{font-family:'JetBrains Mono',monospace;font-size:10px;border:1px solid #ddd9d3;padding:5px 8px;color:#5c6169}
+  .track a{display:inline-flex;align-items:center;gap:6px;margin-top:22px;font-size:14px;font-weight:600;
+           border-bottom:2px solid #fd3f42;padding-bottom:3px}
+  @media(max-width:820px){.tracks{grid-template-columns:1fr}}
+
+  .refs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+  .ref{border:1px solid #ddd9d3;background:#fff;padding:26px 24px}
+  .ref .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#6b7078}
+  .ref h4{font-family:'Inter Tight',sans-serif;font-size:20px;font-weight:600;letter-spacing:-.025em;margin:12px 0 0}
+  .ref p{font-size:14px;color:#4a5058;margin:10px 0 0;line-height:1.55}
+  @media(max-width:900px){.refs{grid-template-columns:1fr}}
+
+  .posture{margin-top:42px;border:1px solid #ddd9d3;background:#fff}
+  .prow{display:grid;grid-template-columns:1.4fr 1fr auto;gap:16px;align-items:center;
+        padding:14px 20px;border-top:1px solid #ddd9d3;font-size:14.5px}
+  .prow:first-child{border-top:0;background:#faf9f7;
+        font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#6b7078}
+  .pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;
+        padding:4px 9px;border:1px solid;white-space:nowrap}
+  .held{color:#1a7f4b;border-color:#9fd4b7;background:#eef9f3}
+  .plan{color:#8a6100;border-color:#e6cf94;background:#fdf7e7}
+  @media(max-width:700px){.prow{grid-template-columns:1fr auto;gap:8px}
+    .prow span.mid{display:none}}
+
+  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+  .post{border:1px solid #ddd9d3;background:#fff;padding:24px;display:flex;flex-direction:column;
+        transition:box-shadow .25s,transform .25s}
+  .post:hover{box-shadow:0 16px 36px -14px rgba(20,22,26,.16);transform:translateY(-2px)}
+  .post .d{font-family:'JetBrains Mono',monospace;font-size:10px;color:#9a958d;letter-spacing:.1em}
+  .post h4{font-family:'Inter Tight',sans-serif;font-size:18px;font-weight:600;
+           letter-spacing:-.02em;margin:12px 0 0;line-height:1.25}
+  .post .more{margin-top:auto;padding-top:18px;font-size:13px;font-weight:600;color:#c81e22}
+  @media(max-width:900px){.posts{grid-template-columns:1fr}}
+
+  .cta{background:#14161a;color:#fff;padding:clamp(40px,5vw,64px);
+       display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+  .cta h3{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:clamp(24px,2.9vw,37px);
+          letter-spacing:-.03em;line-height:1.08;margin:0}
+  .cta p{color:#a9afb7;margin:13px 0 0;font-size:15.5px;max-width:44ch}
+  .cta-actions{display:flex;flex-direction:column;gap:9px}
+  .btn-white{background:#fff;color:#14161a}.btn-white:hover{background:#fd3f42;color:#fff}
+  .btn-onDark{border:1px solid #494f57;color:#fff}.btn-onDark:hover{border-color:#fff}
+  @media(max-width:820px){.cta{grid-template-columns:1fr;gap:22px}}
+
+  footer{background:#14161a;color:#9aa0a8;padding-block:56px 28px;font-size:13.5px}
+  .fcols{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:34px}
+  .fcol h5{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;
+           text-transform:uppercase;color:#6b7078;margin:0 0 14px;font-weight:500}
+  .fcol a{display:block;padding:5px 0;color:#c3c8ce}
+  .fcol a:hover{color:#fff}
+  .fbrand .brand-word{color:#fff}
+  .fbrand p{margin:14px 0 0;max-width:30ch;line-height:1.6;color:#8a9099}
+  .locs{margin-top:18px;display:flex;flex-direction:column;gap:9px}
+  .loc{display:flex;gap:9px;align-items:baseline;font-family:'JetBrains Mono',monospace;font-size:11px}
+  .loc b{color:#fff;font-weight:500}
+  .loc em{font-style:normal;color:#6b7078}
+  .fbot{margin-top:44px;padding-top:22px;border-top:1px solid #262a30;
+        display:flex;gap:18px;flex-wrap:wrap;align-items:center;font-size:12px}
+  .fbot .r{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:#6b7078}
+  @media(max-width:1000px){.fcols{grid-template-columns:1fr 1fr;gap:28px}}
+  @media(max-width:620px){.fcols{grid-template-columns:1fr}}
+
+  .fu{animation:fu .8s cubic-bezier(.2,.7,.3,1) backwards}
+  @keyframes fu{from{opacity:0;transform:translateY(16px)}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="wrap util-in">
+    <span class="hide-sm"><span class="dot"></span>2 delivery centres &middot; Mississauga, ON &middot; Noida, UP</span>
+    <span class="r">
+      <a href="#">Insights</a><a href="#">Careers</a><a href="#">Teaming</a>
+      <a class="hide-sm" href="#">+1&nbsp;905&nbsp;407&nbsp;5009</a>
+    </span>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#"><span class="brand-mark"></span><span class="brand-word">Round&nbsp;Digital</span></a>
+    <div class="nav-links">
+      <div class="nav-item"><a href="#platforms">Platforms</a></div>
+      <div class="nav-item">
+        <a href="#services">Services
+          <svg class="caret" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.4"/></svg></a>
+        <div class="mega">
+          <a href="#"><b>IT Services</b><span>CLOUD &middot; SOFTWARE &middot; SECURITY &middot; DATA</span></a>
+          <a href="#"><b>AI Enablement &amp; Automation</b><span>READINESS &middot; AGENTS &middot; GOVERNANCE</span></a>
+          <a href="#"><b>Data, Research &amp; Surveys</b><span>SURVEYS &middot; ANALYTICS &middot; EVALUATION</span></a>
+          <a href="#"><b>Staffing &amp; Workforce</b><span>AUGMENTATION &middot; DIRECT HIRE &middot; PODS</span></a>
+          <a href="#"><b>Corporate &amp; Technical Training</b><span>AI LITERACY &middot; UPSKILLING</span></a>
+          <a href="#"><b>All services</b><span>COMPARISON TABLE &#8599;</span></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#industries">Industries
+          <svg class="caret" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.4"/></svg></a>
+        <div class="mega">
+          <a href="#"><b>Banking &amp; Finance</b><span>MODERNISE WITHOUT DOWNTIME</span></a>
+          <a href="#"><b>Healthcare</b><span>HIPAA-SAFE INTELLIGENCE</span></a>
+          <a href="#"><b>Manufacturing &amp; Logistics</b><span>OPERATIONS THAT SEE AHEAD</span></a>
+          <a href="#"><b>Public Sector</b><span>BID-READY DELIVERY</span></a>
+          <a href="#"><b>SaaS &amp; Technology</b><span>AI FEATURES THAT SHIP</span></a>
+          <a href="#"><b>All 12 sectors</b><span>WHO WE SERVE &#8599;</span></a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="#tracks">Government</a></div>
+      <div class="nav-item"><a href="#proof">Our work</a></div>
+    </div>
+    <div class="nav-r">
+      <a href="#" style="color:#4a5058">Contact</a>
+      <a class="btn btn-dark" href="#cta">Submit an RFP</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap hero-in">
+    <h1 class="fu" style="animation-delay:.05s">We don't show you consultants.<br><em>We show you the software we run.</em></h1>
+    <div class="datarow fu" style="animation-delay:.18s">
+      <div class="l">Build&nbsp;it &middot; Staff&nbsp;it<br><b>Train&nbsp;it &middot; Prove&nbsp;it</b></div>
+      <div class="mid"><span class="rule"></span><b>EST.&nbsp;2017</b><span class="rule"></span></div>
+      <div class="r"><b>Women-owned</b><br>Mississauga &middot; Noida</div>
+    </div>
+    <p class="sub fu" style="animation-delay:.26s">
+      Two platforms in production, built and operated by the same team you would be hiring.
+    </p>
+    <div class="hero-actions fu" style="animation-delay:.34s">
+      <a class="btn btn-dark btn-lg" href="#platforms">See the platforms &#8599;</a>
+      <a class="btn btn-line btn-lg" href="#cta">Read the capability statement</a>
+    </div>
+  </div>
+</header>
+
+<div class="bleed" id="platforms">
+  <div class="bleed-in">
+    <div class="bleed-l">
+      <div class="bleed-tag"><i></i>OPERATIONAL &middot; PLATFORM 01</div>
+      <div class="bleed-name">Perfectum.ai</div>
+      <p>Commercial multi-tenant learning platform serving 1,200+ academies. Built here. Still run here.</p>
+      <div class="specs"><span>SCORM 1.2</span><span>SCORM 2004</span><span>xAPI</span><span>MULTI-TENANT</span></div>
+      <a class="bleed-link" href="#">Open the platform &#8599;</a>
+    </div>
+    <div class="bleed-r">
+      <div class="screen">
+        <div class="screen-bar"><span class="sd"></span><span class="sd"></span><span class="sd"></span>
+          <span class="screen-title">perfectum.ai &mdash; academy operations</span></div>
+        <div class="kpis">
+          <div class="kpi"><div class="kpi-l">Academies</div><div class="kpi-v">1,200+</div></div>
+          <div class="kpi"><div class="kpi-l">SCORM 1.2</div><div class="kpi-v ok">Pass</div></div>
+          <div class="kpi"><div class="kpi-l">SCORM 2004</div><div class="kpi-v ok">Pass</div></div>
+          <div class="kpi"><div class="kpi-l">xAPI</div><div class="kpi-v ok">Pass</div></div>
+        </div>
+        <div class="rows">
+          <div class="row"><b>Conformance suite</b><span>ADL test harness</span><span class="st">PASS</span></div>
+          <div class="row"><b>Tenant isolation</b><span>multi-tenant</span><span class="st">ACTIVE</span></div>
+          <div class="row"><b>Content delivery</b><span>SCORM / xAPI</span><span class="st">ACTIVE</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bleed">
+  <div class="bleed-in">
+    <div class="bleed-l">
+      <div class="bleed-tag"><i></i>OPERATIONAL &middot; PLATFORM 02</div>
+      <div class="bleed-name">ShipCarte</div>
+      <p>Toronto multi-carrier logistics platform, operating since 2019 across four freight modes.</p>
+      <div class="specs"><span>LTL</span><span>COURIER</span><span>AIR</span><span>OCEAN</span></div>
+      <a class="bleed-link" href="#">Open the platform &#8599;</a>
+    </div>
+    <div class="bleed-r">
+      <div class="screen">
+        <div class="screen-bar"><span class="sd"></span><span class="sd"></span><span class="sd"></span>
+          <span class="screen-title">shipcarte &mdash; rating &amp; tendering</span></div>
+        <div class="kpis">
+          <div class="kpi"><div class="kpi-l">Since</div><div class="kpi-v">2019</div></div>
+          <div class="kpi"><div class="kpi-l">LTL</div><div class="kpi-v ok">Live</div></div>
+          <div class="kpi"><div class="kpi-l">Air</div><div class="kpi-v ok">Live</div></div>
+          <div class="kpi"><div class="kpi-l">Ocean</div><div class="kpi-v ok">Live</div></div>
+        </div>
+        <div class="rows">
+          <div class="row"><b>Multi-carrier rating</b><span>LTL / courier</span><span class="st">ACTIVE</span></div>
+          <div class="row"><b>Freight tendering</b><span>air / ocean</span><span class="st">ACTIVE</span></div>
+          <div class="row"><b>Shipment tracking</b><span>all modes</span><span class="st">ACTIVE</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="tint" id="services">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">Capability</div>
+        <h2>Five practices. One accountable team.</h2></div>
+      <p class="lede">Each maps to a primary NAICS code, so a contracting officer can place us without a phone call.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><div class="n">01</div><h3>IT Services</h3>
+        <p>CLOUD &middot; SOFTWARE<br>SECURITY &middot; DATA</p><span class="code">NAICS 541512</span></div>
+      <div class="pillar"><div class="n">02</div><h3>AI Enablement &amp; Automation</h3>
+        <p>READINESS &middot; AGENTS<br>GOVERNANCE</p><span class="code">NAICS 541511</span></div>
+      <div class="pillar"><div class="n">03</div><h3>Data, Research &amp; Surveys</h3>
+        <p>SURVEYS &middot; ANALYTICS<br>EVALUATION</p><span class="code">NAICS 541910</span></div>
+      <div class="pillar"><div class="n">04</div><h3>Staffing &amp; Workforce</h3>
+        <p>AUGMENTATION &middot; DIRECT HIRE<br>PODS</p><span class="code">NAICS 561320</span></div>
+      <div class="pillar"><div class="n">05</div><h3>Corporate &amp; Technical Training</h3>
+        <p>AI LITERACY &middot; UPSKILLING<br>APPRENTICESHIP</p><span class="code">NAICS 611430</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="industries">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">Who we serve</div>
+        <h2>Twelve sectors, each with its own compliance context.</h2></div>
+      <p class="lede">No geography pages for cities we have no presence in &mdash; that is a bid-integrity liability, not an SEO tactic.</p>
+    </div>
+    <div class="inds">
+      <a class="ind" href="#">Banking &amp; Finance <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Healthcare <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Manufacturing &amp; Logistics <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Public Sector <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">SaaS &amp; Technology <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Retail &amp; E-commerce <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Professional Services <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Energy &amp; Utilities <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Construction &amp; Real Estate <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Education <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Hospitality <span class="ar">&#8599;</span></a>
+      <a class="ind" href="#">Transport &amp; Aviation <span class="ar">&#8599;</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="tracks">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">Two ways in</div>
+        <h2>The same team, whichever room you are buying from.</h2></div>
+      <p class="lede">Enterprise and public sector need different evidence. Both get the people who actually do the work.</p>
+    </div>
+    <div class="tracks">
+      <div class="track">
+        <div class="track-n">01 &middot; ENTERPRISE</div>
+        <h3>Ship the system. Keep the capability.</h3>
+        <p>Modernisation, AI enablement, and the people to operate it after we leave &mdash; so the capability does not walk out with the vendor.</p>
+        <ul><li>IT SERVICES</li><li>AI ENABLEMENT</li><li>STAFFING</li><li>TRAINING</li></ul>
+        <a href="#">See what we have shipped &#8599;</a>
+      </div>
+      <div class="track">
+        <div class="track-n">02 &middot; PUBLIC SECTOR</div>
+        <h3>Bid-ready on day one.</h3>
+        <p>Capability statement, NAICS and PSC codes, past performance and teaming positions &mdash; all published, all sourced, nothing padded.</p>
+        <ul><li>541512</li><li>541511</li><li>541910</li><li>561320</li><li>611430</li></ul>
+        <a href="#">Open the capability statement &#8599;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">Past performance</div>
+        <h2>Three references. Each one sourced.</h2></div>
+      <p class="lede">We publish the relationship type, not just the logo &mdash; because an evaluator will ask, and the answer should already be on the page.</p>
+    </div>
+    <div class="refs">
+      <div class="ref"><div class="k">OWN PRODUCT</div><h4>Perfectum.ai</h4>
+        <p>Designed, built and operated by Round Digital. Multi-tenant LMS, 1,200+ academies, full SCORM and xAPI conformance.</p></div>
+      <div class="ref"><div class="k">CLIENT ENGAGEMENT</div><h4>ShipCarte</h4>
+        <p>Multi-carrier logistics platform operating since 2019 across LTL, courier, air and ocean freight.</p></div>
+      <div class="ref"><div class="k">PREDECESSOR ENTITY</div><h4>Pragra</h4>
+        <p>Round Digital is the successor to Pragra LLC. Named to Forbes Canada's Best Startup Employers 2024.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">Compliance posture</div>
+        <h2>What we hold, and what we do not.</h2></div>
+      <p class="lede">Most suppliers list only what flatters them. The gaps are here too, with target dates &mdash; a build check fails if this page ever overclaims.</p>
+    </div>
+    <div class="posture">
+      <div class="prow"><span>CREDENTIAL</span><span class="mid">SCOPE</span><span>STATUS</span></div>
+      <div class="prow"><span>Women-owned business</span><span class="mid">Ownership &amp; control</span><span class="pill held">HELD</span></div>
+      <div class="prow"><span>SCORM 1.2 / 2004 / xAPI conformance</span><span class="mid">Perfectum.ai platform</span><span class="pill held">HELD</span></div>
+      <div class="prow"><span>SBA Dynamic Small Business Search profile</span><span class="mid">Tier 0 &middot; ~30 days</span><span class="pill plan">IN PROGRESS</span></div>
+      <div class="prow"><span>ISO 27001</span><span class="mid">Tier 2 &middot; audit preparation</span><span class="pill plan">NOT HELD</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">Insights</div>
+        <h2>What we have actually learned shipping this.</h2></div>
+      <p class="lede">Written by the people doing the work, not a content team.</p>
+    </div>
+    <div class="posts">
+      <div class="post"><div class="d">DIGITAL TRANSFORMATION</div>
+        <h4>Legacy to cloud-native: a transformation playbook</h4>
+        <div class="more">Read &#8599;</div></div>
+      <div class="post"><div class="d">AI ENABLEMENT</div>
+        <h4>The economics of AI agents: an ROI analysis</h4>
+        <div class="more">Read &#8599;</div></div>
+      <div class="post"><div class="d">GOVERNANCE</div>
+        <h4>Security and compliance in AI agent deployments</h4>
+        <div class="more">Read &#8599;</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta" id="cta">
+      <div>
+        <h3>Send us the requirement. You will hear back from someone who can decide.</h3>
+        <p>No qualification queue, no account manager relay.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-white btn-lg" href="#">Submit an RFP &#8599;</a>
+        <a class="btn btn-onDark btn-lg" href="#">Start a conversation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div class="fcol fbrand">
+        <span class="brand" style="display:inline-flex"><span class="brand-mark"></span><span class="brand-word">Round&nbsp;Digital</span></span>
+        <p>Technology and workforce services. We build the system, staff it, train the people who run it, and measure whether it worked.</p>
+        <div class="locs">
+          <div class="loc"><b>MISSISSAUGA, ON</b><em>delivery centre</em></div>
+          <div class="loc"><b>NOIDA, UP</b><em>delivery centre</em></div>
+          <div class="loc"><b>CHEYENNE, WY</b><em>registered</em></div>
+        </div>
+      </div>
+      <div class="fcol"><h5>Services</h5>
+        <a href="#">IT Services</a><a href="#">AI Enablement</a><a href="#">Data &amp; Research</a>
+        <a href="#">Staffing</a><a href="#">Training</a></div>
+      <div class="fcol"><h5>Procurement</h5>
+        <a href="#">Capability statement</a><a href="#">NAICS &amp; PSC codes</a><a href="#">Contract vehicles</a>
+        <a href="#">Past performance</a><a href="#">Teaming</a></div>
+      <div class="fcol"><h5>Company</h5>
+        <a href="#">About</a><a href="#">Women-owned</a><a href="#">Leadership</a>
+        <a href="#">Careers</a><a href="#">Insights</a></div>
+      <div class="fcol"><h5>Contact</h5>
+        <a href="#">Submit an RFP</a><a href="#">Start a conversation</a><a href="#">+1 905 407 5009</a>
+        <a href="#">info@rounddigital.co</a><a href="#">LinkedIn &#8599;</a></div>
+    </div>
+    <div class="fbot">
+      <span>&copy; 2026 Round Digital</span><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a>
+      <span class="r">EST. 2017 &middot; WOMEN-OWNED &middot; WCAG 2.2 AA</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

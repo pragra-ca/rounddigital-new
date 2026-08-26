@@ -51,10 +51,12 @@ export const FORBIDDEN_CLAIMS = [
   },
   {
     pattern: new RegExp(String.raw`CMMI\s*(?:Level\s*)?[1-5]`, "gi"),
+    bareName: true,
     reason: "CMMI is not held and is not on the near-term roadmap. Spec §8 Tier 3.",
   },
   {
     pattern: /\bWOSB\b|\bEDWOSB\b/gi,
+    bareName: true,
     reason:
       "WOSB/EDWOSB require 51% US-citizen ownership. We are ineligible. Spec §4.2.",
   },
@@ -63,14 +65,17 @@ export const FORBIDDEN_CLAIMS = [
     // non-word characters, so no word boundary exists between them. Fixed
     // here after `node --test` exposed it: "our 8(a) status" wasn't matching.
     pattern: /\b8\(a\)(?!\w)/gi,
+    bareName: true,
     reason: "8(a) requires US citizenship. We are ineligible. Spec §4.2.",
   },
   {
     pattern: /\bHUBZone\b/gi,
+    bareName: true,
     reason: "HUBZone requires US-citizen ownership. We are ineligible. Spec §4.2.",
   },
   {
     pattern: /\bSDB\b|small[\s-]disadvantaged[\s-]business/gi,
+    bareName: true,
     reason:
       "SDB self-certification requires US-citizen ownership. We are ineligible. Spec §4.2.",
   },
@@ -95,19 +100,99 @@ export const FORBIDDEN_CLAIMS = [
       String.raw`["'](?:SOC\s*2${SOC2_TYPE}|ISO(?:\/IEC)?\s*\d{4,5}(?:[:-]\d{4})?|CMMI(?:\s*Level\s*[1-5])?)["']`,
       "gi"
     ),
+    bareName: true,
     reason:
       "A bare certification name as a standalone string literal reads as a claim (e.g. an SEO keyword array). Certification names belong only in claims.mjs and credentials.mjs.",
   },
 ];
 
-export function findForbiddenClaims(text) {
+// Disclaimer context. Applies ONLY to bare-name rules (`bareName: true`).
+//
+// A bare programme name is not by itself a claim — the site names WOSB, 8(a)
+// and HUBZone precisely to state that we are not eligible, which the spec
+// requires us to disclose. These markers identify that framing.
+//
+// This must NEVER be applied to a pattern that already contains the assertion
+// verb ("ISO 27001 certified"), or a sentence like "Our roadmap is ambitious.
+// We are ISO 27001 certified." would be waved through on the word "roadmap".
+const DISCLAIM_CONTEXT = [
+  /\b(?:not|never)\s+(?:yet\s+)?(?:eligible|certified|held|awarded|accredited)\b/i,
+  /\bineligible\b/i,
+  /\bclosed\s+to\s+us\b/i,
+  /\bdo\s+not\s+(?:hold|pursue|claim|imply)\b/i,
+  /\bwe\s+hold\s+(?:no|none)\b/i,
+  /\brequires?\s+(?:51%\s+)?(?:ownership\s+by\s+)?(?:United\s+States|US)[\s-]citizen/i,
+  /\brequire\s+US-citizen\s+ownership\b/i,
+  /\bnot\s+pursue\b/i,
+  // Standards named as design targets rather than possessions.
+  /\b(?:frameworks?\s+we\s+design\s+to|design(?:ed)?\s+(?:and\s+document\s+)?to|aligned\s+to|standards?\s+we\s+work\s+to|regimes?\s+we\s+design\s+to)\b/i,
+  // Roadmap framing — bare names on a roadmap are targets, not possessions.
+  /\b(?:roadmap|target\s+(?:date|quarter)|targetQuarter|in\s+progress|planned|pursuing)\b/i,
+];
+
+const DISCLAIM_WINDOW = 240;
+
+// Interrogative openers. A question is never an assertion, so this exemption
+// is safe to apply to every rule — but it is deliberately narrow: the match
+// must sit inside a clause that both begins with an interrogative and ends in
+// a question mark before any sentence-ending period.
+const INTERROGATIVE = /^\s*(?:are|is|do|does|can|could|will|would|have|has|what|which|who|how|why|where)\b/i;
+
+function inQuestion(text, index, length) {
+  // Nearest preceding clause boundary: sentence end, quote, or newline.
+  let start = 0;
+  for (let i = index - 1; i >= 0 && index - i < 300; i -= 1) {
+    if (/[.?!\n"'`]/.test(text[i])) {
+      start = i + 1;
+      break;
+    }
+  }
+  // Nearest following terminator.
+  let end = text.length;
+  for (let i = index + length; i < text.length && i - index < 300; i += 1) {
+    if (/[.?!\n"'`]/.test(text[i])) {
+      end = i;
+      break;
+    }
+  }
+  const clause = text.slice(start, end);
+  return INTERROGATIVE.test(clause) && text[end] === "?";
+}
+
+// An assertion verb sitting immediately against the match overrides any
+// disclaimer nearby. Without this, "Not eligible for HUBZone. We are WOSB
+// certified though." is waved through on the leading disclaimer, which is the
+// precise shape of a claim smuggled in behind a caveat.
+const ADJACENT_ASSERTION = /^[\s-]{0,40}(?:certified|certification|accredited|appraised|compliant|holder|audited)\b/i;
+
+function assertsPossession(text, index, length) {
+  return ADJACENT_ASSERTION.test(text.slice(index + length, index + length + 60));
+}
+
+function isExempt(rule, text, index, length) {
+  // A question is never an assertion — this applies to every rule.
+  if (inQuestion(text, index, length)) return true;
+  // Assertion-form rules already contain the verb; context cannot excuse them.
+  if (!rule.bareName) return false;
+  // A bare name followed by an assertion verb is an assertion, disclaimer or not.
+  if (assertsPossession(text, index, length)) return false;
+  const from = Math.max(0, index - DISCLAIM_WINDOW);
+  const to = Math.min(text.length, index + length + DISCLAIM_WINDOW);
+  const context = text.slice(from, to);
+  return DISCLAIM_CONTEXT.some((re) => re.test(context));
+}
+
+export function findForbiddenClaims(text, { ignoreContext = false } = {}) {
   const hits = [];
-  for (const { pattern, reason } of FORBIDDEN_CLAIMS) {
+  for (const rule of FORBIDDEN_CLAIMS) {
+    const { pattern, reason } = rule;
     // Patterns are global; reset lastIndex so repeated calls are stateless.
     pattern.lastIndex = 0;
     let m;
     while ((m = pattern.exec(text)) !== null) {
-      hits.push({ match: m[0], reason, index: m.index });
+      if (ignoreContext || !isExempt(rule, text, m.index, m[0].length)) {
+        hits.push({ match: m[0], reason, index: m.index });
+      }
       if (m.index === pattern.lastIndex) pattern.lastIndex += 1;
     }
   }

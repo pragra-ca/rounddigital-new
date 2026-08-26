@@ -1,0 +1,328 @@
+{
+  "version": 1,
+  "jobId": "b03fd72f-3da0-4511-9ba8-330ade0584e5",
+  "sessionId": "795c68ab-a85b-49da-a228-7a24550458f4",
+  "scopeKey": "0f6a170f3ec013ab690d4a934e0f5293406a5a4ecd1d567881eee10d43d8d5e2",
+  "revision": 41,
+  "createdAt": "2026-08-17T02:14:29.396Z",
+  "updatedAt": "2026-08-17T02:14:30.511Z",
+  "producerGraceExpiresAt": "2026-08-17T02:14:59.397Z",
+  "bestEffortDeadlineAt": "2026-08-17T02:15:50.397Z",
+  "producers": {
+    "core": {
+      "state": "sealed",
+      "intentKey": "466245356b08727686ba1a6a4cd27af2475d603d34c252c9794dbe2bd9b983ab",
+      "payloadDigest": "466245356b08727686ba1a6a4cd27af2475d603d34c252c9794dbe2bd9b983ab",
+      "sealedAt": "2026-08-17T02:14:29.468Z",
+      "sealedBy": "foreground"
+    },
+    "wiki": {
+      "state": "no-op",
+      "sealedAt": "2026-08-17T02:14:29.396Z",
+      "sealedBy": "wiki-producer"
+    }
+  },
+  "actions": {
+    "foreground-cleanup": {
+      "class": "required",
+      "phase": "deferred-required",
+      "status": "completed",
+      "attempts": 0,
+      "idempotencyKey": "febf6dba2f2536433960a07f7cedce72e946b43ced0896570df80f017b8914d2",
+      "payload": {
+        "transcriptPath": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+        "cwd": "/Users/perfectumai/products/rounddigital-new",
+        "reason": "other",
+        "input": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "transcript_path": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+          "cwd": "/Users/perfectumai/products/rounddigital-new",
+          "prompt_id": "e355ed65-0bac-4446-8044-59bbcec1ffa9",
+          "hook_event_name": "SessionEnd",
+          "reason": "other"
+        },
+        "metrics": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "ended_at": "2026-08-17T02:14:29.394Z",
+          "reason": "other",
+          "agents_spawned": 0,
+          "agents_completed": 0,
+          "modes_used": []
+        },
+        "initialTeamNames": [],
+        "openClawEnabled": false,
+        "openClawRouting": {},
+        "foregroundResult": {
+          "removedTransientFiles": 4,
+          "completedAt": "2026-08-17T02:14:29.468Z"
+        }
+      },
+      "budgetMs": 9000,
+      "completedAt": "2026-08-17T02:14:29.468Z",
+      "lastOutcomeCode": "completed"
+    },
+    "wiki-capture": {
+      "class": "required",
+      "phase": "deferred-required",
+      "status": "completed",
+      "attempts": 0,
+      "idempotencyKey": "1719cd1ef5b51e0269b78c4cb8c9308c9c1f7b82fd1c067fc034c060f23863f5",
+      "payload": {},
+      "budgetMs": 9000,
+      "completedAt": "2026-08-17T02:14:29.396Z"
+    },
+    "team-cleanup": {
+      "class": "required",
+      "phase": "deferred-required",
+      "status": "completed",
+      "attempts": 1,
+      "idempotencyKey": "cee6ac31df545408e1e822247ac249b3f8182a98a5fe8e448ae3b251e55bdee1",
+      "payload": {
+        "transcriptPath": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+        "cwd": "/Users/perfectumai/products/rounddigital-new",
+        "reason": "other",
+        "input": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "transcript_path": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+          "cwd": "/Users/perfectumai/products/rounddigital-new",
+          "prompt_id": "e355ed65-0bac-4446-8044-59bbcec1ffa9",
+          "hook_event_name": "SessionEnd",
+          "reason": "other"
+        },
+        "metrics": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "ended_at": "2026-08-17T02:14:29.394Z",
+          "reason": "other",
+          "agents_spawned": 0,
+          "agents_completed": 0,
+          "modes_used": []
+        },
+        "initialTeamNames": [],
+        "openClawEnabled": false,
+        "openClawRouting": {}
+      },
+      "budgetMs": 9000,
+      "claimedAt": "2026-08-17T02:14:29.528Z",
+      "runner": {
+        "attempt": 1,
+        "runnerNonce": "501f63eb-df87-457f-adf1-55d1f97e5828",
+        "phase": "terminal",
+        "deadlineAt": "2026-08-17T02:14:39.484Z"
+      },
+      "lastOutcomeCode": "completed",
+      "completedAt": "2026-08-17T02:14:29.691Z"
+    },
+    "python-cleanup": {
+      "class": "required",
+      "phase": "deferred-required",
+      "status": "completed",
+      "attempts": 1,
+      "idempotencyKey": "1f1370c4ac056606059d517e2f106b602d8cbcb04587b3fcc5f3b9f89e649cd0",
+      "payload": {
+        "transcriptPath": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+        "cwd": "/Users/perfectumai/products/rounddigital-new",
+        "reason": "other",
+        "input": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "transcript_path": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+          "cwd": "/Users/perfectumai/products/rounddigital-new",
+          "prompt_id": "e355ed65-0bac-4446-8044-59bbcec1ffa9",
+          "hook_event_name": "SessionEnd",
+          "reason": "other"
+        },
+        "metrics": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "ended_at": "2026-08-17T02:14:29.394Z",
+          "reason": "other",
+          "agents_spawned": 0,
+          "agents_completed": 0,
+          "modes_used": []
+        },
+        "initialTeamNames": [],
+        "openClawEnabled": false,
+        "openClawRouting": {}
+      },
+      "budgetMs": 9000,
+      "claimedAt": "2026-08-17T02:14:29.710Z",
+      "runner": {
+        "attempt": 1,
+        "runnerNonce": "738eb8a0-2983-44cc-8682-53e919b7cc16",
+        "phase": "terminal",
+        "deadlineAt": "2026-08-17T02:14:39.484Z"
+      },
+      "lastOutcomeCode": "completed",
+      "completedAt": "2026-08-17T02:14:29.856Z"
+    },
+    "reply-cleanup": {
+      "class": "required",
+      "phase": "deferred-required",
+      "status": "completed",
+      "attempts": 1,
+      "idempotencyKey": "0b3a8b47c28b26d56aca004d4f572b96c118f16819c0d35162418816f9a5420a",
+      "payload": {
+        "transcriptPath": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+        "cwd": "/Users/perfectumai/products/rounddigital-new",
+        "reason": "other",
+        "input": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "transcript_path": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+          "cwd": "/Users/perfectumai/products/rounddigital-new",
+          "prompt_id": "e355ed65-0bac-4446-8044-59bbcec1ffa9",
+          "hook_event_name": "SessionEnd",
+          "reason": "other"
+        },
+        "metrics": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "ended_at": "2026-08-17T02:14:29.394Z",
+          "reason": "other",
+          "agents_spawned": 0,
+          "agents_completed": 0,
+          "modes_used": []
+        },
+        "initialTeamNames": [],
+        "openClawEnabled": false,
+        "openClawRouting": {}
+      },
+      "budgetMs": 9000,
+      "claimedAt": "2026-08-17T02:14:29.874Z",
+      "runner": {
+        "attempt": 1,
+        "runnerNonce": "b193ab50-3bd9-4ec3-895c-d1ade3879456",
+        "phase": "terminal",
+        "deadlineAt": "2026-08-17T02:14:39.484Z"
+      },
+      "lastOutcomeCode": "completed",
+      "completedAt": "2026-08-17T02:14:30.010Z"
+    },
+    "callback": {
+      "class": "best-effort",
+      "phase": "deferred-best-effort",
+      "status": "completed",
+      "attempts": 1,
+      "idempotencyKey": "d068ede2655bf89e0c0950e087d0603d7dcf45538e94f20a654d08c6f4841895",
+      "payload": {
+        "transcriptPath": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+        "cwd": "/Users/perfectumai/products/rounddigital-new",
+        "reason": "other",
+        "input": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "transcript_path": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+          "cwd": "/Users/perfectumai/products/rounddigital-new",
+          "prompt_id": "e355ed65-0bac-4446-8044-59bbcec1ffa9",
+          "hook_event_name": "SessionEnd",
+          "reason": "other"
+        },
+        "metrics": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "ended_at": "2026-08-17T02:14:29.394Z",
+          "reason": "other",
+          "agents_spawned": 0,
+          "agents_completed": 0,
+          "modes_used": []
+        },
+        "initialTeamNames": [],
+        "openClawEnabled": false,
+        "openClawRouting": {}
+      },
+      "budgetMs": 2000,
+      "claimedAt": "2026-08-17T02:14:30.029Z",
+      "runner": {
+        "attempt": 1,
+        "runnerNonce": "b5e7b0fd-2763-413d-b27c-77ade5365f64",
+        "phase": "terminal",
+        "deadlineAt": "2026-08-17T02:14:39.484Z"
+      },
+      "lastOutcomeCode": "completed",
+      "completedAt": "2026-08-17T02:14:30.167Z"
+    },
+    "notification": {
+      "class": "best-effort",
+      "phase": "deferred-best-effort",
+      "status": "completed",
+      "attempts": 1,
+      "idempotencyKey": "89c0438ff63097ce04beb60efb87292ff68a7af350a0ee331f3de9dbf42d62fc",
+      "payload": {
+        "transcriptPath": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+        "cwd": "/Users/perfectumai/products/rounddigital-new",
+        "reason": "other",
+        "input": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "transcript_path": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+          "cwd": "/Users/perfectumai/products/rounddigital-new",
+          "prompt_id": "e355ed65-0bac-4446-8044-59bbcec1ffa9",
+          "hook_event_name": "SessionEnd",
+          "reason": "other"
+        },
+        "metrics": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "ended_at": "2026-08-17T02:14:29.394Z",
+          "reason": "other",
+          "agents_spawned": 0,
+          "agents_completed": 0,
+          "modes_used": []
+        },
+        "initialTeamNames": [],
+        "openClawEnabled": false,
+        "openClawRouting": {}
+      },
+      "budgetMs": 2000,
+      "claimedAt": "2026-08-17T02:14:30.187Z",
+      "runner": {
+        "attempt": 1,
+        "runnerNonce": "a6249100-2497-40c4-8843-2e8bc7f120fa",
+        "phase": "terminal",
+        "deadlineAt": "2026-08-17T02:14:39.484Z"
+      },
+      "lastOutcomeCode": "completed",
+      "completedAt": "2026-08-17T02:14:30.321Z"
+    },
+    "openclaw": {
+      "class": "best-effort",
+      "phase": "deferred-best-effort",
+      "status": "completed",
+      "attempts": 1,
+      "idempotencyKey": "31fe8f6e1cf204e27006de511df257326fdd98655122ca437013e8779ffc735b",
+      "payload": {
+        "transcriptPath": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+        "cwd": "/Users/perfectumai/products/rounddigital-new",
+        "reason": "other",
+        "input": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "transcript_path": "/Users/perfectumai/.claude/projects/-Users-perfectumai-products-rounddigital-new/795c68ab-a85b-49da-a228-7a24550458f4.jsonl",
+          "cwd": "/Users/perfectumai/products/rounddigital-new",
+          "prompt_id": "e355ed65-0bac-4446-8044-59bbcec1ffa9",
+          "hook_event_name": "SessionEnd",
+          "reason": "other"
+        },
+        "metrics": {
+          "session_id": "795c68ab-a85b-49da-a228-7a24550458f4",
+          "ended_at": "2026-08-17T02:14:29.394Z",
+          "reason": "other",
+          "agents_spawned": 0,
+          "agents_completed": 0,
+          "modes_used": []
+        },
+        "initialTeamNames": [],
+        "openClawEnabled": false,
+        "openClawRouting": {}
+      },
+      "budgetMs": 2000,
+      "claimedAt": "2026-08-17T02:14:30.340Z",
+      "runner": {
+        "attempt": 1,
+        "runnerNonce": "3027965e-1dac-4de2-b70f-bd2af75de946",
+        "phase": "terminal",
+        "deadlineAt": "2026-08-17T02:14:39.484Z"
+      },
+      "lastOutcomeCode": "completed",
+      "completedAt": "2026-08-17T02:14:30.472Z"
+    }
+  },
+  "owner": null,
+  "phase": "complete",
+  "completion": {
+    "completedAt": "2026-08-17T02:14:30.492Z",
+    "terminalDigest": "b8aa8cc357e06103aab9425726779d59f5ed59a62e1074e44886494020c924fe",
+    "terminalRevision": 40
+  }
+}

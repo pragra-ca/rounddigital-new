@@ -1,0 +1,325 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1787665876918,
+  "projectRoot": "/Users/perfectumai/products/rounddigital-new",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "JavaScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "jsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "next",
+        "version": "16.2.9",
+        "category": "fullstack"
+      },
+      {
+        "name": "react",
+        "version": "19.2.7",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.2.7",
+        "category": "frontend"
+      },
+      {
+        "name": "@playwright/test",
+        "version": "1.62.1",
+        "category": "testing"
+      }
+    ],
+    "packageManager": "yarn",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "yarn build",
+    "testCommand": "yarn test",
+    "lintCommand": null,
+    "devCommand": "yarn dev",
+    "scripts": {
+      "dev": "next dev",
+      "build": "npm run check:claims && node scripts/generate-sitemap.mjs && next build",
+      "start": "next start",
+      "check:imports": "node scripts/verify-imports.mjs",
+      "test": "node --test tests/*.mjs",
+      "check:claims": "node scripts/check-claims.mjs",
+      "check": "npm test && npm run check:claims && npm run check:imports",
+      "sitemap": "node scripts/generate-sitemap.mjs",
+      "test:e2e": "node scripts/generate-sitemap.mjs && playwright test",
+      "test:e2e:ui": "node scripts/generate-sitemap.mjs && playwright test --ui",
+      "test:e2e:report": "playwright show-report"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs",
+      "public",
+      "scripts",
+      "src",
+      "tests"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 0,
+      "lastAccessed": 1787665876904,
+      "keyFiles": []
+    },
+    "e2e": {
+      "path": "e2e",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1787665876906,
+      "keyFiles": [
+        "accessibility.spec.mjs",
+        "government-pages.spec.mjs",
+        "print-output.spec.mjs",
+        "sitemap-routes.spec.mjs",
+        "unearned-claims.spec.mjs"
+      ]
+    },
+    "playwright-report": {
+      "path": "playwright-report",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1787665876906,
+      "keyFiles": [
+        "index.html"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 17,
+      "lastAccessed": 1787665876906,
+      "keyFiles": [
+        "OG_IMAGE_INSTRUCTIONS.md",
+        "arrow-right.svg",
+        "favicon.png",
+        "favicon.svg",
+        "file.svg"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 3,
+      "lastAccessed": 1787665876906,
+      "keyFiles": [
+        "check-claims.mjs",
+        "generate-sitemap.mjs",
+        "verify-imports.mjs"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 0,
+      "lastAccessed": 1787665876907,
+      "keyFiles": []
+    },
+    "test-results": {
+      "path": "test-results",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1787665876907,
+      "keyFiles": []
+    },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 8,
+      "lastAccessed": 1787665876907,
+      "keyFiles": [
+        "claims.test.mjs",
+        "contrast.test.mjs",
+        "credentials.test.mjs",
+        "facts.test.mjs",
+        "naics.test.mjs"
+      ]
+    },
+    "playwright-report/data": {
+      "path": "playwright-report/data",
+      "purpose": "Data files",
+      "fileCount": 2,
+      "lastAccessed": 1787665876907,
+      "keyFiles": [
+        "e00879c640685ac3a109c9217960880e5a849577.png",
+        "e8164dfffca4e7646e57d851a342bb5a08e9b48c.md"
+      ]
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 0,
+      "lastAccessed": 1787665876908,
+      "keyFiles": []
+    },
+    "src/data": {
+      "path": "src/data",
+      "purpose": "Data files",
+      "fileCount": 7,
+      "lastAccessed": 1787665876908,
+      "keyFiles": [
+        "blogs.js",
+        "jobPositions.js",
+        "navigation.js"
+      ]
+    },
+    "src/lib": {
+      "path": "src/lib",
+      "purpose": "Library code",
+      "fileCount": 1,
+      "lastAccessed": 1787665876908,
+      "keyFiles": [
+        "fonts.js"
+      ]
+    },
+    "src/pages": {
+      "path": "src/pages",
+      "purpose": "Page components",
+      "fileCount": 7,
+      "lastAccessed": 1787665876908,
+      "keyFiles": [
+        "404.js",
+        "_app.js",
+        "_document.js"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/components/system/heroes.jsx",
+      "accessCount": 6,
+      "lastAccessed": 1787682564113,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/index.js",
+      "accessCount": 4,
+      "lastAccessed": 1787684818467,
+      "type": "file"
+    },
+    {
+      "path": "src/styles/system.css",
+      "accessCount": 3,
+      "lastAccessed": 1787670517099,
+      "type": "file"
+    },
+    {
+      "path": "src/data/navigation.js",
+      "accessCount": 3,
+      "lastAccessed": 1787679760514,
+      "type": "file"
+    },
+    {
+      "path": "src/data/procurement.js",
+      "accessCount": 2,
+      "lastAccessed": 1787670116562,
+      "type": "file"
+    },
+    {
+      "path": "home-1440-light-full.png",
+      "accessCount": 1,
+      "lastAccessed": 1787666026457,
+      "type": "file"
+    },
+    {
+      "path": "home-1440-light-viewport.png",
+      "accessCount": 1,
+      "lastAccessed": 1787666033428,
+      "type": "file"
+    },
+    {
+      "path": "src/components/system/JurisdictionBand.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1787670172200,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/government/where-we-can-contract.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1787670345162,
+      "type": "file"
+    },
+    {
+      "path": "tests/jurisdictions.test.mjs",
+      "accessCount": 1,
+      "lastAccessed": 1787670735209,
+      "type": "file"
+    },
+    {
+      "path": "src/data/qualification.js",
+      "accessCount": 1,
+      "lastAccessed": 1787671157083,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/government/vendor-qualification.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1787671218049,
+      "type": "file"
+    },
+    {
+      "path": "e2e/trust-spine.spec.mjs",
+      "accessCount": 1,
+      "lastAccessed": 1787671346898,
+      "type": "file"
+    },
+    {
+      "path": "e2e/accessibility.spec.mjs",
+      "accessCount": 1,
+      "lastAccessed": 1787671473477,
+      "type": "file"
+    },
+    {
+      "path": "public/rd/logo-fd-t.png",
+      "accessCount": 1,
+      "lastAccessed": 1787679791780,
+      "type": "file"
+    },
+    {
+      "path": "PRODUCT.md",
+      "accessCount": 1,
+      "lastAccessed": 1787686264405,
+      "type": "file"
+    },
+    {
+      "path": "src/components/system/Nav.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1787710251543,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

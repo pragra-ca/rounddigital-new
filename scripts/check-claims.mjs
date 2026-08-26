@@ -9,6 +9,16 @@ import { findForbiddenClaims } from "../src/content/claims.mjs";
 const ROOTS = ["src/content", "src/data", "src/pages", "src/components"];
 const EXTS = [".js", ".jsx", ".mjs", ".md"];
 
+// Registries whose whole purpose is to record credential and programme status,
+// including ineligibility. Matched on filename suffix so the list stays
+// explicit — adding a file here is a deliberate act, not an accident.
+const SANCTIONED = [
+  "claims.mjs",
+  "credentials.mjs",
+  "roadmap.js",
+  "procurement.js",
+];
+
 function walk(dir, out = []) {
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);
@@ -25,8 +35,11 @@ function lineOf(text, index) {
 let failures = 0;
 for (const root of ROOTS) {
   for (const file of walk(root)) {
-    // These two files are the sanctioned homes for certification names.
-    if (file.includes("claims.mjs") || file.includes("credentials.mjs")) continue;
+    // The sanctioned homes for certification and programme names. Each exists
+    // precisely to record status — including explicit statements of what is NOT
+    // held and what we are NOT eligible for — so a bare programme name inside
+    // them is data, not a claim. Everywhere else a bare name still fails.
+    if (SANCTIONED.some((name) => file.endsWith(name))) continue;
     const text = readFileSync(file, "utf8");
     for (const hit of findForbiddenClaims(text)) {
       failures += 1;

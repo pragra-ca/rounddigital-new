@@ -12,18 +12,23 @@ test.describe("/government hub", () => {
     expect(response?.status()).toBe(200);
 
     await expect(page.locator("h1")).toHaveCount(1);
-    await expect(page.locator("h1")).toContainText(
-      "A small business that behaves like a large one"
-    );
+    // Headline copy comes from the 2026 design. The section list below is the
+    // part that matters and is unchanged: an evaluator must still be able to
+    // find classifications, references, the roadmap and the disclosures.
+    await expect(page.locator("h1")).toContainText("Purpose-Built for Government");
 
     for (const heading of [
-      "Codes and classifications",
+      "What We Bid Under",
       "Past performance",
       "Certification roadmap",
       "What we do not claim",
     ]) {
+      // .first(): "Past Performance" is both a section heading and one of the
+      // four standard source-selection factors further down the page. Two
+      // matches still satisfies the assertion, which is that the section is
+      // reachable by heading.
       await expect(
-        page.getByRole("heading", { name: heading, exact: false })
+        page.getByRole("heading", { name: heading, exact: false }).first()
       ).toBeVisible();
     }
   });
@@ -98,19 +103,27 @@ test.describe("/government/capability-statement", () => {
     await expect(page.locator("h1")).toContainText("Capability Statement");
 
     for (const heading of [
+      // Section names as the page actually numbers them. It was restructured
+      // into seven numbered sections; "Company data" became "1 · Identity" and
+      // "Contact" became "7 · How to contract with us". The substance the
+      // assertion protects is unchanged.
       "Core competencies",
       "Differentiators",
       "Past performance",
-      "Company data",
-      "Contact",
+      "Identity",
+      "How to contract with us",
     ]) {
-      await expect(page.getByText(heading, { exact: false }).first()).toBeVisible();
+      // Scoped to main: the header mega-menu carries summary text that also
+      // matches these strings while collapsed and hidden.
+      await expect(
+        page.locator("main").getByText(heading, { exact: false }).first()
+      ).toBeVisible();
     }
   });
 
   test("company data declares no certifications held", async ({ page }) => {
     await page.goto("/government/capability-statement");
-    await expect(page.getByText("None held.")).toBeVisible();
+    await expect(page.getByText("None held")).toBeVisible();
   });
 
   test("publishes only confirmed delivery locations", async ({ page }) => {

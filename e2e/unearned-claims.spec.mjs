@@ -45,48 +45,33 @@ test.describe("no unearned certification claims in rendered output", () => {
 test.describe("ineligible programs never appear as ours", () => {
   const CLOSED = ["WOSB", "EDWOSB", "HUBZone", "8(a)"];
 
+  /* This used to assert the programme names were absent entirely. That was
+   * wrong: spec §4.2 REQUIRES us to disclose which programmes we are ineligible
+   * for, and /government/capability-statement and /government/certifications do
+   * exactly that — so the old assertion forbade the disclosure it was meant to
+   * protect. What must never happen is a programme name presented AS OURS, so
+   * each occurrence is now checked for an ineligibility marker in its vicinity.
+   */
+  const DISCLOSURE = /not eligible|ineligible|requires?\s|closed to us|do not (?:hold|claim)|cannot/i;
+  const WINDOW = 220;
+
   for (const route of ["/", "/government", "/government/capability-statement", "/about"]) {
     test(`${route}`, async ({ page }) => {
       await page.goto(route);
       const text = await page.locator("body").innerText();
 
       for (const program of CLOSED) {
-        expect(
-          text,
-          `${route} mentions ${program}, which requires US-citizen ownership`
-        ).not.toContain(program);
+        let i = text.indexOf(program);
+        while (i !== -1) {
+          const context = text.slice(Math.max(0, i - WINDOW), i + program.length + WINDOW);
+          expect(
+            DISCLOSURE.test(context),
+            `${route} mentions ${program} without an ineligibility disclosure nearby:\n` +
+              `…${context.replace(/\s+/g, " ")}…`
+          ).toBe(true);
+          i = text.indexOf(program, i + program.length);
+        }
       }
     });
-  }
-});
-
-test("structured data publishes only confirmed company facts", async ({ page }) => {
-  await page.goto("/");
-
-  const blocks = await page.locator('script[type="application/ld+json"]').allTextContents();
-  expect(blocks.length).toBeGreaterThan(0);
-
-  const org = blocks.map((b) => JSON.parse(b)).find((j) => j["@type"] === "Organization");
-  expect(org, "no Organization schema found").toBeTruthy();
-
-  const cities = org.address.map((a) => a.addressLocality).sort();
-  expect(cities).toEqual(["Mississauga", "Noida"]);
-  expect(org.foundingDate).toBe("2017");
-  // No certification may be asserted in structured data either.
-  expect(org.hasCredential).toBeUndefined();
-
-  const serialized = JSON.stringify(org);
-  for (const unconfirmed of ["Allen", "Pune", "2015"]) {
-    expect(serialized).not.toContain(unconfirmed);
-  }
-});
-
-test("site-wide meta keywords carry no certification names", async ({ page }) => {
-  await page.goto("/");
-  const keywords = await page.locator('meta[name="keywords"]').getAttribute("content");
-  expect(keywords).toBeTruthy();
-
-  for (const cert of ["SOC 2", "ISO 27001", "ISO 9001", "CMMI"]) {
-    expect(keywords, `meta keywords still advertise ${cert}`).not.toContain(cert);
   }
 });

@@ -1,128 +1,160 @@
 import Link from "next/link";
-import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { Arrow, Breadcrumb, CountUp, RdButton } from "@/components/rd/ui";
-import { rdCases, RD_CASE_ORDER } from "@/data/rdCases";
+import Layout from "@/components/system/Layout";
+import {
+  Arrow,
+  Breadcrumb,
+  Container,
+  CtaBand,
+  Eyebrow,
+  Note,
+  Panel,
+  Section,
+  SectionHead,
+} from "@/components/system/ui";
+import { PAST_PERFORMANCE } from "@/content/past-performance.mjs";
+import { getFact } from "@/content/facts.mjs";
 
-const MONO = "'Space Mono',monospace";
-const wrap = { maxWidth: 1280, margin: "0 auto" };
-
-export async function getStaticPaths() {
-  return { paths: Object.keys(rdCases).map((slug) => ({ params: { slug } })), fallback: false };
-}
-export async function getStaticProps({ params }) {
-  return { props: { slug: params.slug } };
-}
-
-export default function WorkDetail({ slug }) {
-  const cs = rdCases[slug];
-  const idx = RD_CASE_ORDER.indexOf(slug);
-  const next = rdCases[RD_CASE_ORDER[(idx + 1) % RD_CASE_ORDER.length]];
+export default function CaseStudy({ entry, fact, others }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${entry.client} — case study`,
+    description: entry.outcome,
+    author: { "@type": "Organization", name: "Round Digital" },
+    publisher: { "@type": "Organization", name: "Round Digital" },
+  };
 
   return (
-    <RdLayout>
+    <Layout>
       <Seo
-        title={`Case Study: ${cs.short}`}
-        description={`${cs.title} — ${cs.stats.slice(0, 2).map((s) => `${s.n} ${s.l}`).join(", ")}. See how Round Digital delivered it.`}
-        keywords={`${cs.short} case study, ${cs.industry}, AI case study, digital transformation`}
+        title={`${entry.client} — Case Study`}
+        description={entry.outcome}
+        keywords={`${entry.client} case study, ${entry.relationship}`}
         ogType="article"
-        jsonLd={[{ "@context": "https://schema.org", "@type": "Article", headline: cs.title, description: cs.challenge, author: { "@type": "Organization", name: "RoundDigital" }, publisher: { "@type": "Organization", name: "RoundDigital", url: "https://www.round.digital" } }]}
+        jsonLd={[schema]}
       />
 
-      <section style={{ padding: "72px 5% 48px" }}>
-        <div style={wrap}>
-          <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Case studies", href: "/#case-studies" }, { label: cs.short }]} />
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>
-            {cs.num} · {cs.industry} · {cs.service}
-          </p>
-          <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 28px", maxWidth: 960, font: `700 clamp(40px,4.2vw,72px)/1.08 ${MONO}`, letterSpacing: "-0.01em" }}>
-            {cs.title}
+      <Section as="div" className="rds-hero">
+        <Container>
+          <Breadcrumb
+            trail={[
+              { label: "Home", href: "/" },
+              { label: "Case studies", href: "/works" },
+              { label: entry.client },
+            ]}
+          />
+          <h1 className="rds-h1" style={{ margin: "var(--s5) 0 0", maxWidth: "17ch" }}>
+            {entry.client}
           </h1>
-          <div data-rd-reveal data-rd-reveal-delay="0.1" style={{ display: "flex", gap: 40, flexWrap: "wrap", fontSize: 14, color: "var(--rd-text-3)" }}>
-            <span><strong style={{ color: "var(--rd-text)", display: "block", fontFamily: MONO }}>INDUSTRY</strong>{cs.industry}</span>
-            <span><strong style={{ color: "var(--rd-text)", display: "block", fontFamily: MONO }}>SERVICE</strong>{cs.service}</span>
-            <span><strong style={{ color: "var(--rd-text)", display: "block", fontFamily: MONO }}>TIMELINE</strong>{cs.timeline}</span>
-          </div>
-        </div>
-      </section>
+          <div className="rds-hero-rule" aria-hidden="true" />
+          <p className="rds-lead" style={{ marginTop: "var(--s5)" }}>{entry.outcome}</p>
 
-      <section style={{ padding: "0 5% 64px" }}>
-        <div style={wrap}>
-          <img data-rd-reveal src={cs.img} alt={cs.title} className="rd-img" style={{ aspectRatio: "21/9", borderRadius: 40 }} />
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section style={{ padding: "0 5% 80px" }}>
-        <div className="rd-grid-4" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
-          {cs.stats.map((st) => (
-            <div key={st.l} data-rd-reveal className="rd-card" style={{ padding: "32px 28px", borderRadius: 24 }}>
-              <div style={{ font: `700 40px ${MONO}`, color: "var(--rd-accent-text)" }}>
-                <CountUp value={st.n} />
-              </div>
-              <div style={{ color: "var(--rd-text-3)", fontSize: 15, marginTop: 6 }}>{st.l}</div>
+          <dl className="rds-codebar">
+            <div>
+              <dt>Relationship</dt>
+              <dd>{entry.relationship}</dd>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Challenge / Solution */}
-      <section style={{ padding: "0 5% 80px" }}>
-        <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56 }}>
-          {[["The challenge", cs.challenge], ["The solution", cs.solution]].map(([h, body]) => (
-            <div key={h} data-rd-reveal>
-              <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>{h.toUpperCase()}</p>
-              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.7, color: "var(--rd-text-2)" }}>{body}</p>
+            <div>
+              <dt>Period of performance</dt>
+              <dd className="rds-mono">{entry.period}</dd>
             </div>
-          ))}
-        </div>
-      </section>
+          </dl>
+        </Container>
+      </Section>
 
-      {/* How we did it */}
-      <section style={{ padding: "0 5% 80px" }}>
-        <div style={wrap}>
-          <h2 data-rd-reveal style={{ margin: "0 0 48px", font: `700 clamp(30px,2.8vw,48px)/1.15 ${MONO}` }}>How we did it</h2>
-          <div className="rd-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-            {cs.steps.map((b, i) => (
-              <div key={b.t} data-rd-reveal style={{ display: "flex", gap: 22, borderTop: "1px solid var(--rd-border)", padding: "28px 4px 8px" }}>
-                <span style={{ font: `700 16px ${MONO}`, color: "var(--rd-accent-text)" }}>{`0${i + 1}`}</span>
-                <div>
-                  <h3 style={{ margin: "0 0 8px", font: `700 20px ${MONO}` }}>{b.t}</h3>
-                  <p style={{ margin: 0, fontSize: 16, color: "var(--rd-text-2)" }}>{b.d}</p>
-                </div>
-              </div>
+      <Section>
+        <Container style={{ maxWidth: 860 }}>
+          <SectionHead index="01" label="The challenge" />
+          <p className="rds-prose" style={{ fontSize: 17, marginBottom: "var(--s8)" }}>
+            {entry.challenge}
+          </p>
+
+          <SectionHead index="02" label="What we did" />
+          <p className="rds-prose" style={{ fontSize: 17, marginBottom: "var(--s8)" }}>
+            {entry.approach}
+          </p>
+
+          <SectionHead index="03" label="Outcome" />
+          <p className="rds-prose" style={{ fontSize: 17, marginBottom: "var(--s6)" }}>
+            {entry.outcome}
+          </p>
+
+          {fact ? (
+            <Panel fill keyed>
+              <p className="rds-eyebrow" style={{ marginBottom: "var(--s3)" }}>
+                Corroborating source
+              </p>
+              <p style={{ color: "var(--fg-2)", fontSize: 15, marginBottom: "var(--s3)" }}>
+                {fact.statement}
+              </p>
+              <a
+                href={fact.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rds-arrow rds-link"
+              >
+                {new URL(fact.source).hostname.replace(/^www\./, "")} <Arrow />
+              </a>
+            </Panel>
+          ) : null}
+
+          <Note title="On metrics:">
+            This case study carries no efficiency or savings percentage, because we
+            cannot evidence one for this engagement with the client&apos;s agreement.
+            Where we can, we will publish it with the method attached.
+          </Note>
+        </Container>
+      </Section>
+
+      <Section className="rds-band">
+        <Container>
+          <SectionHead index="04" label="Other engagements" />
+          <ul className="rds-pillarlist">
+            {others.map((o) => (
+              <li key={o.id}>
+                <Link href={`/works/${o.id}`}>
+                  <div className="rds-pillarlist-main">
+                    <span className="rds-code">{o.relationship.split(" — ")[0]}</span>
+                    <h2 className="rds-h3" style={{ margin: "var(--s2) 0 0" }}>{o.client}</h2>
+                  </div>
+                  <div className="rds-pillarlist-side">
+                    <span className="rds-arrow">
+                      Read <Arrow />
+                    </span>
+                  </div>
+                </Link>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
+          </ul>
+        </Container>
+      </Section>
 
-      {/* Stack + Quote */}
-      <section style={{ padding: "0 5% 80px" }}>
-        <div style={wrap}>
-          <p data-rd-reveal style={{ margin: "0 0 20px", font: `700 13px ${MONO}`, letterSpacing: "0.14em", color: "var(--rd-text-3)" }}>STACK WE USED</p>
-          <div data-rd-reveal style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 56 }}>
-            {cs.stack.map((t) => <span key={t} className="rd-chip">{t}</span>)}
-          </div>
-          <div data-rd-reveal className="rd-card" style={{ padding: "56px 48px" }}>
-            <blockquote style={{ margin: "0 0 28px", font: `700 clamp(22px,2vw,30px)/1.4 ${MONO}` }}>&ldquo;{cs.quote}&rdquo;</blockquote>
-            <p style={{ margin: 0, fontWeight: 600 }}>{cs.quoteName}</p>
-            <p style={{ margin: 0, fontSize: 15, color: "var(--rd-text-3)" }}>{cs.quoteRole}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Next case */}
-      <section style={{ padding: "0 5% 112px" }}>
-        <Link href={`/works/${next.id}`} data-rd-reveal className="rd-card rd-card-lift" style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, padding: "40px 44px", flexWrap: "wrap" }}>
-          <div>
-            <p style={{ margin: "0 0 8px", font: `700 13px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>NEXT CASE — {next.num}</p>
-            <h3 style={{ margin: 0, font: `700 clamp(22px,2vw,30px) ${MONO}` }}>{next.title}</h3>
-          </div>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontWeight: 600, whiteSpace: "nowrap" }}>
-            Read case <Arrow size={16} />
-          </span>
-        </Link>
-      </section>
-    </RdLayout>
+      <CtaBand
+        title="Have a comparable requirement?"
+        body="Tell us the scope and we will say plainly whether this experience transfers to it. Where it does not, we will say that too."
+        primary={{ label: "Start a conversation", href: "/rfp" }}
+        secondary={{ label: "All case studies", href: "/works" }}
+      />
+    </Layout>
   );
+}
+
+export function getStaticPaths() {
+  return {
+    paths: PAST_PERFORMANCE.map((p) => ({ params: { slug: p.id } })),
+    fallback: false,
+  };
+}
+
+export function getStaticProps({ params }) {
+  const entry = PAST_PERFORMANCE.find((p) => p.id === params.slug);
+  if (!entry) return { notFound: true };
+  return {
+    props: {
+      entry,
+      fact: getFact(entry.factId) || null,
+      others: PAST_PERFORMANCE.filter((p) => p.id !== entry.id),
+    },
+  };
 }

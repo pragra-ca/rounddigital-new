@@ -1,25 +1,80 @@
-import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { RdLegal } from "@/components/rd/Legal";
+import Layout from "@/components/system/Layout";
+import { Container, LegalPage, Note, Section } from "@/components/system/ui";
 
 const SECTIONS = [
-  { title: "Use of this website", body: "This website and its content are provided by Round Digital for general information about our services. You may browse, link to and share our content; you may not scrape it at scale, misrepresent it as your own, or use it to build a competing dataset. Using the site does not create a client relationship." },
-  { title: "Proposals & engagements", body: "Descriptions of services, timelines and outcomes on this site are illustrative. Actual engagements are governed by a signed statement of work, which defines scope, deliverables, fees, IP ownership and warranties. Where this site and a signed agreement differ, the agreement wins." },
-  { title: "Intellectual property", body: "The Round Digital name, logo and site content are our property or used with permission. Case study metrics reflect specific client engagements; results depend on context and are not a guarantee of identical outcomes." },
-  { title: "No warranties; limitation of liability", body: "The site is provided as-is, without warranties of any kind. To the maximum extent permitted by law, Round Digital is not liable for damages arising from your use of the site or reliance on its content. Nothing here limits liabilities that cannot be limited by law." },
-  { title: "Changes & governing law", body: "We may update these terms as the business evolves; the version published here applies. These terms are governed by the laws of Ontario, Canada, and any disputes will be resolved in the courts of Ontario." },
+  {
+    title: "What these terms cover",
+    body: "These terms govern your use of round.digital. They do not govern any engagement between us — that is set out in a separate written agreement, and where the two differ, the agreement wins.",
+  },
+  {
+    title: "The site is information, not an offer",
+    body: [
+      "Everything on this site is provided for information. Descriptions of services, capabilities, codes, roadmap dates and indicative costs are not offers, quotations or contractual commitments.",
+      "Certification and contract-vehicle status is stated as of the date shown on the relevant page. Status changes; check with us before relying on it in a bid.",
+    ],
+  },
+  {
+    title: "Accuracy and sources",
+    body: [
+      "We publish a source for every factual claim we make about the company, and we mark items that are pending confirmation rather than filling them in. If you find something on this site that is wrong, tell us and we will correct it.",
+      "Indicative costs and timelines on the certification and partnership roadmap are planning figures, not quotes, and must be confirmed with the relevant certifying body.",
+    ],
+  },
+  {
+    title: "Your submissions",
+    body: [
+      "Do not send confidential, classified or export-controlled material through the forms on this site. If your requirement involves any of those, contact us first and we will agree an appropriate channel.",
+      "By sending an enquiry you confirm you are entitled to share what you send. We handle submissions as described in our privacy notice.",
+    ],
+  },
+  {
+    title: "Intellectual property",
+    body: "The content, design system and code of this site belong to Round Digital, except where a third-party mark is shown. You may quote or link to this site with attribution; you may not present it as your own. Third-party names appear only to identify standards, platforms or organisations referred to, and imply no endorsement in either direction.",
+  },
+  {
+    title: "External links",
+    body: "We link to external sources so our claims can be checked independently. We do not control those sites and are not responsible for their content or availability. A link is not an endorsement.",
+  },
+  {
+    title: "Availability",
+    body: "We aim to keep the site available and accurate but do not guarantee uninterrupted access. We may change or remove content at any time; material changes to legal pages are dated.",
+  },
+  {
+    title: "Liability",
+    body: "To the extent permitted by law, we are not liable for loss arising from reliance on the information on this site. Nothing here limits liability that cannot be limited by law, and nothing here limits or replaces the liability terms of a signed engagement agreement.",
+  },
+  {
+    title: "Governing law",
+    body: "These terms are governed by the laws of the Province of Ontario, Canada, and its applicable federal laws. The governing law of any engagement is set out in that engagement's own agreement and may differ.",
+  },
+  {
+    title: "Contact",
+    body: "Questions about these terms can be sent to legal@round.digital.",
+  },
 ];
 
-export default function TermsPage() {
+export default function Terms() {
   return (
-    <RdLayout>
-      <Seo title="Terms of Service" description="The terms that govern use of Round Digital's website." keywords="RoundDigital terms of service, website terms" />
-      <RdLegal
-        eyebrow="LEGAL"
-        title="Terms of Service"
-        intro="The short version: use the site in good faith, real engagements run on signed agreements, and our case study numbers are real but context-specific."
-        sections={SECTIONS}
+    <Layout>
+      <Seo
+        title="Terms of Use — Website & Services"
+        description="Terms governing use of round.digital. Engagement terms are set out separately in a written agreement."
+        keywords="terms of use, website terms"
       />
-    </RdLayout>
+
+      <LegalPage
+        eyebrow="Legal"
+        title="Terms of use"
+        intro="Short, and limited to this website. Anything about how we actually work together lives in a signed agreement, not here."
+        updated="August 2026"
+        sections={SECTIONS}
+        contactEmail="legal@round.digital"
+      />
+
+      {/* Internal review note removed — see the privacy page for the reasoning.
+          The counsel review and the Ontario governing-law assumption are tracked
+          in docs/strategy/04-qa-and-launch.md as launch blockers. */}
+    </Layout>
   );
 }

@@ -1,0 +1,7 @@
+{
+  "tool_name": "DesignSync",
+  "tool_input_preview": "{\"method\":\"list_files\",\"projectId\":\"fddd9cf6-1b18-4a00-bd94-ffc88b2336d6\",\"__consentBitShown\":null,\"__consentAskCanReachUser\":true}",
+  "error": "Design API ListFiles failed: HTTP 404 {\"code\":\"not_found\",\"message\":\"project not found\"}",
+  "timestamp": "2026-08-21T01:31:05.714Z",
+  "retry_count": 2
+}

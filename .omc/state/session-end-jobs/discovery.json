@@ -1,0 +1,121 @@
+{
+  "version": 2,
+  "cursor": 8,
+  "tickets": [
+    {
+      "sessionId": "d40f7e30-b9b2-4f9f-bff0-47512bb77a02",
+      "attempts": 0,
+      "retryAt": "2026-08-17T02:04:34.549Z",
+      "acknowledgedAt": "2026-08-17T02:04:35.613Z"
+    },
+    {
+      "sessionId": "83239c76-63f4-4cca-8f88-7e31a0a1c674",
+      "attempts": 0,
+      "retryAt": "2026-08-17T02:06:49.050Z",
+      "acknowledgedAt": "2026-08-17T02:06:50.096Z"
+    },
+    {
+      "sessionId": "795c68ab-a85b-49da-a228-7a24550458f4",
+      "attempts": 0,
+      "retryAt": "2026-08-17T02:14:29.431Z",
+      "acknowledgedAt": "2026-08-17T02:14:30.521Z"
+    },
+    {
+      "sessionId": "566e96ec-01da-4ccb-949e-f03490af23f2",
+      "attempts": 0,
+      "retryAt": "2026-08-17T02:16:34.986Z",
+      "acknowledgedAt": "2026-08-17T02:16:36.066Z"
+    },
+    {
+      "sessionId": "d50ca402-7d14-450e-b9e7-e264f6ebc7d8",
+      "attempts": 0,
+      "retryAt": "2026-08-17T02:21:36.024Z",
+      "acknowledgedAt": "2026-08-17T02:21:37.157Z"
+    },
+    {
+      "sessionId": "f44abb02-6bbe-4245-bc8d-5a59adc04ead",
+      "attempts": 0,
+      "retryAt": "2026-08-17T02:22:21.227Z",
+      "acknowledgedAt": "2026-08-17T02:22:22.300Z"
+    },
+    {
+      "sessionId": "95d30faa-55d0-4a81-b232-17b8543b8e7b",
+      "attempts": 0,
+      "retryAt": "2026-08-17T02:29:45.397Z",
+      "acknowledgedAt": "2026-08-17T02:29:46.482Z"
+    },
+    {
+      "sessionId": "4c92cec9-69a1-4926-8fac-ee5e6c7c7af5",
+      "attempts": 0,
+      "retryAt": "2026-08-17T02:31:07.632Z",
+      "acknowledgedAt": "2026-08-17T02:31:08.725Z"
+    },
+    {
+      "sessionId": "05eab659-ba4e-4bc9-bf1d-82550f3aa3ae",
+      "attempts": 0,
+      "retryAt": "2026-08-17T02:38:14.881Z",
+      "acknowledgedAt": "2026-08-17T02:38:15.933Z"
+    },
+    {
+      "sessionId": "c121f7ce-d8ca-46b3-a9a4-a5c3f0184752",
+      "attempts": 0,
+      "retryAt": "2026-08-17T17:53:21.662Z",
+      "acknowledgedAt": "2026-08-25T13:51:40.207Z"
+    },
+    {
+      "sessionId": "908cd7c5-0683-43ca-9038-602b424e98b0",
+      "attempts": 0,
+      "retryAt": "2026-08-21T03:27:38.641Z",
+      "acknowledgedAt": "2026-08-21T03:27:39.798Z"
+    },
+    {
+      "sessionId": "813e9469-a823-492d-bba7-55f2127b58a9",
+      "attempts": 0,
+      "retryAt": "2026-08-25T13:51:38.713Z",
+      "acknowledgedAt": "2026-08-25T13:51:39.612Z"
+    },
+    {
+      "sessionId": "dbcaa293-7019-4c28-8f09-27a09b4e161a",
+      "attempts": 0,
+      "retryAt": "2026-08-26T00:45:39.895Z",
+      "acknowledgedAt": "2026-08-26T00:45:41.059Z"
+    },
+    {
+      "sessionId": "291bd877-69d4-4389-9a49-c4f8065066dd",
+      "attempts": 0,
+      "retryAt": "2026-08-26T00:48:10.172Z",
+      "acknowledgedAt": "2026-08-26T00:48:11.480Z"
+    },
+    {
+      "sessionId": "4917ada1-7b69-4f07-8dcf-96a7b46aba2e",
+      "attempts": 0,
+      "retryAt": "2026-08-26T00:48:51.505Z",
+      "acknowledgedAt": "2026-08-26T00:48:52.755Z"
+    },
+    {
+      "sessionId": "f79cd3b2-91e3-4e5d-8127-ef4a80e31367",
+      "attempts": 0,
+      "retryAt": "2026-08-26T02:03:06.356Z",
+      "acknowledgedAt": "2026-08-26T02:03:07.564Z"
+    },
+    {
+      "sessionId": "0f31b9d9-9b47-4ce7-9c61-c2760c66fb70",
+      "attempts": 0,
+      "retryAt": "2026-08-26T02:23:32.446Z",
+      "acknowledgedAt": "2026-08-26T02:23:33.539Z"
+    },
+    {
+      "sessionId": "4941b04c-249b-4824-a257-307a2e2d4aa2",
+      "attempts": 0,
+      "retryAt": "2026-08-26T03:35:20.812Z",
+      "acknowledgedAt": "2026-08-26T03:35:22.096Z"
+    },
+    {
+      "sessionId": "8b73bbdd-602a-45f7-ab0d-c9cda5c0a87d",
+      "attempts": 0,
+      "retryAt": "2026-08-26T03:54:39.037Z",
+      "claimNonce": "6bb4dd1d-161a-4dc7-b40b-dfbc2b3e6eb0",
+      "leaseExpiresAt": "2026-08-26T03:54:58.039Z"
+    }
+  ]
+}

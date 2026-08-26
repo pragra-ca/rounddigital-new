@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd /Users/perfectumai/products/rounddigital-new\\ngrep -rn \\\"Seo\\\" src/pages/services/\\\\[pillar\\\\].jsx | head -4\\nsed -n \\\"$(grep -n 'Seo' src/pages/services/\\\\[pillar\\\\].jsx | head -1 | cu...",
+  "error": "Exit code 1\nsed: 1: \",+8p\n\": invalid command code ,",
+  "timestamp": "2026-08-26T03:19:04.989Z",
+  "retry_count": 1
+}

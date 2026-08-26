@@ -1,0 +1,2763 @@
+/* ============================================================================
+   Round Digital — "Engineered Grid" design system
+   ----------------------------------------------------------------------------
+   Derived from the RD monogram: rectilinear counters meeting a single large
+   bowl radius. That geometry is the whole system — surfaces are square (2px),
+   and exactly one corner carries the bowl radius. Red is structural (rules,
+   markers, the active state), never decorative fill.
+
+   Every colour pair below was measured against WCAG 2.2 AA before it was
+   written here. The ratios in the comments are computed, not estimated.
+   Brand red #FD3F42 is sampled from the approved logo.
+
+   Scope: everything is namespaced under `.rds` so it can coexist with the
+   legacy `.rd` system during migration.
+   ========================================================================= */
+
+.rds {
+  /* --- Surfaces ------------------------------------------------------- */
+  --bg: #ffffff;
+  --bg-2: #f7f8f9;
+  --bg-3: #edeff2;
+
+  /* --- Foreground ----------------------------------------------------- */
+  --fg: #0b0f14;      /* 19.22:1 on bg — body + headings                  */
+  --fg-2: #47515c;    /*  8.08:1 on bg — secondary prose                  */
+  --fg-3: #5f6a77;    /*  4.78:1 on bg-3 — captions, metadata (AA on all) */
+
+  /* --- Brand ---------------------------------------------------------- */
+  --brand: #fd3f42;       /* logo value. 3.52:1 — graphics + rules only    */
+  --brand-fg: #c81e22;    /* 5.73:1 on bg, 4.97:1 on bg-3 — accent TEXT    */
+  --brand-solid: #c81e22; /* white label on this = 5.73:1                  */
+  --brand-solid-fg: #ffffff;
+
+  /* --- Lines ---------------------------------------------------------- */
+  --rule: #dde1e5;          /* decorative hairline                         */
+  --rule-strong: #c2c8ce;   /* section divider                             */
+  --control: #8a939d;       /* 3.12:1 — input + control borders (AA UI)    */
+
+  /* --- Inverted (primary button, dark bands) -------------------------- */
+  --inv-bg: #0b0f14;
+  --inv-fg: #ffffff;
+
+  /* --- Geometry: the monogram rule, round side out --------------------
+     The first cut of this system kept everything square (--r: 2px) with one
+     20px bowl corner as the signature. Softened on the client's call — the
+     company is named Round Digital and the monogram's bowl IS round, so the
+     geometry now leans into the name instead of away from it. The bowl stays
+     the largest corner so the asymmetric signature still reads. */
+  --r: 10px;       /* controls and small surfaces — visibly rounded        */
+  --r-bowl: 28px;  /* the ONE signature corner, from the D's bowl          */
+
+  /* --- Spacing (4px base) --------------------------------------------- */
+  --s1: 4px;   --s2: 8px;   --s3: 12px;  --s4: 16px;
+  --s5: 24px;  --s6: 32px;  --s7: 48px;  --s8: 64px;
+  --s9: 96px;  --s10: 128px;
+
+  /* --- Grid ------------------------------------------------------------ */
+  --maxw: 1200px;
+  --gutter: 24px;
+
+  /* --- Section rhythm: THREE values, and no band invents its own -------
+     hero  — the page opening only
+     sec   — every standard band
+     tight — secondary bands (notes, strips, the jurisdiction band) */
+  --sec-y-hero: clamp(64px, 9vw, 128px);
+  --sec-y: clamp(56px, 8vw, 104px);
+  --sec-y-tight: clamp(40px, 5vw, 64px);
+
+  /* --- Type pattern ----------------------------------------------------
+     Body sizes: 11 · 12 · 13 · 14 · 15 · 17 · 19 — seven steps, no
+     fractions, no 16. Headings use the four clamps below and nothing else.
+     Weights, two per family: mono 500/700 · body 400/600 · display 640/700.
+     Voice: ALL-CAPS labels are mono, always; display is for headings only;
+     body carries everything else. */
+
+  /* --- Type ------------------------------------------------------------ */
+  --f-display: var(--font-display), "Bricolage Grotesque", system-ui, sans-serif;
+  --f-body: var(--font-body), Nunito, system-ui, sans-serif;
+  --f-mono: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
+  /* Wordmark only. Scoped so the geometric face can never reach a heading —
+     see the note in src/lib/fonts.js. `.rds-brand-word` is its sole user. */
+  --f-brand: var(--font-brand), "Bricolage Grotesque", system-ui, sans-serif;
+
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Dark theme -------------------------------------------------------
+   Not a filter — a re-measured palette. Every ratio re-verified. */
+html[data-rds-theme="dark"] .rds {
+  --bg: #0b0f14;
+  --bg-2: #131a21;
+  --bg-3: #1c242d;
+
+  --fg: #ffffff;      /* 19.22:1 */
+  --fg-2: #b9c2cc;    /* 10.66:1 */
+  --fg-3: #8a95a1;    /*  5.15:1 on bg-3 */
+
+  --brand: #fd3f42;       /* 5.46:1 on bg — clears UI 3:1 comfortably */
+  --brand-fg: #ff7175;    /* 7.20:1 on bg, 5.88:1 on bg-3 */
+  --brand-solid: #fd3f42;
+  --brand-solid-fg: #0b0f14; /* ink on brand = 5.46:1 (white would fail) */
+
+  --rule: #2a343e;
+  --rule-strong: #3a4650;
+  --control: #5a6570;     /* 3.23:1 */
+
+  --inv-bg: #ffffff;
+  --inv-fg: #0b0f14;
+
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   Reset within scope
+   ========================================================================= */
+.rds *,
+.rds *::before,
+.rds *::after { box-sizing: border-box; }
+
+.rds h1, .rds h2, .rds h3, .rds h4, .rds h5, .rds h6,
+.rds p, .rds figure, .rds blockquote, .rds dl, .rds dd { margin: 0; }
+
+.rds ul, .rds ol { margin: 0; padding: 0; }
+
+.rds img, .rds svg { display: block; max-width: 100%; }
+
+/* `:where()` contributes ZERO specificity, so this reset scores (0,0,1) and
+   any component class — .rds-btn-primary, .rds-link, .rds-skip — reliably
+   overrides it. Written as `.rds a` it would score (0,1,1) and silently beat
+   every single-class component rule, which renders link-buttons in the
+   inherited ink colour on their own background. */
+:where(.rds) a { color: inherit; text-decoration: none; }
+
+/* ==========================================================================
+   Typography — sentence case, never uppercase headings.
+   Uppercase is reserved for the mono eyebrow, where it reads as a label.
+   ========================================================================= */
+.rds h1, .rds h2, .rds h3, .rds h4 {
+  font-family: var(--f-display);
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: var(--fg);
+  text-wrap: balance;
+}
+
+.rds-h1 { font-size: clamp(38px, 5.2vw, 66px); letter-spacing: -0.032em; }
+.rds-h2 { font-size: clamp(28px, 3.4vw, 42px); letter-spacing: -0.024em; }
+.rds-h3 { font-size: clamp(21px, 2vw, 26px); letter-spacing: -0.016em; line-height: 1.2; }
+.rds-h4 { font-size: 18px; letter-spacing: -0.01em; line-height: 1.3; }
+
+.rds-lead {
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.55;
+  color: var(--fg-2);
+  text-wrap: pretty;
+  max-width: 60ch;
+}
+
+.rds-prose { color: var(--fg-2); max-width: 68ch; text-wrap: pretty; }
+.rds-prose p + p { margin-top: var(--s4); }
+
+.rds-meta { font-size: 14px; color: var(--fg-3); line-height: 1.5; }
+
+/* The mono label. Doubles as the section index (01, 02 …) and the code chip. */
+.rds-eyebrow {
+  /* Mono, deliberately: labels speak in the ledger's data voice. Against the
+     rounded display face this contrast is the identity — warm voice, exact
+     hands. (A round on proportional caps read as template; reverted.) */
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+}
+
+.rds-eyebrow-mark::before {
+  content: "";
+  width: 18px;
+  height: 3px;
+  background: var(--brand);
+  flex: none;
+}
+
+.rds-mono { font-family: var(--f-mono); font-variant-ligatures: none; }
+
+.rds-code {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--brand-fg);
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================= */
+.rds-container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.rds-section { padding-block: var(--sec-y); }
+.rds-section-tight { padding-block: var(--sec-y-tight); }
+
+/* Numbered section head — the "01 ─────" device from the direction.
+   The label sits in the accent red per the approved reference. */
+.rds-sechead {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--s4);
+  margin-bottom: var(--s6);
+}
+.rds-sechead::after {
+  content: "";
+  height: 1px;
+  background: var(--rule);
+}
+
+.rds-grid { display: grid; gap: var(--s5); }
+.rds-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rds-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.rds-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 900px) {
+  .rds-cols-3, .rds-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  /* .rds-grid.rds-cols-4 is repeated here at matching specificity. A rule in
+     the 1080px query targets that compound selector (0,2,0) to force two
+     columns; at 320px both queries match, and the compound one won — so the
+     four-up credential grid stayed two-up and pushed the page 38px sideways. */
+  .rds-cols-2, .rds-cols-3, .rds-cols-4,
+  .rds-grid.rds-cols-2, .rds-grid.rds-cols-3, .rds-grid.rds-cols-4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Surfaces — square, with exactly one bowl corner (bottom-right, echoing
+   the D). This is the system's signature and is applied consistently.
+   ========================================================================= */
+.rds-panel {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  padding: var(--s5);
+  position: relative;
+}
+
+.rds-panel-fill { background: var(--bg-2); }
+
+/* Feature panel. A panel that carries a headline, prose and buttons needs
+   more room than a card in a grid, so size is a declared VARIANT rather than
+   something each call site invents. Both of the site's feature panels — the
+   closing CtaBand and the homepage procurement block — previously set their
+   own inline padding (clamp(32px,5vw,64px) and clamp(28px,4vw,52px)), so the
+   same component rendered at 64px in one place and 52px in another, and
+   disagreed at every viewport because both ends of the clamps differed.
+   One value, on the token scale at both ends: --s6 floor, --s8 ceiling. */
+.rds-panel-lg { padding: clamp(32px, 5vw, 64px); }
+
+.rds-panel-link {
+  display: block;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.rds-panel-link:hover { border-color: var(--control); background: var(--bg-2); }
+
+/* Top keyline marks the active/primary panel without adding colour fill. */
+.rds-panel-keyed::before {
+  content: "";
+  position: absolute;
+  inset-inline: -1px;
+  top: -1px;
+  height: 3px;
+  background: var(--brand);
+}
+
+/* ==========================================================================
+   Buttons — primary is an ink/paper inversion at 19:1. Red is reserved for
+   the single highest-intent action, at a value that carries its label.
+   ========================================================================= */
+.rds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  padding: 14px 26px;
+  /* Full pill per the approved mockups — the D-bowl as a button shape. */
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+
+.rds-btn-primary { background: var(--inv-bg); color: var(--inv-fg); }
+.rds-btn-primary:hover { background: var(--brand-solid); color: var(--brand-solid-fg); }
+
+.rds-btn-accent {
+  background: var(--brand-solid);
+  color: var(--brand-solid-fg);
+  /* Neutral, small, offset — a red glow under a red pill is the trope. */
+  box-shadow: 0 3px 10px -3px rgb(11 15 20 / 0.3);
+}
+.rds-btn-accent:hover { background: var(--inv-bg); color: var(--inv-fg); }
+
+.rds-btn-ghost {
+  background: var(--bg);
+  color: var(--fg);
+  border-color: var(--rule-strong);
+}
+.rds-btn-ghost:hover { background: var(--bg-2); border-color: var(--fg); }
+
+.rds-btn-sm { padding: 10px 16px; font-size: 14px; }
+
+/* Below ~400px a long call to action cannot fit on one line, and nowrap makes
+   it push the page sideways. Let the label wrap rather than shortening copy
+   that reads correctly everywhere else. */
+@media (max-width: 400px) {
+  .rds-btn { white-space: normal; text-align: center; }
+}
+
+/* Row-header links in data tables are discrete targets, not inline prose, so
+   WCAG 2.5.8's in-a-sentence exception does not cover them. */
+.rds-table th a { display: inline-flex; align-items: center; min-height: 24px; }
+
+/* Inline text link with a deliberate underline — never colour alone. */
+.rds-link {
+  color: var(--brand-fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.rds-link:hover { text-decoration-thickness: 2px; }
+
+/* Arrow link used on cards */
+.rds-arrow { display: inline-flex; align-items: center; gap: var(--s2); font-weight: 600; font-size: 15px; }
+.rds-arrow svg { transition: transform 0.18s ease; }
+.rds-panel-link:hover .rds-arrow svg,
+.rds-arrow:hover svg { transform: translateX(3px); }
+
+/* ==========================================================================
+   Data — tables and specification rows are first-class here, because the
+   procurement reader is scanning for facts, not reading prose.
+   ========================================================================= */
+.rds-tablewrap {
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+}
+.rds-tablewrap:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+.rds-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.rds-table caption { text-align: left; padding: var(--s4) var(--s4) 0; color: var(--fg-3); font-size: 14px; }
+.rds-table th,
+.rds-table td { padding: 12px var(--s4); text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.rds-table thead th {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  background: var(--bg-2);
+  white-space: nowrap;
+}
+.rds-table tbody tr:last-child td { border-bottom: 0; }
+.rds-table tbody tr:hover { background: var(--bg-2); }
+
+/* Definition rows for the capability statement */
+.rds-spec { display: grid; grid-template-columns: 190px 1fr; gap: var(--s3) var(--s5); }
+.rds-spec dt {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  padding-top: 3px;
+}
+.rds-spec dd { color: var(--fg); }
+@media (max-width: 620px) { .rds-spec { grid-template-columns: 1fr; gap: var(--s1) 0; } .rds-spec dd { margin-bottom: var(--s4); } }
+
+/* ==========================================================================
+   Status + disclosure — how this site tells the truth about what it does
+   not yet hold. Never a badge; always a labelled state.
+   ========================================================================= */
+.rds-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+.rds-status::before { content: ""; width: 6px; height: 6px; flex: none; background: var(--fg-3); }
+.rds-status-planned::before { background: transparent; border: 1px solid var(--fg-3); }
+.rds-status-progress::before { background: var(--brand); }
+.rds-status-held::before { background: var(--fg); }
+
+/* Editorial note — used to mark items pending company confirmation.
+   The 3px accent rail this used to carry is gone: it appeared on 18 of ~25
+   pages, which made "exceptional" the default state and is the single most
+   recognisable tell of generated UI. The tint surface and the hairline do the
+   separating; the note reads as an aside rather than an alarm. */
+.rds-note {
+  border: 1px solid var(--rule);
+  background: var(--bg-2);
+  padding: var(--s4) var(--s5);
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  font-size: 15px;
+  color: var(--fg-2);
+  margin-top: var(--s6);
+}
+
+/* ==========================================================================
+   Page compositions
+   ========================================================================= */
+
+/* Alternating band. Uses the tint surface rather than a colour wash, so the
+   page still reads as one document rather than a stack of coloured stripes. */
+.rds-band { background: var(--bg-2); border-block: 1px solid var(--rule); }
+
+.rds-hero { padding-block: var(--sec-y-hero) var(--sec-y-tight); }
+
+/* The structural red rule under the headline — the one place the raw brand
+   value appears at full strength. */
+.rds-hero-rule {
+  width: 96px;
+  height: 4px;
+  background: var(--brand);
+  margin-top: var(--s6);
+}
+
+/* ── Hero A · practice rail ─────────────────────────────────────────────
+   The five practices, visible without scrolling. */
+.rds-practicerail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: clamp(48px, 6vw, 80px);
+  border-top: 1px solid var(--rule);
+}
+.rds-practicerail > li { list-style: none; border-inline-start: 1px solid var(--rule); }
+.rds-practicerail > li:first-child { border-inline-start: 0; }
+.rds-practicerail a {
+  display: flex; flex-direction: column; gap: 5px;
+  padding: var(--s5) var(--s4) var(--s5) var(--s4);
+  height: 100%;
+  transition: background 0.18s ease;
+}
+.rds-practicerail > li:first-child a { padding-inline-start: 0; }
+.rds-practicerail a:hover { background: var(--bg-2); }
+.rds-practicerail-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--fg); }
+.rds-practicerail-focus {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.02em;
+  color: var(--fg-3); line-height: 1.45;
+}
+@media (max-width: 1000px) {
+  .rds-practicerail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rds-practicerail > li:nth-child(odd) { border-inline-start: 0; }
+  .rds-practicerail > li:nth-child(odd) a { padding-inline-start: 0; }
+  .rds-practicerail > li:nth-child(n + 3) { border-top: 1px solid var(--rule); }
+}
+@media (max-width: 560px) {
+  .rds-practicerail { grid-template-columns: minmax(0, 1fr); }
+  .rds-practicerail > li { border-inline-start: 0; }
+  .rds-practicerail > li a { padding-inline: 0; }
+  .rds-practicerail > li + li { border-top: 1px solid var(--rule); }
+}
+
+/* ── Hero B · split with the delivery-loop diagram ──────────────────────
+   The figure is not decoration: it draws the claim the headline makes. */
+.rds-hero-splitgrid {
+  display: grid; grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(40px, 6vw, 88px); align-items: center;
+}
+@media (max-width: 980px) { .rds-hero-splitgrid { grid-template-columns: 1fr; } }
+
+.rds-loopdiagram { margin: 0; }
+.rds-loopdiagram-grid {
+  position: relative;
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--rule);
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  overflow: hidden;
+  background: var(--bg-2);
+}
+.rds-loopdiagram-grid > div {
+  padding: var(--s5);
+  display: flex; flex-direction: column; gap: 4px;
+  border-inline-start: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
+  min-height: 132px;
+}
+.rds-loopdiagram-grid > div:nth-child(-n + 2) { border-top: 0; }
+.rds-loopdiagram-grid > div:nth-child(odd) { border-inline-start: 0; }
+.rds-loopdiagram-grid .rds-mono { font-size: 11px; letter-spacing: 0.12em; color: var(--brand-fg); }
+.rds-loopdiagram-grid strong { font-family: var(--f-display); font-size: 19px; font-weight: 640; letter-spacing: -0.015em; }
+.rds-loopdiagram-grid span:last-child { font-size: 13px; color: var(--fg-2); line-height: 1.45; }
+/* The red mark sits at the grid's centre — the loop closing. */
+.rds-loopdiagram-mark {
+  position: absolute; left: 50%; top: 50%;
+  width: 34px; height: 34px; transform: translate(-50%, -50%);
+  background: var(--bg);
+  border: 3px solid var(--brand);
+  border-radius: 6px 6px 16px 6px;
+}
+.rds-loopdiagram figcaption {
+  margin-top: var(--s4); font-size: 13px; color: var(--fg-3); text-align: center;
+}
+
+/* ── Hero C · full-bleed band ───────────────────────────────────────────
+   The band is a SURFACE, not a fixed dark slab. It carries its own local
+   token layer (--band-*) that follows the active theme, so every rule below
+   is written once and the two themes cannot drift apart. In light the band
+   is the tinted surface sitting one step off the white page; in dark it is
+   lifted off the near-black page. Same composition either way — the band
+   reads as a distinct block through tone and rules, not through inversion.
+
+   Ratios measured on the light band ground #f7f8f9:
+     --band-fg      #0b0f14  18.28:1  headline + body
+     --band-fg-2    #47515c   7.70:1  lead prose
+     --band-fg-3    #5f6a77   5.25:1  captions, inactive steps
+     --band-accent  #c81e22   5.39:1  accent TEXT (links, step indices)
+     --band-control #7f8892   3.38:1  control borders (AA UI)
+     --brand        #fd3f42   3.31:1  graphics only — rule, loop mark, fill
+   The raw logo red cannot carry text on this ground (3.31:1), which is why
+   --band-accent is the darkened value and --brand is reserved for marks. */
+.rds-heroband {
+  --band-bg: #f7f8f9;
+  --band-fg: #0b0f14;
+  --band-fg-2: #47515c;
+  --band-fg-3: #5f6a77;
+  --band-rule: #c2c8ce;
+  --band-accent: #c81e22;
+  --band-control: #7f8892;
+  --band-track: #9aa3ac;
+  /* Hover wash and the inset panel are alpha over the band rather than fixed
+     hexes, so they stay correct whatever ground the band lands on. */
+  --band-wash: rgb(11 15 20 / 0.05);
+  --band-panel: rgb(255 255 255 / 0.66);
+  background: var(--band-bg);
+  color: var(--band-fg);
+  border-bottom: 1px solid var(--band-rule);
+}
+/* Dark band. The page ground in this theme is #0b0f14, so the band lifts to
+   #151d25 — it has to read as a distinct surface rather than dissolve into
+   the page. Every ratio here is measured against that LIFTED ground, not
+   against #0b0f14, which is the ground the band never actually sits on:
+     #ffffff 17.02:1 · #b9c2cc 9.44:1 · #8a95a1 5.59:1
+     #ff7175  6.38:1 · #fd3f42 4.83:1 (graphics) · #6b7683 3.68:1 (borders)
+
+   --band-control is NOT the page's --control (#5a6570). That value measures
+   3.23:1 against the page ground #0b0f14 but only 2.86:1 against this lifted
+   band, which misses the 3:1 UI bar — so the band carries its own, and the
+   contrast suite asserts the difference. */
+html[data-rds-theme="dark"] .rds-heroband {
+  --band-bg: #151d25;
+  --band-fg: #ffffff;
+  --band-fg-2: #b9c2cc;
+  --band-fg-3: #8a95a1;
+  --band-rule: #333f4a;
+  --band-accent: #ff7175;
+  --band-control: #6b7683;
+  --band-track: #4a5560;
+  --band-wash: rgb(255 255 255 / 0.05);
+  --band-panel: rgb(255 255 255 / 0.03);
+  box-shadow: inset 0 -1px 0 var(--band-rule);
+}
+.rds-heroband-inner { padding-block: var(--sec-y-tight); }
+
+/* Two columns: the argument on the left, the loop drawn on the right. This
+   also fills the right ~30% of the viewport the old hero left empty. */
+.rds-heroband-grid {
+  display: grid; grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(36px, 5vw, 72px); align-items: center;
+}
+@media (max-width: 980px) { .rds-heroband-grid { grid-template-columns: 1fr; } }
+
+.rds-heroband-byline {
+  margin-top: var(--s4);
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.02em;
+  color: var(--band-fg-3);
+}
+
+/* Diagram on the band. Reads as an inset panel a shade off the band in either
+   theme — lighter than the band in light, brighter than it in dark. */
+.rds-loopdiagram-onband .rds-loopdiagram-grid {
+  background: var(--band-panel);
+  border-color: var(--band-rule);
+}
+.rds-loopdiagram-onband .rds-loopdiagram-grid > div { border-color: var(--band-rule); min-height: 118px; }
+.rds-loopdiagram-onband .rds-loopdiagram-grid strong { color: var(--band-fg); }
+.rds-loopdiagram-onband .rds-loopdiagram-grid .rds-mono { color: var(--band-accent); }
+.rds-loopdiagram-onband .rds-loopdiagram-grid a {
+  font-size: 13px; color: var(--band-fg-2);
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: var(--band-rule);
+}
+.rds-loopdiagram-onband .rds-loopdiagram-grid a:hover { color: var(--band-fg); text-decoration-color: currentColor; }
+.rds-loopdiagram-onband .rds-loopdiagram-mark { background: var(--band-bg); border-color: var(--brand); }
+.rds-loopdiagram-onband figcaption { color: var(--band-fg-3); }
+.rds-heroband h1 { color: var(--band-fg); }
+.rds-heroband-eyebrow { color: var(--band-fg-3) !important; }
+.rds-heroband-lead { color: var(--band-fg-2); }
+
+/* The headline as slider. Inactive steps are dimmed by COLOUR, not opacity —
+   --band-fg-3 clears AA against the band in both themes (5.25:1 light,
+   5.59:1 dark), so every word stays readable whichever step is active. */
+.rds-heroband-words { max-width: 20ch; }
+.rds-heroband-words span {
+  color: var(--band-fg-3);
+  transition: color 0.45s ease;
+}
+.rds-heroband-words span.is-active { color: var(--band-fg); }
+@media (prefers-reduced-motion: reduce) {
+  .rds-heroband-words span { transition: none; }
+}
+
+.rds-heroslide { margin-top: var(--s5); min-height: 118px; }
+.rds-heroslide .rds-lead { max-width: 56ch; }
+.rds-heroslide-link {
+  display: inline-flex; align-items: center; gap: var(--s2);
+  margin-top: var(--s3);
+  font-family: var(--f-mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--band-accent);
+}
+.rds-heroslide-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 620px) { .rds-heroslide { min-height: 172px; } }
+
+/* Controls: a tablist whose labels are the four steps. */
+.rds-herotabs {
+  display: flex; flex-wrap: wrap; align-items: flex-end;
+  justify-content: space-between; gap: var(--s4);
+  margin-top: clamp(36px, 5vw, 56px);
+}
+.rds-herotabs [role="tablist"] { display: flex; flex-wrap: wrap; gap: var(--s5); }
+.rds-herotabs [role="tab"] {
+  position: relative;
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 0 0 12px;
+  background: none; border: 0; cursor: pointer;
+  font-family: var(--f-body); font-size: 15px; font-weight: 600;
+  color: var(--band-fg-3);
+  transition: color 0.2s ease;
+  min-width: 92px; text-align: left;
+}
+.rds-herotabs [role="tab"]:hover { color: var(--band-fg); }
+.rds-herotabs [role="tab"][aria-selected="true"] { color: var(--band-fg); }
+.rds-herotabs [role="tab"] .rds-mono {
+  /* 11px is the floor for functional text — the slide indices were 10.5px. */
+  font-size: 11px; letter-spacing: 0.14em; color: var(--band-accent);
+}
+/* Track + fill. The fill also doubles as the rotation timer. */
+.rds-herotabs-bar {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: var(--band-rule);
+}
+.rds-herotabs [role="tab"][aria-selected="true"] .rds-herotabs-bar { background: var(--band-track); }
+.rds-herotabs-bar::after {
+  content: ""; position: absolute; inset: 0; width: 0;
+  background: var(--brand);
+}
+.rds-herotabs [role="tab"][aria-selected="true"] .rds-herotabs-bar::after { width: 100%; }
+.rds-herotabs-bar.is-running::after { animation: rds-herofill linear forwards; }
+@keyframes rds-herofill { from { width: 0; } to { width: 100%; } }
+@media (prefers-reduced-motion: reduce) {
+  .rds-herotabs-bar.is-running::after { animation: none; width: 100%; }
+}
+
+.rds-herotabs-pause {
+  background: none; border: 1px solid var(--band-control); border-radius: var(--r);
+  color: var(--band-fg-2); cursor: pointer;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 7px 12px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.rds-herotabs-pause:hover { color: var(--band-fg); border-color: var(--band-fg); }
+
+@media (max-width: 620px) {
+  .rds-herotabs [role="tablist"] { gap: var(--s4); }
+  .rds-herotabs [role="tab"] { min-width: 74px; font-size: 14px; }
+}
+
+.rds-heroband-rail { border-top: 1px solid var(--band-rule); }
+.rds-heroband-rail ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.rds-heroband-rail li { list-style: none; border-inline-start: 1px solid var(--band-rule); }
+.rds-heroband-rail li:first-child { border-inline-start: 0; }
+.rds-heroband-rail a {
+  display: flex; flex-direction: column; gap: 5px;
+  padding: var(--s5) var(--s4);
+  height: 100%;
+  transition: background 0.18s ease;
+}
+.rds-heroband-rail li:first-child a { padding-inline-start: 0; }
+.rds-heroband-rail a:hover { background: var(--band-wash); }
+.rds-heroband-rail-title { font-size: 15px; font-weight: 600; color: var(--band-fg); letter-spacing: -0.01em; }
+.rds-heroband-rail-focus {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.02em;
+  color: var(--band-fg-3); line-height: 1.45;
+}
+.rds-heroband-rail-go { color: var(--band-accent); margin-top: 2px; }
+@media (max-width: 1000px) {
+  .rds-heroband-rail ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rds-heroband-rail li:nth-child(odd) { border-inline-start: 0; }
+  .rds-heroband-rail li:nth-child(odd) a { padding-inline-start: 0; }
+  .rds-heroband-rail li:nth-child(n + 3) { border-top: 1px solid var(--band-rule); }
+}
+@media (max-width: 560px) {
+  .rds-heroband-rail ul { grid-template-columns: minmax(0, 1fr); }
+  .rds-heroband-rail li { border-inline-start: 0; }
+  .rds-heroband-rail li a { padding-inline: 0; }
+  .rds-heroband-rail li + li { border-top: 1px solid var(--band-rule); }
+}
+
+/* Buttons on the band.
+   There is no `onBand` solid variant, and that is deliberate: once the band
+   follows the theme, "solid button on the band" and .rds-btn-primary resolve
+   to the same pair — --inv-bg/--inv-fg is ink-on-light in light mode and
+   white-on-dark in dark mode, which is exactly what each band needs. The old
+   .rds-btn-onDark existed only to hard-code around a band that would not
+   flip. Ghost still needs its own variant: .rds-btn-ghost hovers to --bg-2,
+   which IS the light band's ground, so the hover would be invisible there. */
+.rds-btn-ghostOnBand { background: transparent; color: var(--band-fg); border-color: var(--band-control); }
+.rds-btn-ghostOnBand:hover { background: var(--band-wash); border-color: var(--band-fg); }
+
+/* Hero switcher — only rendered when ?hero= is present. */
+.rds-heroswitch {
+  position: fixed; z-index: 90; inset-inline-end: 16px; bottom: 16px;
+  display: flex; align-items: center; gap: 6px;
+  background: var(--bg); border: 1px solid var(--rule-strong);
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  padding: 8px 10px; box-shadow: 0 12px 32px -16px rgb(0 0 0 / .45);
+}
+.rds-heroswitch span {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--fg-3); margin-inline-end: 4px;
+}
+.rds-heroswitch a {
+  font-family: var(--f-mono); font-size: 12px; padding: 4px 9px;
+  border: 1px solid var(--rule-strong); border-radius: var(--r); color: var(--fg-2);
+}
+.rds-heroswitch a[aria-current="true"] { background: var(--inv-bg); color: var(--inv-fg); border-color: var(--inv-bg); }
+
+/* Verified-fact strip below the hero. */
+.rds-factstrip { border-block: 1px solid var(--rule); background: var(--bg-2); }
+.rds-factstrip ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.rds-factstrip li {
+  list-style: none;
+  padding: var(--s5) var(--s5) var(--s5) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-inline-start: 1px solid var(--rule);
+  padding-inline-start: var(--s5);
+}
+.rds-factstrip li:first-child { border-inline-start: 0; padding-inline-start: 0; }
+.rds-factstrip li > span:first-child {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--brand-fg);
+}
+.rds-factstrip li > span:last-child { font-size: 14px; color: var(--fg-2); line-height: 1.4; }
+@media (max-width: 860px) {
+  .rds-factstrip ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rds-factstrip li:nth-child(odd) { border-inline-start: 0; padding-inline-start: 0; }
+}
+@media (max-width: 460px) {
+  .rds-factstrip ul { grid-template-columns: minmax(0, 1fr); }
+  .rds-factstrip li { border-inline-start: 0; padding-inline-start: 0; padding-block: var(--s3); }
+}
+
+/* Heading beside supporting prose — the workhorse editorial pairing. */
+.rds-splithead {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: var(--s5) var(--s8);
+  align-items: start;
+}
+@media (max-width: 900px) { .rds-splithead { grid-template-columns: 1fr; gap: var(--s4); } }
+
+/* The Build/Staff/Train/Prove sequence. */
+.rds-loop {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s5);
+  margin-top: var(--s7);
+}
+
+/* One pastel per step, each with its own label ink measured against its own
+   fill (all pairs ≥4.5:1, both themes — the homepage axe scan enforces it).
+   The card carries the hue; the number stays brand red on every fill. */
+.rds-loop > li { list-style: none; }
+.rds-loop > li:nth-child(1) { --card: #f4e6c4; --card-ink: #6b5312; }
+.rds-loop > li:nth-child(2) { --card: #f6dcb4; --card-ink: #74490f; }
+.rds-loop > li:nth-child(3) { --card: #f5cfa8; --card-ink: #7c3f10; }
+.rds-loop > li:nth-child(4) { --card: #f2c1a4; --card-ink: #86301c; }
+html[data-rds-theme="dark"] .rds-loop > li:nth-child(1) { --card: #3a3118; --card-ink: #eed394; }
+html[data-rds-theme="dark"] .rds-loop > li:nth-child(2) { --card: #3d2c14; --card-ink: #f2ca95; }
+html[data-rds-theme="dark"] .rds-loop > li:nth-child(3) { --card: #402813; --card-ink: #f4c096; }
+html[data-rds-theme="dark"] .rds-loop > li:nth-child(4) { --card: #452317; --card-ink: #f6b49a; }
+
+.rds-loop a {
+  display: block;
+  padding: var(--s5);
+  height: 100%;
+  background: var(--card);
+  border-radius: var(--r-bowl);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.rds-loop a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px -18px rgb(11 15 20 / 0.4);
+}
+.rds-loop a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+.rds-loop-idx {
+  display: block;
+  font-size: 12px;
+  /* The card's own ink, not brand red: red stays scarce, and each card
+     tells one hue story instead of two. */
+  color: var(--card-ink);
+  letter-spacing: 0.12em;
+  margin-bottom: var(--s4);
+}
+
+.rds-loop-pillar {
+  margin: 4px 0 var(--s3);
+  /* Caps label -> mono, per the voice rule. The ink stays the card's own. */
+  font-family: var(--f-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--card-ink);
+}
+
+@media (max-width: 900px) {
+  .rds-loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .rds-loop { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Warm ground — the cream canvas from the lifecycle reference. Values are
+   warm-neutral, not tinted enough to shift the fg tokens' measured ratios. */
+.rds-warm { background: #f9f6ef; }
+html[data-rds-theme="dark"] .rds-warm { background: #17140f; }
+
+/* Past-performance cards */
+.rds-pp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s5); }
+@media (max-width: 980px) { .rds-pp { grid-template-columns: minmax(0, 1fr); } }
+.rds-ppdl dt {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-top: var(--s4);
+}
+.rds-ppdl dt:first-child { margin-top: 0; }
+.rds-ppdl dd { font-size: 15px; color: var(--fg-2); margin-top: 5px; }
+
+/* Procurement quick-look */
+.rds-proc { display: grid; grid-template-columns: 1.35fr 1fr; gap: var(--s7); align-items: start; }
+@media (max-width: 900px) { .rds-proc { grid-template-columns: 1fr; } }
+.rds-proclist { border-top: 1px solid var(--rule-strong); }
+.rds-proclist li { list-style: none; border-bottom: 1px solid var(--rule); }
+.rds-proclist a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg-2);
+  /* transform, not padding — padding animates layout every frame on rows
+     that repeat 5–7 times per page. */
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+.rds-proclist a::after { content: "→"; color: var(--brand-fg); }
+.rds-proclist a:hover { color: var(--fg); transform: translateX(6px); }
+
+/* Code bar under a service-pillar headline — the identifiers a contracting
+   officer searches on, given the same weight as the marketing line. */
+.rds-codebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s5) var(--s8);
+  margin-top: var(--s6);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule);
+}
+.rds-codebar dt {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-bottom: 5px;
+}
+.rds-codebar dd { font-size: 15px; color: var(--fg); }
+
+/* Two-column deliverables / approach split */
+.rds-deliv { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s8); align-items: start; }
+@media (max-width: 900px) { .rds-deliv { grid-template-columns: 1fr; gap: var(--s7); } }
+
+/* Checklist. The marker is a CSS box, not a character, so it never reads out
+   to a screen reader as stray punctuation. */
+.rds-ticklist { border-top: 1px solid var(--rule); }
+.rds-ticklist li {
+  list-style: none;
+  position: relative;
+  padding: 11px 0 11px var(--s5);
+  border-bottom: 1px solid var(--rule);
+  font-size: 15px;
+  color: var(--fg-2);
+}
+.rds-ticklist li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 18px;
+  width: 9px;
+  height: 2px;
+  background: var(--brand);
+}
+
+/* Numbered approach steps */
+.rds-steps { display: grid; gap: var(--s5); }
+.rds-steps li { list-style: none; display: grid; grid-template-columns: 42px 1fr; gap: var(--s4); }
+.rds-steps-idx { font-size: 12px; letter-spacing: 0.1em; color: var(--brand-fg); padding-top: 3px; }
+
+/* Tag list for methods, standards and sectors */
+.rds-taglist { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.rds-taglist li {
+  list-style: none;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  padding: 6px 10px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  color: var(--fg-2);
+  background: var(--bg);
+}
+
+/* Pillar list — a directory row rather than a card, because the buyer is
+   scanning a list of capabilities, not browsing tiles. */
+.rds-pillarlist { border-top: 1px solid var(--rule-strong); }
+.rds-pillarlist > li { list-style: none; border-bottom: 1px solid var(--rule); }
+.rds-pillarlist a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s5) var(--s7);
+  align-items: end;
+  padding: var(--s6) 0;
+  transition: transform 0.18s ease;
+}
+.rds-pillarlist a:hover { transform: translateX(var(--s3)); }
+.rds-pillarlist-side { text-align: right; white-space: nowrap; }
+@media (max-width: 760px) {
+  .rds-pillarlist a { grid-template-columns: 1fr; align-items: start; }
+  .rds-pillarlist-side { text-align: left; }
+}
+
+/* Status list — registrations, vehicles and anything else where the state
+   matters as much as the name. */
+.rds-statuslist { border-top: 1px solid var(--rule-strong); }
+.rds-statuslist > li { list-style: none; padding: var(--s5) 0; border-bottom: 1px solid var(--rule); }
+.rds-statuslist-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  margin-bottom: 4px;
+}
+
+/* Capability statement — a document layout, tuned for US Letter output. */
+.rds-cap-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s5);
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: var(--s5);
+  border-bottom: 3px solid var(--brand);
+}
+.rds-cap-contact { text-align: right; }
+@media (max-width: 620px) { .rds-cap-contact { text-align: left; } }
+
+.rds-cap-sec { padding-block: var(--s6); border-bottom: 1px solid var(--rule); }
+.rds-cap-sec > h2 {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-fg);
+  margin-bottom: var(--s4);
+}
+.rds-cap-table { font-size: 14px; border: 1px solid var(--rule); }
+.rds-cap-pp { padding-block: var(--s3); border-bottom: 1px dotted var(--rule); }
+.rds-cap-pp:last-of-type { border-bottom: 0; }
+.rds-cap-foot { padding-top: var(--s5); }
+
+@media print {
+  /* Two pages is the point of a capability statement — a source-selection
+     board reads it beside a dozen others, and federal guidance is one to two
+     pages. It was running to four.
+     Measured in print emulation: 2363px of content against a 950px usable
+     Letter page (11in less 2x14mm margins at 96dpi) is 2.49 pages of copy,
+     which `break-inside: avoid` then inflated to four by pushing whole
+     sections onto fresh pages. The fix is therefore density plus controlled
+     breaking, not cutting what an evaluator came to read. */
+  /* 9.4pt, not 8.6. Once grid replaced multicol the document had room again,
+     and a capability statement is read, not skimmed — a swept range showed
+     9.6pt is the ceiling for two pages, so this keeps a little headroom for
+     the registry-driven content to grow without silently becoming three. */
+  /* Sized against the PDF's real content box — (8.5in - 2x14mm) x 96 = 710 x
+     950px, so two pages is a 1900px budget. Measuring at any wider viewport
+     understates the height: at 816px this document measured 1714px and looked
+     comfortable, while at 710px it was 1901px — one pixel over, which is what
+     put it on a third page. Tuned to leave real headroom, not to squeak in. */
+  .rds-capability { font-size: 8.9pt; line-height: 1.28; }
+
+  .rds-cap-sec {
+    padding-block: 2px;
+    /* `avoid` on every section is what pushed the page count up. Sections may
+       now break internally; only their headings are kept with what follows. */
+    break-inside: auto;
+  }
+  .rds-cap-sec > h2 { break-after: avoid; margin-bottom: 4px; }
+  .rds-cap-head { border-bottom: 2px solid #000 !important; padding-bottom: 6px; }
+
+  /* Density via grid, never CSS multicol.
+     `columns: 2` was the single reason this document paginated to three pages:
+     Chromium cannot fragment a multicol block across a page boundary cleanly,
+     so it pushed the whole block to a fresh page. Proven by injecting
+     `columns: auto` at print time — page count dropped 3 -> 2 immediately.
+     Grid fragments correctly and gives the same density.
+
+     .rds-spec is already a two-track grid (label, value). In print it becomes
+     four tracks, so two label/value pairs share a row. */
+  .rds-capability .rds-spec {
+    grid-template-columns: 96px 1fr 96px 1fr;
+    gap: 2px 12px;
+  }
+  .rds-capability .rds-spec dt { padding-top: 1px; }
+  .rds-capability .rds-spec > div { break-inside: avoid; }
+
+  .rds-capability .rds-ticklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 18px;
+  }
+  .rds-capability .rds-ticklist li { break-inside: avoid; padding-block: 1px; }
+
+  .rds-capability .rds-h2 { font-size: 13pt; }
+  .rds-capability .rds-h4 { font-size: 9.4pt; margin-bottom: 2px; }
+  .rds-capability .rds-cap-table th,
+  .rds-capability .rds-cap-table td { padding: 2px 6px; font-size: 8pt; }
+
+  /* Layout sets min-height:100dvh inline on .rds so the footer sits at the
+     bottom of short pages. In print that reserves a full viewport of height
+     regardless of content, which is why the statement still spilled onto a
+     third page while its copy measured 1.76. Inline styles outrank the sheet,
+     hence !important. */
+  .rds { min-height: 0 !important; display: block !important; }
+  .rds > main { flex: none !important; }
+
+  .rds-section { padding-block: 2px !important; }
+  /* The lead paragraph under the title is context, not content an
+     evaluator scores. It can afford to be the smallest thing here. */
+  .rds-cap-head .rds-lead { font-size: 8.8pt; }
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================= */
+.rds-formwrap { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--s8); align-items: start; }
+@media (max-width: 900px) { .rds-formwrap { grid-template-columns: 1fr; gap: var(--s7); } }
+
+.rds-field { margin-bottom: var(--s5); }
+.rds-field > label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+.rds-req { color: var(--brand-fg); margin-inline-start: 3px; }
+.rds-optional { font-weight: 400; color: var(--fg-3); }
+
+.rds-fieldrow { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+@media (max-width: 620px) { .rds-fieldrow { grid-template-columns: 1fr; gap: 0; } }
+
+.rds-input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--control);
+  border-radius: var(--r);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-body);
+  font-size: 15px; /* 16px keeps iOS Safari from zooming on focus */
+  line-height: 1.45;
+  transition: border-color 0.15s ease;
+}
+.rds-input:hover { border-color: var(--fg-3); }
+.rds-input:focus { border-color: var(--fg); }
+.rds-input::placeholder { color: var(--fg-3); }
+.rds-input[aria-invalid="true"] { border-color: var(--brand-fg); border-width: 2px; }
+textarea.rds-input { resize: vertical; min-height: 140px; }
+/* A select stripped of its chevron and given nothing back is pixel-identical
+   to a text input — on the intake form the reader could not tell a choice from
+   a text entry. The arrow is an inline SVG so it inherits no external asset. */
+select.rds-input {
+  appearance: none;
+  cursor: pointer;
+  padding-inline-end: 38px;
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  background-size: 11px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 3.5L5 6.5L8 3.5' fill='none' stroke='%235f6a77' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+html[data-rds-theme="dark"] select.rds-input {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 3.5L5 6.5L8 3.5' fill='none' stroke='%238a95a1' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+/* Errors carry an icon glyph as well as colour, so the state is not conveyed
+   by colour alone (WCAG 1.4.1). */
+.rds-fielderr {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--brand-fg);
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+.rds-fielderr::before { content: "!"; font-family: var(--f-mono); font-weight: 700; flex: none; }
+
+/* The error summary keeps its accent — here the colour is functional, not
+   decorative, and it is reinforced by role="alert", a focus move and the
+   "!" glyph so it never depends on colour alone. Rail reduced to a hairline. */
+.rds-formerr {
+  border: 1px solid var(--brand-fg);
+  background: var(--bg-2);
+  border-radius: var(--r);
+  padding: var(--s4) var(--s5);
+  margin-bottom: var(--s5);
+  font-size: 15px;
+  color: var(--fg-2);
+}
+.rds-formerr strong { color: var(--fg); }
+
+.rds-fieldset { border: 0; padding: 0; margin: 0 0 var(--s5); }
+.rds-fieldset legend {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: var(--s3);
+}
+.rds-checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s2) var(--s4); }
+@media (max-width: 620px) { .rds-checks { grid-template-columns: 1fr; } }
+.rds-checks label {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: 15px;
+  color: var(--fg-2);
+  cursor: pointer;
+  padding: 4px 0;
+}
+.rds-checks input { width: 16px; height: 16px; accent-color: var(--brand-solid); flex: none; }
+
+/* Honeypot — removed from the layout and from the accessibility tree. Not
+   `display:none`, which some bots detect and skip. */
+.rds-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Source list — the "check anything" band */
+.rds-sources { border-top: 1px solid var(--rule-strong); }
+.rds-sources li {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3) var(--s5);
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--s4) 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15px;
+  color: var(--fg-2);
+}
+.rds-sources li > span { max-width: 72ch; }
+.rds-sources a { font-size: 13px; white-space: nowrap; }
+
+/* ==========================================================================
+   Header + primary navigation
+   ========================================================================= */
+.rds-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .rds-header { background: var(--bg); }
+}
+
+.rds-header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+  min-height: 66px;
+}
+
+.rds-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  /* 22px of lockup is under the 24px target floor; padding carries the rest. */
+  min-height: 44px;
+}
+/* Set to match the logo lockup rather than styled independently: the artwork
+   reads ROUNDDIGITAL as one word — all caps, positively tracked, one weight
+   in one colour. The previous treatment said "RoundDigital" in mixed case
+   across two weights and two colours, in a grotesque, which read as a
+   different brand from the mark sitting 10px to its left.
+   The tracking is measured, not guessed: column projection of the artwork
+   gives a gap-to-letter ratio of 0.244, which Jost 500 reproduces at
+   0.035em. Size drops 19→17px because caps have no descenders and read
+   larger at the same point size. */
+.rds-brand-word {
+  font-family: var(--f-brand);
+  font-size: 17px;
+  /* Weight and tracking measured off the master artwork rather than chosen by
+     eye: its wordmark has a stem/cap-height ratio of 0.23, which is bold, and
+     an average advance of 0.80 cap-heights, which is near-neutral tracking.
+     Bricolage is loaded as a variable font, so 700 is a real master and not a
+     synthesised faux-bold. Previously 500 / +0.035em, which read noticeably
+     lighter and wider than the logo it sits beside. */
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.rds-primarynav { margin-inline-start: auto; }
+.rds-primarynav > ul { display: flex; align-items: center; gap: 2px; }
+
+.rds-navtrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 0;
+  padding: 8px 11px;
+  position: relative; /* anchors the current-page underline below */
+  border-radius: var(--r);
+  /* Display face, not body. The header is identity chrome, not prose: the
+     wordmark beside these links is already set in the brand face, and running
+     the links in Nunito put two different rounded faces side by side at the
+     same size, which reads as an accident rather than a decision. Body copy
+     below the header is unaffected. */
+  font-family: var(--f-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.008em;
+  color: var(--fg-2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.rds-navtrigger:hover { color: var(--fg); background: var(--bg-2); }
+.rds-navtrigger[aria-expanded="true"] { color: var(--fg); background: var(--bg-2); }
+.rds-navtrigger[aria-current="page"],
+.rds-navtrigger[data-current="true"] { color: var(--fg); }
+/* A real underline, not an inset shadow: the shadow hugged the control's
+   outline, which read as an underline at a 2px radius and as a pill the
+   moment the radius grew. Rounded tips to match the softened geometry. */
+.rds-navtrigger[aria-current="page"]::after,
+.rds-navtrigger[data-current="true"]::after {
+  content: "";
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--brand);
+}
+
+.rds-navpanel {
+  position: relative;
+  /* 340px forced every row to wrap — "Staffing & Workforce Solutions" broke
+     across three lines beside its own meta label, with ~900px of header width
+     sitting unused to the right. */
+  min-width: 420px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-bowl);
+  box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.3);
+  padding: var(--s3);
+}
+.rds-navpanel[hidden] { display: none; }
+
+/* Bridges the 6px gap between the trigger and the panel. Without it that strip
+   belongs to no element, so moving the pointer down into the menu leaves the
+   <li>, fires mouseleave and closes the menu before you arrive. The bridge is
+   a child of the panel, and the panel is a child of the <li>, so the whole
+   path from trigger to menu item stays inside one hover subtree. */
+.rds-navpanel::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: -10px;
+  height: 10px;
+}
+.rds-navpanel li { list-style: none; }
+/* Inside the menu the kebab line speaks in the rounded voice, not mono —
+   mono keeps its job where the string is a real code (NAICS tables). */
+.rds-navpanel .rds-code {
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+.rds-navpanel a {
+  display: block;
+  padding: 10px var(--s3);
+  border-radius: var(--r);
+  transition: background 0.15s ease;
+}
+.rds-navpanel a:hover { background: var(--bg-2); }
+/* Title and meta stack instead of competing for one line. */
+.rds-navpanel-row { display: flex; flex-direction: column; gap: 3px; }
+.rds-navpanel-title { font-size: 15px; font-weight: 600; color: var(--fg); }
+.rds-navpanel-sum { display: block; margin-top: 2px; font-size: 13px; line-height: 1.45; color: var(--fg-3); }
+
+.rds-header-actions { display: flex; align-items: center; gap: var(--s2); flex: none; }
+
+.rds-iconbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Buttons do not inherit font; without this the sr-only label inside
+     computes to UA Arial — the one pattern leak the live audit found. */
+  font: inherit;
+  /* 44px, not 40: the site's own floor for touch targets. 40 passed WCAG
+     2.5.8's 24px minimum but sat under the standard every newer control on
+     the site meets, and the header has the room. */
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid var(--rule-strong);
+  /* Fully round. The Figma header draws the theme control as a circle, and a
+     44px square with a 10px radius beside a pill-shaped CTA read as two
+     different control families. */
+  border-radius: 999px;
+  color: var(--fg-2);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.rds-iconbtn:hover { color: var(--fg); border-color: var(--fg); }
+
+.rds-burger { display: none; }
+
+.rds-mobilenav {
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+  padding-block: var(--s5);
+  max-height: calc(100dvh - 66px);
+  overflow-y: auto;
+}
+.rds-mobilenav[hidden] { display: none; }
+.rds-mobilenav li { list-style: none; }
+.rds-mobilenav-top {
+  display: block;
+  padding: 10px 0;
+  font-family: var(--f-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--fg);
+}
+/* `ul.` prefix is load-bearing: the reset at the top of this file is `.rds ul`
+   (0,1,1), which outranks a bare single class, so the indent silently never
+   applied and every submenu item sat flush with its parent heading. */
+ul.rds-mobilenav-sub {
+  padding: var(--s2) 0 var(--s4) var(--s5);
+  border-left: 1px solid var(--rule);
+  margin-inline-start: var(--s2);
+}
+.rds-mobilenav-sub a { display: block; padding: 7px 0; font-size: 15px; color: var(--fg-2); }
+.rds-mobilenav-cta { width: 100%; margin-top: var(--s4); }
+
+@media (max-width: 1080px) {
+  .rds-primarynav { display: none; }
+  .rds-burger { display: inline-flex; }
+  .rds-header-cta { display: none; }
+  .rds-primarynav > ul { gap: 0; }
+
+  /* The push to the right edge lives on .rds-primarynav (margin-inline-start:
+     auto). Hiding that element takes its auto margin with it, so the theme
+     toggle and the burger collapsed against the logo on every phone. The
+     actions carry the push themselves once the nav is gone. */
+  .rds-header-actions { margin-inline-start: auto; }
+}
+@media (max-width: 420px) {
+  .rds-brand-word { display: none; }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================= */
+.rds-footer {
+  border-top: 1px solid var(--rule);
+  background: var(--bg-2);
+  padding-block: var(--s8) var(--s5);
+  margin-top: var(--s7);
+}
+.rds-footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr));
+  gap: var(--s6) var(--s5);
+}
+.rds-footer h2 {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-bottom: var(--s3);
+}
+.rds-footer li { list-style: none; }
+.rds-footer li a { display: block; padding: 4px 0; font-size: 14px; color: var(--fg-2); }
+.rds-footer li a:hover { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+.rds-footer-base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  margin-top: var(--s7);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule);
+}
+@media (max-width: 1000px) {
+  .rds-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .rds-footer-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================= */
+/* Target size — WCAG 2.5.8 (AA) sets a 24×24 floor. Links inside a sentence
+   are exempt, but standalone ones are not: the hero practice link, the
+   breadcrumb trail and the source list are discrete targets sized by a 13–14px
+   line box, which lands them at 19–21px. Padding brings them to the floor
+   without touching the type scale. */
+.rds-heroslide-link,
+.rds-sources a,
+.rds-footer li a,
+nav[aria-label="Breadcrumb"] a,
+nav[aria-label="Breadcrumb"] .rds-meta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+.rds-footer li a { display: flex; }
+
+.rds-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--inv-bg);
+  color: var(--inv-fg);
+  padding: 12px 18px;
+  border-radius: var(--r);
+  font-size: 15px;
+  font-weight: 600;
+}
+.rds-skip:focus { left: var(--s4); top: var(--s4); }
+
+.rds :focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: var(--r);
+}
+
+.rds-sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Motion — restrained by design, and fully removable.
+   ========================================================================= */
+/* Reduced motion removes MOVEMENT, not feedback.
+   A blanket `transition-duration: 0.001ms` also kills colour and opacity
+   changes, which cause no vestibular problem and are the only signal a hover
+   or focus registered. So: animations stop, transforms snap, and the
+   properties that merely recolour keep a short transition. */
+@media (prefers-reduced-motion: reduce) {
+  .rds *,
+  .rds *::before,
+  .rds *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-property: color, background-color, border-color, outline-color,
+      box-shadow, opacity, fill, stroke !important;
+    transition-duration: 0.12s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Hero D — buyer tabs and the vendor-at-a-glance record.
+
+   Everything here lives INSIDE .rds-heroband, so it reads the band's own
+   token set rather than the page's. The ratios that matter, measured against
+   the band ground in each theme (#f7f8f9 light, #151d25 dark):
+     --band-fg-2   7.70:1 / 9.44:1   lead prose
+     --band-fg-3   5.25:1 / 5.59:1   inactive tab labels, spec labels
+     --band-accent 5.39:1 / 6.38:1   accent text
+     --band-control 3.38:1 / 3.68:1  control borders — clears the 1.4.11 floor
+     --brand       3.31:1 / 4.83:1   graphics only: the active-tab bar
+   ========================================================================= */
+.rds-buyertabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s6);
+  border-bottom: 1px solid var(--band-rule);
+  margin-bottom: var(--s6);
+}
+
+.rds-buyertab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  align-items: flex-start;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: var(--s2) 0 var(--s3);
+  min-height: 44px;
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  color: var(--band-fg-3);
+  cursor: pointer;
+  transition: color 0.16s ease, border-color 0.16s ease;
+}
+.rds-buyertab .rds-mono { font-size: 11px; letter-spacing: 0.1em; }
+.rds-buyertab:hover { color: var(--band-fg); }
+.rds-buyertab:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+/* Selection is carried by the bar AND the colour shift, not by colour alone. */
+.rds-buyertab[aria-selected="true"] {
+  color: var(--band-fg);
+  border-bottom-color: var(--brand);
+}
+.rds-buyertab[aria-selected="true"] .rds-mono { color: var(--band-accent); }
+
+/* The old headline, demoted to a rhythm strip under the lead. */
+.rds /* The buyer-tab swap announces itself: remounted lead slides in once. */
+.rds-swap { animation: rds-swap-in 0.28s ease-out; }
+@keyframes rds-swap-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rds-swap { animation: none; }
+}
+
+.rds-loopwords {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--band-fg-3);
+  margin-top: var(--s5);
+}
+
+.rds-herocta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  margin-top: var(--s6);
+}
+
+/* The vendor record. A specification block, not a card. */
+.rds-heroband-grid-top { align-items: start; }
+
+.rds-glance {
+  border: 1px solid var(--band-rule);
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  box-shadow: 0 12px 28px -20px rgb(11 15 20 / 0.3);
+  background: var(--band-panel);
+  /* The flagged row paints its own background; without this it would poke
+     square corners past the bowl. */
+  overflow: hidden;
+}
+
+.rds-glance-head {
+  padding: var(--s4) var(--s5);
+  border-bottom: 1px solid var(--band-rule);
+}
+.rds-glance-head .rds-mono {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--band-fg-3);
+}
+
+.rds-glance-row {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: var(--s4);
+  padding: 13px var(--s5);
+  align-items: baseline;
+}
+.rds-glance-row + .rds-glance-row { border-top: 1px solid var(--band-rule); }
+
+.rds-glance-row dt {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--band-fg-3);
+}
+.rds-glance-row dd {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--band-fg);
+  margin: 0;
+}
+
+/* The one row carrying a negative. Tinted so it reads as deliberate rather
+   than as an oversight — at 4.5% the wash is decorative, and the row is
+   already distinguished by its position and its wording. */
+.rds-glance-row-flag { background: rgb(200 30 34 / 0.045); }
+html[data-rds-theme="dark"] .rds-glance-row-flag { background: rgb(253 63 66 / 0.07); }
+
+/* Below the grid's collapse point the label column would squeeze the value to
+   an unreadable measure, so labels stack above their values. */
+.rds-buyertab-short { display: none; }
+
+@media (max-width: 620px) {
+  .rds-glance-row { grid-template-columns: 1fr; gap: var(--s1); }
+  .rds-buyertabs { gap: var(--s4); flex-wrap: nowrap; }
+  .rds-buyertab {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--s2);
+    font-size: 14px;
+  }
+  .rds-buyertab-full { display: none; }
+  .rds-buyertab-short { display: inline; }
+}
+
+/* ==========================================================================
+   Jurisdiction band — the global answer, directly under the fold.
+
+   Ground is --bg-3, deliberately not --bg-2: the hero band above already sits
+   on #f7f8f9 in light theme, which IS --bg-2, so a second band at that value
+   would dissolve into the first. --bg-3 is the third measured surface and
+   separates from both in either theme.
+
+   Contrast on this ground is already recorded in the token block above:
+     --fg-3     #5f6a77  4.78:1 on bg-3  ·  dark #8a95a1  5.15:1
+     --brand-fg #c81e22  4.97:1 on bg-3  ·  dark #ff7175  5.88:1
+   Chip borders use --fg-3 rather than --control: --control measures 3.12:1
+   against --bg but only ~2.9 against this lifted ground, which misses the 3:1
+   UI-component floor in WCAG 1.4.11. --fg-3 clears it on both surfaces.
+   ========================================================================= */
+.rds-jband {
+  background: var(--bg-3);
+  border-bottom: 1px solid var(--rule-strong);
+  padding-block: var(--sec-y-tight);
+}
+
+.rds-jband-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  margin-bottom: var(--s5);
+}
+
+.rds-jband-more {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--brand-fg);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  /* A discrete target, not a link inside a sentence, so WCAG 2.5.8's
+     in-a-sentence exception does not cover it. */
+  min-height: 24px;
+}
+.rds-jband-more:hover { text-decoration-thickness: 2px; }
+
+.rds-jband-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s4);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-bottom: var(--s3);
+}
+.rds-jband-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+
+.rds-jband-chips { display: flex; flex-wrap: wrap; gap: var(--s2); }
+
+.rds-jband-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  background: transparent;
+  border: 1px solid var(--fg-3);
+  border-radius: var(--r);
+  padding: 11px 15px;
+  min-height: 44px;
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg-2);
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+.rds-jband-chip:hover { border-color: var(--fg); color: var(--fg); }
+.rds-jband-chip:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+.rds-jband-chip[aria-pressed="true"] {
+  background: var(--inv-bg);
+  border-color: var(--inv-bg);
+  color: var(--inv-fg);
+}
+
+/* Supplementary only — every dot sits beside the name it describes, and the
+   selected answer states the tier in words, so no information is carried by
+   colour alone. */
+.rds-jband-dot { width: 7px; height: 7px; flex: none; }
+.rds-jband-dot-direct { background: var(--fg); }
+.rds-jband-dot-partner { background: var(--brand); }
+.rds-jband-dot-none { background: transparent; border: 1px solid var(--fg-3); }
+
+.rds-jband-chip[aria-pressed="true"] .rds-jband-dot-direct,
+.rds-jband-chip[aria-pressed="true"] .rds-jband-dot-partner { background: var(--inv-fg); }
+.rds-jband-chip[aria-pressed="true"] .rds-jband-dot-none { border-color: var(--inv-fg); }
+
+.rds-jband-answer {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--s6);
+  align-items: start;
+  margin-top: var(--s5);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule);
+}
+@media (max-width: 860px) {
+  .rds-jband-answer { grid-template-columns: 1fr; gap: var(--s3); }
+}
+
+.rds-jband-verdict {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  font-family: var(--f-display);
+  font-weight: 640;
+  letter-spacing: -0.018em;
+  font-size: clamp(19px, 1.7vw, 23px);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+.rds-jband-verdict-direct { color: var(--fg); }
+.rds-jband-verdict-partner { color: var(--brand-fg); }
+.rds-jband-verdict-none { color: var(--fg-3); }
+
+.rds-jband-why {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--fg-2);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   Jurisdiction page — the list is a selector, the panel is a specification.
+   Same contrast reasoning as the band above: chip and row borders take --fg-3
+   so they clear 3:1 on every surface they land on.
+   ========================================================================= */
+.rds-jurgrid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--s6);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .rds-jurgrid { grid-template-columns: 1fr; gap: var(--s5); }
+}
+
+.rds-jurlist {
+  border: 1px solid var(--rule);
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  overflow: hidden;
+}
+
+.rds-jurlist-item {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  padding: var(--s3) var(--s4);
+  min-height: 44px;
+  cursor: pointer;
+  transition: background 0.16s ease, box-shadow 0.16s ease;
+}
+.rds-jurlist-item:last-child { border-bottom: 0; }
+.rds-jurlist-item:hover { background: var(--bg-2); }
+.rds-jurlist-item:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+
+/* Selected state is carried by the inset bar AND the weight change, never by
+   the background wash alone — a 5% wash is not a 3:1 distinction. */
+.rds-jurlist-item[aria-pressed="true"] {
+  background: var(--bg-2);
+  box-shadow: inset 3px 0 0 var(--brand);
+}
+
+.rds-jurlist-name { font-size: 15px; font-weight: 400; color: var(--fg); }
+.rds-jurlist-item[aria-pressed="true"] .rds-jurlist-name { font-weight: 640; }
+
+.rds-jurlist-scope {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.rds-jurgap {
+  margin-top: var(--s5);
+  padding: var(--s4) var(--s5);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  background: var(--bg-2);
+}
+.rds-jurgap .rds-eyebrow { display: flex; }
+
+.rds .rds-jurnext {
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  color: var(--brand-fg);
+  margin-top: var(--s3);
+}
+
+/* ==========================================================================
+   Vendor qualification pack — native <details> rows, matching <Faq>.
+
+   Using the platform element rather than a div-and-onClick buys keyboard
+   operation, screen-reader semantics and browser find-in-page for free. The
+   only work left is removing the default marker and restoring an affordance.
+   ========================================================================= */
+.rds-qualcount {
+  display: block;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--fg);
+  margin-bottom: var(--s3);
+}
+
+.rds-qualrow {
+  border-top: 1px solid var(--rule);
+  padding: var(--s4) 0;
+}
+.rds-qualrow:last-of-type { border-bottom: 1px solid var(--rule-strong); }
+
+.rds-qualrow summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  /* Both are needed: `list-style` covers Firefox, the pseudo-element covers
+     WebKit, which ignores list-style on a summary. */
+  list-style: none;
+  min-height: 44px;
+}
+.rds-qualrow summary::-webkit-details-marker { display: none; }
+.rds-qualrow summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+.rds-qualrow-title {
+  font-family: var(--f-display);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+/* The affordance the removed marker used to provide. Rotates to a minus when
+   the row is open, so state is carried by shape rather than by colour. */
+.rds-qualrow summary::after {
+  content: "+";
+  font-family: var(--f-mono);
+  font-size: 15px;
+  color: var(--brand-fg);
+  flex: none;
+  order: 99;
+}
+.rds-qualrow[open] summary::after { content: "\2212"; }
+
+.rds-qualrow-body { margin-top: var(--s3); }
+
+.rds .rds-qualrow-action,
+.rds .rds-qualroute-turnaround {
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  color: var(--brand-fg);
+  margin-top: var(--s3);
+}
+
+/* Four routes across a 1200px grid leaves each about 280px — workable, but
+   only just, so they drop to two columns earlier than the default grid does.
+
+   Lower-bounded at 621px. This selector is compound (0,2,0) and sits later in
+   the file than the 620px block that collapses the grid to one column, so
+   open-ended it also won below 620px — the four-up credential grid stayed
+   two-up on a 320px screen and pushed the homepage 38px sideways. Bounding the
+   range fixes the conflict without a specificity arms race. */
+@media (min-width: 621px) and (max-width: 1080px) {
+  .rds-grid.rds-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ==========================================================================
+   Print — the capability statement is a document first.
+   ========================================================================= */
+@media print {
+  .rds-noprint,
+  .rds > header,
+  .rds > footer { display: none !important; }
+
+  .rds, .rds * {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+  .rds-panel,
+  .rds-tablewrap { border: 1px solid #000 !important; border-radius: 0 !important; }
+  .rds-table th, .rds-table td { border-bottom: 1px solid #666 !important; }
+  .rds a { text-decoration: underline; }
+  .rds-section { padding-block: 12px !important; }
+  @page { margin: 14mm; }
+}
+
+/* ==========================================================================
+   2026 design — section patterns from the Figma reference
+   --------------------------------------------------------------------------
+   These are the recurring devices in the six-page Figma file. They are built
+   on the existing tokens rather than beside them: every colour is a var(), so
+   the dark theme and the contrast audit keep working without a second pass.
+
+   The Figma is a desktop-only file (1440px, no mobile frames). Its fixed
+   pixel columns are therefore treated as *ratios*, not literals — a 720/520
+   split becomes 1.4fr/1fr and collapses at 960px. Reproducing the pixel
+   values would have shipped a design that only works at one width.
+   ========================================================================= */
+
+/* --- Section header: red rule, mono label, display heading, lead ---------
+   The Figma draws this as a 12x2 red rectangle plus caps label. That is
+   exactly `.rds-eyebrow-mark`, so this reuses it rather than redrawing it. */
+.rds-fig-head { margin-bottom: var(--s7); max-width: 72ch; }
+.rds-fig-head > .rds-eyebrow { margin-bottom: var(--s4); }
+.rds-fig-head h2,
+.rds-fig-head h1 { margin: 0; text-wrap: balance; }
+.rds-fig-head p {
+  margin: var(--s4) 0 0;
+  color: var(--fg-2);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+.rds-fig-head-center { margin-inline: auto; text-align: center; }
+.rds-fig-head-center > .rds-eyebrow { justify-content: center; }
+.rds-fig-head-center p { margin-inline: auto; }
+
+/* --- Badge pill: dot + caps label, used above hero headlines ------------- */
+.rds-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: 6px 16px 6px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--bg);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.rds-pill::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand);
+  flex: none;
+}
+
+/* --- Hero: centred (home) and inverted (government) ---------------------- */
+.rds-fig-hero { padding-block: clamp(56px, 8vw, 112px); text-align: center; }
+.rds-fig-hero .rds-h1 { margin: var(--s5) 0 0; text-wrap: balance; }
+.rds-fig-hero .rds-lead { margin: var(--s5) auto 0; max-width: 74ch; }
+.rds-fig-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  justify-content: center;
+  margin-top: var(--s7);
+}
+
+/* The government hero inverts. Tokens are re-pointed inside the block so the
+   children (pill, lead, buttons) need no inverted variants of their own. */
+.rds-fig-hero-inv {
+  --bg: #0b0f14;
+  --bg-2: #131a21;
+  --fg: #ffffff;
+  --fg-2: #b9c2cc;
+  --fg-3: #8a95a1;
+  --rule: #2a343e;
+  --rule-strong: #3a4650;
+  --brand: #fd3f42;
+  --brand-fg: #ff7175;
+  --inv-bg: #ffffff;
+  --inv-fg: #0b0f14;
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgb(80 60 160 / 0.28) 0%, transparent 62%),
+    #0b0f14;
+  color: #fff;
+}
+.rds-fig-hero-inv .rds-pill { background: rgb(255 255 255 / 0.06); }
+.rds-fig-hero-inv .rds-btn-ghost { background: transparent; color: #fff; }
+
+/* --- Trust bar: caps label then a row of credential names ---------------- */
+.rds-trustbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s5) var(--s7);
+  justify-content: center;
+}
+.rds-trustbar ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s4) var(--s7);
+  align-items: center;
+  justify-content: center;
+}
+.rds-trustbar li {
+  list-style: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg-2);
+}
+
+/* --- Metrics band: four large values over mono captions ------------------ */
+.rds-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s6);
+  text-align: center;
+}
+.rds-metrics-v {
+  display: block;
+  font-family: var(--f-display);
+  font-size: clamp(30px, 3.6vw, 46px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--fg);
+}
+.rds-metrics-l {
+  display: block;
+  margin-top: var(--s3);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* --- Asymmetric split: a feature panel beside a stack of cards ----------- */
+.rds-asym { display: grid; grid-template-columns: 1.38fr 1fr; gap: var(--s5); align-items: start; }
+.rds-asym-stack { display: grid; gap: var(--s4); align-content: start; }
+
+/* --- Chip: the small solid-red category tag ------------------------------ */
+.rds-chip {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: var(--r);
+  background: var(--brand-solid);
+  color: var(--brand-solid-fg);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.rds-chip-quiet {
+  background: var(--bg-3);
+  color: var(--brand-fg);
+  border: 1px solid var(--rule);
+}
+
+/* --- Dot list: red bullet, tight rows ------------------------------------ */
+.rds-dotlist { display: grid; gap: var(--s3); }
+.rds-dotlist li {
+  list-style: none;
+  position: relative;
+  padding-inline-start: var(--s5);
+  font-size: 15px;
+  color: var(--fg);
+  line-height: 1.45;
+}
+.rds-dotlist li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+/* --- Numbered rows: 01 in a keyline square, title, body ------------------ */
+.rds-numrow { display: grid; gap: var(--s5); }
+.rds-numrow > li { list-style: none; display: grid; grid-template-columns: auto 1fr; gap: var(--s4); }
+.rds-numrow-idx {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand-fg);
+  flex: none;
+}
+.rds-numrow h3 { font-size: 17px; letter-spacing: -0.01em; margin: 0 0 4px; }
+.rds-numrow p { margin: 0; color: var(--fg-2); font-size: 15px; line-height: 1.5; }
+
+/* --- Credential card: tag chip over a title and an explanation ----------- */
+.rds-certcard {
+  display: grid;
+  /* Implicit tracks size to max-content, which let a long credential
+     name make the track wider than the card that contains it. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s3);
+  align-content: start;
+}
+.rds-certcard h3 { font-size: 17px; letter-spacing: -0.01em; margin: 0; }
+.rds-certcard p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--fg-2); }
+
+/* --- Shield row: the compliance strip of small bordered cards ------------ */
+.rds-shieldrow { display: flex; flex-wrap: wrap; gap: var(--s3); justify-content: center; }
+.rds-shieldrow li {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: 10px 18px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--bg);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.rds-shieldrow svg { color: var(--brand-fg); flex: none; }
+
+/* --- Case hero: a photograph with copy laid over its lower half ---------- */
+.rds-casehero {
+  position: relative;
+  display: block;
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 400px;
+  color: #fff;
+}
+.rds-casehero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.rds-casehero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgb(11 15 20 / 0.45) 0%, rgb(11 15 20 / 0.72) 55%, rgb(11 15 20 / 0.92) 100%);
+}
+.rds-casehero-body { position: relative; padding: clamp(28px, 4vw, 48px); display: grid; align-content: end; min-height: inherit; gap: var(--s3); }
+.rds-casehero-body h3 { margin: 0; color: #fff; font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -0.02em; }
+.rds-casehero-body p { margin: 0; color: rgb(255 255 255 / 0.82); font-size: 16px; line-height: 1.55; max-width: 78ch; }
+
+/* --- Case card: eyebrow, title, body, optional result line --------------- */
+.rds-casecard h3 { font-size: 19px; letter-spacing: -0.014em; margin: var(--s3) 0 var(--s3); }
+.rds-casecard p { margin: 0; color: var(--fg-2); font-size: 15px; line-height: 1.55; }
+.rds-casecard-result {
+  display: inline-block;
+  margin-top: var(--s4);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand-fg);
+  letter-spacing: 0.02em;
+}
+
+/* --- Media split: prose one side, photograph the other ------------------- */
+.rds-media { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.rds-media-wide { grid-template-columns: 1fr 1.15fr; }
+.rds-media-fig { margin: 0; border-radius: var(--r) var(--r) var(--r-bowl) var(--r); overflow: hidden; background: var(--bg-3); }
+.rds-media-fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.rds-media-flip > .rds-media-fig { order: -1; }
+
+/* --- Four-step timeline: index, rule, title, body ------------------------ */
+.rds-steps4 {
+  display: grid;
+  /* auto-fit, not a fixed 4: the About timeline runs five milestones and
+     the homepage process runs four. One rule serves both and collapses
+     without a per-count breakpoint. */
+  grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+  gap: var(--s6);
+}
+.rds-steps4 > li { list-style: none; }
+.rds-steps4-top { display: flex; align-items: center; gap: var(--s3); margin-bottom: var(--s4); }
+.rds-steps4-idx { font-family: var(--f-mono); font-size: 13px; font-weight: 700; color: var(--brand-fg); }
+.rds-steps4-rule { flex: 1; height: 1px; background: var(--rule-strong); }
+.rds-steps4 h3 { font-size: 17px; letter-spacing: -0.01em; margin: 0 0 var(--s2); }
+.rds-steps4 p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--fg-2); }
+
+/* --- Pull quote ---------------------------------------------------------- */
+.rds-quote { max-width: 76ch; margin-inline: auto; text-align: center; }
+.rds-quote-mark { color: var(--brand); display: block; margin-inline: auto; }
+.rds-quote blockquote {
+  margin: var(--s5) 0 0;
+  font-family: var(--f-display);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.016em;
+  color: var(--fg);
+  text-wrap: pretty;
+}
+.rds-quote figcaption { margin-top: var(--s6); }
+.rds-quote-who { display: block; font-size: 15px; font-weight: 600; color: var(--fg); }
+.rds-quote-org { display: block; margin-top: 2px; font-size: 14px; color: var(--fg-3); }
+
+/* --- Tech marquee: a wrapped field of technology chips ------------------- */
+.rds-marquee { display: flex; flex-wrap: wrap; gap: var(--s3); justify-content: center; }
+.rds-marquee li {
+  list-style: none;
+  padding: 10px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg-2);
+}
+
+/* --- Identifier list: mono key/value rows ------------------------------- */
+.rds-idlist { display: grid; gap: var(--s2); }
+.rds-idlist li {
+  list-style: none;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  color: var(--fg-2);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.rds-idlist strong { color: var(--fg); font-weight: 700; }
+
+/* --- NAICS rows: code chip beside a title and description --------------- */
+.rds-naicsrow { display: grid; gap: var(--s4); }
+.rds-naicsrow > li {
+  list-style: none;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s4);
+  padding-bottom: var(--s4);
+  border-bottom: 1px solid var(--rule);
+}
+.rds-naicsrow > li:last-child { border-bottom: 0; padding-bottom: 0; }
+.rds-naicsrow h3 { font-size: 16px; margin: 0 0 2px; letter-spacing: -0.01em; }
+.rds-naicsrow p { margin: 0; font-size: 14px; color: var(--fg-2); line-height: 1.5; }
+
+/* --- Footer compliance strip -------------------------------------------- */
+.rds-compliance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s4) var(--s6);
+  padding-block: var(--s5);
+  border-top: 1px solid var(--rule);
+}
+.rds-compliance ul { display: flex; flex-wrap: wrap; gap: var(--s3) var(--s5); }
+.rds-compliance li {
+  list-style: none;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* --- Monogram plate: stands in where a real photograph is required -------
+   Used for the leadership portrait. A stock photograph of an unrelated model
+   presented as a named executive would be a fabricated record, so the slot
+   renders the monogram until a genuine photograph is supplied. */
+.rds-monoplate {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 5 / 6;
+  border: 1px solid var(--rule);
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  background:
+    radial-gradient(120% 100% at 30% 0%, var(--bg-3) 0%, var(--bg-2) 70%);
+  color: var(--fg-3);
+  text-align: center;
+  padding: var(--s6);
+  gap: var(--s4);
+}
+.rds-monoplate-ini {
+  font-family: var(--f-display);
+  font-size: clamp(48px, 6vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--fg);
+  line-height: 1;
+}
+
+/* --- Responsive collapse -------------------------------------------------
+   One breakpoint set for every pattern above, so nothing invents its own. */
+@media (max-width: 960px) {
+  /* minmax(0, 1fr), not 1fr. A bare `1fr` track is minmax(auto, 1fr), so its
+     min size is the content's min-content width — a wide table or a long
+     unbreakable string then pushes the track past the container and the page
+     scrolls sideways. Measured on /government at 320px: a .rds-panel-lg holding
+     the NAICS table stayed 712px wide inside a 320px viewport. The .rds-cols-*
+     helpers already had this right. */
+  .rds-asym,
+  .rds-media,
+  .rds-media-wide { grid-template-columns: minmax(0, 1fr); }
+  .rds-media-flip > .rds-media-fig { order: 0; }
+  .rds-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s6) var(--s5); }
+  .rds-steps4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .rds-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rds-steps4 { grid-template-columns: 1fr; }
+  .rds-fig-head { margin-bottom: var(--s6); }
+  .rds-casehero { min-height: 320px; }
+  .rds-naicsrow > li { grid-template-columns: 1fr; gap: var(--s2); }
+  .rds-trustbar,
+  .rds-trustbar ul { justify-content: flex-start; }
+}
+
+/* The one permanently emphasised header link. Uses --brand-fg, the accent TEXT
+   token (5.73:1 on bg), not --brand, which is measured for graphics only and
+   would fail as body-sized text. */
+.rds-navtrigger-accent { color: var(--brand-fg); }
+
+/* ==========================================================================
+   Header — motion and typographic unification
+   --------------------------------------------------------------------------
+   The animated parts live in Nav.jsx (Framer Motion); this carries the static
+   geometry they animate within, plus the header's own type scale.
+   ========================================================================= */
+
+/* One face across the whole header: wordmark, links, panel titles and the CTA.
+   Everything below the header keeps the body face. */
+.rds-header .rds-navpanel-title,
+.rds-header .rds-mobilenav-top,
+.rds-header .rds-btn {
+  font-family: var(--f-display);
+  letter-spacing: -0.008em;
+}
+
+/* The header condenses once the page has scrolled: a firmer surface and a
+   real shadow, so content passing underneath never bleeds into the links. */
+.rds-header { transition: background 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease; }
+.rds-header[data-scrolled="true"] {
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  box-shadow: 0 10px 30px -22px rgb(0 0 0 / 0.55);
+  border-bottom-color: var(--rule-strong);
+}
+
+.rds-navitem { position: relative; list-style: none; }
+
+/* The gliding indicator. Sits behind the label — the trigger gets a stacking
+   context so the text always wins. */
+.rds-navpill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r);
+  background: var(--bg-3);
+  z-index: 0;
+}
+.rds-navitem > .rds-navtrigger { position: relative; z-index: 1; }
+
+/* Wrapper owns the position so aria-controls resolves to a stable element
+   whether or not the animated panel is currently mounted. */
+.rds-navpanel-wrap {
+  position: absolute;
+  top: calc(100% + 6px);
+  /* Centred on the trigger and clamped to the viewport. Anchoring to the
+     start edge pushed the last menu (Company) off-screen once the panel grew
+     to mega width; the centring lives on the wrapper, not the panel, because
+     Framer drives the panel's transform for the open animation and would
+     overwrite a translateX here. */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+}
+
+/* Icon swap needs a fixed box so the rotating glyphs do not nudge the button. */
+.rds-iconswap { display: grid; place-items: center; width: 16px; height: 16px; }
+.rds-iconswap > * { grid-area: 1 / 1; }
+
+.rds-brand-mark { display: inline-flex; transform-origin: 55% 55%; }
+
+.rds-mobilenav-wrap { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rds-header { transition: none; }
+}
+
+/* --- Mega menu -----------------------------------------------------------
+   A two-column grid of destinations, each with an icon tile, title, optional
+   meta code and a one-line summary, closed by a rail back to the section's own
+   overview page so the menu never becomes the only route in. */
+.rds-mega {
+  width: max-content;
+  max-width: min(680px, calc(100vw - 32px));
+  padding: var(--s4);
+}
+
+.rds-mega-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+}
+.rds-mega-grid > li { list-style: none; }
+
+/* Selector carries the panel class so it outweighs `.rds-navpanel a`, which
+   sets display:block and would otherwise stack the icon above the label. */
+.rds-mega .rds-mega-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s3);
+  align-items: start;
+  padding: 10px var(--s3);
+  border-radius: var(--r);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.rds-mega .rds-mega-item:hover,
+.rds-mega .rds-mega-item:focus-visible { background: var(--bg-2); }
+
+/* Meta is a supporting detail here, not a second headline: quieter than the
+   13px bold body treatment the narrow panel used. */
+.rds-mega .rds-code {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* Two lines of summary keeps a six-item menu from running past the fold. */
+.rds-mega .rds-navpanel-sum {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 3px;
+}
+.rds-mega .rds-navpanel-row { gap: 2px; }
+
+.rds-mega .rds-mega-ico {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--bg-2);
+  color: var(--brand-fg);
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.rds-mega .rds-mega-item:hover .rds-mega-ico,
+.rds-mega .rds-mega-item:focus-visible .rds-mega-ico {
+  background: var(--brand-solid);
+  border-color: var(--brand-solid);
+  color: var(--brand-solid-fg);
+}
+
+.rds-mega-body { min-width: 0; }
+
+.rds-mega-foot {
+  margin-top: var(--s3);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+}
+.rds-mega-foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: 6px var(--s3);
+  border-radius: var(--r);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand-fg);
+  text-decoration: none;
+}
+.rds-mega-foot a:hover { background: var(--bg-2); }
+
+/* One column once two no longer fit beside each other. */
+@media (max-width: 720px) {
+  .rds-mega-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rds-mega-item,
+  .rds-mega-ico { transition: none; }
+}
+
+/* --- Brand portrait plate ------------------------------------------------
+   A photograph set on a Round Digital field rather than dropped in as a bare
+   rectangle. Three brand cues, all token-driven so both themes work:
+
+     1. the signature asymmetric radius — three tight corners and one bowl,
+        the same shape every panel on the site carries;
+     2. the bowl itself, enlarged and bled off the lower-right as a red field,
+        which is the monogram's own geometry rather than a decorative blob; and
+     3. the engineered grid, faded out before it reaches the subject.
+
+   The photograph is inset from the top so the field reads behind the head and
+   shoulders. A supplied cut-out PNG will sit on the field directly; a normal
+   photograph keeps its own background, so it is desaturated a touch to stop it
+   competing with the brand red. */
+.rds-portrait {
+  position: relative;
+  aspect-ratio: 5 / 6;
+  border-radius: var(--r) var(--r) var(--r-bowl) var(--r);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--bg-3);
+}
+
+/* The field the portrait sits on: a brand wash rising from the lower right,
+   which is where the monogram's bowl sits in the mark itself. */
+.rds-portrait::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(120% 95% at 82% 108%, var(--brand) 0%, transparent 58%),
+    linear-gradient(160deg, var(--bg-2) 0%, var(--bg-3) 100%);
+  opacity: 0.9;
+}
+
+.rds-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.35;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 62%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 62%);
+}
+
+/* Cropped to the monogram's geometry — three rounded sides and one bowl
+   corner — rather than left as a rectangle. A supplied headshot carries its own
+   background; cropping to this shape discards most of it at the edges, so the
+   brand field reads as the backdrop without needing the subject cut out. */
+.rds-portrait-photo {
+  position: absolute;
+  z-index: 1;
+  top: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50% 50% 50% var(--r-bowl);
+  overflow: hidden;
+  box-shadow: 0 18px 40px -20px rgb(11 15 20 / 0.45);
+}
+
+.rds-portrait-photo img {
+  object-fit: cover;
+  object-position: 50% 6%;
+  filter: saturate(0.92) contrast(1.03);
+}
+
+/* The red baseline: the same structural rule the rest of the system uses to
+   close a surface, not a drop shadow. */
+.rds-portrait-rule {
+  position: absolute;
+  z-index: 2;
+  inset-inline: 0;
+  bottom: 0;
+  height: 6px;
+  background: var(--brand);
+}
+
+/* Caption sits on the plate, bottom-left, over the field rather than under it. */
+.rds-portrait-cap {
+  position: absolute;
+  z-index: 2;
+  inset-inline: var(--s5);
+  bottom: var(--s6);
+  text-align: center;
+  justify-items: center;
+  display: grid;
+  gap: 2px;
+}
+/* Ink, not white. The caption sits on the plate's own field, which is light in
+   the light theme — white-on-light with a shadow was unreadable. Tokens flip
+   with the theme, so the dark theme gets the light ink automatically. */
+.rds-portrait-cap b {
+  font-family: var(--f-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+.rds-portrait-cap span {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+/* --- Footer typography ---------------------------------------------------
+   Navigation chrome uses the display face wherever it appears. The header was
+   unified first; the footer is the same kind of surface — a link directory,
+   not prose — and leaving it in the body face put two faces on the same job at
+   opposite ends of the page. Column labels stay mono: they are labels, and the
+   system sets every ALL-CAPS label in mono. */
+.rds-footer li a,
+.rds-footer-base a {
+  font-family: var(--f-display);
+  font-weight: 500;
+  letter-spacing: -0.006em;
+}
+
+/* Grid and flex children default to min-width:auto, which lets unshrinkable
+   content (tables, long code strings, mono identifiers) blow out the track.
+   Applied to the layout primitives rather than globally so it cannot affect
+   anything relying on intrinsic sizing. */
+.rds-grid > *,
+.rds-media > *,
+.rds-asym > *,
+.rds-asym-stack > * { min-width: 0; }
+
+/* The featured/secondary case pair. Was an inline gridTemplateColumns, which
+   outranks every media query and so never collapsed on a phone. */
+.rds-casepair { grid-template-columns: 1.6fr 1fr; }
+@media (max-width: 860px) {
+  .rds-casepair { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Standalone source links (the corroborating URL on a past-performance card)
+   sit alone rather than inside a sentence, so WCAG 2.5.8's inline exception
+   does not cover them. Measured at 17px tall on a phone; this brings them to
+   the 24px minimum without disturbing the text they sit under. */
+.rds-srclink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}

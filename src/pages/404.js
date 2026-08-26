@@ -1,29 +1,73 @@
-import RdLayout from "@/components/rd/Layout";
+import Link from "next/link";
 import Seo from "@/components/seo";
-import { RdButton } from "@/components/rd/ui";
+import Layout from "@/components/system/Layout";
+import {
+  Arrow,
+  Button,
+  Container,
+  Eyebrow,
+  Panel,
+  Section,
+} from "@/components/system/ui";
 
-const MONO = "'Space Mono',monospace";
+// Useful destinations rather than a dead end. A 404 reached from a stale
+// procurement bookmark should still get the reader to the capability statement.
+const ROUTES = [
+  { label: "Services", href: "/services", note: "Five capability pillars, with codes" },
+  { label: "Government & public sector", href: "/government", note: "Codes, status, past performance" },
+  { label: "Capability statement", href: "/government/capability-statement", note: "One page, printable" },
+  { label: "Submit an RFP", href: "/rfp", note: "Solicitations and teaming inquiries" },
+  { label: "Case studies", href: "/works", note: "Three verified engagements" },
+  { label: "Contact", href: "/contact", note: "A person replies" },
+];
 
 export default function NotFoundPage() {
   return (
-    <RdLayout>
-      <Seo title="Page Not Found" description="The page you're looking for doesn't exist or has moved." noindex />
-      <section style={{ minHeight: "62vh", display: "flex", alignItems: "center", padding: "80px 5%" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ margin: "0 0 20px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>ERROR 404</p>
-          <h1 style={{ margin: "0 0 24px", font: `700 clamp(64px,9vw,120px)/1 ${MONO}` }}>
-            4<span style={{ color: "var(--rd-accent-text)" }}>0</span>4
+    <Layout>
+      <Seo
+        title="Page not found"
+        description="That page does not exist or has moved. Here are the most useful places to go instead."
+        noindex
+      />
+
+      <Section as="div" className="rds-hero">
+        <Container>
+          <h1 className="rds-h1" style={{ margin: "var(--s5) 0 0", maxWidth: "16ch" }}>
+            That page is not here.
           </h1>
-          <p style={{ margin: "0 auto 36px", maxWidth: 460, fontSize: 19, color: "var(--rd-text-2)" }}>
-            This page doesn&apos;t exist, moved, or never shipped. Here&apos;s the fastest way
-            back on track.
+          <div className="rds-hero-rule" aria-hidden="true" />
+          <p className="rds-lead" style={{ marginTop: "var(--s5)" }}>
+            It may have moved, or it may never have existed.
+            If you followed a link from a document or a bookmark, the pages below
+            cover almost everything people arrive looking for.
           </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
-            <RdButton href="/">Back to homepage</RdButton>
-            <RdButton href="/services" variant="ghost">Explore services</RdButton>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s3)", marginTop: "var(--s7)" }}>
+            <Button href="/" variant="primary">
+              Back to the homepage <Arrow />
+            </Button>
+            <Button href="/contact" variant="ghost">
+              Tell us what you were looking for
+            </Button>
           </div>
-        </div>
-      </section>
-    </RdLayout>
+        </Container>
+      </Section>
+
+      <Section className="rds-band">
+        <Container>
+          <div className="rds-grid rds-cols-3">
+            {ROUTES.map((r) => (
+              <Panel key={r.href} fill>
+                <h2 className="rds-h4" style={{ marginBottom: "var(--s2)" }}>
+                  <Link href={r.href} className="rds-link">
+                    {r.label}
+                  </Link>
+                </h2>
+                <p style={{ color: "var(--fg-2)", fontSize: 15 }}>{r.note}</p>
+              </Panel>
+            ))}
+          </div>
+        </Container>
+      </Section>
+    </Layout>
   );
 }

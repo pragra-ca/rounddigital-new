@@ -1,84 +1,137 @@
-import { useState } from "react";
 import Link from "next/link";
-import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { Arrow, RdButton } from "@/components/rd/ui";
-import { INDUSTRIES } from "@/data/rdHome";
+import Layout from "@/components/system/Layout";
+import {
+  Arrow,
+  Breadcrumb,
+  Container,
+  CtaBand,
+  Eyebrow,
+  Panel,
+  PanelLink,
+  Section,
+  SectionHead,
+} from "@/components/system/ui";
+import { RD_INDUSTRIES } from "@/data/rdIndustries";
 
-const MONO = "'Space Mono',monospace";
-const wrap = { maxWidth: 1280, margin: "0 auto" };
+const BUYERS = [
+  {
+    label: "Government & public sector",
+    href: "/government",
+    body: "Federal, provincial, state and municipal buyers evaluating us against codes, size status and past performance.",
+  },
+  {
+    label: "Enterprise & mid-market",
+    href: "/enterprise",
+    body: "Programme delivery with named accountability and an escalation path that works.",
+  },
+  {
+    label: "Nonprofit & social impact",
+    href: "/nonprofit",
+    body: "Mission organisations that have to show a funder what actually changed.",
+  },
+];
 
-export default function IndustriesPage() {
-  const [active, setActive] = useState(0);
-  const ind = INDUSTRIES[active];
+export default function IndustriesIndex() {
   return (
-    <RdLayout>
+    <Layout>
       <Seo
-        title="IT Services & Global Talent Sourcing by Industry"
-        description="Technology delivery and workforce sourcing across twelve industries — healthcare, banking, energy, construction, hospitality, transport, the public sector and more."
-        keywords="IT services by industry, global talent sourcing, healthcare staffing, skilled trades recruitment, offshore back-office teams, industry AI solutions"
+        title="Industries — Sectors We Deliver Into"
+        description="IT, AI enablement, research, staffing and training across government, financial services, healthcare, logistics, education and other regulated sectors."
+        keywords="industries served, government technology, healthcare IT, financial services technology, logistics technology"
       />
-      <section style={{ padding: "96px 5% 64px" }}>
-        <div style={{ ...wrap, maxWidth: 900 }}>
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>INDUSTRIES</p>
-          <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 24px", font: `700 clamp(44px,4.6vw,76px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
-            Engineered — and staffed — for your industry.
+
+      <Section as="div" className="rds-hero">
+        <Container>
+          <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Who we serve" }]} />
+          <h1 className="rds-h1" style={{ margin: "var(--s5) 0 0", maxWidth: "18ch" }}>
+            Sectors where getting it wrong is expensive.
           </h1>
-          <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: 0, fontSize: 20, lineHeight: 1.65, color: "var(--rd-text-2)" }}>
-            Twelve sectors, two capabilities. We build the systems that run the work, and we
-            source the people who do it — from AI engineers and cloud architects to nurses,
-            technicians, accountants and managed back-office teams.
+          <div className="rds-hero-rule" aria-hidden="true" />
+          <p className="rds-lead" style={{ marginTop: "var(--s5)" }}>
+            Our work concentrates where systems are regulated, audited or
+            operationally critical — because that is where capability transfer,
+            evidence and governance are worth paying for.
           </p>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section style={{ padding: "0 5% 64px" }}>
-        <div data-rd-reveal className="rd-tabs" style={{ ...wrap, display: "grid", gridTemplateColumns: "0.9fr 1.4fr", borderRadius: 40, overflow: "hidden" }}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {INDUSTRIES.map((it, i) => (
-              <button key={it.name} type="button" onClick={() => setActive(i)} style={{ textAlign: "left", padding: "17px 30px", background: active === i ? "var(--rd-card)" : "transparent", color: "var(--rd-text)", border: "none", borderBottom: i < INDUSTRIES.length - 1 ? "1px solid var(--rd-divider)" : "none", cursor: "pointer", font: `700 16px ${MONO}`, transition: "background 0.25s ease" }}>
-                {it.name}
-              </button>
-            ))}
-          </div>
-          <div style={{ background: "var(--rd-card)", padding: 56, display: "flex", flexDirection: "column", justifyContent: "center", gap: 20, minHeight: 460 }}>
-            <p style={{ margin: 0, font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>{ind.tag}</p>
-            <h3 style={{ margin: 0, font: `700 clamp(28px,2.4vw,40px)/1.2 ${MONO}` }}>{ind.title}</h3>
-            <p style={{ margin: 0, fontSize: 18, color: "var(--rd-text-2)" }}>{ind.body}</p>
-            <Link href={`/industries/${ind.slug}`} style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 500, marginTop: 8 }}>{ind.name} in depth <Arrow /></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Card grid: gives every industry page a real crawlable link, which the
-          tab widget above cannot do on its own. */}
-      <section style={{ padding: "0 5% 96px" }}>
-        <div style={wrap}>
-          <h2 data-rd-reveal style={{ margin: "0 0 32px", font: `700 clamp(26px,2.4vw,40px)/1.15 ${MONO}` }}>Explore every industry</h2>
-          <div className="rd-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-            {INDUSTRIES.map((it) => (
-              <Link key={it.slug} href={`/industries/${it.slug}`} data-rd-reveal className="rd-card rd-card-lift" style={{ padding: "32px 28px", borderRadius: 24, display: "flex", flexDirection: "column", gap: 12 }}>
-                <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>{it.tag}</span>
-                <span style={{ font: `700 21px ${MONO}`, lineHeight: 1.25 }}>{it.title}</span>
-                <span style={{ fontSize: 15, lineHeight: 1.55, color: "var(--rd-text-2)", flex: 1 }}>{it.body}</span>
-                <span style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 500, fontSize: 15 }}>
-                  {it.name} <Arrow />
+      <Section>
+        <Container>
+          <SectionHead index="01" label="By buyer type" />
+          <div className="rds-grid rds-cols-3">
+            {BUYERS.map((b) => (
+              <PanelLink key={b.href} href={b.href}>
+                <h2 className="rds-h3" style={{ marginBottom: "var(--s3)" }}>{b.label}</h2>
+                <p style={{ color: "var(--fg-2)", fontSize: 15, marginBottom: "var(--s5)" }}>{b.body}</p>
+                <span className="rds-arrow">
+                  Open <Arrow />
                 </span>
-              </Link>
+              </PanelLink>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section style={{ padding: "0 5% 112px" }}>
-        <div data-rd-reveal style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap", border: "1px solid var(--rd-border)", borderRadius: 40, padding: "56px 8%" }}>
-          <div>
-            <h2 style={{ margin: "0 0 8px", font: `700 clamp(26px,2.4vw,36px) ${MONO}` }}>Don&apos;t see your industry?</h2>
-            <p style={{ margin: 0, fontSize: 18, color: "var(--rd-text-2)" }}>If it has workflows, it has agent-shaped opportunities — and if it has vacancies, we can source them. Let&apos;s find yours.</p>
+      <Section className="rds-band">
+        <Container>
+          <SectionHead index="02" label="By sector" />
+          <div className="rds-splithead" style={{ marginBottom: "var(--s7)" }}>
+            <h2 className="rds-h2">Twelve sectors we deliver into today.</h2>
+            <p className="rds-prose">
+              Each page describes the problems specific to that sector, the technology
+              and talent it needs, and the compliance context we work within. Where we
+              have no engagement in a sector, there is no page for it.
+            </p>
           </div>
-          <RdButton href="/contact">Book a call</RdButton>
-        </div>
-      </section>
-    </RdLayout>
+
+          <ul className="rds-pillarlist">
+            {RD_INDUSTRIES.map((i) => (
+              <li key={i.slug}>
+                <Link href={`/industries/${i.slug}`}>
+                  <div className="rds-pillarlist-main">
+                    {i.tag ? <span className="rds-code">{i.tag}</span> : null}
+                    <h3 className="rds-h3" style={{ margin: "var(--s2) 0 var(--s2)" }}>{i.name}</h3>
+                    <p style={{ color: "var(--fg-2)", fontSize: 15, maxWidth: "68ch" }}>
+                      {i.body || i.intro}
+                    </p>
+                  </div>
+                  <div className="rds-pillarlist-side">
+                    <span className="rds-arrow">
+                      Open sector <Arrow />
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <SectionHead index="03" label="Not listed?" />
+          <Panel fill keyed>
+            <h2 className="rds-h3" style={{ marginBottom: "var(--s3)" }}>
+              We would rather tell you it is not our sector.
+            </h2>
+            <p className="rds-prose">
+              The pages above cover sectors where we have delivered. If yours is not
+              here, the capability may still transfer — or it may not, and we will say
+              so. Either answer is faster than a discovery call designed to find a way
+              in.
+            </p>
+          </Panel>
+        </Container>
+      </Section>
+
+      <CtaBand
+        title="Have a requirement in your sector?"
+        body="Tell us the sector, the constraint and the deadline. You will get a direct answer on whether our experience transfers."
+        primary={{ label: "Submit an RFP", href: "/rfp" }}
+        secondary={{ label: "Explore services", href: "/services" }}
+        accent
+      />
+    </Layout>
   );
 }

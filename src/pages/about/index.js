@@ -1,166 +1,212 @@
-import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { CountUp, RdButton } from "@/components/rd/ui";
+import Layout from "@/components/system/Layout";
+import { Container, Section, Panel, Status, Note, CtaBand } from "@/components/system/ui";
+import { FigHead, FigHero, Steps4, MediaSplit, Portrait, Marquee } from "@/components/system/figma";
+import { STOCK } from "@/data/stock";
+import { FACTS } from "@/content/facts.mjs";
+import { CREDENTIALS } from "@/content/credentials.mjs";
 
-const MONO = "'Space Mono',monospace";
-const wrap = { maxWidth: 1280, margin: "0 auto" };
+/* About — layout from the "About Us" frame of the Figma reference (node 3:687).
+
+   Corrected against the registries: the design placed headquarters in
+   Pittsburgh and a delivery hub in Chandigarh, named a chief executive, and
+   listed six credentials as held. facts.mjs records Cheyenne WY as a
+   *registered* address with delivery in Mississauga and Noida; leadership.jsx
+   records that named officer biographies are pending documentary confirmation;
+   and every entry in credentials.mjs is still "planned". */
+
+const MISSION = [
+  {
+    title: "Our Mission",
+    body: "To give public-sector and commercial buyers secure, well-documented software and technical teams that meet modern delivery expectations — and to state plainly what we have and have not earned along the way.",
+  },
+  {
+    title: "Our Vision",
+    body: "To be the supplier a careful evaluator can shortlist without a leap of faith: verifiable references, a published certification roadmap, and delivery capacity across two continents.",
+  },
+];
+
+/* Milestones that correspond to entries in facts.mjs and past-performance.mjs.
+   The Figma's 2019 "SBA certified" and 2021 "first prime award" milestones are
+   omitted because neither happened. */
+const JOURNEY = [
+  { idx: "2017", title: "Founded", body: "Pragra founded in Mississauga, Ontario, delivering technical training." },
+  { idx: "2019", title: "ShipCarte live", body: "Multi-carrier logistics platform enters continuous commercial operation." },
+  { idx: "2023", title: "Perfectum.ai", body: "Multi-tenant learning platform built and operated in-house." },
+  { idx: "2024", title: "Forbes recognition", body: "Named to Forbes Canada's Best Startup Employers 2024." },
+  { idx: "2026", title: "Round Digital", body: "Successor to Pragra LLC, consolidating five delivery practices." },
+];
 
 const VALUES = [
-  { n: "01", t: "Ship > talk", d: "Agents in production, not decks in review. Every engagement has a working system milestone inside 6 weeks." },
-  { n: "02", t: "Security first", d: "SOC 2 / ISO 27001-aligned delivery. AI systems inherit enterprise controls — never the other way around." },
-  { n: "03", t: "ROI or nothing", d: "We model the business case before we write code, and we only take projects we believe clear it within 12 months." },
-];
-const STATS = [
-  { n: "100+", l: "Projects delivered" },
-  { n: "20+", l: "Senior consultants" },
-  { n: "3", l: "Global offices" },
-  { n: "10+", l: "Years shipping" },
-];
-const DISCIPLINES = ["AI & agent engineering", "Cloud & platform", "Cybersecurity & compliance", "Data & analytics", "Product & custom software", "Delivery & program management"];
-const OFFICES = [
-  { tag: "HQ · CANADA", city: "Mississauga", lines: ["160B - 110 Matheson Blvd W", "Mississauga, ON L5M 6B8"] },
-  { tag: "US · TEXAS", city: "Dallas", lines: ["450 Century Pkwy, Ste 250", "Allen, TX 75013"] },
-  { tag: "INDIA · MAHARASHTRA", city: "Pune", lines: ["Supreme HQ, 302, Mumbai-Pune Expressway", "Baner Annex, Baner, Pune 411045"] },
-];
-
-const STORY = [
-  "Round Digital started with a simple frustration. Growing businesses were being sold enterprise software promises and delivered junior-freelancer reality — endless timelines, surprise invoices, and code nobody could maintain after handover.",
-  "Our founders had spent years shipping systems for banks, global retailers and Fortune 500s, and they knew the discipline that made those projects succeed: senior engineers, tight scope, security from day one, and relentless focus on the business outcome. So they set out to bring exactly that discipline to companies that could never justify a Big-Four price tag.",
-  "A decade and 100+ projects later, that's still the whole idea. We're a senior, cross-functional team across Toronto, Dallas and Pune — the engineers, architects and delivery leads who've shipped real systems into production, staffed directly onto your project. Enterprise-grade engineering, right-sized and honestly priced, built by the people who actually build it.",
+  {
+    title: "Integrity",
+    body: "Delivery is documented. We do not round numbers up, and we do not describe a planned certification as a held one.",
+  },
+  {
+    title: "Transparency",
+    body: "Our certification roadmap, our locations and our reference list are published with their status attached.",
+  },
+  {
+    title: "Delivery Excellence",
+    body: "One review, security and release practice across both delivery centres.",
+  },
+  {
+    title: "Compliant Innovation",
+    body: "We implement AI under governance we can evidence, not as an unmanaged experiment.",
+  },
 ];
 
-const GUARANTEES = [
-  { t: "Fixed-price discovery", d: "You know the investment before you ever commit to a build. No open-ended meters." },
-  { t: "Senior engineers only", d: "No juniors learning on your budget, no anonymous offshore bench — the people you meet build your system." },
-  { t: "You own the IP", d: "Full source code, documentation and transfer on every engagement. No lock-in, ever." },
-  { t: "ROI or we say no", d: "We only take on work we believe pays for itself within twelve months — and we'll tell you if it won't." },
+const TECH = [
+  "Amazon Web Services",
+  "Microsoft Azure",
+  "Google Cloud Platform",
+  "Kubernetes",
+  "Red Hat Enterprise Linux",
 ];
 
-export default function AboutPage() {
+const STATUS_LABEL = { delivery: "Delivery centre", registered: "Registered address" };
+
+export default function About() {
   return (
-    <RdLayout>
+    <Layout>
       <Seo
-        title="About Us: Enterprise Engineering, Right-Sized for SMBs"
-        description="Round Digital brings Fortune-500 engineering discipline to growing businesses. 20+ senior engineers across Toronto, Dallas and Pune — fixed price, senior-only, you own the IP."
-        keywords="about RoundDigital, software company for small business, SMB engineering partner, AI consulting firm, Mississauga, Toronto, Dallas, Pune"
+        title="About — Woman-Owned Since 2017"
+        description="Founded in 2017, Round Digital is the successor to Pragra LLC: a woman-owned technology and workforce firm with delivery centres in Canada and India."
       />
-      <section style={{ padding: "96px 5% 64px" }}>
-        <div style={{ ...wrap, maxWidth: 900 }}>
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>ABOUT ROUND DIGITAL</p>
-          <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 24px", font: `700 clamp(44px,4.6vw,76px)/1.06 ${MONO}`, letterSpacing: "-0.01em" }}>
-            Enterprise engineering, right-sized for you.
-          </h1>
-          <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: 0, fontSize: 20, lineHeight: 1.65, color: "var(--rd-text-2)" }}>
-            We bring the engineering discipline that Fortune 500s pay millions for to small and
-            mid-sized businesses — delivered by 20+ senior consultants across Toronto, Dallas
-            and Pune. No juniors on your budget, no anonymous bench: the people you meet on the
-            first call are the people who build your system.
-          </p>
-        </div>
-      </section>
 
-      {/* Our story */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: 56, alignItems: "start" }}>
-          <h2 data-rd-reveal style={{ margin: 0, font: `700 clamp(28px,2.6vw,42px)/1.15 ${MONO}` }}>Our story</h2>
-          <div data-rd-reveal data-rd-reveal-delay="0.05" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {STORY.map((p, i) => (
-              <p key={i} style={{ margin: 0, fontSize: 18, lineHeight: 1.7, color: "var(--rd-text-2)" }}>{p}</p>
+      <FigHero
+        eyebrow="Our foundation"
+        title="Woman-Owned and Operated — Stated Precisely."
+        lead="Founded in 2017 and woman-owned since, Round Digital is the successor to Pragra LLC. We build software, run AI enablement, staff delivery teams and train people — and we publish what we have earned separately from what we are still working toward."
+      />
+
+      <Section className="rds-band">
+        <Container>
+          <div className="rds-grid rds-cols-2">
+            {MISSION.map((m) => (
+              <Panel key={m.title} lg fill>
+                <h2 className="rds-h3" style={{ marginBottom: "var(--s4)" }}>
+                  {m.title}
+                </h2>
+                <p className="rds-prose">{m.body}</p>
+              </Panel>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section style={{ padding: "0 5% 80px" }}>
-        <div className="rd-grid-3" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-          {VALUES.map((v) => (
-            <div key={v.n} data-rd-reveal className="rd-card" style={{ padding: "40px 32px", borderRadius: 28 }}>
-              <div style={{ font: `700 15px ${MONO}`, color: "var(--rd-accent-text)", marginBottom: 14 }}>{v.n}</div>
-              <h3 style={{ margin: "0 0 12px", font: `700 22px ${MONO}` }}>{v.t}</h3>
-              <p style={{ margin: 0, fontSize: 16, color: "var(--rd-text-2)" }}>{v.d}</p>
+      {/* --- Leadership -------------------------------------------------------
+          The Figma named a chief executive and placed a portrait here. No
+          officer name is confirmed on file, so the section describes the role
+          and the accountability model instead of asserting an identity. */}
+      <Section>
+        <Container>
+          <div className="rds-media rds-media-wide rds-media-flip">
+            <div>
+              <FigHead
+                label="Leadership"
+                title="A named delivery lead on every engagement."
+                body="The firm is led by its founder, whose background is in audit and quality assurance — which is why the certification roadmap is sequenced the way it is. Every engagement also carries a named delivery lead, and the escalation path reaches a decision-maker in one step."
+              />
+              <Note title="For evaluators:">
+                The founder&rsquo;s name and full biography are pending documentary confirmation and
+                will be published here once confirmed, not before.
+              </Note>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Scale band */}
-      <section style={{ padding: "0 5% 80px" }}>
-        <div className="rd-grid-4" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
-          {STATS.map((s) => (
-            <div key={s.l} data-rd-reveal className="rd-card" style={{ padding: "36px 28px", borderRadius: 24 }}>
-              <div style={{ font: `700 44px ${MONO}`, color: "var(--rd-accent-text)" }}><CountUp value={s.n} /></div>
-              <div style={{ color: "var(--rd-text-3)", fontSize: 15 }}>{s.l}</div>
+            <div className="rds-media-fig" style={{ border: 0, background: "none", overflow: "visible" }}>
+              <Portrait
+                src="/images/team/founder.jpg"
+                alt="Portrait of the founder of Round Digital."
+                role="Founder & principal"
+              />
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Disciplines */}
-      <section style={{ padding: "0 5% 80px" }}>
-        <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 56, alignItems: "start" }}>
-          <div data-rd-reveal>
-            <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>HOW WE&apos;RE BUILT</p>
-            <h2 style={{ margin: "0 0 20px", font: `700 clamp(30px,2.8vw,44px)/1.15 ${MONO}` }}>A senior bench across every discipline.</h2>
-            <p style={{ margin: 0, fontSize: 17, lineHeight: 1.7, color: "var(--rd-text-2)" }}>
-              Not a body shop, not a two-person studio. Round Digital is a senior,
-              cross-functional team spanning Toronto, Dallas and Pune — the engineers,
-              architects and delivery leads who&apos;ve shipped AI and enterprise systems into
-              production, staffed onto your project directly.
-            </p>
           </div>
-          <div className="rd-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-            {DISCIPLINES.map((d) => (
-              <div key={d} data-rd-reveal className="rd-card" style={{ display: "flex", alignItems: "center", gap: 12, padding: "18px 20px", borderRadius: 18 }}>
-                <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--rd-accent)", flexShrink: 0 }} />
-                <span style={{ font: `700 15px ${MONO}` }}>{d}</span>
+        </Container>
+      </Section>
+
+      <Section className="rds-band">
+        <Container>
+          <FigHead label="Our journey" title="Milestones of Execution" />
+          <Steps4 items={JOURNEY} />
+        </Container>
+      </Section>
+
+      {/* --- Credentials ------------------------------------------------------
+          Rendered from credentials.mjs so the page cannot drift from the
+          registry. Nothing here is held today. */}
+      <Section>
+        <Container>
+          <FigHead
+            label="Credentials"
+            title="The Certification Roadmap, With Dates"
+            body="We hold none of these today. Each is listed with the quarter we are targeting, and the status flips here only when the award is on file."
+          />
+          <div className="rds-grid rds-cols-3">
+            {CREDENTIALS.map((c) => (
+              <Panel key={c.id} className="rds-certcard">
+                <span>
+                  <Status state={c.status}>
+                    {c.status === "planned" ? `Planned · ${c.targetQuarter}` : c.status}
+                  </Status>
+                </span>
+                <h3>{c.name}</h3>
+                <p>{c.body}</p>
+              </Panel>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* --- Presence ---------------------------------------------------------- */}
+      <Section className="rds-band">
+        <Container>
+          <MediaSplit image={STOCK.networkMap} wide>
+            <FigHead
+              label="Where we are"
+              title="Two Delivery Centres. One Registered Address."
+              body="Work is performed in Mississauga and Noida. Cheyenne is our registered address — a registered agent is not a place of business, and we do not present it as one."
+            />
+            <div className="rds-grid" style={{ gap: "var(--s4)" }}>
+              {FACTS.locations.map((loc) => (
+                <div key={`${loc.city}-${loc.country}`}>
+                  <h3 className="rds-h4" style={{ marginBottom: 2 }}>
+                    {loc.city}, {loc.region} <span className="rds-code">{loc.country}</span>
+                  </h3>
+                  <p className="rds-meta">{STATUS_LABEL[loc.status] || loc.status}</p>
+                </div>
+              ))}
+            </div>
+          </MediaSplit>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <FigHead label="Operational culture" title="Values Stated and Verified" />
+          <div className="rds-grid rds-cols-4">
+            {VALUES.map((v) => (
+              <div key={v.title}>
+                <h3 className="rds-h4" style={{ marginBottom: "var(--s2)" }}>
+                  {v.title}
+                </h3>
+                <p className="rds-meta" style={{ fontSize: 15 }}>
+                  {v.body}
+                </p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {/* Guarantees */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div style={wrap}>
-          <div data-rd-reveal style={{ marginBottom: 40 }}>
-            <p style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>OUR PROMISE</p>
-            <h2 style={{ margin: 0, font: `700 clamp(30px,2.8vw,48px)/1.15 ${MONO}` }}>What we guarantee, in writing.</h2>
-          </div>
-          <div className="rd-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
-            {GUARANTEES.map((g) => (
-              <div key={g.t} data-rd-reveal className="rd-card" style={{ padding: "32px 28px", borderRadius: 24 }}>
-                <h3 style={{ margin: "0 0 12px", font: `700 19px ${MONO}` }}>{g.t}</h3>
-                <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{g.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Named as platforms we build on — a capability, not a partner status. */}
+      <Marquee label="Platforms we build on" items={TECH} />
 
-      {/* Offices */}
-      <section style={{ padding: "0 5% 96px" }}>
-        <div className="rd-grid-3" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-          {OFFICES.map((o) => (
-            <div key={o.city} data-rd-reveal className="rd-card" style={{ padding: "36px 32px", borderRadius: 28 }}>
-              <div style={{ font: `700 11px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)", marginBottom: 12 }}>{o.tag}</div>
-              <h3 style={{ margin: "0 0 10px", font: `700 24px ${MONO}` }}>{o.city}</h3>
-              <div style={{ fontSize: 15, lineHeight: 1.6, color: "var(--rd-text-2)" }}>
-                {o.lines.map((l) => <div key={l}>{l}</div>)}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section style={{ padding: "0 5% 112px" }}>
-        <div data-rd-reveal style={{ ...wrap, textAlign: "center", border: "1px solid var(--rd-border)", borderRadius: 40, padding: "80px 8%" }}>
-          <h2 style={{ margin: "0 0 16px", font: `700 clamp(32px,3vw,52px)/1.15 ${MONO}` }}>Want to work with us?</h2>
-          <p style={{ margin: "0 auto 32px", maxWidth: 520, fontSize: 20, color: "var(--rd-text-2)" }}>
-            Meet the senior engineers who&apos;ll actually build your system.
-          </p>
-          <RdButton href="/contact">Book a call</RdButton>
-        </div>
-      </section>
-    </RdLayout>
+      <CtaBand
+        title="Ready to talk about your requirement?"
+        body="Tell us the scope and the constraints. You will get a direct answer about whether we are the right supplier, and what we can evidence today."
+        primary={{ label: "Get in touch", href: "/contact" }}
+        accent
+      />
+    </Layout>
   );
 }

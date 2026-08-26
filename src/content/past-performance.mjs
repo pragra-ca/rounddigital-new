@@ -6,19 +6,6 @@
 
 export const PAST_PERFORMANCE = [
   {
-    id: "perfectum",
-    client: "Perfectum.ai",
-    relationship: "Own product — designed, built and operated by Round Digital",
-    factId: "perfectum-platform",
-    challenge:
-      "Training providers needed to author, deliver and license courses from one system, with the standards conformance corporate and public-sector buyers require.",
-    approach:
-      "Designed and built a multi-tenant learning platform: AI-assisted course authoring, live cohort delivery, SCORM 1.2, SCORM 2004 and xAPI conformance, Stripe multi-party commerce, SSO and SCIM provisioning, and a two-sided licensing marketplace.",
-    outcome:
-      "Operating platform serving 1,200+ academies, with white-label deployment and rights management in production.",
-    period: "2023 – present",
-  },
-  {
     id: "shipcarte",
     client: "ShipCarte",
     relationship: "Client engagement",
@@ -30,6 +17,19 @@ export const PAST_PERFORMANCE = [
     outcome:
       "Platform in continuous commercial operation since 2019, serving businesses across Canada and the United States.",
     period: "2019 – present",
+  },
+  {
+    id: "perfectum",
+    client: "Perfectum.ai",
+    relationship: "Own product — designed, built and operated by Round Digital",
+    factId: "perfectum-platform",
+    challenge:
+      "Training providers needed to author, deliver and license courses from one system, with the standards conformance corporate and public-sector buyers require.",
+    approach:
+      "Designed and built a multi-tenant learning platform: AI-assisted course authoring, live cohort delivery, SCORM 1.2, SCORM 2004 and xAPI conformance, Stripe multi-party commerce, SSO and SCIM provisioning, and a two-sided licensing marketplace.",
+    outcome:
+      "Operating platform serving 1,200+ academies, with white-label deployment and rights management in production.",
+    period: "2023 – present",
   },
   {
     id: "pragra",

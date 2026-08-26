@@ -1,187 +1,209 @@
 import Link from "next/link";
-import RdLayout from "@/components/rd/Layout";
 import Seo from "@/components/seo";
-import { Arrow, Breadcrumb, CtaBand, RdButton } from "@/components/rd/ui";
-import { RD_INDUSTRIES, buildIndustryJsonLd, getIndustry } from "@/data/rdIndustries";
-import { rdServices } from "@/data/rdServices";
+import Layout from "@/components/system/Layout";
+import {
+  Arrow,
+  Breadcrumb,
+  Container,
+  CtaBand,
+  Eyebrow,
+  Faq,
+  Panel,
+  PanelLink,
+  Section,
+  SectionHead,
+} from "@/components/system/ui";
+import { RD_INDUSTRIES } from "@/data/rdIndustries";
+import { PILLARS } from "@/data/navigation";
 
-const MONO = "'Space Mono',monospace";
-const wrap = { maxWidth: 1280, margin: "0 auto" };
+/* The `related` field in the industry data still holds pre-consolidation
+   service slugs. Those URLs are now 301s, so linking to them directly would
+   send every industry page through a redirect chain. This maps each legacy
+   slug onto the pillar that absorbed it — the same mapping declared in
+   next.config.mjs, kept in one place here rather than duplicated per page. */
+const LEGACY_TO_PILLAR = {
+  "cloud-solutions": "it-services",
+  "custom-software": "it-services",
+  cybersecurity: "it-services",
+  "digital-transformation": "it-services",
+  "ai-machine-learning": "ai-enablement",
+  "data-analytics": "research-data",
+  "global-talent": "staffing",
+  "engagement-models": "it-services",
+};
 
-export default function IndustryPage({ slug }) {
-  const ind = getIndustry(slug);
-  if (!ind) return null;
+function relatedPillars(related = []) {
+  const slugs = new Set(
+    related.map((r) => LEGACY_TO_PILLAR[r] || r).filter((s) => PILLARS.some((p) => p.slug === s))
+  );
+  if (!slugs.size) return PILLARS.slice(0, 3);
+  return PILLARS.filter((p) => slugs.has(p.slug));
+}
+
+export default function IndustryPage({ industry, related }) {
+  const faqSchema = industry.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: industry.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
 
   return (
-    <RdLayout>
-      <Seo {...ind.seo} jsonLd={buildIndustryJsonLd(ind)} />
+    <Layout>
+      <Seo
+        title={industry.seo?.title || `${industry.name} — Industry`}
+        description={industry.seo?.description || industry.body}
+        keywords={industry.seo?.keywords}
+        jsonLd={faqSchema ? [faqSchema] : []}
+      />
 
-      {/* Hero */}
-      <section style={{ padding: "72px 5% 64px" }}>
-        <div style={wrap}>
-          <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Industries", href: "/industries" }, { label: ind.name }]} />
-          <p data-rd-reveal style={{ margin: "0 0 16px", font: `700 14px ${MONO}`, letterSpacing: "0.12em", color: "var(--rd-accent-text)" }}>
-            {ind.tag}
-          </p>
-          <h1 data-rd-reveal data-rd-reveal-delay="0.05" style={{ margin: "0 0 28px", maxWidth: 940, font: `700 clamp(36px,3.8vw,66px)/1.1 ${MONO}`, letterSpacing: "-0.01em" }}>
-            {ind.headline}
+      <Section as="div" className="rds-hero">
+        <Container>
+          <Breadcrumb
+            trail={[
+              { label: "Home", href: "/" },
+              { label: "Who we serve", href: "/industries" },
+              { label: industry.name },
+            ]}
+          />
+          <h1 className="rds-h1" style={{ margin: "var(--s5) 0 0", maxWidth: "18ch" }}>
+            {industry.headline || industry.title}
           </h1>
-          <p data-rd-reveal data-rd-reveal-delay="0.1" style={{ margin: "0 0 36px", maxWidth: 660, fontSize: 20, color: "var(--rd-text-2)" }}>
-            {ind.body}
-          </p>
-          <div data-rd-reveal data-rd-reveal-delay="0.15" style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-            <RdButton href="/contact">Book a call</RdButton>
-            <RdButton href="/#case-studies" variant="ghost">See case studies</RdButton>
+          <div className="rds-hero-rule" aria-hidden="true" />
+          <div className="rds-prose" style={{ marginTop: "var(--s5)", fontSize: 18 }}>
+            {(Array.isArray(industry.intro) ? industry.intro : [industry.intro])
+              .filter(Boolean)
+              .map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {/* Intro */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: 56, alignItems: "start" }}>
-          <h2 data-rd-reveal style={{ margin: 0, font: `700 clamp(26px,2.4vw,40px)/1.15 ${MONO}` }}>{ind.title}</h2>
-          <div data-rd-reveal data-rd-reveal-delay="0.05" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {ind.intro.map((p, i) => (
-              <p key={i} style={{ margin: 0, fontSize: 18, lineHeight: 1.7, color: "var(--rd-text-2)" }}>{p}</p>
-            ))}
-          </div>
-        </div>
-      </section>
+      {industry.challenges?.length ? (
+        <Section className="rds-band">
+          <Container>
+            <SectionHead index="01" label="What makes this sector hard" />
+            <div className="rds-grid rds-cols-2">
+              {industry.challenges.map((c) => (
+                <Panel key={c.t}>
+                  <h2 className="rds-h3" style={{ marginBottom: "var(--s3)" }}>{c.t}</h2>
+                  <p style={{ color: "var(--fg-2)", fontSize: 15 }}>{c.d}</p>
+                </Panel>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      ) : null}
 
-      {/* Challenges */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div style={wrap}>
-          <h2 data-rd-reveal style={{ margin: "0 0 40px", font: `700 clamp(28px,2.6vw,44px)/1.15 ${MONO}` }}>
-            What we hear from {ind.name} leaders
-          </h2>
-          <div className="rd-grid-2" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 24 }}>
-            {ind.challenges.map((c) => (
-              <div key={c.t} data-rd-reveal className="rd-card" style={{ padding: "32px 30px", borderRadius: 24 }}>
-                <h3 style={{ margin: "0 0 10px", font: `700 20px ${MONO}`, lineHeight: 1.3 }}>{c.t}</h3>
-                <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{c.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {industry.technology || industry.talent ? (
+        <Section>
+          <Container>
+            <SectionHead index="02" label="What we bring" />
+            <div className="rds-deliv">
+              {[industry.technology, industry.talent].filter(Boolean).map((block) => (
+                <div key={block.heading}>
+                  <h2 className="rds-h2" style={{ marginBottom: "var(--s4)" }}>{block.heading}</h2>
+                  <p className="rds-prose" style={{ marginBottom: "var(--s5)" }}>{block.body}</p>
+                  {block.items?.length ? (
+                    <ul className="rds-ticklist">
+                      {block.items.map((i) => (
+                        <li key={typeof i === "string" ? i : i.t}>
+                          {typeof i === "string" ? i : `${i.t} — ${i.d}`}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      ) : null}
 
-      {/* Two pillars: technology + talent */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div className="rd-grid-2" style={{ ...wrap, display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 32 }}>
-          {[ind.technology, ind.talent].map((col, idx) => {
-            const items = col.items || col.roles;
-            return (
-              <div key={col.heading} data-rd-reveal className="rd-card" style={{ padding: "44px 40px", borderRadius: 32, display: "flex", flexDirection: "column", gap: 18 }}>
-                <p style={{ margin: 0, font: `700 13px ${MONO}`, letterSpacing: "0.14em", color: "var(--rd-accent-text)" }}>
-                  {idx === 0 ? "TECHNOLOGY WE BUILD" : "TALENT WE SOURCE"}
-                </p>
-                <h2 style={{ margin: 0, font: `700 clamp(24px,2vw,32px)/1.2 ${MONO}` }}>{col.heading}</h2>
-                <p style={{ margin: 0, fontSize: 17, lineHeight: 1.65, color: "var(--rd-text-2)" }}>{col.body}</p>
-                <ul style={{ margin: "6px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
-                  {items.map((it) => (
-                    <li key={it} style={{ display: "flex", gap: 12, fontSize: 16, lineHeight: 1.55, color: "var(--rd-text-2)" }}>
-                      <span aria-hidden="true" style={{ color: "var(--rd-accent-text)", flexShrink: 0 }}>—</span>
-                      <span>{it}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Compliance */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div style={wrap}>
-          <p data-rd-reveal style={{ margin: "0 0 20px", font: `700 13px ${MONO}`, letterSpacing: "0.14em", color: "var(--rd-text-3)" }}>
-            STANDARDS WE WORK TO IN {ind.name.toUpperCase()}
-          </p>
-          <div data-rd-reveal style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-            {ind.compliance.map((c) => (
-              <span key={c} style={{ border: "1px solid var(--rd-border)", borderRadius: 100, padding: "12px 22px", font: `700 14px ${MONO}`, color: "var(--rd-text-2)" }}>
-                {c}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Outcomes */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div style={wrap}>
-          <h2 data-rd-reveal style={{ margin: "0 0 40px", font: `700 clamp(28px,2.6vw,44px)/1.15 ${MONO}` }}>What changes</h2>
-          <div className="rd-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-            {ind.outcomes.map((o) => (
-              <div key={o.t} data-rd-reveal className="rd-card" style={{ padding: "34px 30px", borderRadius: 24 }}>
-                <h3 style={{ margin: "0 0 10px", font: `700 20px ${MONO}`, lineHeight: 1.3 }}>{o.t}</h3>
-                <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "var(--rd-text-2)" }}>{o.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQs — mirrored by FAQPage structured data */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div style={{ ...wrap, maxWidth: 900 }}>
-          <h2 data-rd-reveal style={{ margin: "0 0 40px", font: `700 clamp(28px,2.6vw,44px)/1.15 ${MONO}` }}>
-            {ind.name} questions we get asked
-          </h2>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {ind.faqs.map((f, i) => (
-              <div key={f.q} data-rd-reveal style={{ padding: "28px 0", borderTop: i === 0 ? "none" : "1px solid var(--rd-divider)" }}>
-                <h3 style={{ margin: "0 0 12px", font: `700 19px ${MONO}`, lineHeight: 1.35 }}>{f.q}</h3>
-                <p style={{ margin: 0, fontSize: 17, lineHeight: 1.7, color: "var(--rd-text-2)" }}>{f.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Related services */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div style={wrap}>
-          <h2 data-rd-reveal style={{ margin: "0 0 32px", font: `700 clamp(24px,2.2vw,36px)/1.15 ${MONO}` }}>
-            Services we bring to {ind.name}
-          </h2>
-          <div className="rd-grid-4" style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(ind.related.length, 4)},1fr)`, gap: 20 }}>
-            {ind.related.map((id) => {
-              const s = rdServices[id];
-              if (!s) return null;
-              return (
-                <Link key={id} href={`/services/${id}`} data-rd-reveal className="rd-card rd-card-lift" style={{ padding: "30px 26px", borderRadius: 24, display: "flex", flexDirection: "column", gap: 12 }}>
-                  <span style={{ font: `700 12px ${MONO}`, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rd-accent-text)" }}>{s.tag}</span>
-                  <span style={{ font: `700 20px ${MONO}`, lineHeight: 1.25 }}>{s.title}</span>
-                  <span style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 500, fontSize: 15 }}>
-                    Explore <Arrow />
-                  </span>
+      {industry.compliance?.length ? (
+        <Section className="rds-band">
+          <Container>
+            <SectionHead index="03" label="Compliance context" />
+            <div className="rds-splithead" style={{ marginBottom: "var(--s6)" }}>
+              <h2 className="rds-h2">Regimes we design to in this sector.</h2>
+              <p className="rds-prose">
+                These are frameworks we build and document against. They are a
+                description of how we work, not a claim that Round Digital is certified
+                against them — our certification status is published in full on the{" "}
+                <Link href="/government/certifications" className="rds-link">
+                  roadmap
                 </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+                .
+              </p>
+            </div>
+            <ul className="rds-taglist">
+              {industry.compliance.map((c) => (
+                <li key={c} className="rds-mono">
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </Section>
+      ) : null}
 
-      {/* Other industries — internal linking */}
-      <section style={{ padding: "0 5% 88px" }}>
-        <div style={wrap}>
-          <h2 data-rd-reveal style={{ margin: "0 0 24px", font: `700 clamp(22px,2vw,32px)/1.15 ${MONO}` }}>Other industries we serve</h2>
-          <div data-rd-reveal style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-            {RD_INDUSTRIES.filter((o) => o.slug !== ind.slug).map((o) => (
-              <Link key={o.slug} href={`/industries/${o.slug}`} style={{ border: "1px solid var(--rd-border)", borderRadius: 100, padding: "12px 22px", font: `700 14px ${MONO}`, color: "var(--rd-text-2)" }}>
-                {o.name}
-              </Link>
+      {industry.outcomes?.length ? (
+        <Section>
+          <Container>
+            <SectionHead index="04" label="What changes" />
+            <div className="rds-grid rds-cols-3">
+              {industry.outcomes.map((o) => (
+                <Panel key={o.t} fill>
+                  <h2 className="rds-h4" style={{ marginBottom: "var(--s2)" }}>{o.t}</h2>
+                  <p style={{ color: "var(--fg-2)", fontSize: 15 }}>{o.d}</p>
+                </Panel>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {industry.faqs?.length ? (
+        <Section className="rds-band">
+          <Container style={{ maxWidth: 840 }}>
+            <SectionHead index="05" label="Questions" />
+            <Faq items={industry.faqs} idPrefix={industry.slug} />
+          </Container>
+        </Section>
+      ) : null}
+
+      <Section>
+        <Container>
+          <SectionHead index="06" label="Services for this sector" />
+          <div className="rds-grid rds-cols-3">
+            {related.map((p) => (
+              <PanelLink key={p.slug} href={p.href}>
+                <span className="rds-code">{p.focus}</span>
+                <h2 className="rds-h4" style={{ margin: "var(--s3) 0 var(--s3)" }}>{p.title}</h2>
+                <p style={{ color: "var(--fg-2)", fontSize: 15, marginBottom: "var(--s4)" }}>{p.summary}</p>
+                <span className="rds-arrow">
+                  Open <Arrow />
+                </span>
+              </PanelLink>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
       <CtaBand
-        title={`Working in ${ind.name}?`}
-        body="One call with a senior engineer — or our talent lead. You'll leave with a plan either way."
+        title={`Working in ${industry.name.toLowerCase()}?`}
+        body="Tell us the constraint and the deadline. You will get a direct answer on whether our experience in this sector applies to your requirement."
+        primary={{ label: "Submit an RFP", href: "/rfp" }}
+        secondary={{ label: "All sectors", href: "/industries" }}
+        accent
       />
-    </RdLayout>
+    </Layout>
   );
 }
 
@@ -193,5 +215,7 @@ export function getStaticPaths() {
 }
 
 export function getStaticProps({ params }) {
-  return { props: { slug: params.slug } };
+  const industry = RD_INDUSTRIES.find((i) => i.slug === params.slug);
+  if (!industry) return { notFound: true };
+  return { props: { industry, related: relatedPillars(industry.related) } };
 }

@@ -67,13 +67,19 @@ export function buildSitemap(routes, base = BASE, lastmod = new Date().toISOStri
 if (process.argv[1] && process.argv[1].endsWith("generate-sitemap.mjs")) {
   const { RD_INDUSTRIES } = await import("../src/data/rdIndustries.js");
   const { blogs } = await import("../src/data/blogs.js");
-  const { rdCases } = await import("../src/data/rdCases.js");
   const { jobPositions } = await import("../src/data/jobPositions.js");
+  const { SERVICE_SLUGS } = await import("../src/data/services.js");
+  // Case studies come from the verified past-performance record, which is the
+  // same source the capability statement uses. The previous /works entries were
+  // generated from a separate marketing store that carried unverifiable
+  // metrics; those URLs are now 301s and must not reappear here.
+  const { PAST_PERFORMANCE } = await import("../src/content/past-performance.mjs");
   const routes = [
     ...collectRoutes().filter((r) => !REDIRECTED.has(r)),
+    ...SERVICE_SLUGS.map((slug) => `/services/${slug}`),
     ...RD_INDUSTRIES.map((i) => `/industries/${i.slug}`),
     ...blogs.map((b) => `/blogs/${b.slug}`),
-    ...Object.keys(rdCases).map((slug) => `/works/${slug}`),
+    ...PAST_PERFORMANCE.map((p) => `/works/${p.id}`),
     ...jobPositions.map((j) => `/careers/${j.slug}`),
   ].sort();
   writeFileSync("public/sitemap.xml", buildSitemap([...new Set(routes)]));

@@ -1,4 +1,92 @@
+# https://www.round.digital/robots.txt
+
+# --- Classic search ---------------------------------------------------------
 User-agent: *
 Allow: /
 
+# --- Answer engines and AI crawlers -----------------------------------------
+# Listed explicitly rather than relying on the wildcard above: several of these
+# agents look for their own token and treat its absence as undefined, and a few
+# operators have historically read "no specific rule" as "no consent".
+#
+# Two distinct kinds are permitted here, on the site owner's instruction:
+#
+#   Retrieval / answer engines — fetch a page to cite it in a live answer.
+#   These are what make the site quotable inside ChatGPT, Claude, Gemini,
+#   Perplexity and Copilot.
+#
+#   Training crawlers — collect pages as model training data. There is no
+#   attribution and, in practice, no way to withdraw content once collected.
+#   Permitted deliberately; remove the relevant blocks to revoke.
+#
+# Neither guarantees inclusion in any assistant's answers. Crawl permission is
+# necessary, not sufficient.
+
+# OpenAI — ChatGPT search, live user fetches, and training
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Anthropic — Claude search, live user fetches, and training
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google — Gemini grounding and Vertex AI. Distinct from Googlebot, which is
+# governed by the wildcard rule above and handles classic Search indexing.
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Microsoft Copilot
+User-agent: bingbot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+# Common Crawl — the corpus many open models train from
+User-agent: CCBot
+Allow: /
+
+# ByteDance
+User-agent: Bytespider
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# Mistral
+User-agent: MistralAI-User
+Allow: /
+
+# --- Machine-readable summaries ---------------------------------------------
 Sitemap: https://www.round.digital/sitemap.xml

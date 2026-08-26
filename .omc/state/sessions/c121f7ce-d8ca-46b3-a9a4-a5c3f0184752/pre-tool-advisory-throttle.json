@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "entries": {
+    "445ed27a3872b681d98190bae61ccb84954e1bc4e140df5370be958dee776b3a": {
+      "last_emitted_at_ms": 1786934152100,
+      "message": "Verify changes work after editing. Test functionality before marking complete."
+    },
+    "79a93d4a2f8f50b95f852280616242fee1855dc99a3c75211917f55e72e95fae": {
+      "last_emitted_at_ms": 1786934106519,
+      "message": "Use parallel execution for independent tasks. Use run_in_background for long operations (npm install, builds, tests)."
+    },
+    "466399dafa2d20f60587180bad0a07358eb7f2bce724df0ff682f038ad33f5ad": {
+      "last_emitted_at_ms": 1786932816064,
+      "message": "Read multiple files in parallel when possible for faster analysis."
+    },
+    "2616e57fdd943c15656f6094dec8c3f424299110c0358eece54013c001deaa3c": {
+      "last_emitted_at_ms": 1786932368821,
+      "message": "Spawning agent: general-purpose (inherit) | Task: Assessment C content critique"
+    },
+    "55d4037f77ce135f64dab78b3a1b8eba9aeca7a279b7499a5321d40096787b4c": {
+      "last_emitted_at_ms": 1786932347273,
+      "message": "Spawning agent: general-purpose (inherit) | Task: Assessment B detector evidence"
+    },
+    "8d6514654cdbb666762468e2f065cfe2a800569ff96694b5bf30537393ea2783": {
+      "last_emitted_at_ms": 1786932334584,
+      "message": "Spawning agent: general-purpose (inherit) | Task: Assessment A design review"
+    }
+  },
+  "updated_at": "2026-08-17T02:35:52.100Z"
+}

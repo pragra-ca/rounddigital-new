@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Round Digital — light direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Jost:wght@500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#fff;color:#0b0f14;
+       font-family:Inter,system-ui,sans-serif;font-size:17px;line-height:1.6;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1300px;margin-inline:auto;padding-inline:40px}
+  @media(max-width:760px){.wrap{padding-inline:22px}}
+
+  /* Premium light = restraint + hairlines + very soft, very large shadows. */
+  nav{position:fixed;inset:0 0 auto;z-index:50;backdrop-filter:blur(16px);
+      background:rgba(255,255,255,.82);border-bottom:1px solid #e9ecef}
+  .nav-in{display:flex;align-items:center;gap:36px;height:68px}
+  .brand{display:flex;align-items:center;gap:10px;flex:none}
+  .brand-mark{width:26px;height:23px;background:#fd3f42;border-radius:3px 11px 11px 3px}
+  .brand-word{font-family:Jost,sans-serif;font-weight:500;font-size:15px;letter-spacing:.055em;text-transform:uppercase}
+  .nav-links{display:flex;gap:26px;font-size:14.5px;color:#5f6a77}
+  .nav-links a{color:inherit;text-decoration:none;transition:color .18s}
+  .nav-links a:hover{color:#0b0f14}
+  .nav-cta{margin-left:auto}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;
+       padding:10px 18px;border-radius:3px;text-decoration:none;transition:.2s}
+  .btn-dark{background:#0b0f14;color:#fff}
+  .btn-dark:hover{background:#c81e22}
+  .btn-line{border:1px solid #c9ced4;color:#0b0f14}
+  .btn-line:hover{border-color:#0b0f14;background:#f7f8f9}
+  .btn-lg{padding:14px 26px;font-size:15px}
+  @media(max-width:900px){.nav-links{display:none}}
+
+  /* hero */
+  .hero{position:relative;padding-top:68px;overflow:hidden;
+        background:
+          radial-gradient(ellipse 62% 46% at 50% 0%, rgba(253,63,66,.075), transparent 70%),
+          linear-gradient(180deg,#fff 0%,#fbfbfc 62%,#f4f6f8 100%)}
+  .grid-bg{position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(#0b0f14 1px,transparent 1px),
+                     linear-gradient(90deg,#0b0f14 1px,transparent 1px);
+    background-size:74px 74px;opacity:.028;
+    -webkit-mask-image:radial-gradient(ellipse 74% 58% at 50% 22%,#000 20%,transparent 76%);
+            mask-image:radial-gradient(ellipse 74% 58% at 50% 22%,#000 20%,transparent 76%)}
+  .hero-in{position:relative;z-index:2;text-align:center;padding-block:70px 0}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.2em;
+          text-transform:uppercase;color:#6b7682;display:flex;align-items:center;
+          justify-content:center;gap:13px;margin-bottom:26px}
+  .kicker::before,.kicker::after{content:"";height:1px;width:50px;
+    background:linear-gradient(90deg,transparent,#c9ced4)}
+  .kicker::after{background:linear-gradient(90deg,#c9ced4,transparent)}
+  h1{font-family:'Inter Tight',sans-serif;font-weight:500;
+     font-size:clamp(34px,4.6vw,66px);line-height:1.04;letter-spacing:-.034em;
+     margin:0 auto;max-width:26ch}
+  h1 em{font-style:normal;color:#7d8894}
+  .sub{margin:22px auto 0;max-width:58ch;font-size:clamp(15px,1.2vw,17.5px);
+       color:#47515c;line-height:1.6}
+  .hero-actions{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  /* The product screen stays DARK on the light page — screens are dark, and the
+     contrast is what makes the product read as the hero instead of the page. */
+  .stage{position:relative;z-index:2;margin-top:48px;padding-bottom:74px}
+  .screen{max-width:1080px;margin-inline:auto;border-radius:12px;overflow:hidden;
+          background:#0a0e13;border:1px solid rgba(11,15,20,.1);
+          box-shadow:0 2px 4px rgba(11,15,20,.04),0 12px 24px rgba(11,15,20,.07),
+                     0 44px 90px -22px rgba(11,15,20,.35)}
+  .screen-bar{display:flex;align-items:center;gap:9px;padding:11px 15px;
+              border-bottom:1px solid rgba(255,255,255,.08);background:#0d1218}
+  .sd{width:9px;height:9px;border-radius:50%;background:#2c343d}
+  .screen-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:#6e7883;margin-left:8px}
+  .live{margin-left:auto;display:flex;align-items:center;gap:7px;
+        font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#3ddc84}
+  .live i{width:6px;height:6px;border-radius:50%;background:#3ddc84;display:block;
+          animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1)}}
+  .app{display:grid;grid-template-columns:190px 1fr;min-height:400px;color:#fff}
+  .side{border-right:1px solid rgba(255,255,255,.07);padding:16px 12px;background:#080c11}
+  .side-lbl{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;
+            color:#5d6771;text-transform:uppercase;margin:15px 0 8px}
+  .side-lbl:first-child{margin-top:0}
+  .side-item{font-size:13px;color:#96a0ab;padding:7px 9px;border-radius:3px;margin-bottom:2px}
+  .side-item.on{background:rgba(253,63,66,.14);color:#fff;box-shadow:inset 2px 0 0 #fd3f42}
+  .main{padding:19px 21px}
+  .main-h{display:flex;align-items:baseline;gap:11px;margin-bottom:16px}
+  .main-h h4{margin:0;font-family:'Inter Tight',sans-serif;font-size:18px;font-weight:600;letter-spacing:-.02em}
+  .main-h span{font-family:'JetBrains Mono',monospace;font-size:11px;color:#6e7883}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+  .kpi{border:1px solid rgba(255,255,255,.09);border-radius:4px;padding:12px;background:#0b1016}
+  .kpi-l{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:#6e7883;text-transform:uppercase}
+  .kpi-v{font-family:'Inter Tight',sans-serif;font-size:24px;font-weight:600;letter-spacing:-.03em;margin-top:5px}
+  .kpi-v.ok{color:#3ddc84}
+  .chart{border:1px solid rgba(255,255,255,.09);border-radius:4px;background:#0b1016;
+         padding:14px;height:172px;display:flex;flex-direction:column}
+  .chart-h{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+  .chart-h b{font-size:12.5px;font-weight:600}
+  .chart-h em{font-style:normal;font-family:'JetBrains Mono',monospace;font-size:10px;color:#6e7883;margin-left:auto}
+  .bars{flex:1;display:flex;align-items:flex-end;gap:6px}
+  .bars span{flex:1;background:linear-gradient(180deg,#1d2731,#141b23);border-radius:2px 2px 0 0;
+             animation:rise .9s cubic-bezier(.2,.7,.3,1) backwards}
+  .bars span.hot{background:linear-gradient(180deg,#fd3f42,#8f1f21)}
+  @keyframes rise{from{height:0 !important;opacity:0}}
+  @media(max-width:820px){.app{grid-template-columns:1fr}.side{display:none}.kpis{grid-template-columns:repeat(2,1fr)}}
+
+  /* proof strip */
+  .strip{border-block:1px solid #e9ecef;background:#fff}
+  .strip-in{display:grid;grid-template-columns:repeat(4,1fr)}
+  .strip-i{padding:30px 26px;border-left:1px solid #e9ecef}
+  .strip-i:first-child{border-left:0;padding-left:0}
+  .strip-v{font-family:'Inter Tight',sans-serif;font-size:34px;font-weight:600;letter-spacing:-.035em}
+  .strip-l{font-size:13.5px;color:#5f6a77;margin-top:5px;line-height:1.45}
+  .strip-s{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8a939d;margin-top:9px}
+  @media(max-width:880px){.strip-in{grid-template-columns:repeat(2,1fr)}.strip-i{border-left:0;padding-left:0}}
+
+  section{padding-block:clamp(74px,9vw,132px)}
+  .tint{background:#f7f8f9;border-block:1px solid #e9ecef}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.2em;
+           text-transform:uppercase;color:#6b7682;display:flex;align-items:center;gap:11px}
+  .eyebrow::before{content:"";width:26px;height:2px;background:#fd3f42}
+  /* Header row: heading left, lede right — kills the dead space the dark
+     version had when the h2 sat alone on a full-width row. */
+  .head{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:end}
+  h2{font-family:'Inter Tight',sans-serif;font-weight:500;
+     font-size:clamp(29px,3.9vw,50px);line-height:1.06;letter-spacing:-.032em;margin:18px 0 0}
+  .lede{font-size:17.5px;color:#47515c;line-height:1.62;margin:0}
+  @media(max-width:860px){.head{grid-template-columns:1fr;gap:18px;align-items:start}}
+
+  .tracks{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:46px}
+  .track{border:1px solid #e2e6ea;border-radius:4px 4px 22px 4px;padding:34px 30px;background:#fff;
+         transition:box-shadow .25s,transform .25s,border-color .25s}
+  .track:hover{box-shadow:0 3px 6px rgba(11,15,20,.04),0 18px 40px -12px rgba(11,15,20,.16);
+               transform:translateY(-3px);border-color:#c9ced4}
+  .track-n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:#c81e22}
+  .track h3{font-family:'Inter Tight',sans-serif;font-size:25px;font-weight:600;letter-spacing:-.028em;margin:13px 0 0}
+  .track p{color:#47515c;font-size:15.5px;margin:11px 0 0;line-height:1.6}
+  .track ul{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:7px}
+  .track li{font-family:'JetBrains Mono',monospace;font-size:10.5px;border:1px solid #dde1e5;
+            border-radius:2px;padding:5px 9px;color:#5f6a77}
+  .track a{display:inline-block;margin-top:24px;color:#0b0f14;font-size:14.5px;font-weight:600;
+           text-decoration:none;border-bottom:2px solid #fd3f42;padding-bottom:3px}
+  @media(max-width:820px){.tracks{grid-template-columns:1fr}}
+
+  /* platforms — ShipCarte finally gets shown */
+  .plats{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:46px}
+  .plat{border:1px solid #e2e6ea;border-radius:4px 4px 22px 4px;overflow:hidden;background:#fff}
+  .plat-top{background:#0a0e13;padding:16px 18px;color:#fff}
+  .plat-top .row{display:flex;align-items:center;gap:8px;
+                 font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#8a95a1}
+  .plat-top .row b{color:#fff;font-family:'Inter Tight',sans-serif;font-size:15px;letter-spacing:-.01em}
+  .plat-body{padding:22px 24px}
+  .plat-body p{margin:0;color:#47515c;font-size:15px;line-height:1.6}
+  .plat-body .facts{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}
+  .plat-body .facts span{font-family:'JetBrains Mono',monospace;font-size:10.5px;
+                         border:1px solid #dde1e5;border-radius:2px;padding:5px 9px;color:#5f6a77}
+  @media(max-width:820px){.plats{grid-template-columns:1fr}}
+
+  .loop{display:grid;grid-template-columns:repeat(4,1fr);margin-top:46px;
+        border:1px solid #e2e6ea;border-radius:4px 4px 22px 4px;overflow:hidden;background:#fff}
+  .step{padding:30px 24px;border-left:1px solid #e2e6ea}
+  .step:first-child{border-left:0}
+  .step-n{font-family:'JetBrains Mono',monospace;font-size:11px;color:#c81e22;letter-spacing:.14em}
+  .step h4{font-family:'Inter Tight',sans-serif;font-size:20px;font-weight:600;letter-spacing:-.02em;margin:11px 0 0}
+  .step p{font-size:14px;color:#5f6a77;margin:8px 0 0;line-height:1.55}
+  @media(max-width:880px){.loop{grid-template-columns:repeat(2,1fr)}
+    .step:nth-child(3){border-left:0}.step:nth-child(n+3){border-top:1px solid #e2e6ea}}
+
+  /* one dark moment, as punctuation — the closing CTA the dark page lacked */
+  .cta{background:#0b0f14;color:#fff;border-radius:4px 4px 26px 4px;padding:clamp(40px,5vw,64px);
+       display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+  .cta h3{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:clamp(26px,3.1vw,40px);
+          letter-spacing:-.03em;line-height:1.08;margin:0}
+  .cta p{color:#b9c2cc;margin:14px 0 0;font-size:16px;max-width:46ch}
+  .cta-actions{display:flex;flex-direction:column;gap:10px}
+  .btn-white{background:#fff;color:#0b0f14}
+  .btn-white:hover{background:#fd3f42;color:#fff}
+  .btn-onDark{border:1px solid #4a5560;color:#fff}
+  .btn-onDark:hover{border-color:#fff;background:rgba(255,255,255,.07)}
+  @media(max-width:820px){.cta{grid-template-columns:1fr;gap:26px}}
+
+  footer{border-top:1px solid #e9ecef;padding-block:40px;color:#5f6a77;font-size:13.5px}
+
+  .fu{animation:fu .85s cubic-bezier(.2,.7,.3,1) backwards}
+  @keyframes fu{from{opacity:0;transform:translateY(18px)}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <span class="brand"><span class="brand-mark"></span><span class="brand-word">Round&nbsp;Digital</span></span>
+    <span class="nav-links">
+      <a href="#platforms">Platforms</a><a href="#tracks">Services</a>
+      <a href="#tracks">Enterprise</a><a href="#tracks">Government</a><a href="#loop">Company</a>
+    </span>
+    <span class="nav-cta"><a class="btn btn-dark" href="#cta">Submit an RFP</a></span>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap hero-in">
+    <div class="kicker fu" style="animation-delay:.05s">Women-owned &middot; Technology &amp; workforce services</div>
+    <h1 class="fu" style="animation-delay:.14s">We don't show you consultants.<br><em>We show you the software we run.</em></h1>
+    <p class="sub fu" style="animation-delay:.24s">
+      Two platforms in production, built and operated by the same team you would be hiring.
+      We build the system, staff it, train the people who run it, and measure whether it worked.
+    </p>
+    <div class="hero-actions fu" style="animation-delay:.32s">
+      <a class="btn btn-dark btn-lg" href="#platforms">See the platforms &rarr;</a>
+      <a class="btn btn-line btn-lg" href="#cta">Read the capability statement</a>
+    </div>
+  </div>
+
+  <div class="wrap stage fu" style="animation-delay:.42s">
+    <div class="screen">
+      <div class="screen-bar">
+        <span class="sd"></span><span class="sd"></span><span class="sd"></span>
+        <span class="screen-title">perfectum.ai &mdash; academy operations</span>
+        <span class="live"><i></i>OPERATIONAL</span>
+      </div>
+      <div class="app">
+        <aside class="side">
+          <div class="side-lbl">Delivery</div>
+          <div class="side-item on">Academies</div><div class="side-item">Cohorts</div><div class="side-item">Assessments</div>
+          <div class="side-lbl">Conformance</div>
+          <div class="side-item">SCORM 1.2</div><div class="side-item">SCORM 2004</div><div class="side-item">xAPI</div>
+          <div class="side-lbl">Reporting</div><div class="side-item">Outcomes</div>
+        </aside>
+        <div class="main">
+          <div class="main-h"><h4>Academies</h4><span>multi-tenant &middot; live</span></div>
+          <div class="kpis">
+            <div class="kpi"><div class="kpi-l">Academies</div><div class="kpi-v">1,200+</div></div>
+            <div class="kpi"><div class="kpi-l">SCORM 1.2</div><div class="kpi-v ok">Pass</div></div>
+            <div class="kpi"><div class="kpi-l">SCORM 2004</div><div class="kpi-v ok">Pass</div></div>
+            <div class="kpi"><div class="kpi-l">xAPI</div><div class="kpi-v ok">Pass</div></div>
+          </div>
+          <div class="chart">
+            <div class="chart-h"><b>Delivery throughput</b><em>trailing 24</em></div>
+            <div class="bars">
+              <span style="height:34%;animation-delay:.55s"></span><span style="height:48%;animation-delay:.58s"></span>
+              <span style="height:41%;animation-delay:.61s"></span><span style="height:57%;animation-delay:.64s"></span>
+              <span style="height:50%;animation-delay:.67s"></span><span style="height:66%;animation-delay:.70s"></span>
+              <span style="height:59%;animation-delay:.73s"></span><span style="height:74%;animation-delay:.76s"></span>
+              <span style="height:68%;animation-delay:.79s"></span><span class="hot" style="height:88%;animation-delay:.82s"></span>
+              <span style="height:79%;animation-delay:.85s"></span><span style="height:94%;animation-delay:.88s"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap strip-in">
+    <div class="strip-i"><div class="strip-v">1,200+</div><div class="strip-l">academies on Perfectum.ai</div><div class="strip-s">SOURCE: PERFECTUM.AI</div></div>
+    <div class="strip-i"><div class="strip-v">2019</div><div class="strip-l">ShipCarte operating since</div><div class="strip-s">LTL &middot; COURIER &middot; AIR &middot; OCEAN</div></div>
+    <div class="strip-i"><div class="strip-v">2024</div><div class="strip-l">Forbes Best Startup Employers</div><div class="strip-s">SOURCE: FORBES</div></div>
+    <div class="strip-i"><div class="strip-v">2017</div><div class="strip-l">Operating since &mdash; Mississauga &amp; Noida</div><div class="strip-s">2 DELIVERY CENTRES</div></div>
+  </div>
+</div>
+
+<section id="platforms">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">Platforms we operate</div>
+        <h2>Not case studies. Systems still running.</h2></div>
+      <p class="lede">Both were built by this team and are in production today. That is a different claim from having advised on one.</p>
+    </div>
+    <div class="plats">
+      <div class="plat">
+        <div class="plat-top"><div class="row"><b>Perfectum.ai</b> &mdash; multi-tenant LMS
+          <span style="margin-left:auto;color:#3ddc84">&#9679; OPERATIONAL</span></div></div>
+        <div class="plat-body">
+          <p>Commercial learning platform serving 1,200+ academies, with full SCORM and xAPI conformance.</p>
+          <div class="facts"><span>SCORM 1.2</span><span>SCORM 2004</span><span>xAPI</span><span>MULTI-TENANT</span></div>
+        </div>
+      </div>
+      <div class="plat">
+        <div class="plat-top"><div class="row"><b>ShipCarte</b> &mdash; multi-carrier logistics
+          <span style="margin-left:auto;color:#3ddc84">&#9679; OPERATIONAL</span></div></div>
+        <div class="plat-body">
+          <p>Toronto freight platform operating since 2019 across less-than-truckload, courier, air and ocean.</p>
+          <div class="facts"><span>LTL</span><span>COURIER</span><span>AIR</span><span>OCEAN</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="tracks">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">Two ways in</div>
+        <h2>The same team, whichever room you are buying from.</h2></div>
+      <p class="lede">Enterprise and public sector need different evidence. Both get the people who actually do the work.</p>
+    </div>
+    <div class="tracks">
+      <div class="track">
+        <div class="track-n">01 &middot; ENTERPRISE</div>
+        <h3>Ship the system.<br>Keep the capability.</h3>
+        <p>Modernisation, AI enablement, and the people to operate it after we leave &mdash; so the capability does not walk out with the vendor.</p>
+        <ul><li>IT SERVICES</li><li>AI ENABLEMENT</li><li>STAFFING</li><li>TRAINING</li></ul>
+        <a href="#">See what we have shipped &rarr;</a>
+      </div>
+      <div class="track">
+        <div class="track-n">02 &middot; PUBLIC SECTOR</div>
+        <h3>Bid-ready<br>on day one.</h3>
+        <p>Capability statement, NAICS and PSC codes, past performance and teaming positions &mdash; all published, all sourced, nothing padded.</p>
+        <ul><li>541512</li><li>541511</li><li>541910</li><li>561320</li><li>611430</li></ul>
+        <a href="#">Open the capability statement &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="loop">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">The loop</div>
+        <h2>Most suppliers close a quarter of it.</h2></div>
+      <p class="lede">Build, staff, train, prove. Four steps from one supplier means no handoff gaps for the work to fall through.</p>
+    </div>
+    <div class="loop">
+      <div class="step"><div class="step-n">01</div><h4>Build it</h4><p>Systems designed to be operated, not just delivered.</p></div>
+      <div class="step"><div class="step-n">02</div><h4>Staff it</h4><p>People who have done it before, not r&eacute;sum&eacute;s.</p></div>
+      <div class="step"><div class="step-n">03</div><h4>Train it</h4><p>Capability that stays after the invoice stops.</p></div>
+      <div class="step"><div class="step-n">04</div><h4>Prove it</h4><p>Evidence it actually worked, measured and published.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="cta" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h3>Send us the requirement. You will hear back from someone who can decide.</h3>
+        <p>No qualification queue, no account manager relay. Two routes in: a scoped RFP, or a conversation first.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-white btn-lg" href="#">Submit an RFP &rarr;</a>
+        <a class="btn btn-onDark btn-lg" href="#">Start a conversation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Round Digital &middot; Mississauga, ON &middot; Noida, UP &mdash; light direction preview</div></footer>
+
+</body>
+</html>
