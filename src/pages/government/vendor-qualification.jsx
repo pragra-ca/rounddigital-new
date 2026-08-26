@@ -60,7 +60,7 @@ export default function VendorQualification() {
   return (
     <Layout>
       <Seo
-        title="Vendor Qualification Pack"
+        title="Vendor Qualification Pack for Buyers"
         description="The nine due-diligence questions every enterprise and public buyer asks before signing, answered in public — including the four we have not written yet."
         keywords="vendor due diligence, supplier qualification pack, vendor risk assessment, security questionnaire response, transition out plan, business continuity supplier"
       />

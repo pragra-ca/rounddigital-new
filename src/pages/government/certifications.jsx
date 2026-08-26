@@ -29,7 +29,26 @@ function RoadmapItem({ item }) {
         <h3 className="rds-h3">{item.name}</h3>
         <Status state="planned">{PRIORITY_LABEL[item.priority]} priority</Status>
       </div>
-      <p className="rds-meta" style={{ marginBottom: "var(--s4)" }}>{item.jurisdiction}</p>
+      <p className="rds-meta" style={{ marginBottom: "var(--s4)" }}>
+        {item.jurisdiction}
+        {item.authority ? (
+          <>
+            {" · "}
+            {/* The body that defines or administers this credential. A reader
+                can check what it actually requires without trusting our
+                summary of it. */}
+            <a
+              className="rds-link rds-mono rds-srclink"
+              href={item.authority}
+              rel="noopener noreferrer"
+              target="_blank"
+              style={{ fontSize: 12 }}
+            >
+              {new URL(item.authority).hostname.replace(/^www\./, "")}
+            </a>
+          </>
+        ) : null}
+      </p>
 
       <p style={{ color: "var(--fg-2)", fontSize: 15, marginBottom: "var(--s5)" }}>{item.value}</p>
 

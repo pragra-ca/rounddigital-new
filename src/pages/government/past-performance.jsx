@@ -20,7 +20,7 @@ export default function PastPerformance() {
   return (
     <Layout>
       <Seo
-        title="Past Performance References"
+        title="Past Performance References & Sources"
         description="Perfectum.ai, ShipCarte and Pragra — each stated as challenge, approach, outcome and period, with an externally corroborating source for every claim."
         keywords="past performance IT contractor, capability references, government past performance"
       />

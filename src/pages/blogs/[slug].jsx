@@ -73,14 +73,39 @@ function seoTitle(headline) {
 export default function BlogPost({ post, related }) {
   const published = formatDate(post.publishedAt || post.publishDate);
 
+  /* Article schema.
+     `author` stays an Organization deliberately: leadership.jsx records that
+     named officer biographies are pending documentary confirmation, and
+     inventing a byline to satisfy an E-E-A-T checklist would be exactly the
+     kind of unearned signal the rest of this site refuses to emit. The
+     publisher block is expanded so the entity resolves, and dateModified is
+     declared so recency is legible to crawlers rather than inferred. */
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
     datePublished: published || undefined,
-    author: { "@type": "Organization", name: "Round Digital" },
-    publisher: { "@type": "Organization", name: "Round Digital" },
+    dateModified: post.updatedAt || published || undefined,
+    inLanguage: "en",
+    author: {
+      "@type": "Organization",
+      name: "Round Digital",
+      url: "https://www.round.digital",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Round Digital",
+      url: "https://www.round.digital",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.round.digital/favicon.svg",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.round.digital/blogs/${post.slug}`,
+    },
     keywords: post.tags?.join(", "),
   };
 
@@ -88,10 +113,13 @@ export default function BlogPost({ post, related }) {
     <Layout>
       <Seo
         title={post.seoTitle || seoTitle(post.title)}
-        description={post.excerpt}
+        /* Six excerpts ran 92-106 characters. Appending the tag list lands
+           them in range using terms already on the page. */
+        description={`${post.excerpt}${post.tags?.length ? ` Covering ${post.tags.slice(0, 3).join(", ")}.` : ""}`.slice(0, 158)}
         keywords={post.tags?.join(", ")}
         ogType="article"
         articlePublishedTime={published || undefined}
+        breadcrumbLabel={post.title}
         jsonLd={[schema]}
       />
 

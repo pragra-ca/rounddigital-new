@@ -28,10 +28,14 @@ export default function CaseStudy({ entry, fact, others }) {
   return (
     <Layout>
       <Seo
-        title={`${entry.client} — Case Study`}
-        description={entry.outcome}
+        title={`${entry.client} — Case Study and Delivery Record`}
+        /* Outcome alone ran 105-109 characters. Prefixing the relationship states
+           what kind of engagement it was, which is the first thing an evaluator
+           checks, and lands the description in range. */
+        description={`${entry.relationship}. ${entry.outcome}`.slice(0, 158)}
         keywords={`${entry.client} case study, ${entry.relationship}`}
         ogType="article"
+        breadcrumbLabel={entry.client}
         jsonLd={[schema]}
       />
 

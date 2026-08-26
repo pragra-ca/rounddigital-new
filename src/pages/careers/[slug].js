@@ -14,6 +14,28 @@ import {
 } from "@/components/system/ui";
 import { jobPositions } from "@/data/jobPositions";
 
+/* Job titles range from "AI/ML Engineer" (14 chars) to "Senior Full Stack
+   Developer" (27), so a fixed suffix cannot fit them all: appending
+   "— {department} Role, {type}" pushed five of six past 62 characters with the
+   brand suffix, while the bare title left them under 45. This picks the richest
+   qualifier that still fits the budget. */
+const TITLE_BUDGET = 62 - " | Round Digital".length;
+
+function careerTitle(job) {
+  const candidates = [
+    `${job.title} — ${job.department} Role, ${job.type}`,
+    `${job.title} — ${job.department} Role`,
+    `${job.title} — ${job.department}`,
+    `${job.title} — ${job.type} Role`,
+    `${job.title} — Careers at Round Digital`,
+    `${job.title} — Careers`,
+  ];
+  return (
+    candidates.find((c) => c.length <= TITLE_BUDGET && c.length >= 30) ??
+    candidates[candidates.length - 1]
+  );
+}
+
 const BLOCKS = [
   { key: "responsibilities", label: "What you will do" },
   { key: "requirements", label: "What we are looking for" },
@@ -39,9 +61,13 @@ export default function JobPage({ job, others }) {
   return (
     <Layout>
       <Seo
-        title={`${job.title} — Careers`}
-        description={job.tagline || job.description}
+        title={careerTitle(job)}
+        /* Taglines run as short as 35 characters. Composing with location and
+           type lands the description in the 120-160 window without inventing
+           anything that is not already on the page. */
+        description={`${job.tagline || job.description} ${job.type} role based ${job.location}. Round Digital hires across Canada and India for engineering, data, delivery and training.`.slice(0, 158)}
         keywords={job.skills?.join(", ")}
+        breadcrumbLabel={job.title}
         jsonLd={[schema]}
       />
 

@@ -46,6 +46,8 @@ function Study({ entry, image, flip }) {
   );
 }
 
+
+
 export default function Works() {
 
   return (

@@ -22,6 +22,7 @@ export const CERT_ROADMAP = [
   {
     id: "dsbs",
     name: "SBA Dynamic Small Business Search profile",
+    authority: "https://dsbs.sba.gov/",
     tier: "tier-0",
     jurisdiction: "United States",
     priority: "high",
@@ -36,6 +37,7 @@ export const CERT_ROADMAP = [
   {
     id: "sam-codes",
     name: "SAM.gov NAICS and PSC expansion",
+    authority: "https://sam.gov/",
     tier: "tier-0",
     jurisdiction: "United States",
     priority: "high",
@@ -50,6 +52,7 @@ export const CERT_ROADMAP = [
   {
     id: "canadabuys",
     name: "CanadaBuys registration + Procurement Business Number",
+    authority: "https://canadabuys.canada.ca/",
     tier: "tier-0",
     jurisdiction: "Canada",
     priority: "high",
@@ -64,6 +67,7 @@ export const CERT_ROADMAP = [
   {
     id: "sprs",
     name: "NIST SP 800-171 self-assessment posted to SPRS",
+    authority: "https://csrc.nist.gov/pubs/sp/800/171/r3/final",
     tier: "tier-0",
     jurisdiction: "United States",
     priority: "medium",
@@ -78,6 +82,7 @@ export const CERT_ROADMAP = [
   {
     id: "wbe-canada",
     name: "WBE Canada",
+    authority: "https://wbecanada.ca/",
     tier: "tier-1",
     jurisdiction: "Canada",
     priority: "high",
@@ -97,6 +102,7 @@ export const CERT_ROADMAP = [
   {
     id: "weconnect",
     name: "WEConnect International",
+    authority: "https://weconnectinternational.org/",
     tier: "tier-1",
     jurisdiction: "Global",
     priority: "high",
@@ -111,6 +117,7 @@ export const CERT_ROADMAP = [
   {
     id: "iso-9001",
     name: "ISO 9001:2015 — Quality management",
+    authority: "https://www.iso.org/standard/62085.html",
     tier: "tier-1",
     jurisdiction: "Global",
     priority: "high",
@@ -125,6 +132,7 @@ export const CERT_ROADMAP = [
   {
     id: "iso-27001",
     name: "ISO/IEC 27001:2022 — Information security",
+    authority: "https://www.iso.org/standard/27001",
     tier: "tier-1",
     jurisdiction: "Global",
     priority: "high",
@@ -139,6 +147,7 @@ export const CERT_ROADMAP = [
   {
     id: "iso-42001",
     name: "ISO/IEC 42001:2023 — AI management system",
+    authority: "https://www.iso.org/standard/81230.html",
     tier: "tier-2",
     jurisdiction: "Global",
     priority: "high",
@@ -153,6 +162,7 @@ export const CERT_ROADMAP = [
   {
     id: "soc2",
     name: "SOC 2 Type I → Type II",
+    authority: "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2",
     tier: "tier-2",
     jurisdiction: "United States",
     priority: "medium",
@@ -167,6 +177,7 @@ export const CERT_ROADMAP = [
   {
     id: "cmmc",
     name: "CMMC Level 1 → Level 2",
+    authority: "https://dodcio.defense.gov/CMMC/",
     tier: "tier-2",
     jurisdiction: "United States",
     priority: "low",
@@ -181,6 +192,7 @@ export const CERT_ROADMAP = [
   {
     id: "gsa",
     name: "GSA Multiple Award Schedule",
+    authority: "https://www.gsa.gov/buy-through-us/purchasing-programs/multiple-award-schedule",
     tier: "tier-3",
     jurisdiction: "United States",
     priority: "medium",
@@ -195,6 +207,7 @@ export const CERT_ROADMAP = [
   {
     id: "state-term",
     name: "State term contracts — Texas DIR, Virginia VITA, NASPO",
+    authority: "https://www.naspovaluepoint.org/",
     tier: "tier-3",
     jurisdiction: "United States — state & local",
     priority: "medium",

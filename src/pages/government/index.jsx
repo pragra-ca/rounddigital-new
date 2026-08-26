@@ -219,6 +219,21 @@ export default function Government() {
                 <h3>{c.name}</h3>
                 <p>{c.body}</p>
                 <p className="rds-meta">Jurisdiction: {c.jurisdiction}</p>
+                {/* The issuing body, linked. A buyer can confirm what the
+                    standard actually requires without taking our word for it,
+                    and it is the kind of outbound citation answer engines
+                    weigh when deciding whether a page is worth quoting. */}
+                {c.authority ? (
+                  <a
+                    className="rds-link rds-mono rds-srclink"
+                    href={c.authority}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    style={{ fontSize: 12 }}
+                  >
+                    {new URL(c.authority).hostname.replace(/^www\./, "")}
+                  </a>
+                ) : null}
               </li>
             ))}
           </ul>

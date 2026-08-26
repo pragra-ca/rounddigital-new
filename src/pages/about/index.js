@@ -151,6 +151,17 @@ export default function About() {
                 </span>
                 <h3>{c.name}</h3>
                 <p>{c.body}</p>
+                {c.authority ? (
+                  <a
+                    className="rds-link rds-mono rds-srclink"
+                    href={c.authority}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    style={{ fontSize: 12 }}
+                  >
+                    {new URL(c.authority).hostname.replace(/^www\./, "")}
+                  </a>
+                ) : null}
               </Panel>
             ))}
           </div>

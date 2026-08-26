@@ -54,7 +54,7 @@ export default function Leadership() {
   return (
     <Layout>
       <Seo
-        title="Leadership & Accountability"
+        title="Leadership, Accountability & Escalation"
         description="How accountability works: a named delivery lead on every engagement, practice leads who still practise, and an escalation path one step from a decision-maker."
         keywords="Round Digital leadership, technology company leadership, delivery accountability"
       />

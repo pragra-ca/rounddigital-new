@@ -102,6 +102,26 @@ const PROCESS = [
 
 const [SHIPCARTE, PERFECTUM, PRAGRA] = PAST_PERFORMANCE;
 
+
+/* HowTo, built from the same PROCESS array the section renders.
+   The steps were already on the page as an ordered sequence; declaring them
+   makes the sequence eligible for step-by-step answer surfaces instead of
+   leaving an engine to infer it from markup. Derived, never duplicated, so it
+   cannot drift from what a reader sees. */
+const PROCESS_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How Round Digital delivers an engagement",
+  description:
+    "The four stages every Round Digital engagement runs through, from assessing the regulatory and technical context to handing the working system to your own team.",
+  step: PROCESS.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.body,
+  })),
+};
+
 export default function Home() {
   const nextUp = CREDENTIALS.slice(0, 4);
 
@@ -110,6 +130,7 @@ export default function Home() {
       <Seo
         title="Technology & Workforce You Can Verify"
         description="Round Digital builds software, runs AI enablement, staffs delivery teams and trains people — with every claim traceable to a named source."
+        jsonLd={[PROCESS_SCHEMA]}
       />
 
       <FigHero

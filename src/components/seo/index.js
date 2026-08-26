@@ -2,6 +2,71 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { buildOrganizationSchema } from "@/content/organization.mjs";
 
+
+/* BreadcrumbList, derived from the URL path.
+ *
+ * 22 pages render breadcrumb navigation visually but none declared it as
+ * structured data, so the hierarchy search and answer engines could have used
+ * was invisible to them. Deriving it here covers every route at once and
+ * cannot drift from the URL the way a hand-written list would.
+ *
+ * Segment labels are title-cased from the slug, with an override map for the
+ * ones where that produces the wrong words (naics-psc-codes, rfp, blogs).
+ * The home crumb is always first; the current page is always last, which is
+ * what Google requires for the trail to be eligible. */
+const CRUMB_LABELS = {
+  "": "Home",
+  rfp: "Submit an RFP",
+  blogs: "Insights",
+  works: "Case studies",
+  "naics-psc-codes": "NAICS & PSC codes",
+  "capability-statement": "Capability statement",
+  "where-we-can-contract": "Where we can contract",
+  "vendor-qualification": "Vendor qualification",
+  "past-performance": "Past performance",
+  "contract-vehicles": "Contract vehicles",
+  "women-owned": "Women-owned business",
+  "ai-enablement": "AI enablement",
+  "research-data": "Data, research & surveys",
+  "it-services": "IT services",
+};
+
+function labelFor(segment) {
+  if (CRUMB_LABELS[segment]) return CRUMB_LABELS[segment];
+  return segment
+    .split("-")
+    .map((w, i) => (i === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w))
+    .join(" ");
+}
+
+function buildBreadcrumbSchema(baseUrl, path, leafLabel) {
+  const segments = path.split("/").filter(Boolean);
+  // The homepage is its own root; a single-item trail tells an engine nothing.
+  if (segments.length === 0) return null;
+  const items = [{ name: "Home", url: `${baseUrl}/` }];
+  let acc = "";
+  segments.forEach((seg, i) => {
+    acc += `/${seg}`;
+    // Dynamic routes pass the real record title; slug-casing turns
+    // "rise-of-autonomous-ai-agents" into "Rise of autonomous ai agents".
+    const isLeaf = i === segments.length - 1;
+    items.push({
+      name: isLeaf && leafLabel ? leafLabel : labelFor(seg),
+      url: `${baseUrl}${acc}`,
+    });
+  });
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: it.url,
+    })),
+  };
+}
+
 const Seo = ({ 
   title, 
   description, 
@@ -13,7 +78,8 @@ const Seo = ({
   articleModifiedTime,
   noindex = false,
   canonicalUrl,
-  jsonLd = []
+  jsonLd = [],
+  breadcrumbLabel
 }) => {
   const router = useRouter();
   const baseUrl = "https://www.round.digital";
@@ -63,6 +129,8 @@ const Seo = ({
   // and every line of body copy. The suffix said "RoundDigital".
   const defaultTitle = title || "Round Digital — IT, AI, Research, Staffing and Training";
   const fullTitle = title ? `${title} | Round Digital` : defaultTitle;
+
+  const breadcrumbSchema = buildBreadcrumbSchema(baseUrl, cleanPath, breadcrumbLabel);
 
   const defaultOgImage = ogImage || `${baseUrl}/og-image.png`;
   const ogImageUrl = ogImage?.startsWith('http') ? ogImage : defaultOgImage;
@@ -145,6 +213,15 @@ const Seo = ({
           ),
         }}
       />
+
+      {/* BreadcrumbList, derived from the route. Emitted on every page except
+          the homepage, where a one-item trail carries no information. */}
+      {breadcrumbSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      ) : null}
 
       {/* Page-specific structured data (FAQPage, Service, Article, …) */}
       {jsonLd.map((schema, i) => (

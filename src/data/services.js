@@ -129,6 +129,7 @@ export const SERVICES = {
   "ai-enablement": {
     slug: "ai-enablement",
     title: "AI Enablement & Automation",
+    seoTitle: "AI Enablement & Automation Services",
     naics: "541511",
     naicsLabel: "Custom Computer Programming Services",
     psc: ["D399", "R425"],
@@ -238,6 +239,7 @@ export const SERVICES = {
   "research-data": {
     slug: "research-data",
     title: "Data, Research & Surveys",
+    seoTitle: "Data, Research & Survey Programmes",
     naics: "541910",
     naicsLabel: "Marketing Research and Public Opinion Polling",
     psc: ["B505", "R701"],

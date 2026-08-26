@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "cursor": 8,
+  "cursor": 9,
   "tickets": [
     {
       "sessionId": "d40f7e30-b9b2-4f9f-bff0-47512bb77a02",
@@ -114,8 +114,13 @@
       "sessionId": "8b73bbdd-602a-45f7-ab0d-c9cda5c0a87d",
       "attempts": 0,
       "retryAt": "2026-08-26T03:54:39.037Z",
-      "claimNonce": "6bb4dd1d-161a-4dc7-b40b-dfbc2b3e6eb0",
-      "leaseExpiresAt": "2026-08-26T03:54:58.039Z"
+      "acknowledgedAt": "2026-08-26T04:45:18.595Z"
+    },
+    {
+      "sessionId": "9ef6757f-c3bc-42e1-98a1-bc34316c4c29",
+      "attempts": 0,
+      "retryAt": "2026-08-26T04:45:44.068Z",
+      "acknowledgedAt": "2026-08-26T04:45:44.997Z"
     }
   ]
 }

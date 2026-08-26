@@ -80,7 +80,7 @@ export default function Teaming() {
   return (
     <Layout>
       <Seo
-        title="Teaming & Subcontracting"
+        title="Teaming & Subcontracting Arrangements"
         description="Round Digital works both directions: as a small-business subcontractor to primes holding vehicles, and as a prime bringing in specialist partners."
         keywords="small business IT subcontractor, subcontracting partner IT services, teaming agreement IT, prime contractor partner"
       />

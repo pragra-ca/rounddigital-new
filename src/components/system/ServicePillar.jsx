@@ -55,7 +55,10 @@ export default function ServicePillar({ service: s }) {
            rendered an 83-character title, which Google truncates. The name is
            the primary search term; the headline is already the H1. */
         title={s.seoTitle || s.title}
-        description={s.lead}
+        /* Lead alone runs as short as 102 characters on the staffing pillar.
+           Appending the classification label lands every pillar in the 120-160
+           window using a term already published on the page. */
+        description={`${s.lead}${s.lead.length < 120 ? ` ${s.naicsLabel} — NAICS ${s.naics}.` : ""}`.slice(0, 158)}
         keywords={`${s.title}, ${s.naicsLabel}, ${s.focusKeywords || s.naicsLabel}`}
         jsonLd={[serviceSchema, faqSchema]}
       />
